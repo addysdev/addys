@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.offact.framework.db.SqlSessionCommonDao;
 import com.offact.framework.exception.BizException;
 import com.offact.addys.service.common.BatchService;
-import com.offact.addys.vo.ad.ADCategoryVO;
 
 /**
  * @author 4530
@@ -43,22 +42,6 @@ public class BatchServiceImpl implements BatchService {
 		batchloger.debug("EXECUTE QUERY : Batch.insertTbCategory");
 		commonDao.insert("Batch.insertTbCategory");
 	}
-
-	@Override
-	public void insertTbCconsultCategory() throws BizException {
-
-
-		List<ADCategoryVO> categoryLList = commonDao.selectList("Batch.getAddLCetetory");
-		for(int i=0;i<categoryLList.size();i++){
-			ADCategoryVO  categoryVO = categoryLList.get(i);
-			commonDao.insert("Batch.addtbConsultCategory",categoryVO);
-
-		}
-
-
-
-	}
-
 
 
 	@Override
