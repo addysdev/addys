@@ -51,6 +51,18 @@ import com.offact.addys.vo.UserMenuVO;
 public class HomeController {
 
 	private final Logger logger = Logger.getLogger(getClass());
+	/*
+    * log id 생성 
+    */
+	public String logid(){
+		
+		double id=Math.random();
+		long t1 = System.currentTimeMillis ( ); 
+		
+		String logid=""+t1+id;
+		
+		return logid;
+	}
 	
 	@Value("#{config['offact.host.url']}")
 	private String host_url;
@@ -84,6 +96,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/homepage", method = RequestMethod.GET)
 	public String homepage(Locale locale, Model model) {
+		
 		logger.info("Welcome homepage! The client locale is {0}." + locale);
 
 		Date date = new Date();
@@ -120,6 +133,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/errors404", method = RequestMethod.GET)
 	public ModelAndView errors404(HttpServletRequest request,HttpServletResponse response) throws BizException {
+		
 		logger.info("errors404");
 		ModelAndView mv = new ModelAndView();
 		
@@ -132,6 +146,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/errors500", method = RequestMethod.GET)
 	public ModelAndView errors500(HttpServletRequest request,HttpServletResponse response) throws BizException {
+		
 		logger.info("errors500");
 		ModelAndView mv = new ModelAndView();
 		
@@ -144,6 +159,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/errors", method = RequestMethod.GET)
 	public ModelAndView errors(HttpServletRequest request,HttpServletResponse response) throws BizException {
+		
 		logger.info("errors");
 		ModelAndView mv = new ModelAndView();
 		
@@ -156,6 +172,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/warning", method = RequestMethod.GET)
 	public ModelAndView warning(HttpServletRequest request,HttpServletResponse response) throws BizException {
+		
 		logger.info("warning");
 		ModelAndView mv = new ModelAndView();
 		
@@ -168,6 +185,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/loginFail", method = RequestMethod.GET)
 	public ModelAndView loginFail(HttpServletRequest request,HttpServletResponse response) throws BizException {
+		
 		logger.info("loginFail");
 		ModelAndView mv = new ModelAndView();
 		
@@ -177,12 +195,14 @@ public class HomeController {
 	//동작
 	@RequestMapping(value = "/redirectUrl2", method = RequestMethod.GET)
 	public ModelAndView redirectUrl2(){
+		
 		return new ModelAndView("redirect:/index");
 	}
 
 	//동작
 	@RequestMapping(value = "/redirectUrl3", method = RequestMethod.GET)
 	public ModelAndView redirectUrl3(){
+		
 		RedirectView redirectView = new RedirectView("/index");
 		redirectView.setContextRelative(true);
 
@@ -194,6 +214,7 @@ public class HomeController {
 	//동작
 	@RequestMapping(value = "/redirectUrl4", method = RequestMethod.GET)
 	public ModelAndView redirectUrl4(){
+		
 		ModelAndView mv = new ModelAndView();
 
 		mv.setView(new RedirectView("/addys/index"));
@@ -205,6 +226,7 @@ public class HomeController {
 	//동작
 	@RequestMapping(value = "/redirectUrl5", method = RequestMethod.POST)
 	public ModelAndView redirectUrl5(){
+		
 		ModelAndView mv = new ModelAndView();
 
 		mv.setView(new RedirectView("/addys/index"));

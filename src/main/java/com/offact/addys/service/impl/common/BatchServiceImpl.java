@@ -19,62 +19,29 @@ import com.offact.addys.service.common.BatchService;
 @Service
 public class BatchServiceImpl implements BatchService {
 
-    private final Logger 			batchloger = Logger.getLogger("batchlog");
+    private final Logger 			
+    batchloger = Logger.getLogger("batchlog");
 
 	@Autowired
 	private SqlSessionCommonDao commonDao;
 
 	@Override
-	public void deleteTbPreCategory() throws BizException {
-		commonDao.delete("Batch.deleteTbPreCategory");
-//		commonDao.delete("Batch.deleteTbCategory");
+	public int insertBatchTest1() throws BizException {
+			  return commonDao.insert("Batch.insertBatchTest1");
 
 	}
 
 	@Override
-	public void insertTbCategory(JSONArray arrayGetAllCategory) throws BizException {
+	public void insertBatchTest2(JSONArray arrayGetAllCategory) throws BizException {
+		
 		Object arryObjGetAllCategory=null;
 		for (int i=0;i<arrayGetAllCategory.size();i++){
 			arryObjGetAllCategory = JSONValue.parse(arrayGetAllCategory.get(i).toString());
 			batchloger.debug("INSERT : " + arryObjGetAllCategory);
             commonDao.insert("Batch.insertTbPreCategory",arryObjGetAllCategory);
 		}
-		batchloger.debug("EXECUTE QUERY : Batch.insertTbCategory");
-		commonDao.insert("Batch.insertTbCategory");
+		batchloger.debug("EXECUTE QUERY : Batch.insertBatchTest2");
+		commonDao.insert("Batch.insertBatchTest2");
 	}
-
-
-	@Override
-	public void deleteInsertTbDeal(JSONArray arrayDeal) throws BizException {
-		Object arryObj=null;
-		for (int i=0;i<arrayDeal.size();i++){
-			arryObj = JSONValue.parse(arrayDeal.get(i).toString());
-			batchloger.debug("INSERT : " + arryObj);
-			  commonDao.insert("Batch.insertDeal",arryObj);
-		}
-
-	}
-
-
-
-	@Override
-	public int regiConsultExile() throws BizException {
-			  return commonDao.insert("Batch.regiConsultExile");
-
-	}
-
-
-
-	@Override
-	public int regiFaqCategory() throws BizException {
-			  return commonDao.insert("Batch.regiFaqCategory");
-
-	}
-
-
-
-
-
-
 
 }

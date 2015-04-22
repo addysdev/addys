@@ -88,13 +88,11 @@
             </bean>
         </property>
     </bean>
-    
-    
-    
+
     <!-- DealBatch -->
         <!-- Cron 대상 클래스 정의 -->
     <bean id="dealQuartz" class="org.springframework.scheduling.quartz.JobDetailBean">
-        <property name="jobClass" value="com.offact.batch.DealBatch"></property>
+        <property name="jobClass" value="com.offact.batch.CommonBatch"></property>
     </bean>    
     
     <!-- Cron 시간 설정 -->
@@ -125,45 +123,7 @@
     	</property>
     </bean>
     
-    
-
-    <!-- LdapBatch -->
-        <!-- Cron 대상 클래스 정의 -->
-    <bean id="ldapQuartz" class="org.springframework.scheduling.quartz.JobDetailBean">
-        <property name="jobClass" value="com.offact.batch.LdapBatch"></property>
-    </bean>    
-    
-    <!-- Cron 시간 설정 -->
-    <bean id="ldapQuartzTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
-        <property name="jobDetail" ref="ldapQuartz"></property>
-        <property name="cronExpression" value="0 0 1 * * ?"></property>
-         <!-- 
-        <property name="cronExpression" value="0/3 * * * * ?"></property>
-         -->
-        
-    </bean>
-    
-    <!-- Cron 실행 -->
-    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-        <property name="triggers">
-            <list>
-                <ref bean="ldapQuartzTrigger"></ref>
-            </list>
-        </property>
-        <property name="quartzProperties">
-            <props>
-                <prop key="org.quartz.threadPool.class">org.quartz.simpl.SimpleThreadPool</prop>
-                <prop key="org.quartz.threadPool.threadCount">3</prop>
-                <prop key="org.quartz.threadPool.threadPriority">4</prop>
-                <prop key="org.quartz.jobStore.class">org.quartz.simpl.RAMJobStore</prop>
-                <prop key="org.quartz.jobStore.misfireThreshold">60000</prop>
-            </props>
-        </property>
-    </bean>
-    
-    
-    
-        <!-- Ldap 적용 
+    <!-- Ldap 적용 
     <bean id="contextSource" class="org.springframework.ldap.core.support.LdapContextSource">
     	<property name="url" value="bean.tmoncorp.com:389" />
     	<property name="base" value="DC=tmoncorp,DC=com" />
