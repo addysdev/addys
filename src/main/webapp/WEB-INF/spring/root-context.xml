@@ -89,7 +89,7 @@
         </property>
     </bean>
 
-    <!-- DealBatch -->
+    <!-- CommonBatch -->
         <!-- Cron 대상 클래스 정의 -->
     <bean id="dealQuartz" class="org.springframework.scheduling.quartz.JobDetailBean">
         <property name="jobClass" value="com.offact.batch.CommonBatch"></property>

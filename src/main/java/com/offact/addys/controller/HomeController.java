@@ -70,10 +70,10 @@ public class HomeController {
 	@RequestMapping("/hello")
 	 public @ResponseBody
 	 String hello(@RequestParam(value = "name") String name,
-				   @RequestParam(value = "gender") String gender,
-				   @RequestParam(value = "email") String email,
-				   @RequestParam(value = "phone") String phone,
-				   @RequestParam(value = "city") String city) {
+				  @RequestParam(value = "gender") String gender,
+				  @RequestParam(value = "email") String email,
+				  @RequestParam(value = "phone") String phone,
+				  @RequestParam(value = "city") String city) {
 
 		  System.out.println(name);
 		  System.out.println(gender);
@@ -95,7 +95,9 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/homepage", method = RequestMethod.GET)
-	public String homepage(Locale locale, Model model) {
+	public String homepage(Locale locale, 
+			               Model model) 
+	{
 		
 		logger.info("Welcome homepage! The client locale is {0}." + locale);
 
@@ -114,9 +116,14 @@ public class HomeController {
 	 * @throws BizException
 	 */
 	@RequestMapping(value = "/mobile", method = RequestMethod.GET)
-	public ModelAndView mobile(HttpServletRequest request,HttpServletResponse response,  Model model, Locale locale) throws BizException {
+	public ModelAndView mobile(HttpServletRequest request,
+			                   HttpServletResponse response,  
+			                   Model model, 
+			                   Locale locale) throws BizException 
+	{
 
 		logger.info("Welcome mobile! The client locale is {}" + locale);
+		
 		ModelAndView  mv = new ModelAndView();
 		
 		String redirectUrl=host_url;
@@ -132,7 +139,9 @@ public class HomeController {
 	 * @throws BizException
 	 */
 	@RequestMapping(value = "/errors404", method = RequestMethod.GET)
-	public ModelAndView errors404(HttpServletRequest request,HttpServletResponse response) throws BizException {
+	public ModelAndView errors404(HttpServletRequest request,
+			                      HttpServletResponse response) throws BizException 
+	{
 		
 		logger.info("errors404");
 		ModelAndView mv = new ModelAndView();
@@ -145,7 +154,9 @@ public class HomeController {
 	 * @throws BizException
 	 */
 	@RequestMapping(value = "/errors500", method = RequestMethod.GET)
-	public ModelAndView errors500(HttpServletRequest request,HttpServletResponse response) throws BizException {
+	public ModelAndView errors500(HttpServletRequest request,
+			                      HttpServletResponse response) throws BizException 
+	{
 		
 		logger.info("errors500");
 		ModelAndView mv = new ModelAndView();
@@ -158,7 +169,9 @@ public class HomeController {
 	 * @throws BizException
 	 */
 	@RequestMapping(value = "/errors", method = RequestMethod.GET)
-	public ModelAndView errors(HttpServletRequest request,HttpServletResponse response) throws BizException {
+	public ModelAndView errors(HttpServletRequest request,
+			                   HttpServletResponse response) throws BizException 
+	{
 		
 		logger.info("errors");
 		ModelAndView mv = new ModelAndView();
@@ -171,7 +184,9 @@ public class HomeController {
 	 * @throws BizException
 	 */
 	@RequestMapping(value = "/warning", method = RequestMethod.GET)
-	public ModelAndView warning(HttpServletRequest request,HttpServletResponse response) throws BizException {
+	public ModelAndView warning(HttpServletRequest request,
+			                    HttpServletResponse response) throws BizException 
+	{
 		
 		logger.info("warning");
 		ModelAndView mv = new ModelAndView();
@@ -184,7 +199,9 @@ public class HomeController {
 	 * @throws BizException
 	 */
 	@RequestMapping(value = "/loginFail", method = RequestMethod.GET)
-	public ModelAndView loginFail(HttpServletRequest request,HttpServletResponse response) throws BizException {
+	public ModelAndView loginFail(HttpServletRequest request,
+			                      HttpServletResponse response) throws BizException 
+	{
 		
 		logger.info("loginFail");
 		ModelAndView mv = new ModelAndView();
@@ -194,14 +211,16 @@ public class HomeController {
 	}
 	//동작
 	@RequestMapping(value = "/redirectUrl2", method = RequestMethod.GET)
-	public ModelAndView redirectUrl2(){
+	public ModelAndView redirectUrl2()
+	{
 		
 		return new ModelAndView("redirect:/index");
 	}
 
 	//동작
 	@RequestMapping(value = "/redirectUrl3", method = RequestMethod.GET)
-	public ModelAndView redirectUrl3(){
+	public ModelAndView redirectUrl3()
+	{
 		
 		RedirectView redirectView = new RedirectView("/index");
 		redirectView.setContextRelative(true);
@@ -213,7 +232,8 @@ public class HomeController {
 
 	//동작
 	@RequestMapping(value = "/redirectUrl4", method = RequestMethod.GET)
-	public ModelAndView redirectUrl4(){
+	public ModelAndView redirectUrl4()
+	{
 		
 		ModelAndView mv = new ModelAndView();
 
@@ -225,7 +245,8 @@ public class HomeController {
 
 	//동작
 	@RequestMapping(value = "/redirectUrl5", method = RequestMethod.POST)
-	public ModelAndView redirectUrl5(){
+	public ModelAndView redirectUrl5()
+	{
 		
 		ModelAndView mv = new ModelAndView();
 
