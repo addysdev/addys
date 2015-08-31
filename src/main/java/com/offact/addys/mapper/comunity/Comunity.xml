@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Comunity">
+
+<resultMap id="ComunityVO" type="com.offact.addys.vo.comunity.ComunityVO" >
+  <result column="customerKey"              property="customerKey"  />
+  <result column="groupId"              property="groupId"  />
+  <result column="customerId"      property="customerId"  />
+  <result column="commentType"       property="commentType"  />
+  <result column="comment"      property="comment"  />
+  <result column="commentDateTime"         property="commentDateTime"  />
+</resultMap>
+
+<select id="getComment" resultMap="ComunityVO" parameterType="com.offact.addys.vo.comunity.ComunityVO" >
+SELECT T1.idx
+      ,T1.customerKey
+      ,T1.groupId
+      ,T1.customerId
+      ,T1.commentType 
+      ,T1.comment
+      ,T1.commentDateTime
+  FROM smCommunity T1
+  Order by commentDateTime desc
+ 
+</select>
+
+<insert id="commentInsert" parameterType="com.offact.addys.vo.comunity.ComunityVO" >
+  	Insert into smCommunity( 
+        	 customerKey
+            ,groupId
+            ,customerId
+            ,commentType 
+            ,comment
+            ,commentDateTime
+            )
+        Values (
+	  		  #{customerKey}
+	  		, #{groupId}
+	  		, #{customerId}
+	  		, #{commentType}
+	  		, #{comment}
+	  		, now()
+	  		)
+</insert>
+
+</mapper>

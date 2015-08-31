@@ -109,7 +109,7 @@ function openConn(index, acordian){
 $(document).ready(function() {
     $( "#hisCalendarData1, #hisCalendarData2" ).datepicker({
       showOn: "button",
-      buttonImage: " /cs/images/common/ico_calendar.gif",
+      buttonImage: " /addon/images/common/ico_calendar.gif",
       buttonImageOnly: true,
       //maxDate:0, //오늘 날짜까지만 선택하도록
         prevText: "이전",
@@ -128,7 +128,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     $( "#hisCalendarData3" ).datepicker({
       showOn: "button",
-      buttonImage: "/cs/images/common/ico_calendar.gif",
+      buttonImage: "/addon/images/common/ico_calendar.gif",
       buttonImageOnly: true,
       //maxDate:0, //오늘 날짜까지만 선택하도록
         prevText: "이전",
@@ -147,7 +147,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     $( "#hisCalendarData3_1" ).datepicker({
       showOn: "button",
-      buttonImage: "/cs/images/common/ico_calendar.gif",
+      buttonImage: "/addon/images/common/ico_calendar.gif",
       buttonImageOnly: true,
       //maxDate:0, //오늘 날짜까지만 선택하도록
         prevText: "이전",
@@ -185,7 +185,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     $( "#hisCalendarData5" ).datepicker({
       showOn: "button",
-      buttonImage: " /cs/images/common/ico_calendar.gif",
+      buttonImage: " /addon/images/common/ico_calendar.gif",
       buttonImageOnly: true,
       //maxDate:0, //오늘 날짜까지만 선택하도록
         prevText: "이전",
@@ -261,7 +261,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     $( "#hisCalendarData9" ).datepicker({
       showOn: "button",
-      buttonImage: "/cs/images/common/ico_calendar.gif",
+      buttonImage: "/addon/images/common/ico_calendar.gif",
       buttonImageOnly: true,
       //maxDate:0, //오늘 날짜까지만 선택하도록
         prevText: "이전",
@@ -280,7 +280,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     $( "#hisCalendarData10" ).datepicker({
       showOn: "button",
-      buttonImage: "/cs/images/common/ico_calendar.gif",
+      buttonImage: "/addon/images/common/ico_calendar.gif",
       buttonImageOnly: true,
       //maxDate:0, //오늘 날짜까지만 선택하도록
         prevText: "이전",
@@ -299,7 +299,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     $( "#hisCalendarData11" ).datepicker({
       showOn: "button",
-      buttonImage: "/cs/images/common/ico_calendar.gif",
+      buttonImage: "/addon/images/common/ico_calendar.gif",
       buttonImageOnly: true,
       //maxDate:0, //오늘 날짜까지만 선택하도록
         prevText: "이전",
@@ -318,7 +318,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     $( "#hisCalendarData20, #hisCalendarData21" ).datepicker({
       showOn: "button",
-      buttonImage: " /cs/images/common/ico_calendar.gif",
+      buttonImage: " /addon/images/common/ico_calendar.gif",
       buttonImageOnly: true,
       //maxDate:0, //오늘 날짜까지만 선택하도록
         prevText: "이전",
@@ -424,7 +424,7 @@ function goLayoutPCS12(tel){
         open:function(){
             //팝업 가져올 url
 
-            $(this).load('/cs/csSmsSendSearch', {tel:tel});
+            $(this).load('/addon/csSmsSendSearch', {tel:tel});
 
 
             $(".ui-widget-overlay").click(function(){ //레이어팝업외 화면 클릭시 팝업 닫기
@@ -452,7 +452,7 @@ function goLayoutPCS13(accountSrl){
             //alert(13);
             //alert(accountSrl);
             //팝업 가져올 url
-            $(this).load('/cs/csMembershipGradeHistorySearch',{accountSrl:accountSrl});
+            $(this).load('/addon/csMembershipGradeHistorySearch',{accountSrl:accountSrl});
 
             $(".ui-widget-overlay").click(function(){ //레이어팝업외 화면 클릭시 팝업 닫기
                 $("#LayoutPCS13").dialog('close');
@@ -479,7 +479,7 @@ function goLayoutPCS14(accountSrl){
             //팝업 가져올 url
             //alert(14);
             //alert(accountSrl);
-            $(this).load('/cs/csReserveInOutSearch', {accountSrl:accountSrl});
+            $(this).load('/addon/csReserveInOutSearch', {accountSrl:accountSrl});
 
 
             $(".ui-widget-overlay").click(function(){ //레이어팝업외 화면 클릭시 팝업 닫기
@@ -580,7 +580,7 @@ function goLayoutPCS21(){
 
         open:function(){
             //팝업 가져올 url
-            $(this).load('/cs/csAnnounceSuggestionsSearch', {deal_srl:$("#csDealTicketDetailDealSrl", ".buy_deal").text()});
+            $(this).load('/addon/csAnnounceSuggestionsSearch', {deal_srl:$("#csDealTicketDetailDealSrl", ".buy_deal").text()});
 
             $(".ui-widget-overlay").click(function(){ //레이어팝업외 화면 클릭시 팝업 닫기
                 $("#LayoutPCS21").dialog('close');
@@ -605,7 +605,7 @@ function goLayoutPCS22(){
 
         open:function(){
             //팝업 가져올 url
-            $(this).load('/cs/csSellerContactList', {main_deal_srl:$("#csDealTicketDetailDealSrl", ".buy_deal").text()});
+            $(this).load('/addon/csSellerContactList', {main_deal_srl:$("#csDealTicketDetailDealSrl", ".buy_deal").text()});
 
             $(".ui-widget-overlay").click(function(){ //레이어팝업외 화면 클릭시 팝업 닫기
                 $("#LayoutPCS22").dialog('close');
@@ -728,7 +728,7 @@ function goLayoutPCS50(strDeptCd, strCrtNo){
 
         open:function(){
             //팝업 가져올 url
-            $(this).load('/cs/mainCounselView', {deptCode:strDeptCd, crtNo:strCrtNo});
+            $(this).load('/addon/mainCounselView', {deptCode:strDeptCd, crtNo:strCrtNo});
             $(".ui-widget-overlay").click(function(){ //레이어팝업외 화면 클릭시 팝업 닫기
                 $("#LayoutPCS50").dialog('close');
 
@@ -752,7 +752,7 @@ function goLayoutPCS60(callbackFunc){
 
         open:function(){
             //팝업 가져올 url
-            $(this).load('/cs/counselResultInsertConsultExile',{"callbackFunc":callbackFunc});
+            $(this).load('/addon/counselResultInsertConsultExile',{"callbackFunc":callbackFunc});
 
             $(".ui-widget-overlay").click(function(){ //레이어팝업외 화면 클릭시 팝업 닫기
                 $("#LayoutPCS60").dialog('close');
@@ -777,7 +777,7 @@ function goLayoutPCS61(){
 
         open:function(){
             //팝업 가져올 url
-            $(this).load('/cs/counselResultInsertClaimType');
+            $(this).load('/addon/counselResultInsertClaimType');
 
             $(".ui-widget-overlay").click(function(){ //레이어팝업외 화면 클릭시 팝업 닫기
                 $("#LayoutPCS61").dialog('close');
@@ -802,7 +802,7 @@ function goLayoutPCS62(){
 
         open:function(){
             //팝업 가져올 url
-            $(this).load('/cs/counselResultInsertCSBoardReply');
+            $(this).load('/addon/counselResultInsertCSBoardReply');
 
             $(".ui-widget-overlay").click(function(){ //레이어팝업외 화면 클릭시 팝업 닫기
                 $("#LayoutPCS6").dialog('close');
@@ -1551,7 +1551,7 @@ function goLayoutPADConsultExileSearch(option){
     if(option.userDeptCode      ){paramdata.con_userDeptCode        = option.userDeptCode;}
     if(option.adAdminYn         ){paramdata.con_adAdminYn           = option.adAdminYn;}else{paramdata.adAdminYn = "N";}
 
-    $('#LayoutAdConsultExileSearch').load('/cs/adConsultExileSearch', paramdata, function(){
+    $('#LayoutAdConsultExileSearch').load('/addon/adConsultExileSearch', paramdata, function(){
 
         $('#LayoutAdConsultExileSearch').dialog({
             resizable : false, //사이즈 변경 불가능
@@ -1577,7 +1577,7 @@ function goLayoutPADConsultExileSearch(option){
 //레이어팝업 : AD_코드관리
 function goLayoutPAD01(){
     //팝업 가져올 url
-    $('#LayoutPAD01').load('/cs/codeList',function(){
+    $('#LayoutPAD01').load('/addon/codeList',function(){
         $('#LayoutPAD01').dialog({
             resizable : false, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
@@ -1600,7 +1600,7 @@ function goLayoutPAD01(){
 
 //레이어팝업 : AD_사용자관리
 function goLayoutPAD02(){
-    $('#LayoutPAD02').load('/cs/adUserListManage', function(){
+    $('#LayoutPAD02').load('/addon/adUserListManage', function(){
 
         // 공통 권한 셋팅
         fnFuncApply();
@@ -1654,7 +1654,7 @@ function goLayoutPAD04(){
 
 //레이어팝업 : AD_사용자관리>상담원조회
 function goLayoutPAD05(callbackFunc){
-    $('#LayoutPAD05').load('/cs/adUserSearch',{"callbackFunc":callbackFunc}, function(){
+    $('#LayoutPAD05').load('/addon/adUserSearch',{"callbackFunc":callbackFunc}, function(){
 
         $('#LayoutPAD05').dialog({
             resizable : false, //사이즈 변경 불가능
@@ -1679,7 +1679,7 @@ function goLayoutPAD05(callbackFunc){
 
 //레이어팝업 : AD_사용자관리>상담원조회 _ Default 부서지정
 function goLayoutPAD05_userDeptCode(callbackFunc,userDeptCode,fixFg){
-    $('#LayoutPAD05').load('/cs/adUserSearch',{'callbackFunc':callbackFunc,'con_userDeptCode':userDeptCode,'fixFg':fixFg }, function(){
+    $('#LayoutPAD05').load('/addon/adUserSearch',{'callbackFunc':callbackFunc,'con_userDeptCode':userDeptCode,'fixFg':fixFg }, function(){
 
         $('#LayoutPAD05').dialog({
             resizable : false, //사이즈 변경 불가능
@@ -1704,7 +1704,7 @@ function goLayoutPAD05_userDeptCode(callbackFunc,userDeptCode,fixFg){
 
 //레이어팝업 : AD_사용자관리>상담원조회(자동배정사용시)
 function goLayoutPAD05_AUTO(callbackFunc,dealId){
-    $('#LayoutPAD05').load('/cs/adUserSearch',{"callbackFunc":callbackFunc,"autoSetDealId":dealId}, function(){
+    $('#LayoutPAD05').load('/addon/adUserSearch',{"callbackFunc":callbackFunc,"autoSetDealId":dealId}, function(){
         $('#LayoutPAD05').dialog({
             resizable : false, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
@@ -1729,7 +1729,7 @@ function goLayoutPAD05_AUTO(callbackFunc,dealId){
 
 //레이어팝업 : 공통코드(멀티 선택)
 function goLayoutPBD71(callbackFunc,codeId){
-    $('#LayoutPBD71').load('/cs/adCodePopup?codeId='+codeId,{"callbackFunc":callbackFunc}, function(){
+    $('#LayoutPBD71').load('/addon/adCodePopup?codeId='+codeId,{"callbackFunc":callbackFunc}, function(){
         $('#LayoutPBD71').dialog({
             resizable : false, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
@@ -1751,7 +1751,7 @@ function goLayoutPBD71(callbackFunc,codeId){
 
 //레이어팝업 : AD_기능별그룹권한관리
 function goLayoutPAD06(){
-    $('#LayoutPAD06').load('/cs/ADGroupAuthManage', function(){
+    $('#LayoutPAD06').load('/addon/ADGroupAuthManage', function(){
         $('#LayoutPAD06').dialog({
             resizable : false, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
@@ -1775,7 +1775,7 @@ function goLayoutPAD06(){
 //레이어팝업 : AD_양식관리
 function goLayoutPAD07(){
     //팝업 가져올 url
-    $('#LayoutPAD07').load('/cs/commonFormMng',function(){
+    $('#LayoutPAD07').load('/addon/commonFormMng',function(){
         $('#LayoutPAD07').dialog({
             resizable : false, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
@@ -1799,7 +1799,7 @@ function goLayoutPAD07(){
 //레이어팝업 : AD_딜별이관담당자관리
 function goLayoutPAD08(){
     //팝업 가져올 url
-    $('#LayoutPAD08').load('/cs/dealByUserMng',function(){
+    $('#LayoutPAD08').load('/addon/dealByUserMng',function(){
         $('#LayoutPAD08').dialog({
             resizable : false, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
@@ -1823,7 +1823,7 @@ function goLayoutPAD08(){
 //레이어팝업 : AD_지역별이관담당자관리
 function goLayoutPAD09(){
     //팝업 가져올 url
-    $('#LayoutPAD09').load('/cs/categoryByUserMng',function(){
+    $('#LayoutPAD09').load('/addon/categoryByUserMng',function(){
         $('#LayoutPAD09').dialog({
             resizable : false, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
@@ -1846,11 +1846,11 @@ function goLayoutPAD09(){
 
 //레이어팝업 : AD_콜백리스트/분배
 function goLayoutPAD10(){
-    $('#LayoutPAD10').load('/cs/ADOBDistManageCallBack', function(){
+    $('#LayoutPAD10').load('/addon/ADOBDistManageCallBack', function(){
         //달력 셋팅
         $( "#regFromDate, #regToDate" ).datepicker({
             showOn: "button",
-            buttonImage: " /cs/images/common/ico_calendar.gif",
+            buttonImage: " /addon/images/common/ico_calendar.gif",
             buttonImageOnly: true,
             maxDate:0, //오늘 날짜까지만 선택하도록
             prevText: "이전",
@@ -1909,13 +1909,13 @@ function goLayoutPAD11(){
 
 //레이어팝업 : AD_클레임관리
 function goLayoutPAD12(){
-    $('#LayoutPAD12').load('/cs/adClaimListSearch', function(){
+    $('#LayoutPAD12').load('/addon/adClaimListSearch', function(){
         // 권한적용
         fnFuncApply();
         // 달력 셋팅
         $( "#con_startYmd, #con_endYmd" ).datepicker({
             showOn: "button",
-            buttonImage: " /cs/images/common/ico_calendar.gif",
+            buttonImage: " /addon/images/common/ico_calendar.gif",
             buttonImageOnly: true,
             //maxDate:0, //오늘 날짜까지만 선택하도록
             prevText: "이전",
@@ -1980,7 +1980,7 @@ function goLayoutPAD13(){
 
 //레이어팝업 : AD_스킬배정(계시판)
 function goLayoutPAD14(){
-    $('#LayoutPAD14').load('/cs/ADCounselorSkillBoard', function(){
+    $('#LayoutPAD14').load('/addon/ADCounselorSkillBoard', function(){
         $('#LayoutPAD14').dialog({
             resizable : false, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
@@ -2003,7 +2003,7 @@ function goLayoutPAD14(){
 
 //레이어팝업 : 스킬 배정(콜배정)
 function goLayoutPAD15(){
-    $('#LayoutPAD15').load('/cs/ADCounselorSkillUser', function(){
+    $('#LayoutPAD15').load('/addon/ADCounselorSkillUser', function(){
         $('#LayoutPAD15').dialog({
             resizable : false, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
@@ -2053,11 +2053,11 @@ function goLayoutPAD16(){
 
 //레이어팝업 : AD_아웃콜리스트/분배
 function goLayoutPAD17(){
-    $('#LayoutPAD17').load('/cs/ADOBDistManageOutCall', function(){
+    $('#LayoutPAD17').load('/addon/ADOBDistManageOutCall', function(){
         //달력 셋팅
         $( "#regFromDate, #regToDate" ).datepicker({
             showOn: "button",
-            buttonImage: " /cs/images/common/ico_calendar.gif",
+            buttonImage: " /addon/images/common/ico_calendar.gif",
             buttonImageOnly: true,
             maxDate:0, //오늘 날짜까지만 선택하도록
             prevText: "이전",
@@ -2093,13 +2093,13 @@ function goLayoutPAD17(){
 
 //레이어팝업 : AD상담관리_상담이력
 function goLayoutPAD19(){
-    $('#LayoutPAD19').load('/cs/adCounselHistory', function(){
+    $('#LayoutPAD19').load('/addon/adCounselHistory', function(){
         // 권한셋팅
         fnFuncApply();
         // 달력 셋팅
         $( "#adCounselHistory_con_interactionStartTime, #adCounselHistory_con_interactionEndTime" ).datepicker({
             showOn: "button",
-            buttonImage: " /cs/images/common/ico_calendar.gif",
+            buttonImage: " /addon/images/common/ico_calendar.gif",
             buttonImageOnly: true,
             //maxDate:0, //오늘 날짜까지만 선택하도록
             prevText: "이전",
@@ -2135,13 +2135,13 @@ function goLayoutPAD19(){
 
 //레이어팝업 : AD상담관리_아웃콜이력
 function goLayoutPAD20(){
-    $('#LayoutPAD20').load('/cs/adOutCallHistory', function(){
+    $('#LayoutPAD20').load('/addon/adOutCallHistory', function(){
         // 권한적용
         fnFuncApply();
         // 달력 셋팅
         $( "#con_regTimeStart, #con_regTimeEnd" ).datepicker({
             showOn: "button",
-            buttonImage: " /cs/images/common/ico_calendar.gif",
+            buttonImage: " /addon/images/common/ico_calendar.gif",
             buttonImageOnly: true,
             //maxDate:0, //오늘 날짜까지만 선택하도록
             prevText: "이전",
@@ -2177,13 +2177,13 @@ function goLayoutPAD20(){
 
 //레이어팝업 : AD상담관리_예약이력관리
 function goLayoutPAD21(){
-    $('#LayoutPAD21').load('/cs/adReserveHistory', function(){
+    $('#LayoutPAD21').load('/addon/adReserveHistory', function(){
         // 권한적용
         fnFuncApply();
         // 달력 셋팅
         $( "#con_reserveTimeStart, #con_reserveTimeEnd" ).datepicker({
             showOn: "button",
-            buttonImage: " /cs/images/common/ico_calendar.gif",
+            buttonImage: " /addon/images/common/ico_calendar.gif",
             buttonImageOnly: true,
             //maxDate:0, //오늘 날짜까지만 선택하도록
             prevText: "이전",
@@ -2219,13 +2219,13 @@ function goLayoutPAD21(){
 
 //레이어팝업 : AD상담관리_이관이력관리
 function goLayoutPAD22(){
-    $('#LayoutPAD22').load('/cs/adTransferHistory', function(){
+    $('#LayoutPAD22').load('/addon/adTransferHistory', function(){
         // 공통권한적용
         fnFuncApply();
         // 달력 셋팅
         $( "#con_searchPeriodStart, #con_searchPeriodEnd" ).datepicker({
             showOn: "button",
-            buttonImage: " /cs/images/common/ico_calendar.gif",
+            buttonImage: " /addon/images/common/ico_calendar.gif",
             buttonImageOnly: true,
             //maxDate:0, //오늘 날짜까지만 선택하도록
             prevText: "이전",
@@ -2261,13 +2261,13 @@ function goLayoutPAD22(){
 
 //레이어팝업 : AD상담관리_상담이력(관리자)
 function goLayoutPAD23(){
-    $('#LayoutPAD23').load('/cs/adCounselHistory',{"ad_adConYn":"Y"}, function(){
+    $('#LayoutPAD23').load('/addon/adCounselHistory',{"ad_adConYn":"Y"}, function(){
         // 권한셋팅
         fnFuncApply();
         // 달력 셋팅
         $( "#adCounselHistory_con_interactionStartTime, #adCounselHistory_con_interactionEndTime" ).datepicker({
             showOn: "button",
-            buttonImage: " /cs/images/common/ico_calendar.gif",
+            buttonImage: " /addon/images/common/ico_calendar.gif",
             buttonImageOnly: true,
             //maxDate:0, //오늘 날짜까지만 선택하도록
             prevText: "이전",
@@ -2303,13 +2303,13 @@ function goLayoutPAD23(){
 
 //레이어팝업 : AD상담관리_아웃콜이력(관리자)
 function goLayoutPAD24(){
-    $('#LayoutPAD24').load('/cs/adOutCallHistory',{"ad_adConYn":"Y"}, function(){
+    $('#LayoutPAD24').load('/addon/adOutCallHistory',{"ad_adConYn":"Y"}, function(){
         // 권한적용
         fnFuncApply();
         // 달력 셋팅
         $( "#con_regTimeStart, #con_regTimeEnd" ).datepicker({
             showOn: "button",
-            buttonImage: " /cs/images/common/ico_calendar.gif",
+            buttonImage: " /addon/images/common/ico_calendar.gif",
             buttonImageOnly: true,
             //maxDate:0, //오늘 날짜까지만 선택하도록
             prevText: "이전",
@@ -2344,13 +2344,13 @@ function goLayoutPAD24(){
 
 //레이어팝업 : AD상담관리_예약 이력 관리(관리자)
 function goLayoutPAD25(){
-    $('#LayoutPAD25').load('/cs/adReserveHistory',{"ad_adConYn":"Y"}, function(){
+    $('#LayoutPAD25').load('/addon/adReserveHistory',{"ad_adConYn":"Y"}, function(){
         // 권한적용
         fnFuncApply();
         // 달력 셋팅
         $( "#con_reserveTimeStart, #con_reserveTimeEnd" ).datepicker({
             showOn: "button",
-            buttonImage: " /cs/images/common/ico_calendar.gif",
+            buttonImage: " /addon/images/common/ico_calendar.gif",
             buttonImageOnly: true,
             //maxDate:0, //오늘 날짜까지만 선택하도록
             prevText: "이전",
@@ -2386,13 +2386,13 @@ function goLayoutPAD25(){
 
 //레이어팝업 : AD상담관리_이관이력관리(관리자)
 function goLayoutPAD26(){
-    $('#LayoutPAD26').load('/cs/adTransferHistory',{"ad_adConYn":"Y"}, function(){
+    $('#LayoutPAD26').load('/addon/adTransferHistory',{"ad_adConYn":"Y"}, function(){
         // 공통권한적용
         fnFuncApply();
         // 달력 셋팅
         $( "#con_searchPeriodStart, #con_searchPeriodEnd" ).datepicker({
             showOn: "button",
-            buttonImage: " /cs/images/common/ico_calendar.gif",
+            buttonImage: " /addon/images/common/ico_calendar.gif",
             buttonImageOnly: true,
             //maxDate:0, //오늘 날짜까지만 선택하도록
             prevText: "이전",
@@ -2429,11 +2429,11 @@ function goLayoutPAD26(){
 //레이어팝업 : AD상담관리_파트너등록관리
 function goLayoutPAD27(){
     //팝업 가져올 url
-    $('#LayoutPAD27').load('/cs/viewPartner', function(){
+    $('#LayoutPAD27').load('/addon/viewPartner', function(){
         //달력 셋팅
         $( "#frstRegFromDate, #frstRegToDate" ).datepicker({
             showOn: "button",
-            buttonImage: " /cs/images/common/ico_calendar.gif",
+            buttonImage: " /addon/images/common/ico_calendar.gif",
             buttonImageOnly: true,
             maxDate:0, //오늘 날짜까지만 선택하도록
             prevText: "이전",
@@ -2468,7 +2468,7 @@ function goLayoutPAD27(){
 //레이어팝업 : AD상담관리_업종별/유사지역 성공사례
 function goLayoutPAD28(){
     //팝업 가져올 url
-    $('#LayoutPAD28').load('/cs/viewSuccessExam',function(){
+    $('#LayoutPAD28').load('/addon/viewSuccessExam',function(){
         $('#LayoutPAD28').dialog({
             resizable : false, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
@@ -2578,7 +2578,7 @@ modal : true, //주위를 어둡게
 
 open:function(){
 //팝업 가져올 url
-$(this).load('/cs/mainCounselView', {deptCode:strDeptCd, crtNo:strCrtNo});
+$(this).load('/addon/mainCounselView', {deptCode:strDeptCd, crtNo:strCrtNo});
 $(".ui-widget-overlay").click(function(){ //레이어팝업외 화면 클릭시 팝업 닫기
 $("#LayoutPCS50").dialog('close');
 
@@ -2595,11 +2595,11 @@ $("#LayoutPCS50").dialog('close');
 //레이어팝업 : AD상담관리_파트너등록관리
 function goLayoutBATCHADMIN(){
   //팝업 가져올 url
-  $('#LayoutBATCHADMIN').load('/cs/batchAdmin', function(){
+  $('#LayoutBATCHADMIN').load('/addon/batchAdmin', function(){
       //달력 셋팅
       $( "#fromDate, #toDate" ).datepicker({
           showOn: "button",
-          buttonImage: " /cs/images/common/ico_calendar.gif",
+          buttonImage: " /addon/images/common/ico_calendar.gif",
           buttonImageOnly: true,
           maxDate:0, //오늘 날짜까지만 선택하도록
           prevText: "이전",
@@ -2640,7 +2640,7 @@ function fnAdRecordKeyPlay(key){
     }
     $.ajax({
         type: "POST",
-        url:  "/cs/adGetRecordStream",
+        url:  "/addon/adGetRecordStream",
         data:{"URID":key},
         dataType:'json',
         success: function(result) {
@@ -2664,7 +2664,7 @@ function fnAdRecordKeyPlay(key){
 var commonDimedTimer;
 // HSH : 공통 딤처리용 START
 function commonDim(action,checktime){
-    checktime = checktime || 5000;
+    checktime = checktime || 60000;
     if (action){
         $("#CommonDimDiv").eq(0).dimBackground();
         commonDimTimeout(true,checktime);
@@ -2676,7 +2676,7 @@ function commonDim(action,checktime){
 }
 
 function commonDimTimeout(action,checktime){
-    checktime = checktime || 5000;
+    checktime = checktime || 60000;
     if(action){
         clearTimeout(commonDimedTimer);
         commonDimedTimer = setTimeout(function(){
@@ -2722,7 +2722,7 @@ function commonDimTimeout(action,checktime){
 
         // Initialize curtain
         var $curtain = $('<div class="dimbackground-curtain commonDimedClass" id="dimedLoadingDiv"></div>');
-        var $loding  = $('<image src="/cs/images/common/loading.gif" class="commonDimedClass" id="dimedLoadingImg"/>');
+        var $loding  = $('<image src="/addon/images/common/loading.gif" class="commonDimedClass" id="dimedLoadingImg"/>');
 
         $curtain.css({
             position:   'fixed',
@@ -2919,7 +2919,7 @@ function showListMain(id, id2){
 function fnMenuApply(){
      $.ajax({
             type: "POST",
-            url:  "/cs/authMenuList",
+            url:  "/addon/authMenuList",
             dataType:'json',
             success: function(result) {
 
@@ -2949,7 +2949,7 @@ function fnMenuApply(){
 
          $.ajax({
                 type: "POST",
-                url:  "/cs/authFuncList",
+                url:  "/addon/authFuncList",
                 dataType:'json',
                 success: function(result) {
 
@@ -2979,5 +2979,521 @@ function fnMenuApply(){
                 }
             });
         };
-        
-     
+	    /** 
+	     * input 숫자와 콤마만 입력되게 하기.
+	     * include js : jquery.number.js
+	     * input 속성에 numberOnly 추가
+	     * jsp : <input type="text" id="amount" name="amount" numberOnly placeholder="0" />
+	     * $(this).number(true);
+	     * $.number( 5020.2364 );				// Outputs 5,020
+	     * $.number( 5020.2364, 2 );			// Outputs: 5,020.24
+	     * $.number( 135.8729, 3, ',' );		// Outputs: 135,873
+	     * $.number( 5020.2364, 1, ',', ' ' );	// Outputs: 5 020,2 
+	     */
+	    $(document).on("keyup", "input:text[numberOnly]", function() {
+	    	$(this).number(true);
+	    });
+	    /**
+	     * 숫자에서 comma를 없앤다.
+	     *
+	     * @param   obj
+	     */
+	    function deleteComma(obj) {
+	        obj.value = deleteCommaStr(obj.value);
+	    }
+	    /**
+	     * 숫자에서 comma를 없앤다.
+	     *
+	     * @param   str
+	     */
+	    function deleteCommaStr(str) {
+	        var temp = '';
+
+	        for (var i = 0; i < str.length; i++) {
+	            if (str.charAt(i) == ',') {
+	                continue;
+	            } else {
+	                temp += str.charAt(i);
+	            }
+	        }
+
+	        return  temp;
+	    }
+		  /**
+	     * 숫자에 comma를 붙인다.
+	     *
+	     * @param   str
+	     */
+	    function addCommaStr(str) {
+	        var rxSplit = new RegExp('([0-9])([0-9][0-9][0-9][,.])');
+	        var arrNumber = str.split('.');
+	        arrNumber[0] += '.';
+	        do {
+	            arrNumber[0] = arrNumber[0].replace(rxSplit, '$1,$2');
+	        } while (rxSplit.test(arrNumber[0]));
+
+	        if (arrNumber.length > 1) {
+	            replaceStr = arrNumber.join("");
+	        } else {
+	            replaceStr = arrNumber[0].split(".")[0];
+	        }
+	        return replaceStr;
+	    }
+	    /**
+	     * 입력값의 null check
+	     *
+	     * @param   str
+	     */
+		  function isnullStr(val){
+
+			  if(val=='NaN' || val=='' || val==null){
+				  
+				  return 0;
+			  }
+			  return val
+			  
+		  }
+		  function setCookie( name, value ){
+				var todayDate = new Date();
+				todayDate.setDate( todayDate.getDate() + (60*60*24*365));
+				document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+			}
+			
+			function setCookieOne( name, value ){
+				var todayDate = new Date();
+				todayDate.setDate( todayDate.getDate() + (60*60*24));
+				document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+			}
+			
+			function getCookie(name){
+				var coki;
+				var idx = document.cookie.indexOf(name+'=');
+				
+				if (idx != -1) {
+					idx += name.length + 1;
+					to_idx = document.cookie.indexOf(';', idx);
+					
+					if (to_idx == -1) {
+						to_idx = document.cookie.length;
+					}		
+					coki = document.cookie.substring(idx, to_idx);
+				} else {
+				 coki = "";
+				}
+				return coki;
+			}
+		    /**
+		     * trim
+		     *
+		     * @param   text
+		     * @return  string
+		     */
+		    function trim(text) {
+		    	if (text == "") {
+		            return  text;
+		        }
+
+		        var len = text.length;
+		        var st = 0;
+
+		        while ((st < len) && (text.charAt(st) <= ' ')) {
+		            st++;
+		        }
+
+		        while ((st < len) && (text.charAt(len - 1) <= ' ')) {
+		            len--;
+		        }
+
+		        return  ((st > 0) || (len < text.length)) ? text.substring(st, len) : text;
+		    }
+		    
+		    /**
+		     *  파일 확장자명 체크
+		     *
+		     **/
+		    function isImageFile( obj ) {
+		    	var strIdx = obj.lastIndexOf( '.' ) + 1;
+		    	if ( strIdx == 0 ) {
+		    		return false;
+		    	} else {
+		    		var ext = obj.substr( strIdx ).toLowerCase();
+		    		if ( ext == "xls") {
+		    			return true;
+		    		} else {
+		    			alert(ext+'파일은 전송이 불가능합니다.');
+		    			return false;
+		    		}
+		    	}
+		    }
+		  //textarea maxlength 지정하기
+		    function textLimit(obj){
+		        var maxLength = parseInt(obj.getAttribute("maxlength"));
+		        if(obj.value.length > maxLength){
+		            alert(maxLength + "자 이하로 입력하세요");
+		            obj.value = obj.value.substring(0,maxLength);
+		        }
+		    }
+		    
+		    function fillSpace(val){
+
+		    	if(typeof val =="undefined" || val == null){
+		    		return ' ';
+		    	}
+		    	if(val.length==0){
+		    		return ' ';
+		    	}
+
+		        return val;
+		    }
+		    
+		    
+		    
+          ///////////////////////////////////////////////////////////////////////////////
+		  //�Լ��� :MM_swapImgRestore(),MM_preloadImages,MM_findObj,MM_swapImage
+		  //��  �� : �̹��� ȿ���Լ�.
+		  ///////////////////////////////////////////////////////////////////////////////
+		  function MM_swapImgRestore() { //v3.0
+		    var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+		  }
+		  function MM_preloadImages() { //v3.0
+		    var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+		      var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+		      if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+		  }
+
+		  function MM_findObj(n, d) { //v4.01
+		    var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+		      d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+		    if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+		    for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+		    if(!x && d.getElementById) x=d.getElementById(n); return x;
+		  }
+
+		  function MM_swapImage() { //v3.0
+		    var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+		     if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+		  }
+		  function MM_nbGroup(event, grpName) { //v6.0
+		  	  var i,img,nbArr,args=MM_nbGroup.arguments;
+		  	  if (event == "init" && args.length > 2) {
+		  	    if ((img = MM_findObj(args[2])) != null && !img.MM_init) {
+		  	      img.MM_init = true; img.MM_up = args[3]; img.MM_dn = img.src;
+		  	      if ((nbArr = document[grpName]) == null) nbArr = document[grpName] = new Array();
+		  	      nbArr[nbArr.length] = img;
+		  	      for (i=4; i < args.length-1; i+=2) if ((img = MM_findObj(args[i])) != null) {
+		  	        if (!img.MM_up) img.MM_up = img.src;
+		  	        img.src = img.MM_dn = args[i+1];
+		  	        nbArr[nbArr.length] = img;
+		  	    } }
+		  	  } else if (event == "over") {
+		  	    document.MM_nbOver = nbArr = new Array();
+		  	    for (i=1; i < args.length-1; i+=3) if ((img = MM_findObj(args[i])) != null) {
+		  	      if (!img.MM_up) img.MM_up = img.src;
+		  	      img.src = (img.MM_dn && args[i+2]) ? args[i+2] : ((args[i+1])? args[i+1] : img.MM_up);
+		  	      nbArr[nbArr.length] = img;
+		  	    }
+		  	  } else if (event == "out" ) {
+		  	    for (i=0; i < document.MM_nbOver.length; i++) {
+		  	      img = document.MM_nbOver[i]; img.src = (img.MM_dn) ? img.MM_dn : img.MM_up; }
+		  	  } else if (event == "down") {
+		  	    nbArr = document[grpName];
+		  	    if (nbArr)
+		  	      for (i=0; i < nbArr.length; i++) { img=nbArr[i]; img.src = img.MM_up; img.MM_dn = 0; }
+		  	    document[grpName] = nbArr = new Array();
+		  	    for (i=2; i < args.length-1; i+=2) if ((img = MM_findObj(args[i])) != null) {
+		  	      if (!img.MM_up) img.MM_up = img.src;
+		  	      img.src = img.MM_dn = (args[i+1])? args[i+1] : img.MM_up;
+		  	      nbArr[nbArr.length] = img;
+		  	  } }
+		  	}
+		  function MM_showHideLayers() { //v9.0
+		  	  var i,p,v,obj,args=MM_showHideLayers.arguments;
+		  	  for (i=0; i<(args.length-2); i+=3) 
+		  	  with (document) if (getElementById && ((obj=getElementById(args[i]))!=null)) { v=args[i+2];
+		  	    if (obj.style) { obj=obj.style; v=(v=='show')?'block':(v=='hide')?'none':v; }
+		  	    obj.display=v; }
+		  	}
+		  
+		  function addDateFormat(obj) {
+	
+		        var value = obj.value;
+		       
+		        if (trim(value) == "") {
+		            return;
+		        }
+
+		        value = deleteDateFormatStr(value);
+	
+		        if (!isDate(value)) {
+		            dispName = obj.getAttribute("dispName");
+
+		            if (dispName == null) {
+		                dispName = "";
+		            }
+
+		            alert(dispName + " 형식이 올바르지 않습니다.");
+		            obj.value='';
+		            obj.focus();
+
+		            return;
+		        }
+
+		        obj.value = addDateFormatStr(value);
+	    }
+	    function addDateFormatStr(str) {
+	
+	        return  str.substring(0, 4) + "-" + str.substring(4, 6) + "-" + str.substring(6, 8);
+	    }
+	    function deleteDateFormatStr(str) {
+	 
+	        var temp = '';
+
+	        for (var i = 0; i < str.length; i++) {
+	            if (str.charAt(i) == '-') {
+	                continue;
+	            } else {
+	                temp += str.charAt(i);
+	            }
+	        }
+
+	        return  temp;
+	    }
+		    
+	  function onlyNum(val)
+	  {
+	
+	   var num = val;
+	   var tmp = "";
+
+	   for (var i = 0; i < num.length; i ++)
+	   {
+	    if (num.charAt(i) >= 0 && num.charAt(i) <= 9)
+	     tmp = tmp + num.charAt(i);
+	    else
+	     continue;
+	   }
+	   return tmp;
+	  }
+	  
+	  function onlyNumber(obj){
+
+	    	var num = obj.value;
+
+	    	var pattern = /\D/gi;
+
+	    	if( pattern.test(num)==true){
+
+	    	obj.value = num.replace(/\D/gi, "");
+
+	    	obj.focus();
+
+	    	}
+	  }
+	  /**
+	     * trim
+	     *
+	     * @param   text
+	     * @return  string
+	     */
+	    function trim(text) {
+	    	if (text == "") {
+	            return  text;
+	        }
+
+	        var len = text.length;
+	        var st = 0;
+
+	        while ((st < len) && (text.charAt(st) <= ' ')) {
+	            st++;
+	        }
+
+	        while ((st < len) && (text.charAt(len - 1) <= ' ')) {
+	            len--;
+	        }
+
+	        return  ((st > 0) || (len < text.length)) ? text.substring(st, len) : text;
+	    }
+      ///////////////////////////////////////////////////////////////////////////////
+	  //함수명 :dateCheck()
+	  //내  용 : 날짜체크함수
+	  ///////////////////////////////////////////////////////////////////////////////
+	  function dateCheck(sObj,eObj,due){
+	  	
+	  	var sdate=deleteDateFormatStr(sObj.value);
+	  	var edate=deleteDateFormatStr(eObj.value);
+	  	
+	  	if(!isDate(sdate)){
+	  		alert('검색 시작일자의 날짜형식이 올바르지 않습니다.');
+	  		return false;
+	  	}
+	  	if(!isDate(edate)){
+	  		alert('검색 종료일자의 날짜형식이 올바르지 않습니다.');
+	  		return false;
+	  	}
+	  	
+	  	if(sdate>edate){
+	  		alert('시작일이 종료일보다 큽니다.');
+	  		return false;
+	  	}
+	   
+	  	var rdue=daysBetween(sdate,edate);
+	  	
+//	  	if(due!= '' && 365<rdue){
+//	  		alert('검색일수는 12개월로 제한합니다.');
+//	  		return false;
+//	  	} else if(due!='' && rdue>due){
+	  	if(due!='' && rdue>due){
+	  		if( due == '1' )
+	  			alert( '검색일수는 당일로 제한됩니다.' );
+	  		else
+	  			alert('검색일수는 '+(due-1)+'일로 제한합니다.');
+	      	return false;
+	  	}	
+	  	return true;
+	  }
+	  /**
+	     * 날짜 체크
+	     *
+	     * @param   date
+	     * @return  boolean
+	     */
+	    function isDate(date) {
+	        if (date == null || date.length != 8) {
+	            return  false;
+	        }
+
+	        if (!isNumber(date)) {
+	            return  false;
+	        }
+
+	        var year = eval(date.substring(0, 4));
+	        var month = eval(date.substring(4, 6));
+	        var day = eval(date.substring(6, 8));
+
+			if(year == "0000") {
+				return false;
+			}
+
+	        if (month > 12 || month == "00") {
+	            return  false;
+	        }
+
+	        var totalDays;
+
+	        switch (eval(month)){
+
+	            case 1 :
+	                totalDays = 31;
+	                break;
+	            case 2 :
+	                if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+	                    totalDays = 29;
+	                else
+	                    totalDays = 28;
+	                break;
+	            case 3 :
+	                totalDays = 31;
+	                break;
+	            case 4 :
+	                totalDays = 30;
+	                break;
+	            case 5 :
+	                totalDays = 31;
+	                break;
+	            case 6 :
+	                totalDays = 30;
+	                break;
+	            case 7 :
+	                totalDays = 31;
+	                break;
+	            case 8 :
+	                totalDays = 31;
+	                break;
+	            case 9 :
+	                totalDays = 30;
+	                break;
+	            case 10 :
+	                totalDays = 31;
+	                break;
+	            case 11 :
+	                totalDays = 30;
+	                break;
+	            case 12 :
+	                totalDays = 31;
+	                break;
+	        }
+
+	        if (day > totalDays) {
+	            return  false;
+	        }
+
+	        if (day == "00") {
+	            return  false;
+	        }
+
+	        return  true;
+	    }
+	    /**
+	     * 오직 숫자로만 이루어져 있는지 체크 한다.
+	     *
+	     * @param   num
+	     * @return  boolean
+	     */
+	    function isNumber(num) {
+	        re = /[0-9]*[0-9]$/;
+
+	        if (re.test(num)) {
+	            return  true;
+	        }
+
+	        return  false;
+	    }
+	    /**
+	     * 두 날짜간의 일자를 리턴
+	     *
+	     * parameter date: JavaScript Date Object
+	     */
+	    function daysBetween(fromDt, toDt) {
+	    
+	        var date1 = toTimeObject(fromDt);
+	        var date2 = toTimeObject(toDt);
+
+	        var DSTAdjust = 0;
+	        // constants used for our calculations below
+	        oneMinute = 1000 * 60;
+	        var oneDay = oneMinute * 60 * 24;
+	        // equalize times in case date objects have them
+	        date1.setHours(0);
+	        date1.setMinutes(0);
+	        date1.setSeconds(0);
+	        date2.setHours(0);
+	        date2.setMinutes(0);
+	        date2.setSeconds(0);
+	        // take care of spans across Daylight Saving Time changes
+	        if (date2 > date1) {
+	            DSTAdjust = 
+	                (date2.getTimezoneOffset( ) - date1.getTimezoneOffset( )) * oneMinute;
+	        } else {
+	            DSTAdjust = 
+	                (date1.getTimezoneOffset( ) - date2.getTimezoneOffset( )) * oneMinute;    
+	        }
+	        var diff = Math.abs(date2.getTime( ) - date1.getTime( )) - DSTAdjust;
+	        //alert(Math.floor(diff/oneDay)+1);
+	        return Math.floor(diff/oneDay)+1;
+	    }
+	    /**
+	     * Time 스트링을 자바스크립트 Date 객체로 변환
+	     *
+	     * parameter time: Time 형식의 String
+	     */
+	    function toTimeObject(time)
+	    { //parseTime(time)
+	        var year  = time.substr(0,4);
+	        var month = time.substr(4,2) - 1; // 1월=0,12월=11
+	        var day   = time.substr(6,2);
+	        var hour  = time.substr(8,2);
+	        var min   = time.substr(10,2);
+
+	        return new Date(year,month,day,hour,min);
+	    }
+

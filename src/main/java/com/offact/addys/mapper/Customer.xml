@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Customer">
+
+<resultMap id="CustomerVO" type="com.offact.addys.vo.CustomerVO" >
+  <result column="customerKey"              property="customerKey"  />
+  <result column="customerId"              property="customerId"  />
+  <result column="customerName"      property="customerName"  />
+  <result column="customerKey1"       property="customerKey1"  />
+  <result column="customerKey2"      property="customerKey2"  />
+  <result column="customerKey3"       property="customerKey3"  />
+  <result column="customerKey4"      property="customerKey4"  />
+  <result column="customerKey5"             property="customerKey5"  />
+  <result column="customerKey6"             property="customerKey6"  />
+  <result column="customerKey7"            property="customerKey7"  />
+  <result column="customerKey8"           property="customerKey8"  />
+  <result column="customerKey9"              property="customerKey9"  />
+  <result column="customerKey10"         property="customerKey10"  />
+</resultMap>
+
+<select id="getCustomer" resultMap="CustomerVO" parameterType="com.offact.addys.vo.CustomerVO" >
+SELECT T1.customerId
+      ,T1.customerName
+      ,T1.customerKey1
+      ,T1.customerKey2
+      ,T1.customerKey3 
+      ,T1.customerKey4
+      ,T1.customerKey5
+      ,T1.customerKey6
+      ,T1.customerKey7
+      ,T1.customerKey8
+      ,T1.customerKey9
+      ,T1.customerKey10
+  FROM smCustomer T1
+  WHERE T1.customerKey = #{customerKey}
+ 
+</select>
+
+</mapper>

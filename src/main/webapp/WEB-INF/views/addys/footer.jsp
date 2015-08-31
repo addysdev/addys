@@ -7,11 +7,5 @@
       </div>
     </div>
 </html>
-<!-- Latest compiled JavaScript--> 
-	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-1.11.2.js"></script>
-	<script type="text/javascript" src="<%= request.getContextPath() %>/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
-	<script type="text/javascript" src="<%= request.getContextPath() %>/bootstrap-3.3.4-dist/js/bootstrap.js"></script>
-<!-- lastest ver -->
-<!--<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>-->
+
 	
