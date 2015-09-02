@@ -7,7 +7,7 @@ function fcComunity_Regist(){
 	var frm=document.cumunityForm;
 
 	if(frm.comment.value==''){
-		alert('등록 내용이 없습니다.');
+		alert('1:1문의 내용이 없습니다.');
 		return;
 	}
 	
@@ -17,7 +17,7 @@ function fcComunity_Regist(){
 	    $.ajax({
 	        type: "POST",
 	        async:false,
-	           url:  "<%= request.getContextPath() %>/comunity/commentregist",
+	           url:  "<%= request.getContextPath() %>/comunity/counselregist",
 	           data:$("#cumunityForm").serialize(),
 	           success: function(result) {
 
@@ -27,30 +27,31 @@ function fcComunity_Regist(){
 						 alert('글 등록을 실패했습니다.');
 					}
 					
-					$('#commentRegistForm').dialog('close');
+					$('#counselRegistForm').dialog('close');
 					
 	           },
 	           error:function(){
 	        	   
 	        	   alert('글 등록을 실패했습니다.');
-	        	   $('#commentRegistForm').dialog('close');
+	        	   $('#counselRegistForm').dialog('close');
 	           }
 	    });
 	//}
 }
 
 function fcComunity_close(){
-	$("#commentRegistForm").dialog('close');
+	$("#counselRegistForm").dialog('close');
 }
 </SCRIPT>
 <!-- 사용자관리 -->
 <body>
 <div class="container-fluid">
-<form:form commandName="comunityVO" id="cumunityForm" name="cumunityForm" method="post" action="" >
+<form:form commandName="counselVO" id="counselForm" name="counselForm" method="post" action="" >
 <input type="hidden" name="customerKey" id="customerKey" value="${customerKey}" >
 <input type="hidden" name="customerId" id="customerId" value="${customerId}" >
+<input type="hidden" name="counselState" id="counselState" value="01" >
 <input type="hidden" name="groupId" id="groupId" value="SM001" >
-<p><textarea style='height:102px;ime-mode:active;' row="4" class="form-control" id="comment" maxlength="200" name="comment"  value=""  placeholder="1:1문의"/></p>
+<p><textarea style='height:102px;ime-mode:active;' row="4" class="form-control" id="counsel" maxlength="200" name="counsel"  value=""  placeholder="1:1문의"/></p>
 		<br>
 <button id="cumunitysavebtn" type="button" class="btn btn-primary" onClick="fcComunity_Regist()">1:1상담</button> 
 <!--<button id="cumunityclosebtn" type="button" class="btn btn-danger" onClick="fcComunity_close()">취소</button>-->

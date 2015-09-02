@@ -49,6 +49,7 @@ function fcComunity_close(){
 <form:form commandName="comunityVO" id="cumunityForm" name="cumunityForm" method="post" action="" >
 <input type="hidden" name="customerKey" id="customerKey" value="${customerKey}" >
 <input type="hidden" name="customerId" id="customerId" value="${customerId}" >
+<input type="hidden" name="commentType" id="commentType" value="${staffYn}" >
 <input type="hidden" name="groupId" id="groupId" value="SM001" >
 <p><textarea style='height:102px;ime-mode:active;' row="4" class="form-control" id="comment" maxlength="200" name="comment"  value=""  placeholder="글올리기"/></p>
 		<br>
@@ -58,5 +59,5 @@ function fcComunity_close(){
 </div>
 </body>
 <script>
-$('#defer_reason').focus(1); 
+$('#comment').focus(1); 
 </script>

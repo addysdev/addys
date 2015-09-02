@@ -8,7 +8,16 @@
 	    	<c:if test="${!empty comunityList}">
              <c:forEach items="${comunityList}" var="ComunityVO" varStatus="status">
              <tr id="select_tr_${ComunityVO.customerKey}">
-                 <td class='text-center'><c:out value="[${ComunityVO.customerKey}]"></c:out>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<c:out value="${ComunityVO.comment}">:</c:out></td>
+              <c:choose>
+		        <c:when test="${ComunityVO.commentType=='Y'}">
+		             <th></th>
+					 <th><input disabled type="text" class="form-control"  value="[${ComunityVO.customerKey}]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${ComunityVO.comment}" placeholder="수신" /></th>
+				</c:when>
+				<c:otherwise>
+ 					 <th class='text-left'><input disabled type="text" class="form-control"  value="[${ComunityVO.customerKey}]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${ComunityVO.comment}" placeholder="수신" /></th>
+				     <th></th>
+				</c:otherwise>
+			  </c:choose>
               </tr>
              </c:forEach>
             </c:if>

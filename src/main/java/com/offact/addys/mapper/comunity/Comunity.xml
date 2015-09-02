@@ -20,7 +20,7 @@ SELECT T1.idx
       ,T1.comment
       ,T1.commentDateTime
   FROM smCommunity T1
-  Order by commentDateTime desc
+  Order by commentDateTime desc LIMIT 0,13 
  
 </select>
 

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Counsel">
+
+<resultMap id="CounselVO" type="com.offact.addys.vo.comunity.CounselVO" >
+  <result column="idx"      property="idx"  />
+  <result column="groupId"              property="groupId"  />
+  <result column="customerKey"              property="customerKey"  />
+  <result column="customerId"      property="customerId"  />
+  <result column="counselState"       property="counselState"  />
+  <result column="counsel"      property="counsel"  />
+  <result column="counselDateTime"         property="counselDateTime"  />
+</resultMap>
+
+<insert id="counselInsert" parameterType="com.offact.addys.vo.comunity.CounselVO" >
+  	
+  	Insert into smCounsel( 
+        	 customerKey
+            ,groupId
+            ,customerId
+            ,counselState 
+            ,counsel
+            ,counselDateTime
+            )
+        Values (
+	  		  #{customerKey}
+	  		, #{groupId}
+	  		, #{customerId}
+	  		, #{counselState}
+	  		, #{counsel}
+	  		, now()
+	  		)
+</insert>
+
+</mapper>

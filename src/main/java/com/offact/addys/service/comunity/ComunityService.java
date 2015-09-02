@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.offact.framework.exception.BizException;
 import com.offact.addys.vo.comunity.ComunityVO;
+import com.offact.addys.vo.comunity.CounselVO;
 
 /**
  * @author 4530
@@ -29,5 +30,13 @@ public interface ComunityService {
      * @throws BizException
      */
     public List<ComunityVO> getComunityList(ComunityVO comunity) throws BizException;
+    
+    /**
+	 * 1:1상담
+	 * @param 
+	 * @return
+	 * @throws BizException
+	 */
+	public int counselInsert(CounselVO counsel) throws BizException;
 	
 }

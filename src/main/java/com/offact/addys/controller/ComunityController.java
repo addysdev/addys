@@ -46,6 +46,7 @@ import com.offact.addys.service.CustomerService;
 import com.offact.addys.service.comunity.ComunityService;
 import com.offact.addys.vo.CustomerVO;
 import com.offact.addys.vo.comunity.ComunityVO;
+import com.offact.addys.vo.comunity.CounselVO;
 
 /**
  * Handles requests for the application home page.
@@ -106,16 +107,14 @@ public class ComunityController {
 	        
 	        String customerName = StringUtil.nvl((String) session.getAttribute("customerName")); 
 	        String customerId = StringUtil.nvl((String) session.getAttribute("customerId"));
+	        String staffYn = StringUtil.nvl((String) session.getAttribute("staffYn"));
 	        
 	        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
 
 	 	       	mv.setViewName("/common/customerloginForm");
 	       		return mv;
 			}
-	
-	        mv.addObject("customerKey", customerKey);
-	        mv.addObject("customerId", customerId);
-	
+
 	        mv.setViewName("/comunity/commentRegistForm");
 	        
 	       //log Controller execute time end
@@ -191,9 +190,6 @@ public class ComunityController {
 	       		return mv;
 			}
 	
-	        mv.addObject("customerKey", customerKey);
-	        mv.addObject("customerId", customerId);
-	
 	        mv.setViewName("/comunity/counselRegistForm");
 	        
 	       //log Controller execute time end
@@ -215,16 +211,21 @@ public class ComunityController {
 	     */
 	    @RequestMapping(value = "/comunity/counselregist", method = RequestMethod.POST)
 	    public @ResponseBody
-	    String counselRegist(@ModelAttribute("comunityVO") ComunityVO comunityVO, 
+	    String counselRegist(@ModelAttribute("counselVO") CounselVO counselVO, 
 	    		          HttpServletRequest request, 
 	    		          HttpServletResponse response) throws BizException
 	    {
 	    	//log Controller execute time start
 			String logid=logid();
 			long t1 = System.currentTimeMillis();
-			logger.info("["+logid+"] Controller start : ComunityVO" + comunityVO);
+			logger.info("["+logid+"] Controller start : counselVO" + counselVO);
 			
-			int retVal=this.comunitySvc.commentInsert(comunityVO);
+			int retVal=this.comunitySvc.counselInsert(counselVO);
+			
+			//이메일 리스틑 조회 user
+			
+			//email 전송
+			
 			
 			//log Controller execute time end
 	       	long t2 = System.currentTimeMillis();

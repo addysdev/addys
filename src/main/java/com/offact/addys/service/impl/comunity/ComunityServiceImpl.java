@@ -11,6 +11,7 @@ import com.offact.framework.db.SqlSessionCommonDao;
 import com.offact.framework.exception.BizException;
 import com.offact.addys.service.comunity.ComunityService;
 import com.offact.addys.vo.comunity.ComunityVO;
+import com.offact.addys.vo.comunity.CounselVO;
 
 /**
  * @author 4530
@@ -39,5 +40,11 @@ public class ComunityServiceImpl implements ComunityService {
 
        return comunityList;
 	}
+	
+	@Override
+	public int counselInsert(CounselVO counsel) throws BizException {
+		return commonDao.update("Counsel.counselInsert", counsel);
+	}
+	
 
 }

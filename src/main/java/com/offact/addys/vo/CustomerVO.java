@@ -19,6 +19,7 @@ public class CustomerVO extends AbstractVO {
 	private String customerKey8;
 	private String customerKey9;
 	private String customerKey10;
+	private String staffYn;
 	
 	public String getCustomerKey() {
 		return customerKey;
@@ -97,6 +98,12 @@ public class CustomerVO extends AbstractVO {
 	}
 	public void setCustomerKey10(String customerKey10) {
 		this.customerKey10 = customerKey10;
+	}
+	public String getStaffYn() {
+		return staffYn;
+	}
+	public void setStaffYn(String staffYn) {
+		this.staffYn = staffYn;
 	}
 
 }

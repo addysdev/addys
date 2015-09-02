@@ -181,6 +181,7 @@ public class CommonController {
 		String customerKey8 = "";
 		String customerKey9 = "";
 		String customerKey10 = "";
+		String staffYn = "N";
 	
 		if(customerChk != null)
 		{
@@ -213,6 +214,7 @@ public class CommonController {
 			customerKey8 = customerChk.getCustomerKey8();
 			customerKey9 = customerChk.getCustomerKey9();
 			customerKey10 = customerChk.getCustomerKey10();
+			staffYn=customerChk.getStaffYn();
 
 			// # 3. Session 객체에 셋팅
 			
@@ -237,8 +239,10 @@ public class CommonController {
 				session.setAttribute("customerKey8", customerKey8);
 				session.setAttribute("customerKey9", customerKey9);
 				session.setAttribute("customerKey10", customerKey10);
+				session.setAttribute("staffYn", staffYn);
 
 				mv.addObject("customerKey", customerKey);
+				mv.addObject("staffYn", staffYn);
 				strMainUrl = "comunity/comunityManage";
 					
 			} else {//고객 정보가 없는경우

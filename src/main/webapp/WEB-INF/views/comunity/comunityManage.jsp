@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ include file="/WEB-INF/views/addys/base.jsp" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -69,10 +70,19 @@
    <body>
     <div class="container">
       <br><br><br>
-      <button id="deferbtn" type="button" class="btn btn-primary btn-lg" onClick="fcReg_comment()" >글올리기</button>
-      <button id="deferbtn" type="button" class="btn btn-danger btn-lg" onClick="fcReg_counsel()" >1:1문의</button>
-    <div id="commentRegistForm"  title="글올리기"></div>
-    <div id="counselRegistForm"  title="1:1문의"></div>
+      
+      <c:choose>
+        <c:when test="${staffYn=='Y'}">
+			<button id="deferbtn" type="button" class="btn btn-primary btn-lg" onClick="fcReg_comment()" >답글올리기</button>
+      		<div id="commentRegistForm"  title="답글올리기"></div>
+		</c:when>
+		<c:otherwise>
+			<button id="deferbtn" type="button" class="btn btn-primary btn-lg" onClick="fcReg_comment()" >글올리기</button>
+      		<button id="deferbtn" type="button" class="btn btn-danger btn-lg" onClick="fcReg_counsel()" >1:1문의</button>
+      		<div id="commentRegistForm"  title="글올리기"></div>
+    		<div id="counselRegistForm"  title="1:1문의"></div>
+		</c:otherwise>
+	</c:choose>
     </div>
   </body>
 </html>

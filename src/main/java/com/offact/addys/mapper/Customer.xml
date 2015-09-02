@@ -16,6 +16,7 @@
   <result column="customerKey8"           property="customerKey8"  />
   <result column="customerKey9"              property="customerKey9"  />
   <result column="customerKey10"         property="customerKey10"  />
+  <result column="staffYn"         property="staffYn"  />
 </resultMap>
 
 <select id="getCustomer" resultMap="CustomerVO" parameterType="com.offact.addys.vo.CustomerVO" >
@@ -31,7 +32,10 @@ SELECT T1.customerId
       ,T1.customerKey8
       ,T1.customerKey9
       ,T1.customerKey10
+      ,Case When T3.groupId is not null Then 'Y' Else 'N' End staffYn
   FROM smCustomer T1
+       Left Join ofUser T2 On T1.customerKey=T2.mobliePhone 
+       Left Join ofGroup T3 On T2.groupId = T3.groupId And T3.smartYn='Y'
   WHERE T1.customerKey = #{customerKey}
  
 </select>
