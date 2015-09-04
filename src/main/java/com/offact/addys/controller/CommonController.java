@@ -92,8 +92,21 @@ public class CommonController {
 		logger.info("Welcome customer");
 		
 		ModelAndView  mv = new ModelAndView();
+		
+		// 사용자 세션정보
+        HttpSession session = request.getSession();
+        
+        String customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
+        
+        logger.info("customerKey:"+customerKey);
+        
+        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
 
-		mv.setViewName("common/customerLoginForm");
+ 	       	mv.setViewName("/common/customerLoginForm");
+       		return mv;
+		}
+
+		mv.setViewName("comunity/comunityManage");
 
 		return mv;
 	}
@@ -119,10 +132,10 @@ public class CommonController {
 		ModelAndView  mv = new ModelAndView();
 		
 		String customerKey = StringUtil.nvl(request.getParameter("customerKey"));
-		String customerId = StringUtil.nvl(request.getParameter("customerId"));
+		String customerPw = StringUtil.nvl(request.getParameter("customerPw"));
 		
 		logger.info(">>>> customerKey :"+customerKey);
-		logger.info(">>>> customerId :"+customerId);
+		logger.info(">>>> customerPw :"+customerPw);
 		
 		String ip = request.getHeader("X-Forwarded-For");
 
@@ -166,10 +179,11 @@ public class CommonController {
 		// # 2. 넘겨받은 아이디로 데이터베이스를 조회하여 사용자가 있는지를 체크한다.
 		CustomerVO customerVo = new CustomerVO();
 		customerVo.setCustomerKey(customerKey);
-		customerVo.setCustomerId(customerId);
+		customerVo.setInCustomerPw(customerPw);
 		
 		CustomerVO customerChk = customerSvc.getCustomer(customerVo);		
 
+		String customerId = "";
 		String customerName = "";
 		String customerKey1 = "";
 		String customerKey2 = "";
@@ -185,10 +199,11 @@ public class CommonController {
 	
 		if(customerChk != null)
 		{
+
 			//패스워드 체크
-			if(!customerId.equals(customerChk.getCustomerId())){
+			if(!customerChk.getCustomerPw().equals(customerChk.getInCustomerPw())){
 				
-				logger.info(">>> 고객번호 오류");
+				logger.info(">>> 비밀번호 오류");
 				strMainUrl = "common/loginFail";
 				
 				mv.addObject("customerKey", customerKey);
@@ -263,5 +278,136 @@ public class CommonController {
 	      	
 			return mv;
 		}
+		/**
+		 * Logout 처리
+		 * @param request
+		 * @return
+		 * @throws Exception 
+		 */
+		@RequestMapping(value = "/common/logout")
+		public ModelAndView logout(HttpServletRequest request) throws BizException
+		{
+			
+			logger.info("Good bye addys! ");
 	
+			HttpSession session = request.getSession(false);
+			
+			String customerKey = StringUtil.nvl((String) session.getAttribute("customerKey"));
+			
+			logger.info("customerKey : "+customerKey);
+			
+		 	session.removeAttribute("customerKey");
+		 	session.removeAttribute("customerId");
+	        session.removeAttribute("customerName");
+	        session.removeAttribute("customerKey1");
+	        session.removeAttribute("customerKey2");
+	        session.removeAttribute("customerKey3");
+	        session.removeAttribute("customerKey4");
+	        session.removeAttribute("customerKey5");
+	        session.removeAttribute("customerKey6");
+	        session.removeAttribute("customerKey7");
+	        session.removeAttribute("customerKey8");
+	        session.removeAttribute("customerKey9");
+	        session.removeAttribute("customerKey10");
+	        session.removeAttribute("staffYn");
+	        
+	        logger.info("logout ok!");
+	        
+	        ModelAndView mv = new ModelAndView();
+	       	mv.setViewName("/common/customerLoginForm");
+	
+			return mv;
+		}
+		/**
+	     * 고객정보 수정폼
+	     *
+	     * @param request
+	     * @param response
+	     * @param model
+	     * @param locale
+	     * @return
+	     * @throws BizException
+	     */
+	    @RequestMapping(value = "/common/customermodifyform")
+	    public ModelAndView customerModifyForm(HttpServletRequest request, 
+	    		                       HttpServletResponse response,
+			                           String customerKey) throws BizException 
+	    {
+	        
+	    	//log Controller execute time start
+			String logid=logid();
+			long t1 = System.currentTimeMillis();
+			logger.info("["+logid+"] Controller start customerKey:"+customerKey);
+	
+	        ModelAndView mv = new ModelAndView();
+	        
+			CustomerVO customerVo = new CustomerVO();
+			customerVo.setCustomerKey(customerKey);
+			
+			CustomerVO customer = customerSvc.getCustomer(customerVo);	
+	        
+			mv.addObject("customer", customer);
+	        mv.setViewName("/common/customerModifyForm");
+	        
+	       //log Controller execute time end
+	      	long t2 = System.currentTimeMillis();
+	      	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+	      	
+	        return mv;
+	    }
+	    /**
+		 * 패스워드 체크
+		 */
+		@RequestMapping("/common/passwordcheck")
+		public @ResponseBody
+		String passwordCheck(@RequestParam(value = "curPwd") String curPwd) 
+		{
+
+			logger.info("[pwd]" + curPwd);
+			
+			CustomerVO customerVo = new CustomerVO();
+			customerVo.setCurPwd(curPwd);
+
+			try{
+	        	
+				customerVo = customerSvc.getEncPassword(customerVo);
+
+		    }catch(BizException e){
+		       	
+		    	e.printStackTrace();
+		    }
+
+			return ""+customerVo.getEncPwd();
+
+		 }
+		/**
+	     * 고객정보 수정처리
+	     *
+	     * @param UserManageVO
+	     * @param request
+	     * @param response
+	     * @param model
+	     * @param locale
+	     * @return
+	     * @throws BizException
+	     */
+	    @RequestMapping(value = "/common/customermodify", method = RequestMethod.POST)
+	    public @ResponseBody
+	    String customerModify(@ModelAttribute("customerVO") CustomerVO customerVO, 
+	    		          HttpServletRequest request, 
+	    		          HttpServletResponse response) throws BizException
+	    {
+	    	//log Controller execute time start
+			String logid=logid();
+			long t1 = System.currentTimeMillis();
+			logger.info("["+logid+"] Controller start : customerVO" + customerVO);
+			
+			int retVal=this.customerSvc.customerUpdateProc(customerVO);
+
+			//log Controller execute time end
+	       	long t2 = System.currentTimeMillis();
+	       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+
+	      return ""+retVal;
+	    }
 }

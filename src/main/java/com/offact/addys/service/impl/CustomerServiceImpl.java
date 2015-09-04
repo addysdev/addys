@@ -31,5 +31,37 @@ public class CustomerServiceImpl implements CustomerService {
 	public CustomerVO getCustomer(CustomerVO customer) throws BizException {
 		return commonDao.selectOne("Customer.getCustomer", customer);
 	}
+	@Override
+	   public CustomerVO getEncPassword(CustomerVO customer)
+	   	    throws BizException
+		{
 
+		CustomerVO customerVo=new CustomerVO();
+		   
+		    try{
+		
+		    	customerVo=this.commonDao.selectOne("Customer.getEncPassword", customer);
+		
+		    }catch(Exception e){
+		    	
+		    	e.printStackTrace();
+		    	e.printStackTrace();
+		    	throw new BizException(e.getMessage());
+
+		    }
+		
+		    return customerVo;
+		    
+	  }
+	@Override
+    public int customerUpdateProc(CustomerVO customer) throws BizException {
+        // 고객 상세정보 수정
+    	
+    	if(customer.getPw_modifyYn().equals("Y")){
+    		return commonDao.update("Customer.customerUpdatePwProc", customer);
+    	}else{
+    		return commonDao.update("Customer.customerUpdateProc", customer);
+    	}
+
+    }
 }

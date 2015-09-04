@@ -2,29 +2,29 @@
 <SCRIPT>
 
 //사용자 수정
-function fcComunity_Regist(){
+function fcCunsel_Regist(){
 
-	var frm=document.cumunityForm;
+	var frm=document.counselForm;
 
-	if(frm.comment.value==''){
+	if(frm.counsel.value==''){
 		alert('1:1문의 내용이 없습니다.');
 		return;
 	}
 	
 	
-	//if (confirm('커뮤니티에 글을 올리 시겠습니까?')){ 
+	if (confirm('1:1 문의를 요청 하시겠습니까?')){ 
 		
 	    $.ajax({
 	        type: "POST",
 	        async:false,
 	           url:  "<%= request.getContextPath() %>/comunity/counselregist",
-	           data:$("#cumunityForm").serialize(),
+	           data:$("#counselForm").serialize(),
 	           success: function(result) {
 
 					if(result=='1'){
-						 alert('글이 정상적으로 올라갔습니다.');
+						 alert('1:1문의가 정상적으로 처리되었습니다.\n접수된 내용은 확인되는데로 SMS로 답변드리겠습니다.');
 					} else{
-						 alert('글 등록을 실패했습니다.');
+						 alert('1:1문의 요청이 실패했습니다.');
 					}
 					
 					$('#counselRegistForm').dialog('close');
@@ -32,11 +32,11 @@ function fcComunity_Regist(){
 	           },
 	           error:function(){
 	        	   
-	        	   alert('글 등록을 실패했습니다.');
+	        	   alert('1:1문의 요청이 실패했습니다.');
 	        	   $('#counselRegistForm').dialog('close');
 	           }
 	    });
-	//}
+	}
 }
 
 function fcComunity_close(){
@@ -53,11 +53,11 @@ function fcComunity_close(){
 <input type="hidden" name="groupId" id="groupId" value="SM001" >
 <p><textarea style='height:102px;ime-mode:active;' row="4" class="form-control" id="counsel" maxlength="200" name="counsel"  value=""  placeholder="1:1문의"/></p>
 		<br>
-<button id="cumunitysavebtn" type="button" class="btn btn-primary" onClick="fcComunity_Regist()">1:1상담</button> 
+<button id="cumunitysavebtn" type="button" class="btn btn-primary" onClick="fcCunsel_Regist()">1:1상담</button> 
 <!--<button id="cumunityclosebtn" type="button" class="btn btn-danger" onClick="fcComunity_close()">취소</button>-->
 </form:form>
 </div>
 </body>
 <script>
-$('#defer_reason').focus(1); 
+$('#counsel').focus(1); 
 </script>

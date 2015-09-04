@@ -51,7 +51,7 @@
             closeOnEscape : true, //ESC 버튼 눌렀을때 종료
 
             width : 300,
-            height : 300,
+            height : 250,
             modal : true, //주위를 어둡게
 
             open:function(){
@@ -64,13 +64,75 @@
             }
         });
     };
+	function fcConfig_modify() {
+    	
+    	var url='<%= request.getContextPath() %>/common/customermodifyform';
+    	var customerKey='${customerKey}';
 
-	</script>
+    	$('#customerModify').dialog({
+            resizable : false, //사이즈 변경 불가능
+            draggable : true, //드래그 불가능
+            closeOnEscape : true, //ESC 버튼 눌렀을때 종료
+
+            width : 400,
+            height : 415,
+            modal : true, //주위를 어둡게
+
+            open:function(){
+                //팝업 가져올 url
+                $(this).load(url+'?customerKey='+customerKey);
+
+            }
+            ,close:function(){
+                $('#customerModify').empty();
+            }
+        });
+    };
+    // 리스트 조회
+    function fcComunity_list(){
+		
+    	var customerKey='${customerKey}';
+    	
+        $.ajax({
+            type: "POST",
+               url:  "<%= request.getContextPath() %>/comunity/comunitylist?customerKey="+customerKey,
+               success: function(result) {
+                  
+                   $("#comunityList").html(result);
+               },
+               error:function() {
+                  
+               }
+        });
+    }
+    
+	//logout 처리
+	var goLogout =  function() {
+
+		//alert('logout');
+		
+		$('#logoutForm').attr({action:"<%= request.getContextPath() %>/common/logout"});
+		
+		try {
+			logoutForm.submit();
+		} catch(e) {}
+	};
+	
+  </script>
   </head>
    <body>
+  <form method="post" id="logoutForm" name="logoutForm"  role="form" >
+  </form>
     <div class="container">
-      <br><br><br>
-      
+	<fieldset>
+       	<div class="form-inline text-center">
+             <h3><strong><font style="color:#428bca">(주)애디스 다이랙트</font></strong></h3>
+             <img vertical-align="bottom" height="22px" width="22px" src="http://www.30mcart.ir/images/contact/phone.png"><span class="bar"><strong>&nbsp;&nbsp;${customerKey}</strong></span>
+             &nbsp;&nbsp;<img vertical-align="bottom" height="20px" width="20px" src="http://images.gofreedownload.net/gear-34957.jpg" onClick="fcConfig_modify()">
+             &nbsp;&nbsp;<img vertical-align="bottom" height="20px" width="20px" src="http://wiki.opencloudengine.org/download/thumbnails/5636108/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%AE%E1%86%BA.png?version=1&modificationDate=1426577291000&api=v2" onClick="goLogout()">
+           </div>
+    </fieldset>
+    <br>
       <c:choose>
         <c:when test="${staffYn=='Y'}">
 			<button id="deferbtn" type="button" class="btn btn-primary btn-lg" onClick="fcReg_comment()" >답글올리기</button>
@@ -83,6 +145,18 @@
     		<div id="counselRegistForm"  title="1:1문의"></div>
 		</c:otherwise>
 	</c:choose>
+	  <br><br>
+	  <!-- 조회결과리스트 -->
+	  <div id=comunityList></div>
+	  <div id="customerModify"  title="고객 정보변경"></div>
     </div>
   </body>
 </html>
+<script>
+//alert('${strUserId}');
+if('${customerKey}'==null || '${customerKey}'=='null' ){
+	goLogout();
+}
+
+fcComunity_list();
+</script>

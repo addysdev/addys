@@ -34,9 +34,17 @@ public class ComunityServiceImpl implements ComunityService {
 	}
 	
 	@Override
-	public List<ComunityVO> getComunityList(ComunityVO comunity) throws BizException {
+	public List<ComunityVO> getComunity(ComunityVO comunity) throws BizException {
    	
        List<ComunityVO> comunityList = commonDao.selectList("Comunity.getComment", comunity);
+
+       return comunityList;
+	}
+	
+	@Override
+	public List<ComunityVO> getComunityList(ComunityVO comunity) throws BizException {
+   	
+       List<ComunityVO> comunityList = commonDao.selectList("Comunity.getCommentList", comunity);
 
        return comunityList;
 	}

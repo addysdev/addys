@@ -167,7 +167,7 @@ public class BoardController {
 	        List<ComunityVO> comunityList = new ArrayList();
 
 	        // 커뮤니티목록조회
-	        comunityList = comunitySvc.getComunityList(comunityVO);
+	        comunityList = comunitySvc.getComunity(comunityVO);
 
 	   	    mv.addObject("comunityList", comunityList);
 	   	 

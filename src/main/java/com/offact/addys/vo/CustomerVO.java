@@ -8,6 +8,8 @@ public class CustomerVO extends AbstractVO {
 	
 	private String customerKey;
 	private String customerId;
+	private String customerPw;
+	private String inCustomerPw;
 	private String customerName;
 	private String customerKey1;
 	private String customerKey2;
@@ -20,6 +22,11 @@ public class CustomerVO extends AbstractVO {
 	private String customerKey9;
 	private String customerKey10;
 	private String staffYn;
+	
+	private String curPwd;
+	private String encPwd;
+	
+	private String pw_modifyYn;
 	
 	public String getCustomerKey() {
 		return customerKey;
@@ -104,6 +111,36 @@ public class CustomerVO extends AbstractVO {
 	}
 	public void setStaffYn(String staffYn) {
 		this.staffYn = staffYn;
+	}
+	public String getCustomerPw() {
+		return customerPw;
+	}
+	public void setCustomerPw(String customerPw) {
+		this.customerPw = customerPw;
+	}
+	public String getInCustomerPw() {
+		return inCustomerPw;
+	}
+	public void setInCustomerPw(String inCustomerPw) {
+		this.inCustomerPw = inCustomerPw;
+	}
+	public String getCurPwd() {
+		return curPwd;
+	}
+	public void setCurPwd(String curPwd) {
+		this.curPwd = curPwd;
+	}
+	public String getEncPwd() {
+		return encPwd;
+	}
+	public void setEncPwd(String encPwd) {
+		this.encPwd = encPwd;
+	}
+	public String getPw_modifyYn() {
+		return pw_modifyYn;
+	}
+	public void setPw_modifyYn(String pw_modifyYn) {
+		this.pw_modifyYn = pw_modifyYn;
 	}
 
 }

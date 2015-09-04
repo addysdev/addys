@@ -12,20 +12,30 @@
 	<script type="text/javascript" src="<%= request.getContextPath() %>/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="<%= request.getContextPath() %>/js/addys.js"></script>
 	<script>
-
+    /// key down function (엔터키가 입력되면 검색함수 호출)
+    function checkKey(event){
+        if(event.keyCode == 13){
+        	goLogin();
+            return false;
+        } else{
+            return true;
+        }
+    }
+	
+	
 	function goLogin(){
 		
 		var frm = document.loginForm;
 		var customerKey = frm.customerKey.value;
-		var customerId =  frm.customerId.value;
+		var customerPw =  frm.customerPw.value;
 	
 		if(customerKey==''){
 			alert('핸드폰 번호를 입력하시기 바랍니다.');
 			return;
 		}
 		
-		if(customerId==''){
-			alert('고객번호를 입력하시기 바랍니다.');
+		if(customerPw==''){
+			alert('Password를 입력하시기 바랍니다.');
 			return;
 		}
 		
@@ -125,8 +135,8 @@
           <input type="text" class="form-control" id=customerKey name="customerKey" placeholder="핸드폰번호">
         </div>
         <div class="form-group">
-          <label for="customerId">고객번호:</label>
-          <input type="text" class="form-control" id="customerId" name="customerId" placeholder="고객번호">
+          <label for="customerId">Password:(초기값은 발급받으신 고객번호 입니다.)</label>
+          <input type="password" class="form-control" id="customerPw" name="customerPw"  onkeypress="javascript:return checkKey(event);">
         </div>
        <button type="button" class="btn btn-default" onclick="goLogin()">Submit</button>
       </form>

@@ -111,7 +111,7 @@ public class ComunityController {
 	        
 	        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
 
-	 	       	mv.setViewName("/common/customerloginForm");
+	 	       	mv.setViewName("/common/customerLoginForm");
 	       		return mv;
 			}
 
@@ -186,7 +186,7 @@ public class ComunityController {
 	        
 	        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
 
-	 	       	mv.setViewName("/common/customerloginForm");
+	 	       	mv.setViewName("/common/customerLoginForm");
 	       		return mv;
 			}
 	
@@ -225,13 +225,51 @@ public class ComunityController {
 			//이메일 리스틑 조회 user
 			
 			//email 전송
-			
-			
+
 			//log Controller execute time end
 	       	long t2 = System.currentTimeMillis();
 	       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
 
 	      return ""+retVal;
+	    }
+	    
+	    /**
+	     * 커뮤니티 목록조회
+	     * 
+	     * @param UserManageVO
+	     * @param request
+	     * @param response
+	     * @param model
+	     * @param locale
+	     * @return
+	     * @throws BizException
+	     */
+	    @RequestMapping(value = "/comunity/comunitylist")
+	    public ModelAndView comunityList(String customerKey, 
+	    		                         HttpServletRequest request, 
+	    		                         HttpServletResponse response) throws BizException 
+	    {
+	        
+	    	//log Controller execute time start
+			String logid=logid();
+			long t1 = System.currentTimeMillis();
+			logger.info("["+logid+"] Controller start : customerKey" + customerKey);
+
+			ModelAndView mv = new ModelAndView();
+	   		
+	        List<ComunityVO> comunityList = new ArrayList();
+	        
+	        ComunityVO comunityVO = new ComunityVO();
+	        comunityVO.setCustomerKey(customerKey);
+
+	        // 커뮤니티목록조회
+	        comunityList = comunitySvc.getComunityList(comunityVO);
+
+	   	    mv.addObject("comunityList", comunityList);
+	   	 
+	   		mv.setViewName("/comunity/comunityList");
+	   		
+	   		return mv;
 	    }
 	    
 }

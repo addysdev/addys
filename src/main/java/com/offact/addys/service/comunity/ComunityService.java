@@ -22,7 +22,14 @@ public interface ComunityService {
 	 */
 	public int commentInsert(ComunityVO comunity) throws BizException;
 	
-	
+	/**
+     * 커뮤니티 조회
+     * 
+     * @return
+     * @throws BizException
+     */
+    public List<ComunityVO> getComunity(ComunityVO comunity) throws BizException;
+    
     /**
      * 커뮤니티 조회
      * 

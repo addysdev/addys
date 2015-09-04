@@ -12,16 +12,73 @@
 </resultMap>
 
 <select id="getComment" resultMap="ComunityVO" parameterType="com.offact.addys.vo.comunity.ComunityVO" >
-SELECT T1.idx
-      ,T1.customerKey
-      ,T1.groupId
-      ,T1.customerId
-      ,T1.commentType 
-      ,T1.comment
-      ,T1.commentDateTime
-  FROM smCommunity T1
-  Order by commentDateTime desc LIMIT 0,13 
+
+   Select * From (
+        Select * From (
+        
+        Select idx,customerKey,customerKey1,groupId,customerId,commentType,comment,commentDateTime From (
+        Select T1.idx
+              ,concat('****-',right(trim(T1.customerKey),4)) as customerKey
+              ,T3.description as customerKey1
+              ,T1.groupId
+              ,T1.customerId
+              ,T1.commentType 
+              ,T1.comment
+              ,T1.commentDateTime
+        From smCommunity T1
+             Left Join smCustomer T2 On T1.customerKey = T2.customerKey
+             Left Join ofCode T3 On T2.customerKey1 = T3.codeId And T3.codeGroupId='CU01'
+        order by T1.commentDateTime desc LIMIT 0,20 
+        ) As Temp0
+        
+        union all
+        
+        Select idx,customerKey,customerKey1,groupId,customerId,commentType,comment,commentDateTime From (
+          Select T1.idx 
+                ,concat('****-',right(trim(T1.customerKey),4)) as customerKey
+                ,ifnull(T3.description,'http://cdn.sketchpan.com/member/guest/12140/1214068201432/0.png') as customerKey1
+                ,T1.groupId
+                ,'' as customerId
+                ,T1.commentType 
+                ,T1.comment
+                ,timestampadd(minute,-1,now()) as commentDateTime
+                ,T1.displayYn
+          From smAutoCommunity T1
+               Left Join smCustomer T2 On T1.customerKey = T2.customerKey
+               Left Join ofCode T3 On T2.customerKey1 = T3.codeId And T3.codeGroupId='CU01'
+     
+          Order by RAND() LIMIT 0,5 
+          ) As Temp Where Temp.displayYn='Y'
+
+        ) as Temp Order by Temp.commentDateTime desc LIMIT 0,9 
+      ) as Temp3 Order by Temp3.commentDateTime asc
  
+</select>
+
+<select id="getCommentList" resultMap="ComunityVO" parameterType="com.offact.addys.vo.comunity.ComunityVO" >
+
+   Select * From (
+        Select idx,customerKey,customerKey1,groupId,customerId,commentType,comment,commentDateTime From (
+        Select T1.idx
+              ,concat('****-',right(trim(T1.customerKey),4)) as customerKey
+              ,T3.description as customerKey1
+              ,T1.groupId
+              ,T1.customerId
+              ,T1.commentType 
+              ,T1.comment
+              ,T1.commentDateTime
+        From smCommunity T1
+             Left Join smCustomer T2 On T1.customerKey = T2.customerKey
+             Left Join ofCode T3 On T2.customerKey1 = T3.codeId And T3.codeGroupId='CU01'
+         WHERE 1=1
+           <if test="customerKey != null and customerKey != '' " >
+           		AND T1.customerKey = #{customerKey}
+           </if>
+        
+        order by T1.commentDateTime desc LIMIT 0,9 
+        ) As Temp0
+
+   ) as Temp Order by Temp.commentDateTime asc
 </select>
 
 <insert id="commentInsert" parameterType="com.offact.addys.vo.comunity.ComunityVO" >

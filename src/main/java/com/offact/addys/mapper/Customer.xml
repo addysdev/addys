@@ -5,6 +5,7 @@
 <resultMap id="CustomerVO" type="com.offact.addys.vo.CustomerVO" >
   <result column="customerKey"              property="customerKey"  />
   <result column="customerId"              property="customerId"  />
+  <result column="customerPw"              property="customerPw"  />
   <result column="customerName"      property="customerName"  />
   <result column="customerKey1"       property="customerKey1"  />
   <result column="customerKey2"      property="customerKey2"  />
@@ -20,7 +21,10 @@
 </resultMap>
 
 <select id="getCustomer" resultMap="CustomerVO" parameterType="com.offact.addys.vo.CustomerVO" >
-SELECT T1.customerId
+SELECT T1.customerKey
+      ,T1.customerId
+      ,T1.customerPw
+      ,password(#{inCustomerPw}) As inCustomerPw
       ,T1.customerName
       ,T1.customerKey1
       ,T1.customerKey2
@@ -38,6 +42,42 @@ SELECT T1.customerId
        Left Join ofGroup T3 On T2.groupId = T3.groupId And T3.smartYn='Y'
   WHERE T1.customerKey = #{customerKey}
  
+</select>
+
+<update id="customerUpdateProc" parameterType="com.offact.addys.vo.CustomerVO" >
+        Update smCustomer
+       		Set
+  				customerKey1 = #{customerKey1}
+            	,customerKey2 = #{customerKey2}
+            	,customerKey3 = #{customerKey3}
+            	,customerKey4 = #{customerKey4}
+            	,customerKey5 = #{customerKey5}
+            	,customerKey6 = #{customerKey6}
+           	 	,customerKey7 = #{customerKey7}
+            	,customerKey8 = #{customerKey8}
+            	,customerKey9 = #{customerKey9}
+            	,customerKey10 = #{customerKey10}
+ 		Where customerKey = #{customerKey}
+</update>
+
+<update id="customerUpdatePwProc" parameterType="com.offact.addys.vo.CustomerVO" >
+        Update smCustomer
+       		Set customerPw = password(#{customerPw})
+       		    ,customerKey1 = #{customerKey1}
+            	,customerKey2 = #{customerKey2}
+            	,customerKey3 = #{customerKey3}
+            	,customerKey4 = #{customerKey4}
+            	,customerKey5 = #{customerKey5}
+            	,customerKey6 = #{customerKey6}
+           	 	,customerKey7 = #{customerKey7}
+            	,customerKey8 = #{customerKey8}
+            	,customerKey9 = #{customerKey9}
+            	,customerKey10 = #{customerKey10}
+ 		Where customerKey = #{customerKey}
+</update>
+
+<select id="getEncPassword" resultMap="CustomerVO" parameterType="com.offact.addys.vo.CustomerVO" >
+			Select PASSWORD(#{curPwd}) as encPwd
 </select>
 
 </mapper>
