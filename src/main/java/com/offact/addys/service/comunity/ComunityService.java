@@ -46,4 +46,20 @@ public interface ComunityService {
 	 */
 	public int counselInsert(CounselVO counsel) throws BizException;
 	
+	 /**
+     * 1:1상담 조회
+     * 
+     * @return
+     * @throws BizException
+     */
+    public List<CounselVO> getCounselList(CounselVO counsel) throws BizException;
+	
+    /**
+     * 커뮤니티상세조회
+     * 
+     * @return
+     * @throws BizException
+     */
+    public List<ComunityVO> getComunityReply(ComunityVO comunity) throws BizException;
+    
 }

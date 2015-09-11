@@ -1,6 +1,7 @@
 package com.offact.addys.controller;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -47,6 +48,8 @@ import com.offact.addys.service.comunity.ComunityService;
 import com.offact.addys.vo.CustomerVO;
 import com.offact.addys.vo.comunity.ComunityVO;
 import com.offact.addys.vo.comunity.CounselVO;
+import com.offact.addys.vo.common.EmailVO;
+import com.offact.addys.vo.common.SmsVO;
 
 /**
  * Handles requests for the application home page.
@@ -72,6 +75,27 @@ public class ComunityController {
 	@Value("#{config['offact.host.url']}")
 	private String host_url;
 
+	@Value("#{config['offact.mail.orderfromemail']}")
+    private String orderfromemail;
+    
+    @Value("#{config['offact.mail.ordersubject']}")
+    private String ordersubject;
+    
+    @Value("#{config['offact.dev.option']}")
+    private String devOption;
+    
+    @Value("#{config['offact.dev.sms']}")
+    private String devSms;
+    
+    @Value("#{config['offact.sms.smsid']}")
+    private String smsId;
+    
+    @Value("#{config['offact.sms.smspw']}")
+    private String smsPw;
+    
+    @Value("#{config['offact.sms.smstype']}")
+    private String smsType;
+    
 	@Autowired
 	private CustomerService customerSvc;
 	
@@ -223,8 +247,31 @@ public class ComunityController {
 			int retVal=this.comunitySvc.counselInsert(counselVO);
 			
 			//이메일 리스틑 조회 user
+			String emaillist="dev@addys.co.kr;kevin.jeon@offact.com";
+			String cclist="";
+			
+			String [] getToMails=emaillist.split(";");
+	    	String [] getToMail_Ccs=cclist.split(";");
 			
 			//email 전송
+			EmailVO mail = new EmailVO();
+			
+			List<String> toEmails= new ArrayList();
+			List<String> toEmail_Ccs= new ArrayList();
+			List<String> attcheFileName= new ArrayList();
+			List<File> files = new ArrayList();
+
+			for(int m=0;m<getToMails.length;m++){	
+				toEmails.add(getToMails[m]);	
+			}
+			
+			for(int c=0;c<getToMail_Ccs.length;c++){	
+				toEmail_Ccs.add(getToMail_Ccs[c]);	
+			}
+
+			//attcheFileName.add(orderCode+".html");
+			//files.add(file);
+			//메일발송
 
 			//log Controller execute time end
 	       	long t2 = System.currentTimeMillis();
@@ -268,6 +315,84 @@ public class ComunityController {
 	   	    mv.addObject("comunityList", comunityList);
 	   	 
 	   		mv.setViewName("/comunity/comunityList");
+	   		
+	   		return mv;
+	    }
+	    
+	    /**
+	     * 1:1 목록조회
+	     * 
+	     * @param UserManageVO
+	     * @param request
+	     * @param response
+	     * @param model
+	     * @param locale
+	     * @return
+	     * @throws BizException
+	     */
+	    @RequestMapping(value = "/comunity/counsellist")
+	    public ModelAndView counselList(String customerKey, 
+	    		                         HttpServletRequest request, 
+	    		                         HttpServletResponse response) throws BizException 
+	    {
+	        
+	    	//log Controller execute time start
+			String logid=logid();
+			long t1 = System.currentTimeMillis();
+			logger.info("["+logid+"] Controller start : customerKey" + customerKey);
+
+			ModelAndView mv = new ModelAndView();
+	   		
+	        List<CounselVO> counselList = new ArrayList();
+	        
+	        CounselVO counselVO = new CounselVO();
+	        counselVO.setCustomerKey(customerKey);
+
+	        // 커뮤니티목록조회
+	        counselList = comunitySvc.getCounselList(counselVO);
+
+	   	    mv.addObject("counselList", counselList);
+	   	 
+	   		mv.setViewName("/comunity/counselList");
+	   		
+	   		return mv;
+	    }
+	    
+	    /**
+	     * 1:1 목록조회
+	     * 
+	     * @param UserManageVO
+	     * @param request
+	     * @param response
+	     * @param model
+	     * @param locale
+	     * @return
+	     * @throws BizException
+	     */
+	    @RequestMapping(value = "/comunity/replylist")
+	    public ModelAndView replyList(String idx, 
+	    		                         HttpServletRequest request, 
+	    		                         HttpServletResponse response) throws BizException 
+	    {
+	        
+	    	//log Controller execute time start
+			String logid=logid();
+			long t1 = System.currentTimeMillis();
+			logger.info("["+logid+"] Controller start : idx" + idx);
+
+			ModelAndView mv = new ModelAndView();
+	   		
+			List<ComunityVO> comunityReply = new ArrayList();
+			
+			 ComunityVO comunityVO = new ComunityVO();
+		     comunityVO.setUpidx(idx);
+
+	        //품목 비고 정보
+	        comunityReply=comunitySvc.getComunityReply(comunityVO);
+
+	   	    mv.addObject("comunityReply", comunityReply);
+	   	 
+	   		mv.setViewName("/comunity/replyList");
 	   		
 	   		return mv;
 	    }

@@ -7,6 +7,7 @@ import com.offact.addys.vo.AbstractVO;
  */
 public class ComunityVO extends AbstractVO {
 	
+	private String idx;
 	private String customerKey;
 	private String groupId;
 	private String customerId;
@@ -24,6 +25,9 @@ public class ComunityVO extends AbstractVO {
 	private String customerKey8;
 	private String customerKey9;
 	private String customerKey10;
+	
+	private String replyCnt;
+	private String upidx;
 	
 	public String getCustomerKey() {
 		return customerKey;
@@ -120,6 +124,24 @@ public class ComunityVO extends AbstractVO {
 	}
 	public void setCustomerKey10(String customerKey10) {
 		this.customerKey10 = customerKey10;
+	}
+	public String getReplyCnt() {
+		return replyCnt;
+	}
+	public void setReplyCnt(String replyCnt) {
+		this.replyCnt = replyCnt;
+	}
+	public String getIdx() {
+		return idx;
+	}
+	public void setIdx(String idx) {
+		this.idx = idx;
+	}
+	public String getUpidx() {
+		return upidx;
+	}
+	public void setUpidx(String upidx) {
+		this.upidx = upidx;
 	}
 	
 	

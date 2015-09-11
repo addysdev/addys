@@ -93,6 +93,12 @@
 		
     	var customerKey='${customerKey}';
     	
+    	$('#comunityList').attr("style","display:block");
+    	$('#counselList').attr("style","display:none");
+    	
+    	$('#tab1').attr("class","active");
+    	$('#tab2').attr("class","");
+    	
         $.ajax({
             type: "POST",
                url:  "<%= request.getContextPath() %>/comunity/comunitylist?customerKey="+customerKey,
@@ -105,7 +111,29 @@
                }
         });
     }
-    
+ // 리스트 조회
+    function fcCounsel_list(){
+		
+    	var customerKey='${customerKey}';
+    	
+    	$('#comunityList').attr("style","display:none");
+    	$('#counselList').attr("style","display:block");
+    	
+    	$('#tab1').attr("class","");
+    	$('#tab2').attr("class","active");
+
+        $.ajax({
+            type: "POST",
+               url:  "<%= request.getContextPath() %>/comunity/counsellist?customerKey="+customerKey,
+               success: function(result) {
+                  
+                   $("#counselList").html(result);
+               },
+               error:function() {
+                  
+               }
+        });
+    }
 	//logout 처리
 	var goLogout =  function() {
 
@@ -117,6 +145,40 @@
 			logoutForm.submit();
 		} catch(e) {}
 	};
+	
+	function resultView(id){
+		
+		$(id).attr("style","display:block");
+
+	}
+
+	 //레이어팝업 : 상담처리 Layer 팝업
+    function replyView(idx){
+
+    	$('#replyList').dialog({
+            resizable : false, //사이즈 변경 불가능
+            draggable : true, //드래그 불가능
+            closeOnEscape : true, //ESC 버튼 눌렀을때 종료
+
+            width : 400,
+            height : 500,
+            modal : true, //주위를 어둡게
+
+            open:function(){
+                //팝업 가져올 url
+                $(this).load('<%= request.getContextPath() %>/comunity/replylist?idx='+idx);
+                //$("#userRegist").dialog().parents(".ui-dialog").find(".ui-dialog-titlebar").hide();
+                $(".ui-widget-overlay").click(function(){ //레이어팝업외 화면 클릭시 팝업 닫기
+                    $("#replyList").dialog('close');
+
+                    });
+            }
+            ,close:function(){
+                $('#replyList').empty();
+
+            }
+        });
+    };
 	
   </script>
   </head>
@@ -135,20 +197,26 @@
     <br>
       <c:choose>
         <c:when test="${staffYn=='Y'}">
-			<button id="deferbtn" type="button" class="btn btn-primary btn-lg" onClick="fcReg_comment()" >답글올리기</button>
+        	<!-- 조회결과리스트 -->
+			<div id=comunityList></div>
       		<div id="commentRegistForm"  title="답글올리기"></div>
 		</c:when>
 		<c:otherwise>
-			<button id="deferbtn" type="button" class="btn btn-primary btn-lg" onClick="fcReg_comment()" >글올리기</button>
-      		<button id="deferbtn" type="button" class="btn btn-danger btn-lg" onClick="fcReg_counsel()" >1:1문의</button>
+			<ul class="nav nav-tabs">
+			  <li id="tab1" class="active"><a href="javascript:fcComunity_list()">글올리기</a></li>
+			  <li id="tab2" ><a href="javascript:fcCounsel_list()">1:1문의</a></li>
+			</ul>
+			<br>
+			<!-- 조회결과리스트 -->
+		    <div id=comunityList style="display:none"></div>
+		    <!-- 조회결과리스트 -->
+		    <div id=counselList style="display:none"></div>
       		<div id="commentRegistForm"  title="글올리기"></div>
     		<div id="counselRegistForm"  title="1:1문의"></div>
 		</c:otherwise>
 	</c:choose>
-	  <br><br>
-	  <!-- 조회결과리스트 -->
-	  <div id=comunityList></div>
 	  <div id="customerModify"  title="고객 정보변경"></div>
+	  <div id="replyList"  title="답글정보"></div>
     </div>
   </body>
 </html>

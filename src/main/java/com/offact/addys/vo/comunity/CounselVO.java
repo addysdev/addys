@@ -15,6 +15,11 @@ public class CounselVO extends AbstractVO {
 	private String counsel;
 	private String counselDateTime;
 	
+	private String userId;
+	private String userName;
+	private String counselResult;
+	private String counselResultDateTime;
+	
 	public String getIdx() {
 		return idx;
 	}
@@ -56,6 +61,30 @@ public class CounselVO extends AbstractVO {
 	}
 	public void setCounselDateTime(String counselDateTime) {
 		this.counselDateTime = counselDateTime;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getCounselResult() {
+		return counselResult;
+	}
+	public void setCounselResult(String counselResult) {
+		this.counselResult = counselResult;
+	}
+	public String getCounselResultDateTime() {
+		return counselResultDateTime;
+	}
+	public void setCounselResultDateTime(String counselResultDateTime) {
+		this.counselResultDateTime = counselResultDateTime;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 }

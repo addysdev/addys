@@ -23,6 +23,7 @@ function fcCunsel_Regist(){
 
 					if(result=='1'){
 						 alert('1:1문의가 정상적으로 처리되었습니다.\n접수된 내용은 확인되는데로 SMS로 답변드리겠습니다.');
+						 fcCounsel_list();
 					} else{
 						 alert('1:1문의 요청이 실패했습니다.');
 					}

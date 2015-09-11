@@ -54,5 +54,19 @@ public class ComunityServiceImpl implements ComunityService {
 		return commonDao.update("Counsel.counselInsert", counsel);
 	}
 	
+	@Override
+	public List<CounselVO> getCounselList(CounselVO counsel) throws BizException {
+   	
+       List<CounselVO> counselList = commonDao.selectList("Counsel.getCounselList", counsel);
+
+       return counselList;
+	}
+    @Override
+    public List<ComunityVO> getComunityReply(ComunityVO comunity) throws BizException {
+    	
+        List<ComunityVO> comunityList = commonDao.selectList("Comunity.getComunityReply", comunity);
+
+        return comunityList;
+    }
 
 }
