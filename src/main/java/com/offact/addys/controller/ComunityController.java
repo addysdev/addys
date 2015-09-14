@@ -44,6 +44,7 @@ import com.offact.framework.exception.BizException;
 import com.offact.framework.jsonrpc.JSONRpcService;
 import com.offact.framework.util.StringUtil;
 import com.offact.addys.service.CustomerService;
+import com.offact.addys.service.common.MailService;
 import com.offact.addys.service.comunity.ComunityService;
 import com.offact.addys.vo.CustomerVO;
 import com.offact.addys.vo.comunity.ComunityVO;
@@ -71,9 +72,8 @@ public class ComunityController {
 		
 		return logid;
 	}
-	
-	@Value("#{config['offact.host.url']}")
-	private String host_url;
+    @Value("#{config['offact.host.url']}")
+    private String hostUrl;
 
 	@Value("#{config['offact.mail.orderfromemail']}")
     private String orderfromemail;
@@ -102,7 +102,9 @@ public class ComunityController {
 	@Autowired
 	private ComunityService comunitySvc;
 	
-	
+    @Autowired
+    private MailService mailSvc;
+    
 		/**
 	     * 글올리기
 	     *
@@ -272,6 +274,48 @@ public class ComunityController {
 			//attcheFileName.add(orderCode+".html");
 			//files.add(file);
 			//메일발송
+			mail.setToEmails(toEmails);
+			mail.setToEmail_Ccs(toEmail_Ccs);
+			mail.setAttcheFileName(attcheFileName);
+			mail.setFile(files);
+
+			mail.setFromEmail(orderfromemail);
+			mail.setMsg(" 1:1 문의내역입니다.<br>"+counselVO.getCounsel()+"<br>고객핸드폰번호:"+counselVO.getCustomerKey()+"<br><br><br>*1:1문의 답변은 아래 시스템에서 답변 가능하십니다.<br><a href='"+hostUrl+"/addon/smart/counselmanage' >1:1답변하려가기</a>");
+			
+			
+			mail.setSubject("[애디스]1:1상담문의");
+			
+			boolean counselResult=false;
+	
+			try{
+				
+				counselResult=mailSvc.sendMail(mail);
+				
+				logger.debug("mail result :"+counselResult);
+				
+				if(counselResult==false){
+					
+					//log Controller execute time end
+			       	long t2 = System.currentTimeMillis();
+			       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+	
+			        return "-1";
+					
+				}
+				
+			}catch(BizException e){
+		       	
+		    	e.printStackTrace();
+		        String errMsg = e.getMessage();
+		        try{errMsg = errMsg.substring(errMsg.lastIndexOf("exception"));}catch(Exception ex){}
+				
+				//log Controller execute time end
+		       	long t2 = System.currentTimeMillis();
+		       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds [errorMsg] : "+errMsg);
+
+		       	return "-1";
+		    	
+		    }
 
 			//log Controller execute time end
 	       	long t2 = System.currentTimeMillis();
