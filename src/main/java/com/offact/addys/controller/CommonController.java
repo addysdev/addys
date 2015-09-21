@@ -112,6 +112,39 @@ public class CommonController {
 	}
 	
 	/**
+	 * Simply selects the home view to render by returning its name.
+	 * @throws BizException
+	 */
+	@RequestMapping(value = "/surveyloginform", method = RequestMethod.GET)
+	public ModelAndView surveyLoginForm(HttpServletRequest request,
+			                   HttpServletResponse response,  
+			                   Model model, 
+			                   Locale locale) throws BizException 
+	{
+
+		logger.info("Welcome customer");
+		
+		ModelAndView  mv = new ModelAndView();
+		
+		// 사용자 세션정보
+        HttpSession session = request.getSession();
+        
+        String customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
+        
+        logger.info("customerKey:"+customerKey);
+        
+        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
+
+ 	       	mv.setViewName("/common/surveyLoginForm");
+       		return mv;
+		}
+
+		mv.setViewName("survey/surveyManage");
+
+		return mv;
+	}
+	
+	/**
 	 * Login 처리
 	 * @param request
 	 * @param response
@@ -120,14 +153,15 @@ public class CommonController {
 	 */
 	@SuppressWarnings("null")
 	@RequestMapping(value = "/customer/login", method = RequestMethod.POST)
-	public ModelAndView addyslogin(HttpServletRequest request,
+	public ModelAndView addyslogin(String loginType ,
+			                       HttpServletRequest request,
 			                       HttpServletResponse response) throws Exception
 	{
 		
 		//log Controller execute time start
 		String logid=logid();
 		long t1 = System.currentTimeMillis();
-		logger.info("["+logid+"] Controller start");
+		logger.info("["+logid+"] Controller start loginType::"+loginType);
 		
 		ModelAndView  mv = new ModelAndView();
 		
@@ -258,8 +292,13 @@ public class CommonController {
 
 				mv.addObject("customerKey", customerKey);
 				mv.addObject("staffYn", staffYn);
-				strMainUrl = "comunity/comunityManage";
-					
+				
+				if(loginType.equals("survey")){
+					strMainUrl = "survey/surveyManage";
+				}else{
+					strMainUrl = "comunity/comunityManage";
+				}
+				
 			} else {//고객 정보가 없는경우
 	
 				logger.info(">>> 고객 정보 없음");

@@ -130,7 +130,7 @@
     <div class="container">
       <h2>(주)애디스 다이렉트</h2>
       <form  id="loginForm" name="loginForm"  method="post" role="form" action="<%= request.getContextPath() %>/customer/login">
-        <input type="hidden" name="loginType" value="comunity" >
+      	<input type="hidden" name="loginType" value="survey" >
         <div class="form-group">
           <label for="customerKey">핸드폰 번호:</label>
           <input type="text" class="form-control" id=customerKey name="customerKey" placeholder="핸드폰번호">
