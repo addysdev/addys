@@ -179,7 +179,33 @@
             }
         });
     };
-	
+    function tmt_winLaunch(theURL,winName,targetName,features) {
+		
+		eval(winName+"=window.open('"+theURL+"','"+targetName+"','"+features+"')");
+
+	}
+    function fcbuy_hotdeal(){
+    	
+  	  //location.href="http://jeonpro76.newfree3.freesell.co.kr";
+  	  
+	  	var h=screen.height-(screen.height*(8.5/100));
+		var s=screen.width-10;
+		//alert('귀하의 모니터 해상도는 ' + s + ' x ' + h + '입니다.');
+
+	    tmt_winLaunch('http://jeonpro76.newfree3.freesell.co.kr/m/soho_pagelist.html' , 'qaz', 'qaz', 'status=no,location=no,menubar=no,toolbar=no,width='+s+',height ='+h+',left=0,top=0,resizable=yes,scrollbars=yes');
+		
+	  	  
+    }
+    function fcgo_mhome(){
+    	
+      //location.href="http://addys.shopnote.kr/";
+	  	var h=screen.height-(screen.height*(8.5/100));
+		var s=screen.width-10;
+		//alert('귀하의 모니터 해상도는 ' + s + ' x ' + h + '입니다.');
+
+	    tmt_winLaunch('http://addys.shopnote.kr/' , 'qaz', 'qaz', 'status=no,location=no,menubar=no,toolbar=no,width='+s+',height ='+h+',left=0,top=0,resizable=yes,scrollbars=yes');
+		
+    }
   </script>
   </head>
    <body>
@@ -195,6 +221,9 @@
            </div>
     </fieldset>
     <br>
+    <button id="deferbtn" type="button" class="btn btn-primary btn-sm" onClick="fcgo_mhome()" >모바일 홈페이지</button>
+    <button id="deferbtn" type="button" class="btn btn-danger btn-sm" onClick="fcbuy_hotdeal()" >핫딜구매하기</button>
+    <br><br>
       <c:choose>
         <c:when test="${staffYn=='Y'}">
         	<!-- 조회결과리스트 -->
