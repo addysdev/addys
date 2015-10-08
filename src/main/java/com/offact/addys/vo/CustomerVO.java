@@ -9,6 +9,7 @@ public class CustomerVO extends AbstractVO {
 	private String customerKey;
 	private String customerId;
 	private String customerPw;
+	private String customerRePw;
 	private String inCustomerPw;
 	private String customerName;
 	private String customerKey1;
@@ -141,6 +142,12 @@ public class CustomerVO extends AbstractVO {
 	}
 	public void setPw_modifyYn(String pw_modifyYn) {
 		this.pw_modifyYn = pw_modifyYn;
+	}
+	public String getCustomerRePw() {
+		return customerRePw;
+	}
+	public void setCustomerRePw(String customerRePw) {
+		this.customerRePw = customerRePw;
 	}
 
 }

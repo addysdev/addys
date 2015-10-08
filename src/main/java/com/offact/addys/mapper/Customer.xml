@@ -57,6 +57,7 @@ SELECT T1.customerKey
             	,customerKey8 = #{customerKey8}
             	,customerKey9 = #{customerKey9}
             	,customerKey10 = #{customerKey10}
+            	,updateDateTime = now()
  		Where customerKey = #{customerKey}
 </update>
 
@@ -73,11 +74,25 @@ SELECT T1.customerKey
             	,customerKey8 = #{customerKey8}
             	,customerKey9 = #{customerKey9}
             	,customerKey10 = #{customerKey10}
+            	,updateDateTime = now()
  		Where customerKey = #{customerKey}
 </update>
 
 <select id="getEncPassword" resultMap="CustomerVO" parameterType="com.offact.addys.vo.CustomerVO" >
 			Select PASSWORD(#{curPwd}) as encPwd
 </select>
+
+<insert id="customerRegist" parameterType="com.offact.addys.vo.CustomerVO">
+        INSERT INTO smCustomer( 
+        	 customerKey
+            ,customerPw
+            ,createDateTime 
+            )
+        VALUES (
+	  		  #{customerKey}
+	  		, password(#{customerPw})
+	  		, now()
+	  		)       
+ </insert>
 
 </mapper>

@@ -44,6 +44,16 @@
 		} catch(e) {}
 	}
 	
+	function goRegistForm(){
+		
+		location.href="<%= request.getContextPath() %>/customerregistform";
+		//	location.href="<%= request.getContextPath() %>/kcp/kcpcert_start.jsp";
+	}
+	
+	function goPwSearch(){
+		
+		location.href="<%= request.getContextPath() %>/customerpwform";
+	}
 
 	function statusChangeCallback(response) {
 
@@ -136,10 +146,13 @@
           <input type="text" class="form-control" id=customerKey name="customerKey" placeholder="핸드폰번호">
         </div>
         <div class="form-group">
-          <label for="customerId">Password:(초기값은 발급받으신 고객번호 입니다.)</label>
+          <label for="customerId">Password:</label>
           <input type="password" class="form-control" id="customerPw" name="customerPw"  onkeypress="javascript:return checkKey(event);">
         </div>
-       <button type="button" class="btn btn-default" onclick="goLogin()">Submit</button>
+       <button type="button" class="btn btn-default" onclick="goLogin()">로그인</button>
+       <br><br>
+       <button type="button" class="btn btn-default" onclick="goRegistForm()">회원가입</button>
+       <button type="button" class="btn btn-default" onclick="goPwSearch()">비밀번호찾기</button>
       </form>
      <!--
       <br>

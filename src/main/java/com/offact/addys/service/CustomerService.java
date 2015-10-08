@@ -35,4 +35,12 @@ public interface CustomerService {
      * @throws BizException
      */
     public int customerUpdateProc(CustomerVO customer) throws BizException;
+    
+    /**
+     * 고객 등록
+     * 
+     * @return
+     * @throws BizException
+     */
+    public int customerRegist(CustomerVO customer) throws BizException;
 }

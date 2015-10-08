@@ -43,8 +43,10 @@ import com.offact.framework.exception.BizException;
 import com.offact.framework.jsonrpc.JSONRpcService;
 import com.offact.framework.util.StringUtil;
 import com.offact.addys.service.CustomerService;
+import com.offact.addys.service.common.SmsService;
 import com.offact.addys.service.comunity.ComunityService;
 import com.offact.addys.vo.CustomerVO;
+import com.offact.addys.vo.common.SmsVO;
 import com.offact.addys.vo.comunity.ComunityVO;
 
 /**
@@ -70,13 +72,34 @@ public class CommonController {
 	
 	@Value("#{config['offact.host.url']}")
 	private String host_url;
-
+	
+    @Value("#{config['offact.dev.option']}")
+    private String devOption;
+    
+	@Value("#{config['offact.dev.sms']}")
+    private String devSms;
+    
+    @Value("#{config['offact.sms.smsid']}")
+    private String smsId;
+    
+    @Value("#{config['offact.sms.smspw']}")
+    private String smsPw;
+    
+    @Value("#{config['offact.sms.smstype']}")
+    private String smsType;
+    
+    @Value("#{config['offact.sms.sendno']}")
+    private String sendno;
+    
 	@Autowired
 	private CustomerService customerSvc;
 	
 	@Autowired
 	private ComunityService comunitySvc;
 	
+    @Autowired
+    private SmsService smsSvc;
+    
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -107,6 +130,149 @@ public class CommonController {
 		}
 
 		mv.setViewName("comunity/comunityManage");
+
+		return mv;
+	}
+	
+	/**
+	 * Simply selects the home view to render by returning its name.
+	 * @throws BizException
+	 */
+	@RequestMapping(value = "/customerregistform", method = RequestMethod.GET)
+	public ModelAndView customerRegistForm(HttpServletRequest request,
+			                   HttpServletResponse response,  
+			                   Model model, 
+			                   Locale locale) throws BizException 
+	{
+
+		logger.info("Welcome customer");
+		
+		ModelAndView  mv = new ModelAndView();
+		
+    	mv.setViewName("/common/customerRegistForm");
+
+		return mv;
+	}
+	
+	 /**
+     * 고객 등록
+     *
+     * @param UserManageVO
+     * @param request
+     * @param response
+     * @param model
+     * @param locale
+     * @return
+     * @throws BizException
+     */
+    @RequestMapping(value = "/common/customerregist", method = RequestMethod.POST)
+    public @ResponseBody
+    String  customerRegist(@ModelAttribute("customerVo") CustomerVO customerVo, 
+									   HttpServletRequest request) throws BizException 
+    {
+		
+    	//log Controller execute time start
+		String logid=logid();
+		long t1 = System.currentTimeMillis();
+		logger.info("["+logid+"] Controller start : customerVO" + customerVo);
+    			
+		int retVal=-1;
+
+		retVal = customerSvc.customerRegist(customerVo);		
+		
+		//log Controller execute time end
+       	long t2 = System.currentTimeMillis();
+       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+
+      return ""+retVal;
+	}
+    
+	 /**
+     * 임시 비밀번호 발급
+     *
+     * @param UserManageVO
+     * @param request
+     * @param response
+     * @param model
+     * @param locale
+     * @return
+     * @throws BizException
+     */
+    @RequestMapping(value = "/common/temppassword", method = RequestMethod.POST)
+    public @ResponseBody
+    String  tempPassword(@ModelAttribute("customerVo") CustomerVO customerVo, 
+									   HttpServletRequest request) throws BizException 
+    {
+		
+    	//log Controller execute time start
+		String logid=logid();
+		long t1 = System.currentTimeMillis();
+		logger.info("["+logid+"] Controller start : customerVO" + customerVo);
+    			
+		int retVal=-1;
+
+		//retVal = customerSvc.passwordUpdate(customerVo);	
+		
+			try{
+				//SMS발송
+				SmsVO smsVO = new SmsVO();
+				SmsVO resultSmsVO = new SmsVO();
+				
+				smsVO.setSmsId(smsId);
+				smsVO.setSmsPw(smsPw);
+				smsVO.setSmsType(smsType);
+				smsVO.setSmsTo(customerVo.getCustomerKey());
+				smsVO.setSmsFrom(sendno);
+				smsVO.setSmsMsg("Xtr3G");
+
+				logger.debug("#########devOption :"+devOption);
+				String[] devSmss= devSms.split("\\^");
+				
+	    		if(devOption.equals("true")){
+					for(int i=0;i<devSmss.length;i++){
+						
+						if(devSmss[i].equals(customerVo.getCustomerKey().trim().replace("-", ""))){
+							resultSmsVO=smsSvc.sendSms(smsVO);
+						}
+					}
+				}else{
+					resultSmsVO=smsSvc.sendSms(smsVO);
+				}
+	
+				logger.debug("sms resultSmsVO.getResultCode() :"+resultSmsVO.getResultCode());
+				logger.debug("sms resultSmsVO.getResultMessage() :"+resultSmsVO.getResultMessage());
+				logger.debug("sms resultSmsVO.getResultLastPoint() :"+resultSmsVO.getResultLastPoint());
+				
+			}catch(BizException e){
+				
+				logger.info("["+logid+"] Controller SMS전송오류");
+				
+			}
+			
+		
+		//log Controller execute time end
+       	long t2 = System.currentTimeMillis();
+       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+
+      return ""+retVal;
+	}
+	
+	/**
+	 * Simply selects the home view to render by returning its name.
+	 * @throws BizException
+	 */
+	@RequestMapping(value = "/customerpwform", method = RequestMethod.GET)
+	public ModelAndView customerPwForm(HttpServletRequest request,
+			                   HttpServletResponse response,  
+			                   Model model, 
+			                   Locale locale) throws BizException 
+	{
+
+		logger.info("Welcome customer");
+		
+		ModelAndView  mv = new ModelAndView();
+		
+    	mv.setViewName("/common/customerPwForm");
 
 		return mv;
 	}

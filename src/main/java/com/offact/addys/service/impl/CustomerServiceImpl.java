@@ -64,4 +64,11 @@ public class CustomerServiceImpl implements CustomerService {
     	}
 
     }
+	
+	@Override
+    public int customerRegist(CustomerVO customer) throws BizException {
+        // 고객등록
+		
+		return commonDao.insert("Customer.customerRegist", customer);
+    }
 }
