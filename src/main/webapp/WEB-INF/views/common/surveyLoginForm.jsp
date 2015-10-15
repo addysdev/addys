@@ -44,91 +44,23 @@
 		} catch(e) {}
 	}
 	
-
-	function statusChangeCallback(response) {
-
-		//alert(response.status);
-	    console.log('statusChangeCallback');
-	    console.log(response);
-	    // The response object is returned with a status field that lets the
-	    // app know the current login status of the person.
-	    // Full docs on the response object can be found in the documentation
-	    // for FB.getLoginStatus().
-	    if (response.status === 'connected') {
-	      // Logged into your app and Facebook.
-	  
-	      var fbname;
-	      var accessToken=response.authResponse.accessToken;
-//alert(accessToken);
-	         FB.api('/me', function(user) {  
-
-		      fbname = user.name;
-
-		      //alert(user.id); 
-		      //alert(fbname); 
-		      // alert(accessToken);
-
-		    });  
-	      
-	      testAPI(response.authResponse.userID);  
-	      
-	      var frm=document.loginForm;
-	      frm.id.value='system';
-	      frm.pwd.value='1';
-
-	      //goLogin();
-	      
-	    } else if (response.status === 'not_authorized') {
-	      // The person is logged into Facebook, but not your app.
-	      document.getElementById('status').innerHTML = 'Please log ' +
-	        'into this app.';
-	    } else {
-	      // The person is not logged into Facebook, so we're not sure if
-	      // they are logged into this app or not.
-	      document.getElementById('status').innerHTML = 'Please log ' +
-	        'into Facebook.';
-	    }
-	  }
-	
-	function testAPI(uid){
-		//alert('uid::'+uid);
-		FB.api('/v2.4/'+uid , function(response) {  
-		document.getElementById('status').innerHTML='Thanks for logging in,'+response.name+'!';   
-		    });  
+	function goRegistForm(){
+		
+		location.href="<%= request.getContextPath() %>/customerregistform?type=survey";
+		//	location.href="<%= request.getContextPath() %>/kcp/kcpcert_start.jsp";
 	}
-
-	  // This function is called when someone finishes with the Login
-	  // Button.  See the onlogin handler attached to it in the sample
-	  // code below.
-	  function checkLoginState() {
-		  
-	    FB.getLoginStatus(function(response) {
-	      statusChangeCallback(response);
-	    });
-	  }
-
-	  window.fbAsyncInit = function() {
-	    FB.init({
-	      appId      : '734414233335059',
-	      xfbml      : true,
-	      version    : 'v2.4'
-	    });
-	  };
-
-	  (function(d, s, id){
-	     var js, fjs = d.getElementsByTagName(s)[0];
-	     if (d.getElementById(id)) {return;}
-	     js = d.createElement(s); js.id = id;
-	     js.src = "//connect.facebook.net/en_US/sdk.js";
-	     fjs.parentNode.insertBefore(js, fjs);
-	   }(document, 'script', 'facebook-jssdk'));
+	
+	function goPwSearch(){
+		
+		location.href="<%= request.getContextPath() %>/customerpwform?type=survey";
+	}
 
 	</script>
   </head>
 
    <body>
     <div class="container">
-      <h2>(주)애디스 다이렉트</h2>
+      <h2>(주)애디스 다이렉트  고객 만족도 조사 페이지</h2>
       <form  id="loginForm" name="loginForm"  method="post" role="form" action="<%= request.getContextPath() %>/customer/login">
       	<input type="hidden" name="loginType" value="survey" >
         <div class="form-group">
@@ -136,27 +68,14 @@
           <input type="text" class="form-control" id=customerKey name="customerKey" placeholder="핸드폰번호">
         </div>
         <div class="form-group">
-          <label for="customerId">Password:(초기값은 발급받으신 고객번호 입니다.)</label>
+          <label for="customerId">Password:</label>
           <input type="password" class="form-control" id="customerPw" name="customerPw"  onkeypress="javascript:return checkKey(event);">
         </div>
-       <button type="button" class="btn btn-default" onclick="goLogin()">Submit</button>
+       <button type="button" class="btn btn-default" onclick="goLogin()">로그인</button>
+       <br><br>
+       <button type="button" class="btn btn-default" onclick="goRegistForm()">회원가입</button>
+       <button type="button" class="btn btn-default" onclick="goPwSearch()">비밀번호찾기</button>
       </form>
-     <!--
-      <br>
-      <div id="status"></div>
-      <div class="checkbox">
-      <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
-	  <div id="status">
-	  </div>
-      </div>
-      <br>
-      <div
-	  class="fb-like"
-	  data-share="true"
-	  data-width="450"
-	  data-show-faces="true">
-	</div>
-	-->
     </div>
   </body>
 </html>

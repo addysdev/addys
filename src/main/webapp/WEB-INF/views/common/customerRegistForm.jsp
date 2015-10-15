@@ -1,3 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="/WEB-INF/tlds/taglib.tld" prefix="taglib"%>
 <%@ page language="java" contentType="text/html;charset=utf-8"%>
 <%
     /* ============================================================================== */
@@ -184,6 +190,10 @@
     				return;
     			}
             	
+           		if(frm.tokenstate.value!='1'){
+       				alert('인증확인을 하시기 바랍니다.');
+       				return;
+       			}
             	
             	if(frm.customerPw.value==''){
     				alert('등록하실 비밀번호를  입력 하시기 바랍니다.');
@@ -215,10 +225,18 @@
 	
 	    						if(result=='1'){
 	    							 alert('회원 가입을 성공했습니다.');
+
+	    							 if('${type}'==='survey'){
+	    								 location.href="<%= request.getContextPath() %>/surveyloginform"; 
+	    							 }else{
+	    								 location.href="<%= request.getContextPath() %>/customerloginform"; 
+	    							 }
 	    							 
-	    							 location.href="<%= request.getContextPath() %>/customerloginform";
-	    							 
-	    						} else{
+	    						} else if(result=='2'){
+	    							 alert('인증요청 된 정보가 없습니다.');
+	    						} else if(result=='3'){
+	    							 alert('인증번호 오류\n재인증 하시기 바랍니다.');
+	    						} else {
 	    							 alert('회원 가입을 실패했습니다.');
 	    						}
 	
@@ -231,6 +249,106 @@
     		    
     	    	}
             }	
+            function getToken(){
+            	
+            	var frm=document.RegistForm;
+            	
+            	if(frm.customerKeyView.value==''){
+    				alert('인증하실 핸드폰 번호가 없습니다.');
+    				return;
+    			}
+            	
+            	frm.customerKey.value=frm.customerKeyView.value;
+            	
+            	$.ajax({
+    		        type: "POST",
+    		        async:false,
+    		           url:  "<%= request.getContextPath() %>/common/gettoken",
+    		           data:$("#RegistForm").serialize(),
+    		           success: function(result) {
+
+    						if(result=='0'){
+    							
+    						    alert('인증요청을 성공했습니다.\n발송된 인증번호를 입력하시기 바랍니다.');
+    							frm.customerKeyView.disabled=true;
+                                
+    						} else if(result=='1'){
+    							
+	   							 alert('이미 등록된 핸드폰 번호입니다.');
+						    } else{
+						    	
+    							 alert('인증요청을 실패했습니다.');
+    						}
+    						
+    						 frm.tokenstate.value=result;
+
+    		           },
+    		           error:function(){
+    		        	   
+    		        	   alert('[error]인증요청을 실패했습니다.');
+    		        	   frm.tokenstate.value='-1';
+    		           }
+    		    });
+            }	 
+            function getTokenConfirm(){
+            	
+            	var frm=document.RegistForm;
+            	
+           		if(frm.tokenstate.value!='0'){
+           			
+           			if(frm.tokenstate.value=='1'){
+           				alert('이미 인증확인이 된 번호입니다.');
+           				return;
+           			}
+       				alert('인증요청을 하시기 바랍니다.');
+       				return;
+       			}
+           		
+            	if(frm.customerKey.value==''){
+    				alert('인증하실 핸드폰 번호가 없습니다.');
+    				return;
+    			}
+            	
+            	if(frm.tokenView.value==''){
+    				alert('인증번호가 없습니다.');
+    				return;
+    			}
+            	
+            	frm.token.value=frm.tokenView.value;
+            	
+            	$.ajax({
+    		        type: "POST",
+    		        async:false,
+    		           url:  "<%= request.getContextPath() %>/common/gettokenconfirm",
+    		           data:$("#RegistForm").serialize(),
+    		           success: function(result) {
+
+    						if(result=='1'){
+    							
+    							 //alert('인증요청을 성공했습니다.\n발송된 인증번호를 입력하시기 바랍니다.');
+    							 document.all('pwform').style.display="inline";
+    							 document.all('reqbtn').style.display="none";
+    							 frm.tokenView.disabled=true;
+                                
+    						} else if(result=='3'){
+    							
+	   							 alert('인증정보 오류');
+	   							 
+						    } else{
+						    	
+    							 alert('인증확인을 실패했습니다.');
+    						}
+    						
+    						 frm.tokenstate.value=result;
+
+    		           },
+    		           error:function(){
+    		        	   
+    		        	   alert('[error]인증확인을 실패했습니다.');
+    		        	   frm.tokenstate.value='-1';
+    		           }
+    		    });
+            }
         </script>
     </head>
     <body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
@@ -262,7 +380,7 @@
                                 <!-- 결제 요청/처음으로 이미지 버튼 -->
                                 <tr id="show_pay_btn">
                                     <td colspan="2" align="center">
-                                        <input type="image" src="<%= request.getContextPath() %>/img/btn_certi.gif" onclick="return auth_type_check();" width="108" height="37" alt="요청합니다" />
+                                  <!--      <input type="image" src="<%= request.getContextPath() %>/img/btn_certi.gif" onclick="return auth_type_check();" width="108" height="37" alt="요청합니다" />  -->
                                     </td>
                                 </tr>
                             </table>
@@ -311,21 +429,59 @@
             </form>
             
             <form commandName="customerVo"   id="RegistForm" name="RegistForm"  method="post" role="form" action="<%= request.getContextPath() %>/customer/regist">
-	        <div class="form-group">
-	          <label for="customerKey">핸드폰 번호:</label>
-	          <input type="text" class="form-control" id=customerKeyView name="customerKeyView" value="01095684525" placeholder="핸드폰번호" disabled>
-	          <input type="hidden" id=customerKey name="customerKey" value="01095684525" >
-	        </div>
-	        <div class="form-group">
-	          <label for="customerId">패스워드:</label>
-	          <input type="password" class="form-control" id="customerPw" name="customerPw" >
-	        </div>
-	        <div class="form-group">
-	          <label for="customerId">패스워드 재입력:</label>
-	          <input type="password" class="form-control" id="customerRePw" name="customerRePw" >
-	        </div>
-	       <button type="button" class="btn btn-default" onclick="goRigist()">가입</button>
-	       <h5><strong><a href="<%= request.getContextPath() %>/customerloginform" ><font style="color:#428bca"> <span class="glyphicon glyphicon-arrow-left"></span> 뒤로가기</font></a></strong></h5>
+              <input type="hidden" name="tokenstate"          id="tokenstate"         value="-1"  />
+           	  <table class="table table-bordered" >
+			 	<tr>
+		          <th class='text-center' style="background-color:#E6F3FF;width:120px" >핸드폰 번호:</th>
+		          <th><div class="form-inline">
+		        	  <input type="text" class="form-control" id=customerKeyView name="customerKeyView" value="" placeholder="핸드폰번호" >
+		        	  <input type="hidden" id=customerKey name="customerKey"  value=""/> 
+			          <button id="reqbtn" type="button" class="btn btn-info" onClick="getToken()" >인증요청</button>
+			           <h5><font style="color:#FF9900">가입을 위해 최초로 핸드폰 인증이 필요합니다.</font></h5>   
+			          </div>
+		          </th>
+		      	</tr>
+		      	<tr>
+		          <th class='text-center' style="background-color:#E6F3FF" >인증번호:</th>
+		          <th>
+		          <div class="form-inline">
+		          <input type="text" class="form-control" id="tokenView" name="tokenView" style='ime-mode:active;' maxlength="200" value="" placeholder="인증번호"  />
+		          <input type="hidden" id=token name="token"  value=""/> 
+		          <button id="memoinfobtn" type="button" class="btn btn-info" onClick="getTokenConfirm()" >인증확인</button>
+		          <h5><font style="color:#FF9900">발송된 인증번호를 입력하세요</font></h5>   
+		    	  </div>
+		          </th>
+		      	</tr>
+		      	</table>
+		        <div id="pwform" name="pwform" style="display:none" >
+			      <table class="table table-bordered" >
+			      	<tr>
+			          <th class='text-center' style="background-color:#E6F3FF;width:120px" >패스워드:</th>
+			          <th>
+			          <div class="form-inline">
+			            <input type="password" class="form-control" id="customerPw" name="customerPw" style='ime-mode:active;' maxlength="200" value="" placeholder="패스워드"  />
+			    	  </div>
+			          </th>
+			      	</tr>
+			      	<tr>
+			          <th class='text-center' style="background-color:#E6F3FF" >재입력:</th>
+			          <th>
+			          <div class="form-inline">
+			           <input type="password" class="form-control" id="customerRePw" name="customerRePw" style='ime-mode:active;' maxlength="200" value="" placeholder="패스워드 재입력"  />
+			    	  </div>
+			          </th>
+			      	</tr>
+				  </table>				
+			      <button type="button" class="btn btn-default" onclick="goRigist()">가입</button>
+	       		</div>
+	       <c:choose>
+	    		<c:when test="${type=='survey'}">
+					 <h5><strong><a href="<%= request.getContextPath() %>/surveyloginform" ><font style="color:#428bca"> <span class="glyphicon glyphicon-arrow-left"></span> 뒤로가기</font></a></strong></h5>
+				</c:when>
+				<c:otherwise>
+					 <h5><strong><a href="<%= request.getContextPath() %>/customerloginform" ><font style="color:#428bca"> <span class="glyphicon glyphicon-arrow-left"></span> 뒤로가기</font></a></strong></h5>
+				</c:otherwise>
+			</c:choose>
 	      </form>
         </div>
     </body>

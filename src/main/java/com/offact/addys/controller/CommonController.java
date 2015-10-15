@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Random;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -139,7 +141,8 @@ public class CommonController {
 	 * @throws BizException
 	 */
 	@RequestMapping(value = "/customerregistform", method = RequestMethod.GET)
-	public ModelAndView customerRegistForm(HttpServletRequest request,
+	public ModelAndView customerRegistForm(String type ,
+			                   HttpServletRequest request,
 			                   HttpServletResponse response,  
 			                   Model model, 
 			                   Locale locale) throws BizException 
@@ -148,6 +151,8 @@ public class CommonController {
 		logger.info("Welcome customer");
 		
 		ModelAndView  mv = new ModelAndView();
+		
+		mv.addObject("type", type);
 		
     	mv.setViewName("/common/customerRegistForm");
 
@@ -177,8 +182,42 @@ public class CommonController {
 		logger.info("["+logid+"] Controller start : customerVO" + customerVo);
     			
 		int retVal=-1;
+		String token="";
+		
+		//등록여부 확인
+		
+		CustomerVO customerChk = customerSvc.getTokenInfo(customerVo);	
+				
+		if(customerChk != null) {
+			
+			token=customerChk.getToken();
+			
+			if(!token.equals(customerVo.getToken())){ //인증실패-인증번호 다름
+				
+				//log Controller execute time end
+		       	long t2 = System.currentTimeMillis();
+		       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+	            
+		       	return "3";
+				
+			}
+			
+			
+		}else{//인증실패-등록사용자 정보없음
+			
+			//log Controller execute time end
+	       	long t2 = System.currentTimeMillis();
+	       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+            
+	       	return "2";
+			
+		}
 
-		retVal = customerSvc.customerRegist(customerVo);		
+		retVal = customerSvc.customerRegist(customerVo);	
+		
+		if(retVal>0){
+			retVal=1;
+		}
 		
 		//log Controller execute time end
        	long t2 = System.currentTimeMillis();
@@ -187,6 +226,254 @@ public class CommonController {
       return ""+retVal;
 	}
     
+    /**
+     * 고객 등록
+     *
+     * @param UserManageVO
+     * @param request
+     * @param response
+     * @param model
+     * @param locale
+     * @return
+     * @throws BizException
+     */
+    @RequestMapping(value = "/common/gettokenconfirm", method = RequestMethod.POST)
+    public @ResponseBody
+    String  getTokenConfirm(@ModelAttribute("customerVo") CustomerVO customerVo, 
+									   HttpServletRequest request) throws BizException 
+    {
+		
+    	//log Controller execute time start
+		String logid=logid();
+		long t1 = System.currentTimeMillis();
+		logger.info("["+logid+"] Controller start : customerVO" + customerVo);
+    			
+		int retVal=-1;
+		String token="";
+		
+		//등록여부 확인
+		
+		CustomerVO customerChk = customerSvc.getTokenInfo(customerVo);	
+				
+		if(customerChk != null) {
+			
+			token=customerChk.getToken();
+			
+			if(!token.equals(customerVo.getToken())){ //인증실패-인증번호 다름
+				
+				//log Controller execute time end
+		       	long t2 = System.currentTimeMillis();
+		       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+	            
+		       	return "3";
+				
+			}
+			
+			
+		}else{//인증실패-등록사용자 정보없음
+			
+			//log Controller execute time end
+	       	long t2 = System.currentTimeMillis();
+	       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+            
+	       	return "2";
+			
+		}
+
+		//log Controller execute time end
+       	long t2 = System.currentTimeMillis();
+       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+
+      return "1";
+	}
+    /**
+     * 임시 비밀번호 발급
+     *
+     * @param UserManageVO
+     * @param request
+     * @param response
+     * @param model
+     * @param locale
+     * @return
+     * @throws BizException
+     */
+    @RequestMapping(value = "/common/gettoken", method = RequestMethod.POST)
+    public @ResponseBody
+    String  getToken(@ModelAttribute("customerVo") CustomerVO customerVo, 
+									   HttpServletRequest request) throws BizException 
+    {
+		
+    	//log Controller execute time start
+		String logid=logid();
+		long t1 = System.currentTimeMillis();
+		logger.info("["+logid+"] Controller start : customerVO" + customerVo);
+    			
+		int retVal=-1;
+		
+        //등록여부 확인
+		
+		CustomerVO customerChk = customerSvc.getCustomer(customerVo);	
+		
+		if(customerChk != null) {
+			
+			//log Controller execute time end
+	       	long t2 = System.currentTimeMillis();
+	       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+            
+	       	return "1";
+			
+		}
+		
+		String token="";
+		token=tokenCreate();
+
+		customerVo.setToken(token);
+
+		retVal = customerSvc.customerUpdateToken(customerVo);	
+		logger.debug("#########getToken retVal"+retVal);
+		
+			try{
+				//SMS발송
+				SmsVO smsVO = new SmsVO();
+				SmsVO resultSmsVO = new SmsVO();
+				
+				smsVO.setSmsId(smsId);
+				smsVO.setSmsPw(smsPw);
+				smsVO.setSmsType(smsType);
+				smsVO.setSmsTo(customerVo.getCustomerKey());
+				smsVO.setSmsFrom(sendno);
+				smsVO.setSmsMsg("["+token+"]애디스에서 발송된 인증번호입니다");
+
+				logger.debug("#########devOption :"+devOption);
+				String[] devSmss= devSms.split("\\^");
+				
+	    		if(devOption.equals("true")){
+					for(int i=0;i<devSmss.length;i++){
+						
+						if(devSmss[i].equals(customerVo.getCustomerKey().trim().replace("-", ""))){
+							resultSmsVO=smsSvc.sendSms(smsVO);
+						}
+					}
+				}else{
+					resultSmsVO=smsSvc.sendSms(smsVO);
+				}
+	
+				logger.debug("sms resultSmsVO.getResultCode() :"+resultSmsVO.getResultCode());
+				logger.debug("sms resultSmsVO.getResultMessage() :"+resultSmsVO.getResultMessage());
+				logger.debug("sms resultSmsVO.getResultLastPoint() :"+resultSmsVO.getResultLastPoint());
+				
+			}catch(BizException e){
+				
+				logger.info("["+logid+"] Controller SMS전송오류");
+				//log Controller execute time end
+		       	long t2 = System.currentTimeMillis();
+		       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+	            
+		       	return "-1";
+				
+			}
+			
+		
+		//log Controller execute time end
+       	long t2 = System.currentTimeMillis();
+       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+
+      return "0";
+	}
+    /**
+     * 임시 비밀번호 발급
+     *
+     * @param UserManageVO
+     * @param request
+     * @param response
+     * @param model
+     * @param locale
+     * @return
+     * @throws BizException
+     */
+    @RequestMapping(value = "/common/getpwtoken", method = RequestMethod.POST)
+    public @ResponseBody
+    String  getPwToken(@ModelAttribute("customerVo") CustomerVO customerVo, 
+									   HttpServletRequest request) throws BizException 
+    {
+		
+    	//log Controller execute time start
+		String logid=logid();
+		long t1 = System.currentTimeMillis();
+		logger.info("["+logid+"] Controller start : customerVO" + customerVo);
+    			
+		int retVal=-1;
+		
+        //등록여부 확인
+		
+		CustomerVO customerChk = customerSvc.getCustomer(customerVo);	
+		
+		if(customerChk == null) {
+			
+			//log Controller execute time end
+	       	long t2 = System.currentTimeMillis();
+	       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+            
+	       	return "1";
+			
+		}
+		
+		String token="";
+		token=tokenCreate();
+		
+		customerVo.setToken(token);
+
+		retVal = customerSvc.customerUpdateToken(customerVo);	
+		logger.debug("#########getToken retVal"+retVal);
+		
+			try{
+				//SMS발송
+				SmsVO smsVO = new SmsVO();
+				SmsVO resultSmsVO = new SmsVO();
+				
+				smsVO.setSmsId(smsId);
+				smsVO.setSmsPw(smsPw);
+				smsVO.setSmsType(smsType);
+				smsVO.setSmsTo(customerVo.getCustomerKey());
+				smsVO.setSmsFrom(sendno);
+				smsVO.setSmsMsg("["+token+"] 애디스에서 발송된 인증번호입니다");
+
+				logger.debug("#########devOption :"+devOption);
+				String[] devSmss= devSms.split("\\^");
+				
+	    		if(devOption.equals("true")){
+					for(int i=0;i<devSmss.length;i++){
+						
+						if(devSmss[i].equals(customerVo.getCustomerKey().trim().replace("-", ""))){
+							resultSmsVO=smsSvc.sendSms(smsVO);
+						}
+					}
+				}else{
+					resultSmsVO=smsSvc.sendSms(smsVO);
+				}
+	
+				logger.debug("sms resultSmsVO.getResultCode() :"+resultSmsVO.getResultCode());
+				logger.debug("sms resultSmsVO.getResultMessage() :"+resultSmsVO.getResultMessage());
+				logger.debug("sms resultSmsVO.getResultLastPoint() :"+resultSmsVO.getResultLastPoint());
+				
+			}catch(BizException e){
+				
+				logger.info("["+logid+"] Controller SMS전송오류");
+				//log Controller execute time end
+		       	long t2 = System.currentTimeMillis();
+		       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+	            
+		       	return "-1";
+				
+			}
+			
+		
+		//log Controller execute time end
+       	long t2 = System.currentTimeMillis();
+       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+
+      return "0";
+	}
 	 /**
      * 임시 비밀번호 발급
      *
@@ -210,8 +497,51 @@ public class CommonController {
 		logger.info("["+logid+"] Controller start : customerVO" + customerVo);
     			
 		int retVal=-1;
+		String token="";
+		token=tokenCreate();
+		String temppassword="";
+		temppassword=tokenCreate();
+		
+		//@생성
+		
+		//등록여부 확인
+		
+		CustomerVO customerChk = customerSvc.getTokenInfo(customerVo);	
+				
+		if(customerChk != null) {
+			
+			token=customerChk.getToken();
+			
+			if(!token.equals(customerVo.getToken())){ //인증실패-인증번호 다름
+				
+				//log Controller execute time end
+		       	long t2 = System.currentTimeMillis();
+		       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+	            
+		       	return "3";
+				
+			}
+		
+		}else{//사용자 정보없음
+			
+			//log Controller execute time end
+	       	long t2 = System.currentTimeMillis();
+	       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+            
+	       	return "2";
 
-		//retVal = customerSvc.passwordUpdate(customerVo);	
+		}
+		
+		customerVo.setPw_modifyYn("Y");
+		customerVo.setCustomerPw(temppassword);
+
+		retVal = customerSvc.customerUpdateProc(customerVo);
+		
+		if(retVal>0){
+			retVal=1;
+		}
+		
+		logger.debug("#########customerUpdateProc retVal"+retVal);
 		
 			try{
 				//SMS발송
@@ -223,7 +553,7 @@ public class CommonController {
 				smsVO.setSmsType(smsType);
 				smsVO.setSmsTo(customerVo.getCustomerKey());
 				smsVO.setSmsFrom(sendno);
-				smsVO.setSmsMsg("Xtr3G");
+				smsVO.setSmsMsg("애디스에서 발송된 임시 비밀번호 입니다 ["+temppassword+"]");
 
 				logger.debug("#########devOption :"+devOption);
 				String[] devSmss= devSms.split("\\^");
@@ -246,7 +576,11 @@ public class CommonController {
 			}catch(BizException e){
 				
 				logger.info("["+logid+"] Controller SMS전송오류");
-				
+				//log Controller execute time end
+		       	long t2 = System.currentTimeMillis();
+		       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+	            
+		       	return "-1";
 			}
 			
 		
@@ -256,13 +590,82 @@ public class CommonController {
 
       return ""+retVal;
 	}
-	
+    /**
+     * 고객 패스워드 변경
+     *
+     * @param UserManageVO
+     * @param request
+     * @param response
+     * @param model
+     * @param locale
+     * @return
+     * @throws BizException
+     */
+    @RequestMapping(value = "/common/customerpwmodify", method = RequestMethod.POST)
+    public @ResponseBody
+    String  customerPwModify(@ModelAttribute("customerVo") CustomerVO customerVo, 
+									   HttpServletRequest request) throws BizException 
+    {
+		
+    	//log Controller execute time start
+		String logid=logid();
+		long t1 = System.currentTimeMillis();
+		logger.info("["+logid+"] Controller start : customerVO" + customerVo);
+    			
+		int retVal=-1;
+		String token="";
+		
+		//등록여부 확인
+		
+		CustomerVO customerChk = customerSvc.getTokenInfo(customerVo);	
+				
+		if(customerChk != null) {
+			
+			token=customerChk.getToken();
+			
+			if(!token.equals(customerVo.getToken())){ //인증실패-인증번호 다름
+				
+				//log Controller execute time end
+		       	long t2 = System.currentTimeMillis();
+		       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+	            
+		       	return "3";
+				
+			}
+			
+			
+		}else{//인증실패-등록사용자 정보없음
+			
+			//log Controller execute time end
+	       	long t2 = System.currentTimeMillis();
+	       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+            
+	       	return "2";
+			
+		}
+
+		customerVo.setPw_modifyYn("Y");
+		
+		retVal=this.customerSvc.customerUpdateProc(customerVo);
+		
+		if(retVal>0){
+			retVal=1;
+		}
+		
+		//log Controller execute time end
+       	long t2 = System.currentTimeMillis();
+       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+
+      return ""+retVal;
+	}
+    
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 * @throws BizException
 	 */
 	@RequestMapping(value = "/customerpwform", method = RequestMethod.GET)
-	public ModelAndView customerPwForm(HttpServletRequest request,
+	public ModelAndView customerPwForm(String type ,
+			                   HttpServletRequest request,
 			                   HttpServletResponse response,  
 			                   Model model, 
 			                   Locale locale) throws BizException 
@@ -271,6 +674,8 @@ public class CommonController {
 		logger.info("Welcome customer");
 		
 		ModelAndView  mv = new ModelAndView();
+		
+		mv.addObject("type", type);
 		
     	mv.setViewName("/common/customerPwForm");
 
@@ -406,6 +811,7 @@ public class CommonController {
 				logger.info(">>> 비밀번호 오류");
 				strMainUrl = "common/loginFail";
 				
+				mv.addObject("loginType", loginType);
 				mv.addObject("customerKey", customerKey);
 				
 				mv.setViewName(strMainUrl);
@@ -466,13 +872,13 @@ public class CommonController {
 				}
 				
 			} else {//고객 정보가 없는경우
-	
+				
 				logger.info(">>> 고객 정보 없음");
 				strMainUrl = "common/loginFail";
 
 			}
 			
-		  
+		    mv.addObject("loginType", loginType);
 			mv.addObject("customerKey", customerKey);
 			
 			mv.setViewName(strMainUrl);
@@ -490,7 +896,8 @@ public class CommonController {
 		 * @throws Exception 
 		 */
 		@RequestMapping(value = "/common/logout")
-		public ModelAndView logout(HttpServletRequest request) throws BizException
+		public ModelAndView logout(String loginType ,
+				                   HttpServletRequest request) throws BizException
 		{
 			
 			logger.info("Good bye addys! ");
@@ -519,7 +926,12 @@ public class CommonController {
 	        logger.info("logout ok!");
 	        
 	        ModelAndView mv = new ModelAndView();
-	       	mv.setViewName("/common/customerLoginForm");
+	        
+	        if(StringUtil.nvl(loginType,"").equals("survey")){
+	         	mv.setViewName("/common/surveyLoginForm");
+			}else{
+			 	mv.setViewName("/common/customerLoginForm");
+			}
 	
 			return mv;
 		}
@@ -614,5 +1026,18 @@ public class CommonController {
 	       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
 
 	      return ""+retVal;
+	    }
+	    
+	    public String tokenCreate(){
+	    
+	    	String token="123456";
+			
+	    	Random rand = new Random(12);
+			rand.setSeed(System.currentTimeMillis());
+			
+			token=""+rand.nextInt(1000000);
+			logger.info("##### create token :: " + rand.nextInt(1000000));
+	    	
+	    	return token;
 	    }
 }

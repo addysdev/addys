@@ -14,198 +14,24 @@
 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/addys.js"></script>
 	<script>
 	
-    function fcReg_comment() {
+   
+	function goNext() {
     	
-    	var url='<%= request.getContextPath() %>/comunity/commentregistform';
-    	
-    	var customerKey='${customerKey}';
-    	
-    	$('#commentRegistForm').dialog({
-            resizable : false, //사이즈 변경 불가능
-            draggable : true, //드래그 불가능
-            closeOnEscape : true, //ESC 버튼 눌렀을때 종료
-
-            width : 300,
-            height : 300,
-            modal : true, //주위를 어둡게
-
-            open:function(){
-                //팝업 가져올 url
-                $(this).load(url+'?customerKey='+customerKey);
-
-            }
-            ,close:function(){
-                $('#commentRegistForm').empty();
-            }
-        });
-    };
-
-    function fcReg_counsel() {
-    	
-    	var url='<%= request.getContextPath() %>/comunity/counselregistform';
-    	var customerKey='${customerKey}';
-
-    	$('#counselRegistForm').dialog({
-            resizable : false, //사이즈 변경 불가능
-            draggable : true, //드래그 불가능
-            closeOnEscape : true, //ESC 버튼 눌렀을때 종료
-
-            width : 300,
-            height : 250,
-            modal : true, //주위를 어둡게
-
-            open:function(){
-                //팝업 가져올 url
-                $(this).load(url+'?customerKey='+customerKey);
-
-            }
-            ,close:function(){
-                $('#counselRegistForm').empty();
-            }
-        });
-    };
-	function fcConfig_modify() {
-    	
-    	var url='<%= request.getContextPath() %>/common/customermodifyform';
-    	var customerKey='${customerKey}';
-
-    	$('#customerModify').dialog({
-            resizable : false, //사이즈 변경 불가능
-            draggable : true, //드래그 불가능
-            closeOnEscape : true, //ESC 버튼 눌렀을때 종료
-
-            width : 400,
-            height : 415,
-            modal : true, //주위를 어둡게
-
-            open:function(){
-                //팝업 가져올 url
-                $(this).load(url+'?customerKey='+customerKey);
-
-            }
-            ,close:function(){
-                $('#customerModify').empty();
-            }
-        });
-    };
-    // 리스트 조회
-    function fcSurvey_list(){
-		
-    	var customerKey='${customerKey}';
-    	
-    	$('#comunityList').attr("style","display:block");
-    	$('#counselList').attr("style","display:none");
-    	
-    	$('#tab1').attr("class","active");
-    	$('#tab2').attr("class","");
-    	
-        $.ajax({
-            type: "POST",
-               url:  "<%= request.getContextPath() %>/comunity/comunitylist?customerKey="+customerKey,
-               success: function(result) {
-                  
-                   $("#comunityList").html(result);
-               },
-               error:function() {
-                  
-               }
-        });
+		location.href="<%= request.getContextPath() %>/survey/surveystaff?loginType=${loginType}";
     }
- // 리스트 조회
-    function fcCounsel_list(){
-		
-    	var customerKey='${customerKey}';
-    	
-    	$('#comunityList').attr("style","display:none");
-    	$('#counselList').attr("style","display:block");
-    	
-    	$('#tab1').attr("class","");
-    	$('#tab2').attr("class","active");
-
-        $.ajax({
-            type: "POST",
-               url:  "<%= request.getContextPath() %>/comunity/counsellist?customerKey="+customerKey,
-               success: function(result) {
-                  
-                   $("#counselList").html(result);
-               },
-               error:function() {
-                  
-               }
-        });
-    }
+    
 	//logout 처리
 	var goLogout =  function() {
 
 		//alert('logout');
 		
-		$('#logoutForm').attr({action:"<%= request.getContextPath() %>/common/logout"});
+		$('#logoutForm').attr({action:"<%= request.getContextPath() %>/common/logout?loginType=${loginType}"});
 		
 		try {
 			logoutForm.submit();
 		} catch(e) {}
 	};
-	
-	function resultView(id){
-		
-		$(id).attr("style","display:block");
 
-	}
-
-	 //레이어팝업 : 상담처리 Layer 팝업
-    function replyView(idx){
-
-    	$('#replyList').dialog({
-            resizable : false, //사이즈 변경 불가능
-            draggable : true, //드래그 불가능
-            closeOnEscape : true, //ESC 버튼 눌렀을때 종료
-
-            width : 400,
-            height : 500,
-            modal : true, //주위를 어둡게
-
-            open:function(){
-                //팝업 가져올 url
-                $(this).load('<%= request.getContextPath() %>/comunity/replylist?idx='+idx);
-                //$("#userRegist").dialog().parents(".ui-dialog").find(".ui-dialog-titlebar").hide();
-                $(".ui-widget-overlay").click(function(){ //레이어팝업외 화면 클릭시 팝업 닫기
-                    $("#replyList").dialog('close');
-
-                    });
-            }
-            ,close:function(){
-                $('#replyList').empty();
-
-            }
-        });
-    };
-    function tmt_winLaunch(theURL,winName,targetName,features) {
-		
-		eval(winName+"=window.open('"+theURL+"','"+targetName+"','"+features+"')");
-
-	}
-    function fcbuy_hotdeal(){
-    	
-  	  //location.href="http://jeonpro76.newfree3.freesell.co.kr";
-  	  
-	  	var h=screen.height-(screen.height*(8.5/100));
-		var s=screen.width-10;
-		//alert('귀하의 모니터 해상도는 ' + s + ' x ' + h + '입니다.');
-
-	    tmt_winLaunch('http://jeonpro76.newfree3.freesell.co.kr/m/soho_pagelist.html' , 'qaz', 'qaz', 'status=no,location=no,menubar=no,toolbar=no,width='+s+',height ='+h+',left=0,top=0,resizable=yes,scrollbars=yes');
-		
-	  	  
-    }
-    function fcgo_mhome(){
-    	
-      //location.href="http://addys.shopnote.kr/";
-	  	var h=screen.height-(screen.height*(8.5/100));
-		var s=screen.width-10;
-		//alert('귀하의 모니터 해상도는 ' + s + ' x ' + h + '입니다.');
-
-	    tmt_winLaunch('http://addys.shopnote.kr/' , 'qaz', 'qaz', 'status=no,location=no,menubar=no,toolbar=no,width='+s+',height ='+h+',left=0,top=0,resizable=yes,scrollbars=yes');
-		
-    }
   </script>
   </head>
    <body>
@@ -221,30 +47,20 @@
            </div>
     </fieldset>
     <br>
-    <button id="deferbtn" type="button" class="btn btn-primary btn-sm" onClick="fcgo_mhome()" >모바일 홈페이지</button>
-    <button id="deferbtn" type="button" class="btn btn-danger btn-sm" onClick="fcbuy_hotdeal()" >핫딜구매하기</button>
-    <br><br>
-      <c:choose>
-        <c:when test="${staffYn=='Y'}">
-        	<!-- 조회결과리스트 -->
-			<div id=comunityList></div>
-      		<div id="commentRegistForm"  title="답글올리기"></div>
-		</c:when>
-		<c:otherwise>
-			<ul class="nav nav-tabs">
-			  <li id="tab1" class="active"><a href="javascript:fcComunity_list()">글올리기</a></li>
-			  <li id="tab2" ><a href="javascript:fcCounsel_list()">1:1문의</a></li>
-			</ul>
-			<br>
-			<!-- 조회결과리스트 -->
-		    <div id=comunityList style="display:none"></div>
-		    <!-- 조회결과리스트 -->
-		    <div id=counselList style="display:none"></div>
-      		<div id="commentRegistForm"  title="글올리기"></div>
-    		<div id="counselRegistForm"  title="1:1문의"></div>
-		</c:otherwise>
-	</c:choose>
-	  <div id="customerModify"  title="고객 정보변경"></div>
+	     <h5><strong><font style="color:#428bca">애디스 고객 만족도 평가 페이지 입니다.</font></strong></h5>
+	     <h5><strong><font style="color:#428bca">아래 서비스 만족도 점수를 선택하여 주시기 바랍니다.</font></strong></h5>
+	     <br>
+	     <div class="form-inline text-center">
+		 	10점<input type="radio" name="r_customerKey1" value="02"> <br>
+		 	8점<input type="radio" name="r_customerKey1" value="03"> <br>
+		 	6점<input type="radio" name="r_customerKey1" value="04"> <br>
+		 	4점<input type="radio" name="r_customerKey1" value="05"> <br>
+		 	2점<input type="radio" name="r_customerKey1" value="05"> <br>
+		 	0점<input type="radio" name="r_customerKey1" value="05">
+	 	</div>
+	 	<br>
+	 	<button type="button" class="btn btn-primary" onClick="javascript:goNext()">다음</button> 
+		  <div id="customerModify"  title="고객 정보변경"></div>
 	  <div id="replyList"  title="답글정보"></div>
     </div>
   </body>
@@ -255,5 +71,4 @@ if('${customerKey}'==null || '${customerKey}'=='null' ){
 	goLogout();
 }
 
-fcSurvey_list();
 </script>

@@ -43,4 +43,21 @@ public interface CustomerService {
      * @throws BizException
      */
     public int customerRegist(CustomerVO customer) throws BizException;
+    
+    /**
+     * 인증번호 업데이트
+     * 
+     * @return
+     * @throws BizException
+     */
+    public int customerUpdateToken(CustomerVO customer) throws BizException;
+    
+    /**
+	 * Token 조회
+	 * @param user
+	 * @return
+	 * @throws BizException
+	 */
+	public CustomerVO getTokenInfo(CustomerVO customer) throws BizException;
+    
 }

@@ -29,6 +29,8 @@ public class CustomerVO extends AbstractVO {
 	
 	private String pw_modifyYn;
 	
+	private String token;
+	
 	public String getCustomerKey() {
 		return customerKey;
 	}
@@ -148,6 +150,12 @@ public class CustomerVO extends AbstractVO {
 	}
 	public void setCustomerRePw(String customerRePw) {
 		this.customerRePw = customerRePw;
+	}
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 }

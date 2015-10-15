@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Counsel">
+
+<resultMap id="CounselVO" type="com.offact.addys.vo.comunity.CounselVO" >
+  <result column="idx"      property="idx"  />
+  <result column="groupId"              property="groupId"  />
+  <result column="customerKey"              property="customerKey"  />
+  <result column="customerId"      property="customerId"  />
+  <result column="counselState"       property="counselState"  />
+  <result column="counsel"      property="counsel"  />
+  <result column="counselDateTime"         property="counselDateTime"  />
+</resultMap>
+
+<insert id="counselInsert" parameterType="com.offact.addys.vo.comunity.CounselVO" >
+  	
+  	Insert into smCounsel( 
+        	 customerKey
+            ,groupId
+            ,customerId
+            ,counselState 
+            ,counsel
+            ,counselDateTime
+            )
+        Values (
+	  		  #{customerKey}
+	  		, #{groupId}
+	  		, #{customerId}
+	  		, #{counselState}
+	  		, #{counsel}
+	  		, now()
+	  		)
+</insert>
+
+<select id="getCounselList" resultMap="CounselVO" parameterType="com.offact.addys.vo.comunity.CounselVO" >
+
+        Select idx,customerKey,counsel,counselState,counselDateTime,userId,userName,counselResult,counselResultDateTime From (
+        Select T1.idx
+              ,concat('****-',right(trim(T1.customerKey),4)) as customerKey
+              ,T1.counsel
+              ,T1.counselState
+              ,T1.counselDateTime
+              ,ifnull(T3.userId,'') as userId
+              ,ifnull(T4.userName,'') as userName
+              ,ifnull(T3.counselResult,'') as counselResult
+              ,Case When ifnull(T3.counselResultDateTime,'') = '' Then '' Else DATE_FORMAT(T3.counselResultDateTime, '%Y-%m-%d %T') End counselResultDateTime
+        From smCounsel T1
+             Left Join smCustomer T2 On T1.customerKey = T2.customerKey
+             Left Join smCounselResult T3 On T1.idx = T3.idx
+             Left Join ofUser T4 On T3.userId = T4.userId
+         WHERE 1=1
+           <if test="customerKey != null and customerKey != '' " >
+           		AND T1.customerKey = #{customerKey}
+           </if>
+        
+        order by T1.counselDateTime desc LIMIT 0,9 
+        ) As Temp0
+
+</select>
+
+</mapper>

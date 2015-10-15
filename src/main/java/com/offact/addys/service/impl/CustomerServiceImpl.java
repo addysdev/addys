@@ -71,4 +71,15 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		return commonDao.insert("Customer.customerRegist", customer);
     }
+	
+	@Override
+    public int customerUpdateToken(CustomerVO customer) throws BizException {
+		
+		return commonDao.insert("Customer.getToken", customer);
+
+    }
+	@Override
+	public CustomerVO getTokenInfo(CustomerVO customer) throws BizException {
+		return commonDao.selectOne("Customer.getTokenInfo", customer);
+	}
 }

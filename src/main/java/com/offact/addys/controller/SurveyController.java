@@ -105,6 +105,43 @@ public class SurveyController {
     @Autowired
     private MailService mailSvc;
     
+    /**
+	 * Simply selects the home view to render by returning its name.
+	 * @throws BizException
+	 */
+	@RequestMapping(value = "/survey/surveystaff", method = RequestMethod.GET)
+	public ModelAndView surveyStaff(String loginType ,
+			                   HttpServletRequest request,
+			                   HttpServletResponse response,  
+			                   Model model, 
+			                   Locale locale) throws BizException 
+	{
+
+		ModelAndView  mv = new ModelAndView();
+		mv.addObject("loginType", loginType);
 		
-	    
+    	mv.setViewName("/survey/surveyStaff");
+
+		return mv;
+	}
+	
+    /**
+	 * Simply selects the home view to render by returning its name.
+	 * @throws BizException
+	 */
+	@RequestMapping(value = "/survey/surveycomplete", method = RequestMethod.GET)
+	public ModelAndView surveyComplete(String loginType ,
+			                   HttpServletRequest request,
+			                   HttpServletResponse response,  
+			                   Model model, 
+			                   Locale locale) throws BizException 
+	{
+
+		ModelAndView  mv = new ModelAndView();
+		mv.addObject("loginType", loginType);
+		
+    	mv.setViewName("/survey/surveyComplete");
+
+		return mv;
+	}    
 }
