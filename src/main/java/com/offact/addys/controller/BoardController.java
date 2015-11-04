@@ -90,6 +90,7 @@ public class BoardController {
 	     */
 	    @RequestMapping(value = "/board/main")
 	    public ModelAndView main(HttpServletRequest request, 
+	    		                       String groupId,
 	    		                       HttpServletResponse response) throws BizException 
 	    {
 	        
@@ -101,6 +102,7 @@ public class BoardController {
 	        ModelAndView mv = new ModelAndView();
 
 	        mv.setViewName("/board/main");
+	        mv.addObject("groupId", StringUtil.nvl(groupId,"SM001"));
 	        
 	       //log Controller execute time end
 	      	long t2 = System.currentTimeMillis();
@@ -120,7 +122,8 @@ public class BoardController {
 	     * @throws BizException
 	     */
 	    @RequestMapping(value = "/board/board")
-	    public ModelAndView board(HttpServletRequest request, 
+	    public ModelAndView board(HttpServletRequest request,
+	    							   String groupId,
 	    		                       HttpServletResponse response) throws BizException 
 	    {
 	        
@@ -132,6 +135,7 @@ public class BoardController {
 	        ModelAndView mv = new ModelAndView();
 
 	        mv.setViewName("/board/board");
+	        mv.addObject("groupId", StringUtil.nvl(groupId,"SM001"));
 	        
 	       //log Controller execute time end
 	      	long t2 = System.currentTimeMillis();
@@ -153,6 +157,7 @@ public class BoardController {
 	     */
 	    @RequestMapping(value = "/board/comunitylist")
 	    public ModelAndView comunityList(@ModelAttribute("comunityVO") ComunityVO comunityVO, 
+	    								 String groupId,
 	    		                         HttpServletRequest request, 
 	    		                         HttpServletResponse response) throws BizException 
 	    {
@@ -165,6 +170,7 @@ public class BoardController {
 			ModelAndView mv = new ModelAndView();
 	   		
 	        List<ComunityVO> comunityList = new ArrayList();
+	        comunityVO.setGroupId(groupId);
 
 	        // 커뮤니티목록조회
 	        comunityList = comunitySvc.getComunity(comunityVO);

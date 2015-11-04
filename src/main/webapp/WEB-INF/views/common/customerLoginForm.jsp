@@ -1,4 +1,10 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="/WEB-INF/tlds/taglib.tld" prefix="taglib"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -149,7 +155,16 @@
           <label for="customerId">Password:</label>
           <input type="password" class="form-control" id="customerPw" name="customerPw"  onkeypress="javascript:return checkKey(event);">
         </div>
-       <button type="button" class="btn btn-default" onclick="goLogin()">로그인</button>
+        <div class="form-inline" >
+       		<c:if test="${group_comboList.size() > 1}">
+			<select class="form-group"  style='width:135px' title="지점정보" id="groupId" name="groupId" value="">
+                  <c:forEach var="groupVO" items="${group_comboList}" >
+                  	<option value="${groupVO.groupId}">${groupVO.groupName}</option>
+                  </c:forEach>
+            </select>
+            </c:if>
+            <button type="button" class="btn btn-default" onclick="goLogin()">로그인</button>
+        </div>
        <br><br>
        <button type="button" class="btn btn-default" onclick="goRegistForm()">회원가입</button>
        <button type="button" class="btn btn-default" onclick="goPwSearch()">비밀번호찾기</button>

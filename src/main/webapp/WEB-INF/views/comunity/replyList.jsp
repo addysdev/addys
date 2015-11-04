@@ -6,7 +6,7 @@
 	    	<c:if test="${!empty comunityReply}">
 	             <c:forEach items="${comunityReply}" var="comunityVO" varStatus="status">
 	            	 <tr id="select_tr_${comunityVO.idx}">
-	               	  <td class='text-left'><c:out value="[${comunityVO.commentDateTime}] ${comunityVO.comment}"></c:out></td>
+	               	  <td class='text-left'><c:out value="[${comunityVO.commentDateTime}] ${comunityVO.comment}   (${comunityVO.userName})"></c:out></td>
 	                 </tr>
 	             </c:forEach>
 	            </c:if>

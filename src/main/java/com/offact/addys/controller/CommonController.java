@@ -18,7 +18,6 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Random;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -45,9 +44,12 @@ import com.offact.framework.exception.BizException;
 import com.offact.framework.jsonrpc.JSONRpcService;
 import com.offact.framework.util.StringUtil;
 import com.offact.addys.service.CustomerService;
+import com.offact.addys.service.common.CommonService;
+import com.offact.addys.service.common.CommonService;
 import com.offact.addys.service.common.SmsService;
 import com.offact.addys.service.comunity.ComunityService;
 import com.offact.addys.vo.CustomerVO;
+import com.offact.addys.vo.common.GroupVO;
 import com.offact.addys.vo.common.SmsVO;
 import com.offact.addys.vo.comunity.ComunityVO;
 
@@ -93,6 +95,9 @@ public class CommonController {
     @Value("#{config['offact.sms.sendno']}")
     private String sendno;
     
+    @Autowired
+    private CommonService commonSvc;
+    
 	@Autowired
 	private CustomerService customerSvc;
 	
@@ -126,6 +131,12 @@ public class CommonController {
         logger.info("customerKey:"+customerKey);
         
         if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
+
+        	//조직정보 조회
+        	GroupVO group = new GroupVO();
+        	
+        	List<GroupVO> group_comboList = commonSvc.getGroupComboList(group);
+        	mv.addObject("group_comboList", group_comboList);
 
  	       	mv.setViewName("/common/customerLoginForm");
        		return mv;
@@ -706,6 +717,12 @@ public class CommonController {
         
         if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
 
+        	//조직정보 조회
+        	GroupVO group = new GroupVO();
+        	
+        	List<GroupVO> group_comboList = commonSvc.getGroupComboList(group);
+        	mv.addObject("group_comboList", group_comboList);
+        	
  	       	mv.setViewName("/common/surveyLoginForm");
        		return mv;
 		}
@@ -738,6 +755,7 @@ public class CommonController {
 		
 		String customerKey = StringUtil.nvl(request.getParameter("customerKey"));
 		String customerPw = StringUtil.nvl(request.getParameter("customerPw"));
+		String groupId = StringUtil.nvl(request.getParameter("groupId"),"SM001");
 		
 		logger.info(">>>> customerKey :"+customerKey);
 		logger.info(">>>> customerPw :"+customerPw);
@@ -861,6 +879,7 @@ public class CommonController {
 				session.setAttribute("customerKey9", customerKey9);
 				session.setAttribute("customerKey10", customerKey10);
 				session.setAttribute("staffYn", staffYn);
+				session.setAttribute("groupId", groupId);
 
 				mv.addObject("customerKey", customerKey);
 				mv.addObject("staffYn", staffYn);
@@ -922,10 +941,17 @@ public class CommonController {
 	        session.removeAttribute("customerKey9");
 	        session.removeAttribute("customerKey10");
 	        session.removeAttribute("staffYn");
+	        session.removeAttribute("groupId");
 	        
 	        logger.info("logout ok!");
 	        
 	        ModelAndView mv = new ModelAndView();
+	        
+        	//조직정보 조회
+        	GroupVO group = new GroupVO();
+        	
+        	List<GroupVO> group_comboList = commonSvc.getGroupComboList(group);
+        	mv.addObject("group_comboList", group_comboList);
 	        
 	        if(StringUtil.nvl(loginType,"").equals("survey")){
 	         	mv.setViewName("/common/surveyLoginForm");
@@ -957,6 +983,20 @@ public class CommonController {
 			logger.info("["+logid+"] Controller start customerKey:"+customerKey);
 	
 	        ModelAndView mv = new ModelAndView();
+	        
+	     // 사용자 세션정보
+	        HttpSession session = request.getSession();
+	        
+	        customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
+	        String customerName = StringUtil.nvl((String) session.getAttribute("customerName")); 
+	        String customerId = StringUtil.nvl((String) session.getAttribute("customerId"));
+	        
+	        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
+
+	 	       	//mv.setViewName("/common/customerLoginForm");
+	        	mv.setViewName("/common/sessionOut");
+	        	return mv;
+			}
 	        
 			CustomerVO customerVo = new CustomerVO();
 			customerVo.setCustomerKey(customerKey);

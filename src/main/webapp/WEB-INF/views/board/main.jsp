@@ -49,8 +49,8 @@
 		
 		//var h=955;
 		//var s=1920;
-	
-	    tmt_winLaunch('<%= request.getContextPath()%>/board/board' , 'qaz', 'qaz', 'status=no,location=no,menubar=no,toolbar=no,width='+s+',height ='+h+',left=0,top=0,resizable=yes,scrollbars=yes');
+
+	    tmt_winLaunch('<%= request.getContextPath()%>/board/board?groupId=${groupId}' , 'qaz', 'qaz', 'status=no,location=no,menubar=no,toolbar=no,width='+s+',height ='+h+',left=0,top=0,resizable=yes,scrollbars=yes');
 		
 	}
 

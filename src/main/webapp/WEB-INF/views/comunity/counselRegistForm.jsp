@@ -51,7 +51,7 @@ function fcComunity_close(){
 <input type="hidden" name="customerKey" id="customerKey" value="${customerKey}" >
 <input type="hidden" name="customerId" id="customerId" value="${customerId}" >
 <input type="hidden" name="counselState" id="counselState" value="01" >
-<input type="hidden" name="groupId" id="groupId" value="SM001" >
+<input type="hidden" name="groupId" id="groupId" value="${groupId}" >
 <p><textarea style='height:102px;ime-mode:active;' row="4" class="form-control" id="counsel" maxlength="200" name="counsel"  value=""  placeholder="1:1문의"/></p>
 		<br>
 <button id="cumunitysavebtn" type="button" class="btn btn-primary" onClick="fcCunsel_Regist()">1:1상담</button> 

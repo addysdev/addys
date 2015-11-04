@@ -28,7 +28,9 @@ public class ComunityVO extends AbstractVO {
 	
 	private String replyCnt;
 	private String upidx;
-	
+	private String userId;
+	private String userName;
+
 	public String getCustomerKey() {
 		return customerKey;
 	}
@@ -143,6 +145,16 @@ public class ComunityVO extends AbstractVO {
 	public void setUpidx(String upidx) {
 		this.upidx = upidx;
 	}
-	
-	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 }

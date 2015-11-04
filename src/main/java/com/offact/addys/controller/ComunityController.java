@@ -131,13 +131,14 @@ public class ComunityController {
 	      	// 사용자 세션정보
 	        HttpSession session = request.getSession();
 	        
+	        customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
 	        String customerName = StringUtil.nvl((String) session.getAttribute("customerName")); 
 	        String customerId = StringUtil.nvl((String) session.getAttribute("customerId"));
 	        String staffYn = StringUtil.nvl((String) session.getAttribute("staffYn"));
 	        
 	        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
 
-	 	       	mv.setViewName("/common/customerLoginForm");
+	 	       	mv.setViewName("/common/sessionOut");
 	       		return mv;
 			}
 
@@ -207,12 +208,13 @@ public class ComunityController {
 	      	// 사용자 세션정보
 	        HttpSession session = request.getSession();
 	        
+	        customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
 	        String customerName = StringUtil.nvl((String) session.getAttribute("customerName")); 
 	        String customerId = StringUtil.nvl((String) session.getAttribute("customerId"));
 	        
 	        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
 
-	 	       	mv.setViewName("/common/customerLoginForm");
+	        	mv.setViewName("/common/sessionOut");
 	       		return mv;
 			}
 	
@@ -337,6 +339,7 @@ public class ComunityController {
 	     */
 	    @RequestMapping(value = "/comunity/comunitylist")
 	    public ModelAndView comunityList(String customerKey, 
+	    								 String groupId, 
 	    		                         HttpServletRequest request, 
 	    		                         HttpServletResponse response) throws BizException 
 	    {
@@ -347,11 +350,26 @@ public class ComunityController {
 			logger.info("["+logid+"] Controller start : customerKey" + customerKey);
 
 			ModelAndView mv = new ModelAndView();
+
+			// 사용자 세션정보
+	        HttpSession session = request.getSession();
+	        
+	        customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
+	        String customerName = StringUtil.nvl((String) session.getAttribute("customerName")); 
+	        String customerId = StringUtil.nvl((String) session.getAttribute("customerId"));
+	        
+	        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
+
+	 	       	//mv.setViewName("/common/customerLoginForm");
+	        	mv.setViewName("/common/sessionOut");
+	        	return mv;
+			}
 	   		
 	        List<ComunityVO> comunityList = new ArrayList();
 	        
 	        ComunityVO comunityVO = new ComunityVO();
 	        comunityVO.setCustomerKey(customerKey);
+	        comunityVO.setGroupId(groupId);
 
 	        // 커뮤니티목록조회
 	        comunityList = comunitySvc.getComunityList(comunityVO);
@@ -376,8 +394,9 @@ public class ComunityController {
 	     */
 	    @RequestMapping(value = "/comunity/counsellist")
 	    public ModelAndView counselList(String customerKey, 
-	    		                         HttpServletRequest request, 
-	    		                         HttpServletResponse response) throws BizException 
+	    		 						String groupId, 
+	    		                        HttpServletRequest request, 
+	    		                        HttpServletResponse response) throws BizException 
 	    {
 	        
 	    	//log Controller execute time start
@@ -386,11 +405,26 @@ public class ComunityController {
 			logger.info("["+logid+"] Controller start : customerKey" + customerKey);
 
 			ModelAndView mv = new ModelAndView();
+			
+			// 사용자 세션정보
+	        HttpSession session = request.getSession();
+	        
+	        customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
+	        String customerName = StringUtil.nvl((String) session.getAttribute("customerName")); 
+	        String customerId = StringUtil.nvl((String) session.getAttribute("customerId"));
+	        
+	        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
+
+	 	       	//mv.setViewName("/common/customerLoginForm");
+	        	mv.setViewName("/common/sessionOut");
+	        	return mv;
+			}
 	   		
 	        List<CounselVO> counselList = new ArrayList();
 	        
 	        CounselVO counselVO = new CounselVO();
 	        counselVO.setCustomerKey(customerKey);
+	        counselVO.setGroupId(groupId);
 
 	        // 커뮤니티목록조회
 	        counselList = comunitySvc.getCounselList(counselVO);
@@ -425,6 +459,19 @@ public class ComunityController {
 			logger.info("["+logid+"] Controller start : idx" + idx);
 
 			ModelAndView mv = new ModelAndView();
+			
+			// 사용자 세션정보
+	        HttpSession session = request.getSession();
+	        
+	        String customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
+	        String customerName = StringUtil.nvl((String) session.getAttribute("customerName")); 
+	        String customerId = StringUtil.nvl((String) session.getAttribute("customerId"));
+	        
+	        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
+
+	        	mv.setViewName("/common/sessionOut");
+	       		return mv;
+			}
 	   		
 			List<ComunityVO> comunityReply = new ArrayList();
 			

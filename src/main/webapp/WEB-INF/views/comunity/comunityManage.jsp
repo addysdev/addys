@@ -92,6 +92,7 @@
     function fcComunity_list(){
 		
     	var customerKey='${customerKey}';
+    	var groupId='${groupId}';
     	
     	$('#comunityList').attr("style","display:block");
     	$('#counselList').attr("style","display:none");
@@ -101,7 +102,7 @@
     	
         $.ajax({
             type: "POST",
-               url:  "<%= request.getContextPath() %>/comunity/comunitylist?customerKey="+customerKey,
+               url:  "<%= request.getContextPath() %>/comunity/comunitylist?customerKey="+customerKey+"&groupId="+groupId,
                success: function(result) {
                   
                    $("#comunityList").html(result);
@@ -115,6 +116,7 @@
     function fcCounsel_list(){
 		
     	var customerKey='${customerKey}';
+    	var groupId='${groupId}';
     	
     	$('#comunityList').attr("style","display:none");
     	$('#counselList').attr("style","display:block");
@@ -124,7 +126,7 @@
 
         $.ajax({
             type: "POST",
-               url:  "<%= request.getContextPath() %>/comunity/counsellist?customerKey="+customerKey,
+               url:  "<%= request.getContextPath() %>/comunity/counsellist?customerKey="+customerKey+"&groupId="+groupId,
                success: function(result) {
                   
                    $("#counselList").html(result);

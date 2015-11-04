@@ -56,7 +56,7 @@ function commentSet(){
 <input type="hidden" name="customerKey" id="customerKey" value="${customerKey}" >
 <input type="hidden" name="customerId" id="customerId" value="${customerId}" >
 <input type="hidden" name="commentType" id="commentType" value="${staffYn}" >
-<input type="hidden" name="groupId" id="groupId" value="SM001" >
+<input type="hidden" name="groupId" id="groupId" value="${groupId}" >
 <p><textarea style='height:102px;ime-mode:active;' row="4" class="form-control" id="comment" maxlength="200" name="comment"  value=""  placeholder="글올리기"/></p>
 
 			<select class="form-control" title="" id=""commentsample"" name="commentsample" value="" onChange="commentSet()" >

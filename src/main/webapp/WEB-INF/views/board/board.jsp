@@ -21,10 +21,10 @@
 	  
 	// 리스트 조회
 	 function fcBoard_list(){
-
+			
 	        $.ajax({
 	            type: "POST",
-	               url:  "<%= request.getContextPath() %>/board/comunitylist",
+	               url:  "<%= request.getContextPath() %>/board/comunitylist?groupId=${groupId}",
 	                    data:$("#comunityForm").serialize(),
 	               success: function(result) {
 
@@ -61,6 +61,7 @@
 	<!-- 서브타이틀 영역 : 끝 -->
 	  <!-- 조회조건 -->
 	  <form:form class="form-inline" role="form" commandName="comunityVO" id="comunityForm" name="comunityForm" method="post" action="" >
+	    <input type="hidden" name="groupId" id="groupId" value="${groupId}" >
         <fieldset>
         	<div class="form-group">
               <h3><strong><font style="color:#428bca"><span class="glyphicon glyphicon-plus-sign"></span>(주)애디스 다이랙트</font></strong></h3>
