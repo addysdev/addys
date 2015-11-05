@@ -922,11 +922,7 @@ public class CommonController {
 			logger.info("Good bye addys! ");
 	
 			HttpSession session = request.getSession(false);
-			
-			String customerKey = StringUtil.nvl((String) session.getAttribute("customerKey"));
-			
-			logger.info("customerKey : "+customerKey);
-			
+
 		 	session.removeAttribute("customerKey");
 		 	session.removeAttribute("customerId");
 	        session.removeAttribute("customerName");

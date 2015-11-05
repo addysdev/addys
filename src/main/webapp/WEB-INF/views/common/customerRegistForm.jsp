@@ -214,7 +214,7 @@
     				return;
     			}
 
-    			if (confirm('회원 가입을 하시겠습니까?')){ 
+    			//if (confirm('회원 가입을 하시겠습니까?')){ 
     	    		
 	    		    $.ajax({
 	    		        type: "POST",
@@ -224,7 +224,7 @@
 	    		           success: function(result) {
 	
 	    						if(result=='1'){
-	    							 alert('회원 가입을 성공했습니다.');
+	    							 alert('등록이 완료 되었습니다.');
 
 	    							 if('${type}'==='survey'){
 	    								 location.href="<%= request.getContextPath() %>/surveyloginform"; 
@@ -237,17 +237,17 @@
 	    						} else if(result=='3'){
 	    							 alert('인증번호 오류\n재인증 하시기 바랍니다.');
 	    						} else {
-	    							 alert('회원 가입을 실패했습니다.');
+	    							 alert('등록을 실패했습니다.');
 	    						}
 	
 	    		           },
 	    		           error:function(){
 	    		        	   
-	    		        	   alert('회원 가입을 실패했습니다.');
+	    		        	   alert('등록을 실패했습니다.');
 	    		           }
 	    		    });
     		    
-    	    	}
+    	    	//}
             }	
             function getToken(){
             	
@@ -269,7 +269,7 @@
 
     						if(result=='0'){
     							
-    						    alert('인증요청을 성공했습니다.\n발송된 인증번호를 입력하시기 바랍니다.');
+    						    alert('인증요청을 성공했습니다.\n문자로 발송된 인증번호를 입력하시기 바랍니다.');
     							frm.customerKeyView.disabled=true;
                                 
     						} else if(result=='1'){
@@ -437,7 +437,7 @@
 		        	  <input type="text" class="form-control" id=customerKeyView name="customerKeyView" value="" placeholder="핸드폰번호" >
 		        	  <input type="hidden" id=customerKey name="customerKey"  value=""/> 
 			          <button id="reqbtn" type="button" class="btn btn-info" onClick="getToken()" >인증요청</button>
-			           <h5><font style="color:#FF9900">가입을 위해 최초로 핸드폰 인증이 필요합니다.</font></h5>   
+			           <h5><font style="color:#FF9900">등록을 위해 단 한번의 핸드폰 인증이 필요합니다.</font></h5>   
 			          </div>
 		          </th>
 		      	</tr>
@@ -448,12 +448,13 @@
 		          <input type="text" class="form-control" id="tokenView" name="tokenView" style='ime-mode:active;' maxlength="200" value="" placeholder="인증번호"  />
 		          <input type="hidden" id=token name="token"  value=""/> 
 		          <button id="memoinfobtn" type="button" class="btn btn-info" onClick="getTokenConfirm()" >인증확인</button>
-		          <h5><font style="color:#FF9900">발송된 인증번호를 입력하세요</font></h5>   
+		          <h5><font style="color:#FF9900">문자로 발송된 인증번호를 입력하세요</font></h5>   
 		    	  </div>
 		          </th>
 		      	</tr>
 		      	</table>
 		        <div id="pwform" name="pwform" style="display:none" >
+		          <h5><font style="color:#FF9900">패스워드를 설정 해 주세요</font></h5>   
 			      <table class="table table-bordered" >
 			      	<tr>
 			          <th class='text-center' style="background-color:#E6F3FF;width:120px" >패스워드:</th>
@@ -472,7 +473,7 @@
 			          </th>
 			      	</tr>
 				  </table>				
-			      <button type="button" class="btn btn-default" onclick="goRigist()">가입</button>
+			      <button type="button" class="btn btn-default" onclick="goRigist()">등록</button>
 	       		</div>
 	       <c:choose>
 	    		<c:when test="${type=='survey'}">

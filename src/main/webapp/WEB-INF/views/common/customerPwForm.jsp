@@ -200,7 +200,7 @@
 
     						if(result=='0'){
     							
-    						    alert('인증요청을 성공했습니다.\n발송된 인증번호를 입력하시기 바랍니다.');
+    						    alert('인증요청을 성공했습니다.\n문자로 발송된 인증번호를 입력하시기 바랍니다.');
     							frm.customerKeyView.disabled=true;
                                 
     						} else if(result=='1'){
@@ -493,7 +493,7 @@
 		          <input type="text" class="form-control" id="tokenView" name="tokenView" style='ime-mode:active;' maxlength="200" value="" placeholder="인증번호"  />
 		          <input type="hidden" id=token name="token"  value=""/>
 		          <button id="memoinfobtn" type="button" class="btn btn-info" onClick="getTokenConfirm()" >인증확인</button>
-		          <h5><font style="color:#FF9900">발송된 인증번호를 입력하세요</font></h5>   
+		          <h5><font style="color:#FF9900">문자로 발송된 인증번호를 입력하세요</font></h5>   
 		    	  </div>
 		          </th>
 		      	</tr>

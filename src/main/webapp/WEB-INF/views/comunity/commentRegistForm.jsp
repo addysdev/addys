@@ -23,7 +23,8 @@ function fcComunity_Regist(){
 
 					if(result=='1'){
 						 alert('글이 정상적으로 올라갔습니다.');
-						 fcComunity_list();
+						 
+						// fcComunity_list();
 					} else{
 						 alert('글 등록을 실패했습니다.');
 					}

@@ -81,6 +81,33 @@
 
 </select>
 
+<select id="getCommentListTalk" resultMap="ComunityVO" parameterType="com.offact.addys.vo.comunity.ComunityVO" >
+
+        Select idx,commentType,comment,commentDateTime From (
+        Select idx,commentType,comment,commentDateTime From (
+        Select 'N' as commentType,
+       T1.idx
+              ,T1.comment
+              ,DATE_FORMAT(T1.commentDateTime, '%Y-%m-%d %T') as commentDateTime
+        From smCommunity T1
+         WHERE T1.groupId= 'AD001'
+           		AND T1.customerKey = #{customerKey}
+
+		union all
+
+		Select 'Y' as commentType,
+       	T1.upidx as idx,
+       	T1.comment,
+       	DATE_FORMAT(T1.commentDateTime, '%Y-%m-%d %T') as commentDateTime
+		From smCommunity T1
+     	Left Join smCommunity T2 On T2.idx=T1.upidx
+  		 Where T2.customerKey = #{customerKey} and T1.commentType='Y'
+  		 ) as Temp0
+  		 Order by idx desc LIMIT 0,6 
+  		 ) as Temp1 Order by idx , commentDateTime asc
+
+</select>
+
 <insert id="commentInsert" parameterType="com.offact.addys.vo.comunity.ComunityVO" >
   	Insert into smCommunity( 
         	 customerKey

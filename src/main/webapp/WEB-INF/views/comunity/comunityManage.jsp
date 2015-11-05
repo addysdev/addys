@@ -13,9 +13,11 @@
 	<script type="text/javascript" src="<%= request.getContextPath() %>/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/addys.js"></script>
 	<script>
-	
+    
+ 	var realYN='Y';
+    
     function fcReg_comment() {
-    	
+
     	var url='<%= request.getContextPath() %>/comunity/commentregistform';
     	
     	var customerKey='${customerKey}';
@@ -88,18 +90,41 @@
             }
         });
     };
+
+    function setTab(flag){
+
+    	if(flag=='01'){
+    		
+    		realYN='Y';
+    		
+    		$('#comunityList').attr("style","display:block");
+        	$('#counselList').attr("style","display:none");
+        	
+        	$('#tab1').attr("class","active");
+        	$('#tab2').attr("class","");
+        	
+    	}else if(flag=='02'){
+    		
+    		realYN='N';
+    		
+    		$('#comunityList').attr("style","display:block");
+        	$('#counselList').attr("style","display:none");
+        	
+        	$('#tab1').attr("class","active");
+        	$('#tab2').attr("class","");
+        	
+    	}else{
+    		
+    		realYN='N';
+    	}
+
+    }
     // 리스트 조회
     function fcComunity_list(){
 		
     	var customerKey='${customerKey}';
     	var groupId='${groupId}';
-    	
-    	$('#comunityList').attr("style","display:block");
-    	$('#counselList').attr("style","display:none");
-    	
-    	$('#tab1').attr("class","active");
-    	$('#tab2').attr("class","");
-    	
+
         $.ajax({
             type: "POST",
                url:  "<%= request.getContextPath() %>/comunity/comunitylist?customerKey="+customerKey+"&groupId="+groupId,
@@ -111,7 +136,24 @@
                   
                }
         });
+        
+        var secval='5000';//5초단위
+		
+        if(realYN=='Y'){
+        
+			interval('fcComunity_list()',secval);
+		
+        }
     }
+   
+    /*
+	 *interval에따른 시간차 함수
+	 */
+	 function interval(method,secval){
+
+	 	setTimeout(method,secval);
+	 	
+	 }
  // 리스트 조회
     function fcCounsel_list(){
 		
@@ -223,9 +265,6 @@
            </div>
     </fieldset>
     <br>
-    <button id="deferbtn" type="button" class="btn btn-primary btn-sm" onClick="fcgo_mhome()" >모바일 홈페이지</button>
-    <button id="deferbtn" type="button" class="btn btn-danger btn-sm" onClick="fcbuy_hotdeal()" >핫딜구매하기</button>
-    <br><br>
       <c:choose>
         <c:when test="${staffYn=='Y'}">
         	<!-- 조회결과리스트 -->
@@ -234,15 +273,18 @@
 		</c:when>
 		<c:otherwise>
 			<ul class="nav nav-tabs">
-			  <li id="tab1" class="active"><a href="javascript:fcComunity_list()">글올리기</a></li>
-			  <li id="tab2" ><a href="javascript:fcCounsel_list()">1:1문의</a></li>
+			  <li id="tab1" class="active"><a href="javascript:setTab('01');fcComunity_list()">매장과talk</a></li>
+			  <li id="tab2" ><a href="javascript:setTab('02');fcCounsel_list()">1:1문의</a></li>
+			  <li id="tab3" ><a href="javascript:setTab('03');alert('waiting..');">As조회</a></li>
+			  <li id="tab4" ><a href="javascript:setTab('04');fcbuy_hotdeal()">핫딜</a></li>
+			  <li id="tab5" ><a href="javascript:setTab('05');fcgo_mhome()">회사소개</a></li>
 			</ul>
 			<br>
 			<!-- 조회결과리스트 -->
 		    <div id=comunityList style="display:none"></div>
 		    <!-- 조회결과리스트 -->
 		    <div id=counselList style="display:none"></div>
-      		<div id="commentRegistForm"  title="글올리기"></div>
+      		<div id="commentRegistForm"  title="talk하기"></div>
     		<div id="counselRegistForm"  title="1:1문의"></div>
 		</c:otherwise>
 	</c:choose>
@@ -256,6 +298,6 @@
 if('${customerKey}'==null || '${customerKey}'=='null' ){
 	goLogout();
 }
-
+setTab('01');
 fcComunity_list();
 </script>

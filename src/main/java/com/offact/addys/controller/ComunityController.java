@@ -372,7 +372,7 @@ public class ComunityController {
 	        comunityVO.setGroupId(groupId);
 
 	        // 커뮤니티목록조회
-	        comunityList = comunitySvc.getComunityList(comunityVO);
+	        comunityList = comunitySvc.getComunityListTalk(comunityVO);
 
 	   	    mv.addObject("comunityList", comunityList);
 	   	 

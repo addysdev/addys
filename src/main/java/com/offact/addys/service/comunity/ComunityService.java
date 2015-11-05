@@ -39,6 +39,14 @@ public interface ComunityService {
     public List<ComunityVO> getComunityList(ComunityVO comunity) throws BizException;
     
     /**
+     * 커뮤니티 조회
+     * 
+     * @return
+     * @throws BizException
+     */
+    public List<ComunityVO> getComunityListTalk(ComunityVO comunity) throws BizException;
+    
+    /**
 	 * 1:1상담
 	 * @param 
 	 * @return
