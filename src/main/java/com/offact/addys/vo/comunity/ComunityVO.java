@@ -10,6 +10,7 @@ public class ComunityVO extends AbstractVO {
 	private String idx;
 	private String customerKey;
 	private String groupId;
+	private String groupName;
 	private String customerId;
 	private String commentType;
 	private String comment;
@@ -157,4 +158,11 @@ public class ComunityVO extends AbstractVO {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	public String getGroupName() {
+		return groupName;
+	}
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
+	}
+	
 }

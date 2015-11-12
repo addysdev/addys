@@ -44,13 +44,15 @@
 		//window.resizeTo(0,0);    //팝업 부모창 사이즈 조절
 		
 		var h=screen.height-(screen.height*(8.5/100));
-		var s=screen.width-10;
+		var s=(screen.width)/2;
+		var s2=(screen.width)/2-40;
 		//alert('귀하의 모니터 해상도는 ' + s + ' x ' + h + '입니다.');
 		
 		//var h=955;
 		//var s=1920;
 
-	    tmt_winLaunch('<%= request.getContextPath()%>/board/board?groupId=${groupId}' , 'qaz', 'qaz', 'status=no,location=no,menubar=no,toolbar=no,width='+s+',height ='+h+',left=0,top=0,resizable=yes,scrollbars=yes');
+	    tmt_winLaunch('<%= request.getContextPath()%>/board/board?groupId=${groupId}' , 'board1', 'board1', 'status=no,location=no,menubar=no,toolbar=no,width='+s+',height ='+h+',left=0,top=0,resizable=yes,scrollbars=yes');
+	    tmt_winLaunch('<%= request.getContextPath()%>/board/event' , 'board2', 'board2', 'status=no,location=no,menubar=no,toolbar=no,width='+s2+',height ='+h+',left='+(s+100)+',top=0,resizable=yes,scrollbars=yes');
 		
 	}
 

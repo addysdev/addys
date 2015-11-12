@@ -145,6 +145,39 @@ public class BoardController {
 	    }
 	    
 	    /**
+	     * 커뮤니티 전광판
+	     *
+	     * @param request
+	     * @param response
+	     * @param model
+	     * @param locale
+	     * @return
+	     * @throws BizException
+	     */
+	    @RequestMapping(value = "/board/event")
+	    public ModelAndView event(HttpServletRequest request,
+	    							   String groupId,
+	    		                       HttpServletResponse response) throws BizException 
+	    {
+	        
+	    	//log Controller execute time start
+			String logid=logid();
+			long t1 = System.currentTimeMillis();
+			logger.info("["+logid+"] Controller start board");
+	
+	        ModelAndView mv = new ModelAndView();
+
+	        mv.setViewName("/board/event");
+	        mv.addObject("groupId", StringUtil.nvl(groupId,"SM001"));
+	        
+	       //log Controller execute time end
+	      	long t2 = System.currentTimeMillis();
+	      	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+	      	
+	        return mv;
+	    }
+	    
+	    /**
 	     * 커뮤니티 목록조회
 	     * 
 	     * @param UserManageVO

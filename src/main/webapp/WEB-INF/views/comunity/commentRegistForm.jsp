@@ -7,7 +7,7 @@ function fcComunity_Regist(){
 	var frm=document.comunityForm;
 
 	if(frm.comment.value==''){
-		alert('등록 내용이 없습니다.');
+		alert('남길 talk이 없습니다.');
 		return;
 	}
 	
@@ -22,11 +22,11 @@ function fcComunity_Regist(){
 	           success: function(result) {
 
 					if(result=='1'){
-						 alert('글이 정상적으로 올라갔습니다.');
+						 alert('talk 남기기를 성공했습니다.');
 						 
 						// fcComunity_list();
 					} else{
-						 alert('글 등록을 실패했습니다.');
+						 alert('talk 남기기를 실패했습니다.');
 					}
 					
 					$('#commentRegistForm').dialog('close');
@@ -34,7 +34,7 @@ function fcComunity_Regist(){
 	           },
 	           error:function(){
 	        	   
-	        	   alert('글 등록을 실패했습니다.');
+	        	   alert('talk 남기기를 실패했습니다.');
 	        	   $('#commentRegistForm').dialog('close');
 	           }
 	    });
@@ -68,7 +68,7 @@ function commentSet(){
                 <option value="강추합니다." >강추합니다.</option>
             </select>
             <br>
-<button id="cumunitysavebtn" type="button" class="btn btn-primary" onClick="fcComunity_Regist()">글올리기</button> 
+<button id="cumunitysavebtn" type="button" class="btn btn-primary" onClick="fcComunity_Regist()">talk남기기</button> 
 <!-- <button id="cumunityclosebtn" type="button" class="btn btn-danger" onClick="fcComunity_close()">취소</button>  -->
 </form:form>
 </div>

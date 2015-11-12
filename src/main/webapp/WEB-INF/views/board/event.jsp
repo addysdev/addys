@@ -18,57 +18,28 @@
 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/addys.js"></script>
 	<script>
 	
-	  function init(){
-
-	  	opener.selfClose();
-
-	  }
 	  
-	// 리스트 조회
-	 function fcBoard_list(){
-			
-	        $.ajax({
-	            type: "POST",
-	               url:  "<%= request.getContextPath() %>/board/comunitylist?groupId=${groupId}",
-	                    data:$("#comunityForm").serialize(),
-	               success: function(result) {
-
-	                   $("#boardList").html(result);
-	               },
-	               error:function() {
-
-	               }
-	        });
-
-	   	 var secval='3000';//3초단위
-		 
-		 interval('fcBoard_list()',secval);
-	    }
-		
-	 /*
-	 *interval에따른 시간차 함수
-	 */
-	 function interval(method,secval){
-
-	 	setTimeout(method,secval);
-	 	
-	 }
-	 
-	
 	</script>
   </head>
-  <body onLoad = "init();">
+  <body>
   <div id="wrap" class="wrap" >
   <!-- 헤더 -->
   <header>
     <div class="mb_top">
-      <h1 class="head_logo"><img src="<%= request.getContextPath() %>/images/logo_addys2.png" alt="addys"  /></h1>
+      <h1 class="head_logo"><img src="<%= request.getContextPath() %>/images/logo_addys.png" alt="addys"  /></h1>
     </div>
   </header>
   <!--//헤더 -->
-  
-  <!-- 조회결과리스트 -->
-  <div id=boardList></div> 
+
+<!-- container -->
+		  <div id="container">
+		    <div class="talk_board" >
+		      <table class="tbl_base" >
+				<img vertical-align="bottom" height="100%" width="100%" src="<%= request.getContextPath() %>/images/event/event.jpg">
+		      </table>
+		    </div>
+		  </div>
+	<!-- //container -->
   
 <%@ include file="/WEB-INF/views/addys/footer.jsp" %>
 </div>

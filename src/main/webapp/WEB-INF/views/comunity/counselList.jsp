@@ -30,6 +30,6 @@
           </c:if>
 	    </tbody>
 	  </table>
-	  <button id="deferbtn" type="button" class="btn btn-danger btn-sm" onClick="fcReg_counsel()" >1:1문의</button>
+	  <button id="deferbtn" type="button" class="btn btn-danger btn-sm" onClick="fcReg_counsel()" >접수</button>
 	 </form:form>
 

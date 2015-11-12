@@ -8,6 +8,11 @@
 	<link href="<%= request.getContextPath() %>/css/issue_style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/jquery-ui-1.11.4.custom/jquery-ui.css">
 	<link rel="stylesheet" href="<%= request.getContextPath() %>/bootstrap-3.3.4-dist/css/bootstrap.css">
+	
+	<link href="<%= request.getContextPath() %>/css/reset.css" rel="stylesheet">
+	<link href="<%= request.getContextPath() %>/css/common.css" rel="stylesheet">
+	<link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet">
+
 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-1.11.2.js"></script>
 	<script type="text/javascript" src="<%= request.getContextPath() %>/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
 	<script type="text/javascript" src="<%= request.getContextPath() %>/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
@@ -93,25 +98,31 @@
 
     function setTab(flag){
 
-    	if(flag=='01'){
+    	if(flag=='03'){
     		
     		realYN='Y';
     		
     		$('#comunityList').attr("style","display:block");
         	$('#counselList').attr("style","display:none");
         	
-        	$('#tab1').attr("class","active");
+        	$('#tab1').attr("class","");
         	$('#tab2').attr("class","");
+        	$('#tab3').attr("class","active");
+        	$('#tab4').attr("class","");
+        	$('#tab5').attr("class","");
         	
-    	}else if(flag=='02'){
+    	}else if(flag=='01'){
     		
     		realYN='N';
     		
-    		$('#comunityList').attr("style","display:block");
-        	$('#counselList').attr("style","display:none");
+    		$('#comunityList').attr("style","display:none");
+        	$('#counselList').attr("style","display:block");
         	
         	$('#tab1').attr("class","active");
         	$('#tab2').attr("class","");
+        	$('#tab3').attr("class","");
+        	$('#tab4').attr("class","");
+        	$('#tab5').attr("class","");
         	
     	}else{
     		
@@ -137,7 +148,7 @@
                }
         });
         
-        var secval='5000';//5초단위
+        var secval='3000';//3초단위
 		
         if(realYN=='Y'){
         
@@ -163,8 +174,11 @@
     	$('#comunityList').attr("style","display:none");
     	$('#counselList').attr("style","display:block");
     	
-    	$('#tab1').attr("class","");
-    	$('#tab2').attr("class","active");
+    	$('#tab1').attr("class","active");
+    	$('#tab2').attr("class","");
+    	$('#tab3').attr("class","");
+    	$('#tab4').attr("class","");
+    	$('#tab5').attr("class","");
 
         $.ajax({
             type: "POST",
@@ -269,13 +283,13 @@
         <c:when test="${staffYn=='Y'}">
         	<!-- 조회결과리스트 -->
 			<div id=comunityList></div>
-      		<div id="commentRegistForm"  title="답글올리기"></div>
+      		<div id="commentRegistForm"  title="talk하기"></div>
 		</c:when>
 		<c:otherwise>
 			<ul class="nav nav-tabs">
-			  <li id="tab1" class="active"><a href="javascript:setTab('01');fcComunity_list()">매장과talk</a></li>
-			  <li id="tab2" ><a href="javascript:setTab('02');fcCounsel_list()">1:1문의</a></li>
-			  <li id="tab3" ><a href="javascript:setTab('03');alert('waiting..');">As조회</a></li>
+			  <li id="tab1" class="active" ><a href="javascript:setTab('01');fcCounsel_list()">문의하기</a></li>
+			  <li id="tab2" ><a href="javascript:setTab('02');alert('waiting..');">As조회</a></li>
+			  <li id="tab3" ><a href="javascript:setTab('03');fcComunity_list()">매장과talk</a></li>
 			  <li id="tab4" ><a href="javascript:setTab('04');fcbuy_hotdeal()">핫딜</a></li>
 			  <li id="tab5" ><a href="javascript:setTab('05');fcgo_mhome()">회사소개</a></li>
 			</ul>
@@ -285,7 +299,7 @@
 		    <!-- 조회결과리스트 -->
 		    <div id=counselList style="display:none"></div>
       		<div id="commentRegistForm"  title="talk하기"></div>
-    		<div id="counselRegistForm"  title="1:1문의"></div>
+    		<div id="counselRegistForm"  title="문의하기"></div>
 		</c:otherwise>
 	</c:choose>
 	  <div id="customerModify"  title="고객 정보변경"></div>
@@ -298,6 +312,11 @@
 if('${customerKey}'==null || '${customerKey}'=='null' ){
 	goLogout();
 }
+
+if('${staffYn}'=='Y'){
+	alert('직원 전용 talk 서비스 입니다.');
+}
+
 setTab('01');
-fcComunity_list();
+fcCounsel_list();
 </script>

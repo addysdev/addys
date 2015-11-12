@@ -167,10 +167,10 @@
         </div>
        <br><br>
           <h4><strong><font style="color:#428bca">등록을 하시면 다음과 같은 서비스를 이용 가능하십니다.</font></strong></h4>
-		  <h6><strong><font id="avgStockAmt" style="color:#FF9900">1.매장과 채팅</font></strong></h6>
-		  <h6><strong><font style="color:#FF9900">2.비공개 1:1 문의</font></strong></h6>
-		  <h6><strong><font style="color:#FF9900">3.AS과정 열람</font></strong></h6>
-		  <h6><strong><font style="color:#FF9900">4.Hot Deal</font></strong></h6>
+		  <h6><strong><font style="color:#FF9900">1.문의하기</font></strong></h6>
+		  <h6><strong><font style="color:#FF9900">2.AS과정 열람</font></strong></h6>
+		  <h6><strong><font style="color:#FF9900">3.매장과 채팅</font></strong></h6>
+		  <h6><strong><font style="color:#FF9900">4.Hot Deal & Event</font></strong></h6>
 	   <br>	  
        <button type="button" class="btn btn-default" onclick="goRegistForm()">등록</button>
        <button type="button" class="btn btn-default" onclick="goPwSearch()">비밀번호찾기</button>

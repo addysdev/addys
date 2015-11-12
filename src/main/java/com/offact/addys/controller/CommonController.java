@@ -887,7 +887,13 @@ public class CommonController {
 				if(loginType.equals("survey")){
 					strMainUrl = "survey/surveyManage";
 				}else{
-					strMainUrl = "comunity/comunityManage";
+					
+					if(staffYn.equals("Y")){//직원인경우 서비스선택여부 단계추가
+						strMainUrl = "common/staffCheck";
+					}else{
+						strMainUrl = "comunity/comunityManage";
+					}
+					
 				}
 				
 			} else {//고객 정보가 없는경우
@@ -906,6 +912,30 @@ public class CommonController {
 	      	long t2 = System.currentTimeMillis();
 	      	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
 	      	
+			return mv;
+		}
+		/**
+		 * Logout 처리
+		 * @param request
+		 * @return
+		 * @throws Exception 
+		 */
+		@RequestMapping(value = "/common/staffselect")
+		public ModelAndView staffSelect(String staffYn ,
+				                   HttpServletRequest request) throws BizException
+		{
+			
+			logger.info(" staffYn : "+staffYn);
+	
+			HttpSession session = request.getSession(false);
+	
+			session = request.getSession(true);
+			session.setAttribute("staffYn", staffYn);
+
+	        ModelAndView mv = new ModelAndView();
+	        
+	        mv.setViewName("/comunity/comunityManage");
+	
 			return mv;
 		}
 		/**
