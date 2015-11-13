@@ -2,6 +2,7 @@ package com.offact.addys.controller;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -23,6 +24,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -35,6 +40,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
@@ -47,6 +53,7 @@ import com.offact.addys.service.CustomerService;
 import com.offact.addys.service.common.MailService;
 import com.offact.addys.service.comunity.ComunityService;
 import com.offact.addys.vo.CustomerVO;
+import com.offact.addys.vo.MultipartFileVO;
 import com.offact.addys.vo.comunity.ComunityVO;
 import com.offact.addys.vo.comunity.CounselVO;
 import com.offact.addys.vo.common.EmailVO;
@@ -150,7 +157,113 @@ public class ComunityController {
 	      	
 	        return mv;
 	    }
-    
+
+	    
+			/**
+		     * 글올리기
+		     *
+		     * @param request
+		     * @param response
+		     * @param model
+		     * @param locale
+		     * @return
+		     * @throws BizException
+		     */
+		    @RequestMapping(value = "/comunity/comunityregist")
+		    public ModelAndView comunityRegist(@ModelAttribute("MultipartFileVO") MultipartFileVO fileVO,
+		    								   @ModelAttribute("comunityVO") ComunityVO comunityVO, 
+		    		                           HttpServletRequest request, 
+		    		                           HttpServletResponse response,
+		    		                           String fileName, 
+		    		                           String extension, 
+				                               String customerKey) throws BizException 
+		    {
+		        
+		    	//log Controller execute time start
+				String logid=logid();
+				long t1 = System.currentTimeMillis();
+				logger.info("["+logid+"] Controller start customerKey:"+customerKey);
+				logger.info("["+logid+"] Controller start : fileVO" + fileVO);
+		
+		        ModelAndView mv = new ModelAndView();
+		        
+		        String fname ="";
+		        
+		      	// 사용자 세션정보
+		        HttpSession session = request.getSession();
+		        
+		        customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
+		        String customerName = StringUtil.nvl((String) session.getAttribute("customerName")); 
+		        String customerId = StringUtil.nvl((String) session.getAttribute("customerId"));
+		        String staffYn = StringUtil.nvl((String) session.getAttribute("staffYn"));
+		        
+		        //오늘 날짜
+		        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyMMdd", Locale.KOREA);
+		        Date currentTime = new Date();
+		        String strToday = simpleDateFormat.format(currentTime);
+		        
+		        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
+
+		 	       	mv.setViewName("/common/sessionOut");
+		       		return mv;
+				}
+		        
+		        String imagePath="comunity/"+strToday+"/";
+
+		        ResourceBundle rb = ResourceBundle.getBundle("config");
+		        String uploadFilePath = rb.getString("offact.upload.path") + imagePath;
+
+		        this.logger.debug("파일정보:" + fileName + extension);
+		        this.logger.debug("file:" + fileVO);
+
+		        try {
+		        
+			        if (fileName != null && fileName != "") {
+				    	  
+				        List<MultipartFile> files = fileVO.getFiles();
+				        List fileNames = new ArrayList();
+				        String orgFileName = null;
+	
+				        if ((files != null) && (files.size() > 0))
+				        {
+				          for (MultipartFile multipartFile : files)
+				          {
+				            orgFileName = multipartFile.getOriginalFilename();
+				            this.logger.debug("orgFileName 1 :" + orgFileName);
+				            orgFileName = t1 +"."+ extension;
+				            this.logger.debug("orgFileName 2 :" + orgFileName);
+				         		   
+				            boolean check=setDirectory(uploadFilePath);
+	
+				            String filePath = uploadFilePath;
+	
+				            File file = new File(filePath + orgFileName);
+				            multipartFile.transferTo(file);
+				            fileNames.add(orgFileName);
+				          }
+				     
+				        }
+				        
+				        fname = uploadFilePath + orgFileName;
+	
+			        }
+		        }catch (Exception e){
+		        	
+		        	logger.info("["+logid+"][error] : "+e.getMessage()); 
+		        	
+		        }
+		        
+		        int retVal=this.comunitySvc.commentInsert(comunityVO);
+		        
+		        mv.setViewName("/comunity/fileResult");
+		        
+		       //log Controller execute time end
+		      	long t2 = System.currentTimeMillis();
+		      	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+		      	
+		        return mv;
+		    }
+
 	    /**
 	     * 글올리기
 	     * @param UserManageVO
@@ -487,5 +600,16 @@ public class ComunityController {
 	   		
 	   		return mv;
 	    }
+	    
+		/**
+		 * 업로드 디렉토리 세팅
+		 */
+		private static boolean setDirectory( String directory) {
+			File wantedDirectory = new File(directory);
+			if (wantedDirectory.isDirectory())
+				return true;
+		    
+			return wantedDirectory.mkdirs();
+		}
 	    
 }

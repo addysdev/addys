@@ -315,8 +315,13 @@ if('${customerKey}'==null || '${customerKey}'=='null' ){
 
 if('${staffYn}'=='Y'){
 	alert('직원 전용 talk 서비스 입니다.');
+	setTab('03');
+	fcComunity_list();
+}else{
+
+	setTab('01');
+	fcCounsel_list();
+	
 }
 
-setTab('01');
-fcCounsel_list();
 </script>

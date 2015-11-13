@@ -4,9 +4,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Latest compiled and minified CSS -->
-	<link href="<%= request.getContextPath() %>/css/issue_style.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/jquery-ui-1.11.4.custom/jquery-ui.css">
-	<link rel="stylesheet" href="<%= request.getContextPath() %>/bootstrap-3.3.4-dist/css/bootstrap.css">
+
 	
 	<link href="<%= request.getContextPath() %>/css/reset.css" rel="stylesheet">
 	<link href="<%= request.getContextPath() %>/css/common.css" rel="stylesheet">
@@ -34,6 +32,9 @@
 	               success: function(result) {
 
 	                   $("#boardList").html(result);
+	                   
+	                   $('#fset').focus(1); 
+	                   
 	               },
 	               error:function() {
 

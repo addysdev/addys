@@ -888,7 +888,7 @@ public class CommonController {
 					strMainUrl = "survey/surveyManage";
 				}else{
 					
-					if(staffYn.equals("Y")){//직원인경우 서비스선택여부 단계추가
+					if(StringUtil.nvl(staffYn,"N").equals("Y")){//직원인경우 서비스선택여부 단계추가
 						strMainUrl = "common/staffCheck";
 					}else{
 						strMainUrl = "comunity/comunityManage";
