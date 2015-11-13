@@ -65,7 +65,7 @@
   <div id="wrap" class="wrap" >
   <!-- 헤더 -->
   <header>
-    <div class="mb_top">
+    <div class="mb_top"  id="header">
       <h1 class="head_logo"><img src="<%= request.getContextPath() %>/images/logo_addys2.png" alt="addys"  /></h1>
     </div>
   </header>
