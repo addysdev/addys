@@ -19,8 +19,8 @@
 					</c:when>
 					<c:otherwise>
 	         		<!-- me -->
-			        <tr>
-			          <td class="profile"><div class="prof_icon">
+			        <tr>l
+			          <td class="profile" ><div class="prof_icon">
 			        	    <img src="<%= request.getContextPath() %>/images/img_02.png" />
 			        	    <!--  <img vertical-align="bottom" height="50px" width="80px" src="${ComunityVO.customerKey1}">--></div></td>
 			          <td class="me" colspan="2">
