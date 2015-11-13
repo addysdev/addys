@@ -3,7 +3,8 @@
 
 /* 레이아웃 */
 #wrap {}
-#container {}
+#header {position: fixed; z-index:1; width:100%;}
+#container { position: relative; top:50px;;}
 #footer { margin:0 auto;color: #999;font-size: 12px;line-height: 18px;padding-top:5px;text-align: center;width: 100%;}
 #footer .Copyright {display: inline-block; line-height: 40px;font-family: arial, HelveticaNeue, DroidSans, Sans-serif, Helvetica;}
 
@@ -11,7 +12,7 @@
 /****************************************
 		헤더 
  ****************************************/
-header .mb_top {background:#0097DA; padding:0 20px 0 10px; height:60px;}
+header .mb_top {background:#0097DA; padding:0 20px 0 10px; height:60px;  width:100%;}
 h1.head_logo {width:160px;}
 
 
@@ -31,7 +32,8 @@ h1.head_logo {width:160px;}
 .talk_board .tbl_base td.you { text-align: right;padding-left:150px; }
 
 /* 프로필 이미지 */
-.profile .prof_icon { width:50px; padding: 20px}
+.profile .prof_icon { width:50px;padding-top:20px   }
+.profile {/*border:1px solid #0097DA; */}
 
 /* 말풍선 */
 .msg_box {position:relative; width:100%;}
@@ -40,7 +42,7 @@ h1.head_logo {width:160px;}
 .you .msg_box .talk { background: #FFFCC2;  float: right; }
 
 /* 메인창 아이디 */
-.msg_box .id { font-weight: bold; line-height: 30px; height: 30px; }
+.msg_box .id { font-weight: bold; line-height: 30px; height: 30px; ;}
 
 /* 시간표시 */
 .msg_box .time { width:50px; height:20px; padding-top:5px; position:relative;;  font-size:11px; color:#666 ; position:relative;  }
