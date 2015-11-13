@@ -12,29 +12,27 @@
 			        <tr>
 			          <td class="you" colspan="2"><div class="msg_box" >
 			          <div class="id">애디스[${ComunityVO.groupName}]</div>
-			            <div class="talk">${ComunityVO.comment}</div><p class="time"><span>8:50PM</span></p></div></td>
+			            <div class="talk">${ComunityVO.comment}</div><p class="time"><span>${ComunityVO.commentDateTime}</span></p></div></td>
 			          <td class="profile"><div class="prof_icon">
-			        	  <img src="<%= request.getContextPath() %>/images/img_03.png" /></div></td>
+			        	  <img src="${ComunityVO.customerKey1}" /></div></td>
 			 		<!--//you -->
 					</c:when>
 					<c:otherwise>
 	         		<!-- me -->
-			        <tr>l
+			        <tr>
 			          <td class="profile" ><div class="prof_icon">
-			        	    <img src="<%= request.getContextPath() %>/images/img_02.png" />
-			        	    <!--  <img vertical-align="bottom" height="50px" width="80px" src="${ComunityVO.customerKey1}">--></div></td>
+			        	    <img src="${ComunityVO.customerKey1}" />
 			          <td class="me" colspan="2">
 			          <div class="msg_box" >
 			              <div class="id">${ComunityVO.customerKey}</div>
 			              <div class="talk">${ComunityVO.comment}</div>
-			              <div class="time" ><span>8:50PM</span></div>
+			              <div class="time" ><span>${ComunityVO.commentDateTime}</span></div>
 			            </div></td>
 			 		<!--//me -->
 					</c:otherwise>
 				  </c:choose>
 	             </c:forEach>
 	            </c:if>
-	         
 		      </table>
 		      <table id="fset" name="fset">
 		      </table>

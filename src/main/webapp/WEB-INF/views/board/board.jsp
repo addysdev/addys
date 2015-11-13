@@ -8,7 +8,6 @@
     <meta http-equiv="Pragma" content="no-cache">
     <!-- Latest compiled and minified CSS -->
 
-	
 	<link href="<%= request.getContextPath() %>/css/reset.css" rel="stylesheet">
 	<link href="<%= request.getContextPath() %>/css/common.css" rel="stylesheet">
 	<link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet">
@@ -57,8 +56,6 @@
 	 	setTimeout(method,secval);
 	 	
 	 }
-	 
-	
 	</script>
   </head>
   <body onLoad = "init();">
@@ -71,10 +68,13 @@
   </header>
   <!--//헤더 -->
   
-  <!-- 조회결과리스트 -->
+  <!-- 대화창 -->
   <div id=boardList></div> 
+  <!-- //대화창 --> 
   
-<%@ include file="/WEB-INF/views/addys/footer.jsp" %>
+  <!-- 풋터 -->
+	<%@ include file="/WEB-INF/views/addys/footer.jsp" %>
+  <!--//풋터 -->
 </div>
 </body>
 </html>

@@ -101,8 +101,8 @@ function fcComunity_multiRegist(){
 <input type="hidden" name="commentType" id="commentType" value="${staffYn}" >
 <input type="hidden" name="groupId" id="groupId" value="${groupId}" >
 <p><textarea style='height:102px;ime-mode:active;' row="4" class="form-control" id="comment" maxlength="200" name="comment"  value=""  placeholder="글올리기"/></p>
- <h5><strong><font style="color:#FF9900">이미지 업로드 <em class="bold"> 이미지파일</em></font></strong></h5>
- <input type="file"  id="files" name="files" />
+ <!--  <h5><strong><font style="color:#FF9900">이미지 업로드 <em class="bold"> 이미지파일</em></font></strong></h5>
+ <input type="file"  id="files" name="files" />-->
  <br>
 <button id="cumunitysavebtn" type="button" class="btn btn-primary" onClick="fcComunity_Regist()">talk남기기</button> 
 <!-- <button id="cumunityclosebtn" type="button" class="btn btn-danger" onClick="fcComunity_close()">취소</button>  -->
