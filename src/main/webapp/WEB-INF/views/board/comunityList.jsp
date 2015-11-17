@@ -25,7 +25,17 @@
 			          <td class="me" colspan="2">
 			          <div class="msg_box" >
 			              <div class="id">${ComunityVO.customerKey}</div>
-			              <div class="talk">${ComunityVO.comment}</div>
+			              <c:choose>
+			      		  	<c:when test="${ComunityVO.commentImage==''}">
+			      		  		<div class="talk">${ComunityVO.comment}</div>
+			              	</c:when>
+							<c:otherwise>
+								<div class="talk">${ComunityVO.comment}
+								<br><img src='http://127.0.0.1:19001${ComunityVO.commentImage}' id='${ComunityVO.idx}' />
+								<script>if(document.all('I${ComunityVO.idx}').width>300){document.all('I${ComunityVO.idx}').width=300};</script>
+								</div>
+							</c:otherwise>
+				  		  </c:choose>
 			              <div class="time" ><span>${ComunityVO.commentDateTime}</span></div>
 			            </div></td>
 			 		<!--//me -->

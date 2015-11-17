@@ -58,6 +58,7 @@ function fcComunity_multiRegist(){
     var gap = '';
     var gap1 = '';
 	
+    url="<%= request.getContextPath() %>/comunity/comunityregist?comment="+comment;
 	
     if($("#files").val() != ''){
     	
@@ -67,22 +68,23 @@ function fcComunity_multiRegist(){
         gap = fileName.substring(pos + 1, ln);
         gap1 = fileName.substring(ln+1);
         
-    }
+        if(gap1=="jpg" || gap1=="JPG" || gap1=="gif" || gap1=="GIF" || gap1=="png" || gap1=="PNG"){//
+            url="<%= request.getContextPath() %>/comunity/comunityregist?fileName="+gap+"&extension="+gap1+"&comment="+comment;
+        }else {
+        	alert("이미지 파일만 등록 부탁드립니다.");
+            return;
+        }
+        
+    }else{
     
-	if(frm.comment.value==''){
-		alert('남길 talk이 없습니다.');
-		return;
-	}
+		if(frm.comment.value==''){
+			alert('남길 talk이 없습니다.');
+			return;
+		}
+    }
 	
-	var customerKey='${customerKey}';
+	var comment=frm.comment.value;
 
-    if(gap1=="jpg" || gap1=="JPG" || gap1=="gif" || gap1=="GIF" || gap1=="png" || gap1=="PNG"){//
-        url="<%= request.getContextPath() %>/comunity/comunityregist?fileName="+gap+"&extension="+gap1+"&customerKey="+customerKey;
-    }else {
-    	alert("이미지 파일만 등록 부탁드립니다.");
-        return;
-    }
-    
     commonDim(true);
     frm.action = url;
     frm.target="file_result";
@@ -101,10 +103,10 @@ function fcComunity_multiRegist(){
 <input type="hidden" name="commentType" id="commentType" value="${staffYn}" >
 <input type="hidden" name="groupId" id="groupId" value="${groupId}" >
 <p><textarea style='height:102px;ime-mode:active;' row="4" class="form-control" id="comment" maxlength="200" name="comment"  value=""  placeholder="글올리기"/></p>
- <!--  <h5><strong><font style="color:#FF9900">이미지 업로드 <em class="bold"> 이미지파일</em></font></strong></h5>
- <input type="file"  id="files" name="files" />-->
+<h5><strong><font style="color:#FF9900">이미지 업로드 <em class="bold"> 이미지파일</em></font></strong></h5>
+ <input type="file"  id="files" name="files" />
  <br>
-<button id="cumunitysavebtn" type="button" class="btn btn-primary" onClick="fcComunity_Regist()">talk남기기</button> 
+<button id="cumunitysavebtn" type="button" class="btn btn-primary" onClick="fcComunity_multiRegist()">talk남기기</button> 
 <!-- <button id="cumunityclosebtn" type="button" class="btn btn-danger" onClick="fcComunity_close()">취소</button>  -->
 </form:form>
 </div>

@@ -21,28 +21,29 @@ h1.head_logo {width:160px;}
  ****************************************/
 
 /* 대화창 배경 */
-.talk_board {background:#EAEDF4; width:100%;  min-height:800px; padding-top:20px; }
+.talk_board {background:#EAEDF4; width:100%;  min-height:800px;  }
 
 /* 대화창 레이아웃 테이블 */
 .talk_board .tbl_base { width: 100%; }
-.talk_board .tbl_base td { padding:0; }
-.talk_board .tbl_base td.profile { padding:0 ; width:50px; }
+.talk_board .tbl_base tr {  }
+.talk_board .tbl_base td { padding:5px 20px; }
 
-.talk_board .tbl_base td.me { text-align: left;padding-right:150px;  }
-.talk_board .tbl_base td.you { text-align: right;padding-left:150px; }
+.talk_board .tbl_base td.me { text-align: left;padding-right:150px;  vertical-align:top;padding:0px; }
+.talk_board .tbl_base td.you { text-align: right;padding-left:150px; vertical-align:top;;padding:0px; }
 
 /* 프로필 이미지 */
-.profile .prof_icon { width:50px;padding-top:20px   }
-.profile {/*border:1px solid #0097DA; */}
+.profile { width:50px; }
+.profile .prof_icon { width:50px; height:50px;; padding-top:10px  }
+
 
 /* 말풍선 */
-.msg_box {position:relative; width:100%;}
+.msg_box { width:100%;margin:0;}
 .msg_box .talk { padding: 10px 15px; min-width:10px; min-height: 20px; line-height: 20px; font-size:1em;  color: #333;/*모질라*/ -webkit-border-radius: 5px; -webkit-border-radius: 5px;/*웹킷*/ /*IE9+,FF4+,chrome,Safari5,+opera*/border-radius: 5px; box-shadow : 3px 3px 0 0 #ccc; }
 .me .msg_box .talk  { background: #FFFFFF;  float: left; }
 .you .msg_box .talk { background: #FFFCC2;  float: right; }
 
 /* 메인창 아이디 */
-.msg_box .id { font-weight: bold; line-height: 30px; height: 30px; ;}
+.msg_box .id { font-weight: bold; line-height: 30px; height: 30px; }
 
 /* 시간표시 */
 .msg_box .time { width:50px; height:20px; padding-top:5px; position:relative;;  font-size:11px; color:#666 ; position:relative;  }

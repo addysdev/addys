@@ -14,6 +14,7 @@ public class ComunityVO extends AbstractVO {
 	private String customerId;
 	private String commentType;
 	private String comment;
+	private String commentImage;
 	private String commentDateTime;
 	
 	private String customerKey1;
@@ -163,6 +164,12 @@ public class ComunityVO extends AbstractVO {
 	}
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
+	}
+	public String getCommentImage() {
+		return commentImage;
+	}
+	public void setCommentImage(String commentImage) {
+		this.commentImage = commentImage;
 	}
 	
 }

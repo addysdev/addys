@@ -16,7 +16,7 @@
    Select * From (
         Select * From (
         
-        Select idx,customerKey,customerKey1,groupId,groupName,customerId,commentType,comment,commentDateTime,orderdate From (
+        Select idx,customerKey,customerKey1,groupId,groupName,customerId,commentType,comment,commentImage,commentDateTime,orderdate From (
         Select T1.idx
               ,concat('****-',right(trim(T1.customerKey),4)) as customerKey
               ,Case when T1.commentType='Y' Then ifnull((Select A.profileimage From ofUser A Where A.userId=T1.userId ),'http://www.addys.co.kr/addys/images/img_00.png') Else T3.description End customerKey1
@@ -25,6 +25,7 @@
               ,T1.customerId
               ,T1.commentType 
               ,T1.comment
+              ,T1.commentImage
               ,DATE_FORMAT(T1.commentDateTime, '%h:%i %p') as commentDateTime
               ,T1.commentDateTime as orderdate
         From smCommunity T1
@@ -37,7 +38,7 @@
         
         union all
         
-        Select idx,customerKey,customerKey1,groupId,groupName,customerId,commentType,comment,commentDateTime,orderdate From (
+        Select idx,customerKey,customerKey1,groupId,groupName,customerId,commentType,comment,commentImage,commentDateTime,orderdate From (
           Select T1.idx 
                 ,concat('****-',right(trim(T1.customerKey),4)) as customerKey
                 ,ifnull(T3.description,'http://www.addys.co.kr/addys/images/img_00.png') as customerKey1
@@ -46,6 +47,7 @@
                 ,'' as customerId
                 ,T1.commentType 
                 ,T1.comment
+                ,'' as commentImage
                 ,DATE_FORMAT(T1.commentDateTime, '%h:%i %p') as commentDateTime
                 ,T1.commentDateTime as orderdate
                 ,T1.displayYn
@@ -90,12 +92,13 @@
 
 <select id="getCommentListTalk" resultMap="ComunityVO" parameterType="com.offact.addys.vo.comunity.ComunityVO" >
 
-        Select idx,groupName,commentType,comment,commentDateTime,orderdate From (
-        Select idx,groupName,commentType,comment,commentDateTime,orderdate From (
+        Select idx,groupName,commentType,comment,commentImage,commentDateTime,orderdate From (
+        Select idx,groupName,commentType,comment,commentImage,commentDateTime,orderdate From (
         Select 'N' as commentType,
        		   T1.idx
        		  ,T2.groupName
               ,T1.comment
+              ,T1.commentImage
               ,DATE_FORMAT(T1.commentDateTime, '%h:%i %p') as commentDateTime
               ,T1.commentDateTime as orderdate
         From smCommunity T1
@@ -109,6 +112,7 @@
        		T1.upidx as idx,
        		T3.groupName,
        		T1.comment,
+       		T1.commentImage,
        		DATE_FORMAT(T1.commentDateTime, '%h:%i %p') as commentDateTime,
        		T1.commentDateTime as orderdate
 		From smCommunity T1
@@ -128,6 +132,7 @@
             ,customerId
             ,commentType 
             ,comment
+            ,commentImage
             ,commentDateTime
             )
         Values (
@@ -136,6 +141,7 @@
 	  		, #{customerId}
 	  		, #{commentType}
 	  		, #{comment}
+	  		, #{commentImage}
 	  		, now()
 	  		)
 </insert>

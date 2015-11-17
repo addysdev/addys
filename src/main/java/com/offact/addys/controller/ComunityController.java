@@ -171,18 +171,17 @@ public class ComunityController {
 		     */
 		    @RequestMapping(value = "/comunity/comunityregist")
 		    public ModelAndView comunityRegist(@ModelAttribute("MultipartFileVO") MultipartFileVO fileVO,
-		    								   @ModelAttribute("comunityVO") ComunityVO comunityVO, 
 		    		                           HttpServletRequest request, 
 		    		                           HttpServletResponse response,
 		    		                           String fileName, 
 		    		                           String extension, 
-				                               String customerKey) throws BizException 
+				                               String comment) throws BizException 
 		    {
 		        
 		    	//log Controller execute time start
 				String logid=logid();
 				long t1 = System.currentTimeMillis();
-				logger.info("["+logid+"] Controller start customerKey:"+customerKey);
+				logger.info("["+logid+"] Controller start comment:"+comment);
 				logger.info("["+logid+"] Controller start : fileVO" + fileVO);
 		
 		        ModelAndView mv = new ModelAndView();
@@ -192,9 +191,10 @@ public class ComunityController {
 		      	// 사용자 세션정보
 		        HttpSession session = request.getSession();
 		        
-		        customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
+		        String customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
 		        String customerName = StringUtil.nvl((String) session.getAttribute("customerName")); 
 		        String customerId = StringUtil.nvl((String) session.getAttribute("customerId"));
+		        String groupId = StringUtil.nvl((String) session.getAttribute("groupId"));
 		        String staffYn = StringUtil.nvl((String) session.getAttribute("staffYn"));
 		        
 		        //오늘 날짜
@@ -207,6 +207,14 @@ public class ComunityController {
 		 	       	mv.setViewName("/common/sessionOut");
 		       		return mv;
 				}
+		        
+		        
+		        ComunityVO comunityVO = new ComunityVO();
+		        comunityVO.setCustomerKey(customerKey);
+		        comunityVO.setCustomerId(customerId);
+		        comunityVO.setGroupId(groupId);
+		        comunityVO.setComment(comment);
+		        comunityVO.setCommentType(staffYn);
 		        
 		        String imagePath="comunity/"+strToday+"/";
 
@@ -232,6 +240,19 @@ public class ComunityController {
 				            this.logger.debug("orgFileName 1 :" + orgFileName);
 				            orgFileName = t1 +"."+ extension;
 				            this.logger.debug("orgFileName 2 :" + orgFileName);
+				            
+				            String br="";
+				            
+				            if(!comment.equals("")){
+				            	br="<br>";
+				            }
+				            
+				            String imageAttach=br+"<img src='"+hostUrl+"/upload/"+imagePath+orgFileName+"' id='I"+orgFileName+"' /><script>"
+				            		+ "if(document.all('I"+orgFileName+"').width>300){"
+				            		+ "document.all('I"+orgFileName+"').width=300"
+				            		+ "};</script>";
+				            
+				            comunityVO.setCommentImage("/"+imagePath+orgFileName);
 				         		   
 				            boolean check=setDirectory(uploadFilePath);
 	

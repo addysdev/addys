@@ -142,6 +142,7 @@
                success: function(result) {
                   
                    $("#comunityList").html(result);
+                   $('#fset').focus(1); 
                },
                error:function() {
                   
