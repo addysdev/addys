@@ -4,23 +4,28 @@
 	    <tbody>
 	    	<c:if test="${!empty counselList}">
              <c:forEach items="${counselList}" var="CounselVO" varStatus="status">
-              <tr id="select_tr_${CounselVO.customerKey}">
+              <tr id="selectRequest_${CounselVO.idx}">
                 <c:choose>
         			<c:when test="${CounselVO.counselResult!=''}">
 						<td class='text-left'>
-						<img vertical-align="bottom" height="20px" width="20px" src="http://images.clipartlogo.com/files/ss/thumb/121/121536733/plus-button-icon_small.jpg">
-						 <a href="javascript:resultView('#select_tr_${CounselVO.idx}')">[${CounselVO.counselDateTime}]  ${CounselVO.counsel}</a></td>
+						${CounselVO.counselDateTime} ${CounselVO.counsel}</a>
+						<c:if test="${CounselVO.counselImage!=null}">
+						<a href="javascript:imageView('${CounselVO.counselImage}')"><font style="color:blue">[image view]</font></a>
+						</c:if>
+						<a href="javascript:resultView('${CounselVO.idx}','${CounselVO.counselResult}','${CounselVO.userName}')">
+						<font style="color:red">[답변완료]</font>
+						</td>
 					</c:when>
 					<c:otherwise>
-						<td class='text-left'><c:out value="[${CounselVO.counselDateTime}]  ${CounselVO.counsel}"></c:out></td>
+						<td class='text-left'>
+						<c:out value="${CounselVO.counselDateTime} ${CounselVO.counsel}"></c:out>
+						<c:if test="${CounselVO.counselImage!=null}">
+						<a href="javascript:imageView('${CounselVO.counselImage}')"><font style="color:blue">[image view]</font></a>
+						</c:if>
+						</td>
 					</c:otherwise>
 				</c:choose>
               </tr>
-              
-              <tr id="select_tr_${CounselVO.idx}" style="display:none">
-				<td class='text-left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<c:out value="[RE]${CounselVO.counselResult} (${CounselVO.userName})"></c:out></td>
-              </tr>
-              
              </c:forEach>
             </c:if>
            <c:if test="${empty counselList}">
@@ -30,6 +35,6 @@
           </c:if>
 	    </tbody>
 	  </table>
-	  <button id="deferbtn" type="button" class="btn btn-danger btn-sm" onClick="fcReg_counsel()" >접수</button>
+	  <button id="deferbtn" type="button" class="btn btn-danger btn-sm" onClick="fcReg_counsel()" >문의하기</button>
 	 </form:form>
 

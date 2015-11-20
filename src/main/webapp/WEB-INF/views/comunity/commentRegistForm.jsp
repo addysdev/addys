@@ -57,6 +57,8 @@ function fcComunity_multiRegist(){
     var ln = '';
     var gap = '';
     var gap1 = '';
+    
+	var comment=frm.comment.value;
 	
     url="<%= request.getContextPath() %>/comunity/comunityregist?comment="+comment;
 	
@@ -82,8 +84,6 @@ function fcComunity_multiRegist(){
 			return;
 		}
     }
-	
-	var comment=frm.comment.value;
 
     commonDim(true);
     frm.action = url;
@@ -102,9 +102,9 @@ function fcComunity_multiRegist(){
 <input type="hidden" name="customerId" id="customerId" value="${customerId}" >
 <input type="hidden" name="commentType" id="commentType" value="${staffYn}" >
 <input type="hidden" name="groupId" id="groupId" value="${groupId}" >
-<p><textarea style='height:102px;ime-mode:active;' row="4" class="form-control" id="comment" maxlength="200" name="comment"  value=""  placeholder="글올리기"/></p>
-<h5><strong><font style="color:#FF9900">이미지 업로드 <em class="bold"> 이미지파일</em></font></strong></h5>
- <input type="file"  id="files" name="files" />
+<p><textarea style='height:102px;ime-mode:active;' row="4" class="form-control" id="comment" maxlength="200" name="comment"  value=""  placeholder="talk남기기"/></p>
+<h5><font style="color:#FF9900">이미지 업로드 <em class="bold"> 이미지파일</em></font></h5>
+ <input type="file" id="files" name="files" />
  <br>
 <button id="cumunitysavebtn" type="button" class="btn btn-primary" onClick="fcComunity_multiRegist()">talk남기기</button> 
 <!-- <button id="cumunityclosebtn" type="button" class="btn btn-danger" onClick="fcComunity_close()">취소</button>  -->

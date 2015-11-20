@@ -241,6 +241,7 @@ public class ComunityController {
 				            orgFileName = t1 +"."+ extension;
 				            this.logger.debug("orgFileName 2 :" + orgFileName);
 				            
+				            /*
 				            String br="";
 				            
 				            if(!comment.equals("")){
@@ -251,8 +252,9 @@ public class ComunityController {
 				            		+ "if(document.all('I"+orgFileName+"').width>300){"
 				            		+ "document.all('I"+orgFileName+"').width=300"
 				            		+ "};</script>";
+				            */
 				            
-				            comunityVO.setCommentImage("/"+imagePath+orgFileName);
+				            comunityVO.setCommentImage(hostUrl+"/upload/"+imagePath+orgFileName);
 				         		   
 				            boolean check=setDirectory(uploadFilePath);
 	
@@ -461,6 +463,192 @@ public class ComunityController {
 	    }
 	    
 	    /**
+	     * 상담하기
+	     * @param UserManageVO
+	     * @param request
+	     * @param response
+	     * @param model
+	     * @param locale
+	     * @return
+	     * @throws BizException
+	     */
+	    @RequestMapping(value = "/comunity/counselmultiregist")
+	    public @ResponseBody
+	    ModelAndView counselMultiRegist(@ModelAttribute("MultipartFileVO") MultipartFileVO fileVO,
+                 				  HttpServletRequest request, 
+                 				  HttpServletResponse response,
+                 				  String fileName, 
+                 				  String extension,
+                 				  String counsel) throws BizException
+	    {
+	    	//log Controller execute time start
+			String logid=logid();
+			long t1 = System.currentTimeMillis();
+			logger.info("["+logid+"] Controller start : counsel" + counsel);
+			
+			ModelAndView mv = new ModelAndView();
+			
+			String fname ="";
+		        
+	      	// 사용자 세션정보
+	        HttpSession session = request.getSession();
+	        
+	        String customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
+	        String customerName = StringUtil.nvl((String) session.getAttribute("customerName")); 
+	        String customerId = StringUtil.nvl((String) session.getAttribute("customerId"));
+	        String groupId = StringUtil.nvl((String) session.getAttribute("groupId"));
+	        String staffYn = StringUtil.nvl((String) session.getAttribute("staffYn"));
+	        
+	        //오늘 날짜
+	        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyMMdd", Locale.KOREA);
+	        Date currentTime = new Date();
+	        String strToday = simpleDateFormat.format(currentTime);
+	        
+	        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
+
+	 	       	mv.setViewName("/common/sessionOut");
+	       		return mv;
+			}
+
+			CounselVO counselVO = new CounselVO();
+			 
+			counselVO.setCustomerKey(customerKey);
+			counselVO.setGroupId(groupId);
+		    counselVO.setCustomerId(customerId);
+		    counselVO.setCounselState("01");
+		    counselVO.setCounsel(counsel);
+		        
+		    String imagePath="counsel/"+strToday+"/";
+
+		    ResourceBundle rb = ResourceBundle.getBundle("config");
+		    String uploadFilePath = rb.getString("offact.upload.path") + imagePath;
+
+		    this.logger.debug("파일정보:" + fileName + extension);
+		    this.logger.debug("file:" + fileVO);
+
+	        try {
+	        
+		        if (fileName != null && fileName != "") {
+			    	  
+			        List<MultipartFile> files = fileVO.getFiles();
+			        List fileNames = new ArrayList();
+			        String orgFileName = null;
+
+			        if ((files != null) && (files.size() > 0))
+			        {
+			          for (MultipartFile multipartFile : files)
+			          {
+			            orgFileName = multipartFile.getOriginalFilename();
+			            this.logger.debug("orgFileName 1 :" + orgFileName);
+			            orgFileName = t1 +"."+ extension;
+			            this.logger.debug("orgFileName 2 :" + orgFileName);
+
+			            counselVO.setCounselImage(hostUrl+"/upload/"+imagePath+orgFileName);
+			         		   
+			            boolean check=setDirectory(uploadFilePath);
+
+			            String filePath = uploadFilePath;
+
+			            File file = new File(filePath + orgFileName);
+			            multipartFile.transferTo(file);
+			            fileNames.add(orgFileName);
+			          }
+			     
+			        }
+			        
+			        fname = uploadFilePath + orgFileName;
+
+		        }
+	        }catch (Exception e){
+	        	
+	        	logger.info("["+logid+"][error] : "+e.getMessage()); 
+	        	
+	        }
+	        
+			int retVal=this.comunitySvc.counselInsert(counselVO);
+
+			//이메일 리스틑 조회 user
+			String emaillist="dev@addys.co.kr;kevin.jeon@offact.com";
+			String cclist="";
+			
+			String [] getToMails=emaillist.split(";");
+	    	String [] getToMail_Ccs=cclist.split(";");
+			
+			//email 전송
+			EmailVO mail = new EmailVO();
+			
+			List<String> toEmails= new ArrayList();
+			List<String> toEmail_Ccs= new ArrayList();
+			List<String> attcheFileName= new ArrayList();
+			List<File> files = new ArrayList();
+
+			for(int m=0;m<getToMails.length;m++){	
+				toEmails.add(getToMails[m]);	
+			}
+			
+			for(int c=0;c<getToMail_Ccs.length;c++){	
+				toEmail_Ccs.add(getToMail_Ccs[c]);	
+			}
+
+			//attcheFileName.add(orderCode+".html");
+			//files.add(file);
+			//메일발송
+			mail.setToEmails(toEmails);
+			mail.setToEmail_Ccs(toEmail_Ccs);
+			mail.setAttcheFileName(attcheFileName);
+			mail.setFile(files);
+
+			mail.setFromEmail(orderfromemail);
+			mail.setMsg(" 1:1 문의내역입니다.<br>"+counselVO.getCounsel()+"<br>고객핸드폰번호:"+counselVO.getCustomerKey()+"<br><br><br>*1:1문의 답변은 아래 시스템에서 답변 가능하십니다.<br><a href='"+hostUrl+"/addon/smart/counselmanage' >1:1답변하려가기</a>");
+			
+			
+			mail.setSubject("[애디스]1:1상담문의");
+			
+			boolean counselResult=false;
+	
+			try{
+				
+				counselResult=mailSvc.sendMail(mail);
+				
+				logger.debug("mail result :"+counselResult);
+				
+				if(counselResult==false){
+					
+					mv.setViewName("/comunity/counselResult");
+				        
+			       //log Controller execute time end
+			      	long t2 = System.currentTimeMillis();
+			      	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+			      	
+			        return mv;
+					
+				}
+				
+			}catch(BizException e){
+		       	
+		    	e.printStackTrace();
+		        String errMsg = e.getMessage();
+		        try{errMsg = errMsg.substring(errMsg.lastIndexOf("exception"));}catch(Exception ex){}
+				
+		        mv.setViewName("/comunity/counselResult");
+		        
+		       //log Controller execute time end
+		      	long t2 = System.currentTimeMillis();
+		      	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+		      	
+		        return mv;
+		    	
+		    }
+
+			 mv.setViewName("/comunity/counselResult");
+		        
+	       //log Controller execute time end
+	      	long t2 = System.currentTimeMillis();
+	      	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+	      	
+	        return mv;
+	    }
+	    /**
 	     * 커뮤니티 목록조회
 	     * 
 	     * @param UserManageVO
@@ -633,4 +821,191 @@ public class ComunityController {
 			return wantedDirectory.mkdirs();
 		}
 	    
+		/**
+	     * 글올리기
+	     *
+	     * @param request
+	     * @param response
+	     * @param model
+	     * @param locale
+	     * @return
+	     * @throws BizException
+	     */
+	    @RequestMapping(value = "/comunity/imageview")
+	    public ModelAndView imageView(HttpServletRequest request, 
+	    		                      HttpServletResponse response,
+	    		                      String imageurl) throws BizException 
+	    {
+	        
+	    	//log Controller execute time start
+			String logid=logid();
+			long t1 = System.currentTimeMillis();
+			logger.info("["+logid+"] Controller start imageView");
+	
+	        ModelAndView mv = new ModelAndView();
+	        
+	      	// 사용자 세션정보
+	        HttpSession session = request.getSession();
+	        
+	        String customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
+	        String customerName = StringUtil.nvl((String) session.getAttribute("customerName")); 
+	        String customerId = StringUtil.nvl((String) session.getAttribute("customerId"));
+	        String staffYn = StringUtil.nvl((String) session.getAttribute("staffYn"));
+	        
+	        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
+
+	 	       	mv.setViewName("/common/sessionOut");
+	       		return mv;
+			}
+	        
+	        mv.addObject("imageurl", imageurl);
+
+	        mv.setViewName("/comunity/imageView");
+	        
+	       //log Controller execute time end
+	      	long t2 = System.currentTimeMillis();
+	      	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+	      	
+	        return mv;
+	    }
+	    
+		/**
+	     * 답변보기
+	     *
+	     * @param request
+	     * @param response
+	     * @param model
+	     * @param locale
+	     * @return
+	     * @throws BizException
+	     */
+	    @RequestMapping(value = "/comunity/counseldetail")
+	    public ModelAndView counselDetail(HttpServletRequest request, 
+	    		                      HttpServletResponse response,
+	    		                      String idx,
+	    		                      String counselResult,
+	    		                      String userName) throws BizException 
+	    {
+	        
+	    	//log Controller execute time start
+			String logid=logid();
+			long t1 = System.currentTimeMillis();
+			logger.info("["+logid+"] Controller start idx"+idx);
+			logger.info("["+logid+"] Controller start counselResult"+counselResult);
+			logger.info("["+logid+"] Controller start userName"+userName);
+	
+	        ModelAndView mv = new ModelAndView();
+	        
+	      	// 사용자 세션정보
+	        HttpSession session = request.getSession();
+	        
+	        String customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
+	        String customerName = StringUtil.nvl((String) session.getAttribute("customerName")); 
+	        String customerId = StringUtil.nvl((String) session.getAttribute("customerId"));
+	        String staffYn = StringUtil.nvl((String) session.getAttribute("staffYn"));
+	        
+	        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
+
+	 	       	mv.setViewName("/common/sessionOut");
+	       		return mv;
+			}
+	        
+	        mv.addObject("idx", idx);
+	        mv.addObject("counselResult", counselResult);
+	        mv.addObject("userName", userName);
+
+	        mv.setViewName("/comunity/counselDetail");
+	        
+	       //log Controller execute time end
+	      	long t2 = System.currentTimeMillis();
+	      	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+	      	
+	        return mv;
+	    }
+	    
+	    /**
+	     * 핫딜
+	     * 
+	     * @param UserManageVO
+	     * @param request
+	     * @param response
+	     * @param model
+	     * @param locale
+	     * @return
+	     * @throws BizException
+	     */
+	    @RequestMapping(value = "/comunity/hotdeal")
+	    public ModelAndView hotDeal(HttpServletRequest request, 
+	    		                         HttpServletResponse response) throws BizException 
+	    {
+	        
+	    	//log Controller execute time start
+			String logid=logid();
+			long t1 = System.currentTimeMillis();
+			logger.info("["+logid+"] Controller start : hotDeal");
+
+			ModelAndView mv = new ModelAndView();
+
+			// 사용자 세션정보
+	        HttpSession session = request.getSession();
+	        
+	        String customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
+	        String customerName = StringUtil.nvl((String) session.getAttribute("customerName")); 
+	        String customerId = StringUtil.nvl((String) session.getAttribute("customerId"));
+	        String groupId = StringUtil.nvl((String) session.getAttribute("groupId"));
+	        
+	        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
+
+	 	       	//mv.setViewName("/common/customerLoginForm");
+	        	mv.setViewName("/common/sessionOut");
+	        	return mv;
+			}
+
+	   		mv.setViewName("/comunity/hotDeal");
+	   		
+	   		return mv;
+	    }
+	    
+	    /**
+	     * 핫딜
+	     * 
+	     * @param UserManageVO
+	     * @param request
+	     * @param response
+	     * @param model
+	     * @param locale
+	     * @return
+	     * @throws BizException
+	     */
+	    @RequestMapping(value = "/comunity/mhome")
+	    public ModelAndView mHome(HttpServletRequest request, 
+	    		                         HttpServletResponse response) throws BizException 
+	    {
+	        
+	    	//log Controller execute time start
+			String logid=logid();
+			long t1 = System.currentTimeMillis();
+			logger.info("["+logid+"] Controller start : hotDeal");
+
+			ModelAndView mv = new ModelAndView();
+
+			// 사용자 세션정보
+	        HttpSession session = request.getSession();
+	        
+	        String customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
+	        String customerName = StringUtil.nvl((String) session.getAttribute("customerName")); 
+	        String customerId = StringUtil.nvl((String) session.getAttribute("customerId"));
+	        String groupId = StringUtil.nvl((String) session.getAttribute("groupId"));
+	        
+	        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
+
+	 	       	//mv.setViewName("/common/customerLoginForm");
+	        	mv.setViewName("/common/sessionOut");
+	        	return mv;
+			}
+
+	   		mv.setViewName("/comunity/mHome");
+	   		
+	   		return mv;
+	    }
 }

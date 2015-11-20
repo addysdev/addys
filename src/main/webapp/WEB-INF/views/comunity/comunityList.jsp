@@ -12,7 +12,20 @@
 				        <tr>
 				          <td class="you"><div class="msg_box" >
 				          <div class="id">애디스[${ComunityVO.groupName}]</div>
-				            <div class="talk">${ComunityVO.comment}</div><p class="time"><span>${ComunityVO.commentDateTime}</span></p></div></td>
+				            <c:choose>
+				      		  	<c:when test="${ComunityVO.commentImage==null}">
+				      		  		<div class="talk">${ComunityVO.comment}</div>
+				              	</c:when>
+								<c:otherwise>
+									<div class="talk">
+									<c:if test="${ComunityVO.comment!=''}">
+										${ComunityVO.comment}
+									</c:if>
+									<a href="javascript:imageView('${ComunityVO.commentImage}')"><img src='${ComunityVO.commentImage}' width="30" height="30" /></a>
+									</div>
+								</c:otherwise>
+					  		  </c:choose>
+				            <p class="time"><span>${ComunityVO.commentDateTime}</span></p></div></td>
 				        </tr>
 				 	<!--//you -->
 					</c:when>
@@ -22,9 +35,20 @@
 			          <td class="me">
 			          <div class="msg_box" >
 			              <div class="id">
-			                
 			              </div>
-			              <div class="talk">${ComunityVO.comment}</div>
+			              <c:choose>
+			      		  	<c:when test="${ComunityVO.commentImage==null}">
+			      		  		<div class="talk">${ComunityVO.comment}</div>
+			              	</c:when>
+							<c:otherwise>
+								<div class="talk">
+								<c:if test="${ComunityVO.comment!=''}">
+									${ComunityVO.comment}
+								</c:if>
+								<a href="javascript:imageView('${ComunityVO.commentImage}')"><img src='${ComunityVO.commentImage}' width="30" height="30" /></a>
+								</div>
+							</c:otherwise>
+				  		  </c:choose>
 			              <div class="time" ><span>${ComunityVO.commentDateTime}</span></div>
 			            </div></td>
 					</tr>

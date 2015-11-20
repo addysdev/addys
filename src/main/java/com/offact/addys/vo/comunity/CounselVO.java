@@ -13,6 +13,7 @@ public class CounselVO extends AbstractVO {
 	private String customerId;
 	private String counselState;
 	private String counsel;
+	private String counselImage;
 	private String counselDateTime;
 	
 	private String userId;
@@ -85,6 +86,12 @@ public class CounselVO extends AbstractVO {
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	public String getCounselImage() {
+		return counselImage;
+	}
+	public void setCounselImage(String counselImage) {
+		this.counselImage = counselImage;
 	}
 	
 }

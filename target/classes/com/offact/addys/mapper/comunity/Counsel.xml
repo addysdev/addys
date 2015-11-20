@@ -20,6 +20,7 @@
             ,customerId
             ,counselState 
             ,counsel
+            ,counselImage
             ,counselDateTime
             )
         Values (
@@ -28,22 +29,24 @@
 	  		, #{customerId}
 	  		, #{counselState}
 	  		, #{counsel}
+	  		, #{counselImage}
 	  		, now()
 	  		)
 </insert>
 
 <select id="getCounselList" resultMap="CounselVO" parameterType="com.offact.addys.vo.comunity.CounselVO" >
 
-        Select idx,customerKey,counsel,counselState,counselDateTime,userId,userName,counselResult,counselResultDateTime From (
+        Select idx,customerKey,counsel,counselImage,counselState,counselDateTime,userId,userName,counselResult,counselResultDateTime From (
         Select T1.idx
               ,concat('****-',right(trim(T1.customerKey),4)) as customerKey
               ,T1.counsel
+              ,T1.counselImage
               ,T1.counselState
-              ,T1.counselDateTime
+              ,DATE_FORMAT(T1.counselDateTime, '%m/%d') as counselDateTime
               ,ifnull(T3.userId,'') as userId
               ,ifnull(T4.userName,'') as userName
               ,ifnull(T3.counselResult,'') as counselResult
-              ,Case When ifnull(T3.counselResultDateTime,'') = '' Then '' Else DATE_FORMAT(T3.counselResultDateTime, '%Y-%m-%d %T') End counselResultDateTime
+              ,Case When ifnull(T3.counselResultDateTime,'') = '' Then '' Else DATE_FORMAT(T3.counselResultDateTime, '%m/%d') End counselResultDateTime
         From smCounsel T1
              Left Join smCustomer T2 On T1.customerKey = T2.customerKey
              Left Join smCounselResult T3 On T1.idx = T3.idx

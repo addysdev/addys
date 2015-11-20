@@ -756,6 +756,7 @@ public class CommonController {
 		String customerKey = StringUtil.nvl(request.getParameter("customerKey"));
 		String customerPw = StringUtil.nvl(request.getParameter("customerPw"));
 		String groupId = StringUtil.nvl(request.getParameter("groupId"),"SM001");
+		String groupName = StringUtil.nvl(request.getParameter("groupName"),"스마트매장");
 		
 		logger.info(">>>> customerKey :"+customerKey);
 		logger.info(">>>> customerPw :"+customerPw);
@@ -880,6 +881,7 @@ public class CommonController {
 				session.setAttribute("customerKey10", customerKey10);
 				session.setAttribute("staffYn", staffYn);
 				session.setAttribute("groupId", groupId);
+				session.setAttribute("groupName", groupName);
 
 				mv.addObject("customerKey", customerKey);
 				mv.addObject("staffYn", staffYn);
@@ -968,6 +970,7 @@ public class CommonController {
 	        session.removeAttribute("customerKey10");
 	        session.removeAttribute("staffYn");
 	        session.removeAttribute("groupId");
+	        session.removeAttribute("groupName");
 	        
 	        logger.info("logout ok!");
 	        

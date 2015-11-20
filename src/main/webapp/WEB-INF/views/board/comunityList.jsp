@@ -12,7 +12,21 @@
 			        <tr>
 			          <td class="you" colspan="2"><div class="msg_box" >
 			          <div class="id">애디스[${ComunityVO.groupName}]</div>
-			            <div class="talk">${ComunityVO.comment}</div><p class="time"><span>${ComunityVO.commentDateTime}</span></p></div></td>
+			            <c:choose>
+			      		  	<c:when test="${ComunityVO.commentImage==null}">
+			      		  		<div class="talk">${ComunityVO.comment}</div>
+			              	</c:when>
+							<c:otherwise>
+								<div class="talk">
+								<c:if test="${ComunityVO.comment!=''}">
+									${ComunityVO.comment}
+									<br>
+								</c:if>
+								<img src='${ComunityVO.commentImage}' id='I${ComunityVO.idx}' />
+								<script>if(document.all('I${ComunityVO.idx}').width>300){document.all('I${ComunityVO.idx}').width=300};</script>
+								</div>
+							</c:otherwise>
+				  		  </c:choose><p class="time"><span>${ComunityVO.commentDateTime}</span></p></div></td>
 			          <td class="profile"><div class="prof_icon">
 			        	  <img src="${ComunityVO.customerKey1}" /></div></td>
 			 		<!--//you -->
@@ -26,12 +40,16 @@
 			          <div class="msg_box" >
 			              <div class="id">${ComunityVO.customerKey}</div>
 			              <c:choose>
-			      		  	<c:when test="${ComunityVO.commentImage==''}">
+			      		  	<c:when test="${ComunityVO.commentImage==null}">
 			      		  		<div class="talk">${ComunityVO.comment}</div>
 			              	</c:when>
 							<c:otherwise>
-								<div class="talk">${ComunityVO.comment}
-								<br><img src='http://127.0.0.1:19001${ComunityVO.commentImage}' id='${ComunityVO.idx}' />
+								<div class="talk">
+								<c:if test="${ComunityVO.comment!=''}">
+									${ComunityVO.comment}
+									<br>
+								</c:if>
+								<img src='${ComunityVO.commentImage}' id='I${ComunityVO.idx}' />
 								<script>if(document.all('I${ComunityVO.idx}').width>300){document.all('I${ComunityVO.idx}').width=300};</script>
 								</div>
 							</c:otherwise>
