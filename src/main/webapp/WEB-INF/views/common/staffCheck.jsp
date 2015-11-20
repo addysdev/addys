@@ -5,9 +5,10 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Latest compiled and minified CSS -->
-	<link href="<%= request.getContextPath() %>/css/issue_style.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/jquery-ui-1.11.4.custom/jquery-ui.css">
-	<link rel="stylesheet" href="<%= request.getContextPath() %>/bootstrap-3.3.4-dist/css/bootstrap.css">
+	<link href="<%= request.getContextPath() %>/css/reset.css" rel="stylesheet">
+	<link href="<%= request.getContextPath() %>/css/common.css" rel="stylesheet">
+	<link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet">
+	
 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-1.11.2.js"></script>
 	<script type="text/javascript" src="<%= request.getContextPath() %>/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
 	<script type="text/javascript" src="<%= request.getContextPath() %>/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
@@ -46,16 +47,16 @@
    <body>
   <form method="post" id="logoutForm" name="logoutForm"  role="form" >
 
-    <div class="container">
-	<fieldset>
-       	<div class="form-inline text-center">
-             <h3><strong><font style="color:#428bca">(주)애디스 다이랙트</font></strong></h3>
-             <img vertical-align="bottom" height="22px" width="22px" src="http://www.30mcart.ir/images/contact/phone.png"><span class="bar"><strong>&nbsp;&nbsp;${customerKey}</strong></span>
-             &nbsp;&nbsp;<img vertical-align="bottom" height="20px" width="20px" src="http://images.gofreedownload.net/gear-34957.jpg" onClick="fcConfig_modify()">
-             &nbsp;&nbsp;<img vertical-align="bottom" height="20px" width="20px" src="http://wiki.opencloudengine.org/download/thumbnails/5636108/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%AE%E1%86%BA.png?version=1&modificationDate=1426577291000&api=v2" onClick="goLogout()">
-           </div>
-    </fieldset>
-    <br>
+    <div id="wrap" class="wrap" >
+	  <!-- 헤더 -->
+	  <header>
+	    <div class="mb_top"  id="header">
+	      <h1 class="head_logo"><img src="<%= request.getContextPath() %>/images/logo_addys2.png" alt="addys"  /></h1>
+	    </div>
+	  </header>
+	  <!--//헤더 -->    
+	 <br><br><br><br>
+
 	     <h5><strong><font style="color:#428bca">애디스 담당직원으로 등록되신 사용자입니다.</font></strong></h5>
 	     <h5><strong><font style="color:#428bca">애디스 담당직원 또는 일반 사용자 옵션을 선택후 입장해주시기 바랍니다.</font></strong></h5>
 	     <br>

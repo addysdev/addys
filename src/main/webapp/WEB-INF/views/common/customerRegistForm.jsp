@@ -49,9 +49,11 @@
         <link href="../css/sample.css" rel="stylesheet" type="text/css">
             
 	    <!-- Latest compiled and minified CSS -->
-		<link href="<%= request.getContextPath() %>/css/issue_style.css" rel="stylesheet" type="text/css">
-	    <link rel="stylesheet" href="<%= request.getContextPath() %>/jquery-ui-1.11.4.custom/jquery-ui.css">
-		<link rel="stylesheet" href="<%= request.getContextPath() %>/bootstrap-3.3.4-dist/css/bootstrap.css">
+	
+		<link href="<%= request.getContextPath() %>/css/reset.css" rel="stylesheet">
+		<link href="<%= request.getContextPath() %>/css/common.css" rel="stylesheet">
+		<link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet">
+	
 		<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-1.11.2.js"></script>
 		<script type="text/javascript" src="<%= request.getContextPath() %>/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
 		<script type="text/javascript" src="<%= request.getContextPath() %>/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
@@ -352,8 +354,15 @@
         </script>
     </head>
     <body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
-    <div class="container">
-      <h2>회원가입</h2>
+     <div id="wrap" class="wrap" >
+	  <!-- 헤더 -->
+	  <header>
+	    <div class="mb_top"  id="header">
+	      <h1 class="head_logo"><img src="<%= request.getContextPath() %>/images/logo_addys2.png" alt="addys"  /></h1>
+	    </div>
+	  </header>
+	  <!--//헤더 -->    
+	 <br><br><br><br> 
             <form name="form_auth">
                 <table width="589" cellpadding="0" cellspacing="0">
                     <tr style="height:14px"><td style="background-image:url('../img/boxtop589.gif');"></td></tr>

@@ -425,19 +425,25 @@
    <body>
   <form method="post" id="logoutForm" name="logoutForm"  role="form" >
   </form>
-    <div class="container">
-	<fieldset>
-       	<div class="form-inline text-center">
-             <h3><strong><font style="color:#428bca">(주)애디스 다이랙트</font></strong></h3>
-             <img vertical-align="bottom" height="22px" width="22px" src="http://www.30mcart.ir/images/contact/phone.png"><span class="bar"><strong>&nbsp;&nbsp;${groupName}</strong></span>
-             &nbsp;&nbsp;<img vertical-align="bottom" height="20px" width="20px" src="http://images.gofreedownload.net/gear-34957.jpg" onClick="fcConfig_modify()">
-             &nbsp;&nbsp;<img vertical-align="bottom" height="20px" width="20px" src="http://wiki.opencloudengine.org/download/thumbnails/5636108/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%AE%E1%86%BA.png?version=1&modificationDate=1426577291000&api=v2" onClick="goLogout()">
-           </div>
-    </fieldset>
-    <br>
+	  <div id="wrap" class="wrap" >
+	  <!-- 헤더 -->
+	  <header>
+	    <div class="mb_top"  id="header">
+	      <h1 class="head_logo"><img src="<%= request.getContextPath() %>/images/logo_addys2.png" alt="addys"  /></h1>
+	    </div>
+	  </header>
+	  <!--//헤더 -->    
+	 <br><br><br><br>
       <c:choose>
         <c:when test="${staffYn=='Y'}">
         	<!-- 조회결과리스트 -->
+        	 <fieldset>
+		       	<div class="form-inline text-right">
+		             <img vertical-align="bottom" height="22px" width="22px" src="http://www.30mcart.ir/images/contact/phone.png"><span class="bar"><strong>&nbsp;&nbsp;${groupName}</strong></span>
+		             &nbsp;&nbsp;<img vertical-align="bottom" height="20px" width="20px" src="http://images.gofreedownload.net/gear-34957.jpg" onClick="fcConfig_modify()">
+		             &nbsp;&nbsp;<img vertical-align="bottom" height="20px" width="20px" src="http://wiki.opencloudengine.org/download/thumbnails/5636108/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%AE%E1%86%BA.png?version=1&modificationDate=1426577291000&api=v2" onClick="goLogout()">
+		           </div>
+		    </fieldset>
 			<div id=comunityList></div>
       		<div id="commentRegistForm"  title="talk하기"></div>
       		<div id="imageView"  title="이미지"></div>
@@ -449,6 +455,15 @@
 			  <li id="tab3" ><a href="javascript:setTab('03');fcComunity_list()">매장과talk</a></li>
 			  <li id="tab4" ><a href="javascript:setTab('04');fc_hotdeal()">핫딜</a></li>
 			  <li id="tab5" ><a href="javascript:setTab('05');fc_mhome()">회사소개</a></li>
+			 
+			 <fieldset>
+		       	<div class="form-inline text-right">
+		             <img vertical-align="bottom" height="22px" width="22px" src="http://www.30mcart.ir/images/contact/phone.png"><span class="bar"><strong>&nbsp;&nbsp;${groupName}</strong></span>
+		             &nbsp;&nbsp;<img vertical-align="bottom" height="20px" width="20px" src="http://images.gofreedownload.net/gear-34957.jpg" onClick="fcConfig_modify()">
+		             &nbsp;&nbsp;<img vertical-align="bottom" height="20px" width="20px" src="http://wiki.opencloudengine.org/download/thumbnails/5636108/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%AE%E1%86%BA.png?version=1&modificationDate=1426577291000&api=v2" onClick="goLogout()">
+		           </div>
+		    </fieldset>
+		    			  
 			</ul>
 			<br>
 			<!-- 조회결과리스트 -->
