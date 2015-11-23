@@ -5,6 +5,7 @@ encoding//src/main/resources_real/config.properties=UTF-8
 encoding//src/main/webapp/WEB-INF/views/addys/top.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/board/comunityList.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/board/main.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/common/customerLoginForm.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/common/customerModifyForm.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/common/staffCheck.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/comunity/commentRegistForm.jsp=UTF-8

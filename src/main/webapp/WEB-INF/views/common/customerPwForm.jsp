@@ -361,6 +361,8 @@
 
     			if (confirm('비밀번호를 변경 하시겠습니까?')){ 
     	    		
+    				setCookie("addys_customerkey", $('#customerKey').val());
+    				
 	    		    $.ajax({
 	    		        type: "POST",
 	    		        async:false,
@@ -548,3 +550,14 @@
         </div>
     </body>
 </html>
+<script>
+
+var cust_frm = document.PasswordForm;
+var cust_key = getCookie("addys_customerkey");
+
+if( cust_key != null && trim(cust_key) != '' && cust_key != 'null' ){
+	cust_frm.customerKeyView.value = cust_key;
+	cust_frm.customerKey.value = cust_key;
+}
+
+</script>

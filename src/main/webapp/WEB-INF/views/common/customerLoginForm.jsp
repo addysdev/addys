@@ -5,20 +5,23 @@
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="/WEB-INF/tlds/taglib.tld" prefix="taglib"%>
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Latest compiled and minified CSS -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-	<link href="<%= request.getContextPath() %>/css/reset.css" rel="stylesheet">
-	<link href="<%= request.getContextPath() %>/css/common.css" rel="stylesheet">
-	<link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet">
-	
-	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-1.11.2.js"></script>
-	<script type="text/javascript" src="<%= request.getContextPath() %>/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
-	<script type="text/javascript" src="<%= request.getContextPath() %>/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="<%= request.getContextPath() %>/js/addys.js"></script>
+<link href="<%= request.getContextPath() %>/css/reset.css" rel="stylesheet">
+<link href="<%= request.getContextPath() %>/css/common.css" rel="stylesheet">
+<link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet">
+<link href="<%= request.getContextPath() %>/css/login.css" rel="stylesheet">
+
+<title>Login</title>
+<style></style>
+
+<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="<%= request.getContextPath() %>/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+<script type="text/javascript" src="<%= request.getContextPath() %>/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%= request.getContextPath() %>/js/addys.js"></script>
 	<script>
     /// key down function (엔터키가 입력되면 검색함수 호출)
     function checkKey(event){
@@ -47,7 +50,10 @@
 			return;
 		}
 
-		frm.groupName.value=frm.groupId.options[frm.groupId.selectedIndex].text;
+		setCookie("addys_customerkey", $('#customerKey').val());
+
+		frm.groupName.value='물류정상';
+		//frm.groupName.value=frm.groupId.options[frm.groupId.selectedIndex].text;
 		
 		try {
 			document.loginForm.submit();
@@ -56,11 +62,15 @@
 	
 	function goRegistForm(){
 		
+		setCookie("addys_customerkey", $('#customerKey').val());
+		
 		location.href="<%= request.getContextPath() %>/customerregistform";
 		//	location.href="<%= request.getContextPath() %>/kcp/kcpcert_start.jsp";
 	}
 	
 	function goPwSearch(){
+		
+		setCookie("addys_customerkey", $('#customerKey').val());
 		
 		location.href="<%= request.getContextPath() %>/customerpwform";
 	}
@@ -144,49 +154,117 @@
 	   }(document, 'script', 'facebook-jssdk'));
 
 	</script>
-  </head>
-
-   <body>
-   	  <div id="wrap" class="wrap" >
-       <!-- 헤더 -->
-	  <header>
-	    <div class="mb_top"  id="header">
-	      <h1 class="head_logo"><img src="<%= request.getContextPath() %>/images/logo_addys2.png" alt="addys"  /></h1>
-	    </div>
-	  </header>
-	  <!--//헤더 -->    
-	  <br><br><br><br>
-      <form  id="loginForm" name="loginForm"  method="post" role="form" action="<%= request.getContextPath() %>/customer/login">
-        <input type="hidden" name="loginType" value="comunity" >
-        <input type="hidden" name="groupName" value="" >
-        <div class="form-group">
-          <label for="customerKey">핸드폰 번호:</label>
-          <input type="text" class="form-control" id=customerKey name="customerKey" placeholder="핸드폰번호">
-        </div>
-        <div class="form-group">
-          <label for="customerId">Password:</label>
-          <input type="password" class="form-control" id="customerPw" name="customerPw"  onkeypress="javascript:return checkKey(event);">
-        </div>
-        <div class="form-inline" >
-       		<c:if test="${group_comboList.size() > 1}">
-			<select class="form-group"  style='width:135px' title="지점정보" id="groupId" name="groupId" value="">
-                  <c:forEach var="groupVO" items="${group_comboList}" >
-                  	<option value="${groupVO.groupId}">${groupVO.groupName}</option>
-                  </c:forEach>
-            </select>
-            </c:if>
-            <button type="button" class="btn btn-default" onclick="goLogin()">입장하기</button>
-        </div>
-       <br><br>
-          <h4><strong><font style="color:#428bca">등록을 하시면 다음과 같은 서비스를 이용 가능하십니다.</font></strong></h4>
-		  <h6><strong><font style="color:#FF9900">1.문의하기</font></strong></h6>
-		  <h6><strong><font style="color:#FF9900">2.AS과정 열람</font></strong></h6>
-		  <h6><strong><font style="color:#FF9900">3.매장과 채팅</font></strong></h6>
-		  <h6><strong><font style="color:#FF9900">4.Hot Deal & Event</font></strong></h6>
-	   <br>	  
-       <button type="button" class="btn btn-default" onclick="goRegistForm()">등록</button>
-       <button type="button" class="btn btn-default" onclick="goPwSearch()">비밀번호찾기</button>
-      </form>
+</head>
+<body>
+<div id="wrap" class="wrap" >
+  <!-- 헤더 -->
+  <header>
+    <div class="mb_top">
+      <h1 class="head_logo"> <a href="<%= request.getContextPath() %>/addys/customerloginform" class=""><img src="<%= request.getContextPath() %>/images/logo_addys2.png" alt="addys"  /></a> </h1>
     </div>
-  </body>
+  </header>
+  <!--//헤더 --> 
+  <form  id="loginForm" name="loginForm"  method="post" role="form" action="<%= request.getContextPath() %>/customer/login">
+  <input type="hidden" name="loginType" value="comunity" >
+  <input type="hidden" name="groupName" value="" >
+  <!-- container -->
+  <div id="container">
+    <div id="m_content" >
+      <!-- 셀렉박스 -->
+      <div class="m_selbox" style="display:">
+        <div class="m_schtype" >
+          <a href="#" class="btn_t">지점선택<span class="ico_arrow">&nbsp;</span></a>
+          <ul class="m_schlayer" style=" display:none">
+            <li><a title="" href="#">본사</a></li>
+            <li class="active"><a title="" href="#">종로지점</a></li>
+            <li><a title="" href="#">강남지점</a></li>
+            <li><a title="" href="#">코엑스지점</a></li>
+            <li><a title="" href="#">창원지점</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- //셀렉박스 --> 
+      <!-- 로그인영역 -->
+      <div class="m_combx">
+        <fieldset>
+          <legend>로그인 영역</legend>
+          <form id="login_form" method="post">
+            <!-- 로그인 -->
+            <div class="m_inplogin">
+              <ul class="m_inp_data">
+                <li>
+                  <label for="inp_id" class="blind">핸드폰번호</label>
+                  <span class="inpbx">
+                  <input type="text" id="customerKey" name="customerKey" placeholder="핸드폰번호">
+                  <span class="sp_login ico_id">&nbsp;</span></span></li>
+                <li>
+                  <label for="inp_pw" class="blind">비밀번호</label>
+                  <span class="inpbx">
+                  <input type="password" id="customerPw" name="customerPw" placeholder="비밀번호">
+                  <span class="sp_login ico_pw">&nbsp;</span></span></li>
+              </ul>
+              <!-- 자동로그인 체크 -->
+       <!--  <div class="log_check">
+                <span class="left"> <span class="inpchk chk_checked">
+                <input type="checkbox" id="keep_login" name="keepLogin" value="Y" checked="">
+                </span>
+                <label for="chk_log">자동 로그인</label>
+                </span> <span class="right"> <span class="inpchk chk_checked">
+                <input type="checkbox" id="keep_id" value="Y" checked="">
+                </span>
+                <label for="chk_id">아이디 저장</label>
+                </span>
+              </div>  -->      
+              <!--//자동로그인 체크 -->
+            </div>
+            <!-- //로그인 -->
+            <!-- 로그인버튼 -->
+            <div class="bnbox">
+              <button type="button" class="bn_gray" onclick="goLogin()">입장하기</button>
+            </div>
+            <!--//로그인버튼 -->
+            <!-- 이용안내 -->
+            <div class="m_tip">
+              <span class="ico_tip">&nbsp;</span>등록을 하시면 다음과 같은 서비스를 이용 가능하십니다.
+              <ul class="m_tip_list">
+                <li>1. 문의하기</li>
+                <li>2. A/S 과정열람</li>
+                <li>3. 매장과 채팅</li>
+                <li>4. Hot Deal & Event</li>
+              </ul>
+            </div>
+            <!--//이용안내 -->
+          </form>
+        </fieldset>
+        <!-- 가입,비번찾기 -->
+        <div class="login_join">
+          <h3 class="line_tit"></h3>
+          <ul class="log_joinlist">
+            <li> <span class="tit">정보를 잊어 버리셨나요?</span> <span class="txt"> <!--span class="line">|</span --> <a href="javascript:goPwSearch()"><strong>비밀번호 찾기</strong></a></span> </li>
+            <li> <span class="tit">아직 회원이 아니세요?</span> <span class="txt"><a href="javascript:goRegistForm()"><strong>간편가입</strong></a> </li>
+          </ul>
+        </div>
+        <!--//가입,비번찾기 -->
+        
+      </div>
+      <!--//로그인영역 -->
+    </div>
+  </div>
+  <!--//container -->
+  </form>
+  <div id="footer" class="footer">
+    <span class="Copyright">Copyright 2015 ⓒ addys Corp. All rights reserved. v1.0.0</span>
+  </div>
+</div>
+</body>
 </html>
+<script>
+
+var cust_frm = document.loginForm;
+var cust_key = getCookie("addys_customerkey");
+
+if( cust_key != null && trim(cust_key) != '' && cust_key != 'null' ){
+	cust_frm.customerKey.value = cust_key;
+}
+
+</script>
