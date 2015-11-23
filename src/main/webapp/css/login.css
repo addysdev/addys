@@ -35,31 +35,9 @@ form { display: block; margin-top: 0em; }
 .m_inp_data li .ico_pw { position: absolute; right: 7px; top:12px;background:url(../images/lock_fill_12x16.png) no-repeat 0 0; width: 15px; height: 20px }
 .log_check { padding: 10px 6px 6px; border-top: 1px solid #ccc; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; background: #f7f7f7; font-size: 11px; line-height: 12px; color: #666; }
 .blind {     visibility: hidden;    overflow: hidden;    position: absolute;    width: 0;    height: 0;    margin: 0;    padding: 0;    font-size: 0;    line-height: 0;}
-.inpbx {
-    display: block;
-    overflow: hidden;
-    width: auto;
-    height: 18px;
-    padding: 8px 8px 7px;
-    line-height: 18px;
-    border: 1px solid #ccc;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
-    letter-spacing: -1px;
-    box-shadow: inset 0 1px 0 rgba(0,0,0,.07);
+.inpbx {    display: block;    overflow: hidden;    width: auto;    height: 18px;    padding: 8px 8px 7px;    line-height: 18px;    border: 1px solid #ccc;    border-top-left-radius: 2px;    border-top-right-radius: 2px;    border-bottom-left-radius: 2px;    border-bottom-right-radius: 2px;    letter-spacing: -1px;    box-shadow: inset 0 1px 0 rgba(0,0,0,.07);
 }
-.inpbx input {
-    width: 100%;
-    height: 17px;
-    border: 0 none;
-    background: transparent;
-    font-size: 12px;
-    line-height: 17px;
-    color: #222;
-    vertical-align: top;
-}
+.inpbx input {    width: 100%;    height: 17px;    border: 0 none;    background: transparent;    font-size: 12px;    line-height: 17px;    color: #222;    vertical-align: top;}
 
 /* 입장하기버튼 */
 button { border: 0 none; background-color: transparent; cursor: pointer; }
