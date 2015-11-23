@@ -4,7 +4,7 @@
 /* 레이아웃 */
 #wrap {}
 #header {position: fixed; z-index:1; width:100%;}
-#container { position: relative; top:50px;;}
+#container { position: relative; top:px;;}
 #footer { margin:0 auto;color: #999;font-size: 12px;line-height: 18px;padding-top:5px;text-align: center;width: 100%;}
 #footer .Copyright {display: inline-block; line-height: 40px;font-family: arial, HelveticaNeue, DroidSans, Sans-serif, Helvetica;}
 
@@ -21,7 +21,7 @@ h1.head_logo {width:160px;}
  ****************************************/
 
 /* 대화창 배경 */
-.talk_board {background:#EAEDF4; width:100%;  min-height:800px;  }
+.talk_board {background:#EAEDF4; width:100%;  min-height:800px; position: relative; top:50px;; padding:30px 0 }
 
 /* 대화창 레이아웃 테이블 */
 .talk_board .tbl_base { width: 100%; }
