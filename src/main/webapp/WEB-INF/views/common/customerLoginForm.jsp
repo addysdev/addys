@@ -160,10 +160,10 @@
 	</script>
 </head>
 <body>
-<div id="wrap" class="wrap" >
+<div id="wrap" class="wrap"  >
   <!-- 헤더 -->
   <header>
-    <div class="mb_top">
+     <div class="mb_top"  id="header">
       <h1 class="head_logo"><img src="<%= request.getContextPath() %>/images/logo_addys_w.png" alt="addys"  /></h1>
     </div>
   </header>
@@ -173,7 +173,7 @@
   <input type="hidden" name="groupName" value="" >
   <!-- container -->
   <div id="container">
-    <div id="m_content" >
+    <div class="m_content" >
      <!-- 셀렉박스 -->
 	     <div class="m_selbox" >
        		<c:if test="${group_comboList.size() > 1}">
@@ -234,8 +234,9 @@
 	        </div>
 	        <!--//가입,비번찾기 -->
             <!-- 이용안내 -->
+             <h3 class="line_tit"></h3>
             <div class="m_tip">
-              <span class="ico_tip">&nbsp;</span>등록을 하시면 다음과 같은 서비스를 이용 가능하십니다.
+              <span class="ico_tip"></span>등록을 하시면 다음과 같은 서비스를 이용 가능하십니다.
               <ul class="m_tip_list">
                 <li>1. 문의하기</li>
                 <li>2. A/S 과정열람</li>
