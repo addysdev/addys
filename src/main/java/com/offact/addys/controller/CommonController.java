@@ -1114,8 +1114,8 @@ public class CommonController {
 		 * Simply selects the home view to render by returning its name.
 		 * @throws BizException
 		 */
-		@RequestMapping(value = "/customeprivateinfo", method = RequestMethod.GET)
-		public ModelAndView customePrivateInfo(String type ,
+		@RequestMapping(value = "/customerprivateinfo", method = RequestMethod.GET)
+		public ModelAndView customerPrivateInfo(String type ,
 				                   HttpServletRequest request,
 				                   HttpServletResponse response,  
 				                   Model model, 
@@ -1126,7 +1126,7 @@ public class CommonController {
 			
 			ModelAndView  mv = new ModelAndView();
 
-	    	mv.setViewName("/common/customePrivateInfo");
+	    	mv.setViewName("/common/customerPrivateInfo");
 
 			return mv;
 		}

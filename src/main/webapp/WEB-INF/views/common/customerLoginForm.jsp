@@ -64,11 +64,11 @@
 		} catch(e) {}
 	}
 	
-	function goRegistForm(){
+	function goPrivateForm(){
 		
 		setCookie("addys_customerkey", $('#customerKey').val());
 		
-		location.href="<%= request.getContextPath() %>/customerregistform";
+		location.href="<%= request.getContextPath() %>/customerprivateinfo";
 		//	location.href="<%= request.getContextPath() %>/kcp/kcpcert_start.jsp";
 	}
 	
@@ -229,7 +229,7 @@
 	          <h3 class="line_tit"></h3>
 	          <ul class="log_joinlist">
 	            <li> <span class="tit">정보를 잊어 버리셨나요?</span> <span class="txt"> <!--span class="line">|</span --> <a href="javascript:goPwSearch()"><strong>비밀번호 찾기</strong></a></span> </li>
-	            <li> <span class="tit">아직 회원이 아니세요?</span> <span class="txt"><a href="javascript:goRegistForm()"><strong>간편가입</strong></a> </li>
+	            <li> <span class="tit">아직 회원이 아니세요?</span> <span class="txt"><a href="javascript:goPrivateForm()"><strong>간편가입</strong></a> </li>
 	          </ul>
 	        </div>
 	        <!--//가입,비번찾기 -->
