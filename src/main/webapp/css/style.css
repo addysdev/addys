@@ -12,8 +12,8 @@
 /****************************************
 		헤더 
  ****************************************/
-header .mb_top {background:#0097DA; padding:0 20px 0 10px; height:60px;  width:100%;}
-h1.head_logo {width:160px;}
+header .mb_top {background:#0097DA; padding:0 0px 0 0px; height:60px;  width:100%;}
+h1.head_logo {width:110px; position: absolute; left: 28px; top: 10px; }
 
 
 /****************************************

@@ -3,20 +3,18 @@
 
 legend, .blind { display: block; overflow: hidden; position: absolute; top: -9999px !important; left: 0; width: 1px; height: 1px; }
 form { display: block; margin-top: 0em; }
+.blind {     visibility: hidden;    overflow: hidden;    position: absolute;    width: 0;    height: 0;    margin: 0;    padding: 0;    font-size: 0;    line-height: 0;}
+.inpbx {    display: block;    overflow: hidden;    width: auto;    height: 18px;    padding: 8px 8px 7px;    line-height: 18px;    border: 1px solid #ccc;    border-top-left-radius: 2px;    border-top-right-radius: 2px;    border-bottom-left-radius: 2px;    border-bottom-right-radius: 2px;    letter-spacing: -1px;    box-shadow: inset 0 1px 0 rgba(0,0,0,.07);
+}
+.inpbx input {    width: 100%;    height: 17px;    border: 0 none;    background: transparent;    font-size: 12px;    line-height: 17px;    color: #222;    vertical-align: top;}
+
+
+/*#m_content {     position: absolute;    width: 100%;    display: block; }*/
 
 /* 지점선택 셀렉박스 */
-.m_selbox { position: relative; padding: 20px 29px 18px; width: 100%; z-index: 999;background: #f7f7f7; }
-.m_selbox .m_schtype { position: absolute; left: 28px; top: 25px; bottom: 0; width: 120px; letter-spacing: -1px; }
-.m_selbox .m_schtype .btn_t { border-color: #cf2219; background-color: #cf2219; color: #fff; }
-.m_selbox .m_schtype .btn_t { display: block; position: relative; z-index: 10; height: 27px; padding: 1px 0 0 10px; border: 1px solid #d9d9d9; border-radius: 3px 0 0 3px; background: #fafafa; font-size: 12px; line-height: 28px; color: #2d2f33; }
-.m_selbox .m_schtype .btn_t .ico_arrow { background: url(../images/sp_v1.png) no-repeat; position: absolute; right: 10px; top: 50%; width: 8px; height: 5px; margin-top: -2px; background-position: -334px -65px; }
-.m_selbox .m_schlayer { position: absolute; left: 0; right: 0; top: 100%; margin-top: -5px; padding-top: 10px; border: 1px solid #e6e6e6; border-top: 0 none; border-radius: 0 0 4px 4px; background: #fafafa; font-size: 12px; line-height: 16px; }
-.m_selbox .m_schlayer li:first-child { border-top: 0 none; }
-.m_selbox .m_schlayer li a { display: block; height: 15px; padding: 10px 10px 9px; color: #2d2f33; }
-.m_selbox .m_schlayer li { border-top: 1px solid #e6e6e6; }
-.mcom_wrap.sm .m_selbox .m_schlayer li.active a { color: #0097DA; }
-.m_selbox .m_schlayer li.active a { color: #ff69a4; }
-.m_selbox .m_schlayer li a { display: block; height: 15px; padding: 10px 10px 9px; color: #2d2f33; }
+.m_selbox { position: relative; padding: 20px 0px 18px; width: 100%; z-index: 999;background: #f7f7f7;  }
+.m_selbox .m_select {position: absolute; left: 28px; top: 25px; width: 130px; letter-spacing: -1px;}
+.m_selbox select {border: 1px solid #ccc; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; background: #fff ; font-size: 12px; line-height: 17px;    color: #222;    vertical-align: top; ;padding: 6px 8px 5px;}
 
 
 /* 로그인박스 */
@@ -34,10 +32,6 @@ form { display: block; margin-top: 0em; }
 .m_inp_data li .ico_id { position: absolute; right: 8px; bottom: 10px; background: url(../images/user_12x16.png) no-repeat 0 0; width: 15px; height: 20px }
 .m_inp_data li .ico_pw { position: absolute; right: 7px; top:12px;background:url(../images/lock_fill_12x16.png) no-repeat 0 0; width: 15px; height: 20px }
 .log_check { padding: 10px 6px 6px; border-top: 1px solid #ccc; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; background: #f7f7f7; font-size: 11px; line-height: 12px; color: #666; }
-.blind {     visibility: hidden;    overflow: hidden;    position: absolute;    width: 0;    height: 0;    margin: 0;    padding: 0;    font-size: 0;    line-height: 0;}
-.inpbx {    display: block;    overflow: hidden;    width: auto;    height: 18px;    padding: 8px 8px 7px;    line-height: 18px;    border: 1px solid #ccc;    border-top-left-radius: 2px;    border-top-right-radius: 2px;    border-bottom-left-radius: 2px;    border-bottom-right-radius: 2px;    letter-spacing: -1px;    box-shadow: inset 0 1px 0 rgba(0,0,0,.07);
-}
-.inpbx input {    width: 100%;    height: 17px;    border: 0 none;    background: transparent;    font-size: 12px;    line-height: 17px;    color: #222;    vertical-align: top;}
 
 /* 입장하기버튼 */
 button { border: 0 none; background-color: transparent; cursor: pointer; }
@@ -46,7 +40,7 @@ button { border: 0 none; background-color: transparent; cursor: pointer; }
 .bnbox button { width: 100%; line-height: 100%; }
 .bnbox a, .bnbox button { display: block; height: 46px; margin-top: 6px; font-weight: bold; font-size: 18px; line-height: 46px; color: #fff; letter-spacing: -1px; text-align: center; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; box-shadow: inset 0 -3px 0 rgba(255,255,255,.15); vertical-align: top; }
 .bnbox .bn_blue, .bnbox .bn_blue2 { background: #0097DA; }
-.bnbox .bn_gray, .bnbox .bn_gray2 { background: #808080; }
+.bnbox .bn_gray, .bnbox .bn_gray2 { background: #808080; }Copyright 2015 ⓒ addys Corp. All
 .bnbox .bn_pnk, .bnbox .bn_pnk2 { background: #ff5b7e; }
 
 /* 이용팁 */

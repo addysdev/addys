@@ -177,7 +177,7 @@
      <!-- 셀렉박스 -->
 	     <div class="m_selbox" >
        		<c:if test="${group_comboList.size() > 1}">
-				<select class="m_schtype"  style='width:135px' id="groupId" name="groupId" value="">
+				<select class="m_select"   id="groupId" name="groupId" value="">
 	                  <c:forEach var="groupVO" items="${group_comboList}" >
 	                  	<option value="${groupVO.groupId}">${groupVO.groupName}</option>
 	                  </c:forEach>
