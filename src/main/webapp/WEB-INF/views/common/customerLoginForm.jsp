@@ -9,11 +9,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
-    <meta http-equiv="Cache-Control" content="no-cache">
-    <meta http-equiv="Pragma" content="no-cache">
-<meta name="viewport" content="width=device-width, initial-scale=1.0,
-      minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
       
 <link href="<%= request.getContextPath() %>/css/reset.css" rel="stylesheet">
 <link href="<%= request.getContextPath() %>/css/common.css" rel="stylesheet">
@@ -165,7 +164,7 @@
   <!-- 헤더 -->
   <header>
     <div class="mb_top">
-      <h1 class="head_logo"> <a href="<%= request.getContextPath() %>/addys/customerloginform" class=""><img src="<%= request.getContextPath() %>/images/logo_addys2.png" alt="addys"  /></a> </h1>
+      <h1 class="head_logo"><img src="<%= request.getContextPath() %>/images/logo_addys_w.png" alt="addys"  /></h1>
     </div>
   </header>
   <!--//헤더 --> 
@@ -175,20 +174,17 @@
   <!-- container -->
   <div id="container">
     <div id="m_content" >
-      <!-- 셀렉박스 -->
-      <div class="m_selbox" style="display:">
-        <div class="m_schtype" >
-          <a href="#" class="btn_t">지점선택<span class="ico_arrow">&nbsp;</span></a>
-          <ul class="m_schlayer" style=" display:none">
-            <li><a title="" href="#">본사</a></li>
-            <li class="active"><a title="" href="#">종로지점</a></li>
-            <li><a title="" href="#">강남지점</a></li>
-            <li><a title="" href="#">코엑스지점</a></li>
-            <li><a title="" href="#">창원지점</a></li>
-          </ul>
-        </div>
-      </div>
-      <!-- //셀렉박스 --> 
+     <!-- 셀렉박스 -->
+	     <div class="m_selbox" >
+       		<c:if test="${group_comboList.size() > 1}">
+				<select class="m_schtype"  style='width:135px' id="groupId" name="groupId" value="">
+	                  <c:forEach var="groupVO" items="${group_comboList}" >
+	                  	<option value="${groupVO.groupId}">${groupVO.groupName}</option>
+	                  </c:forEach>
+	            </select>
+            </c:if>
+	      </div>
+	  <!-- //셀렉박스 -->
       <!-- 로그인영역 -->
       <div class="m_combx">
         <fieldset>
@@ -228,6 +224,15 @@
               <button type="button" class="bn_gray" onclick="goLogin()">입장하기</button>
             </div>
             <!--//로그인버튼 -->
+            <!-- 가입,비번찾기 -->
+	        <div class="login_join">
+	          <h3 class="line_tit"></h3>
+	          <ul class="log_joinlist">
+	            <li> <span class="tit">정보를 잊어 버리셨나요?</span> <span class="txt"> <!--span class="line">|</span --> <a href="javascript:goPwSearch()"><strong>비밀번호 찾기</strong></a></span> </li>
+	            <li> <span class="tit">아직 회원이 아니세요?</span> <span class="txt"><a href="javascript:goRegistForm()"><strong>간편가입</strong></a> </li>
+	          </ul>
+	        </div>
+	        <!--//가입,비번찾기 -->
             <!-- 이용안내 -->
             <div class="m_tip">
               <span class="ico_tip">&nbsp;</span>등록을 하시면 다음과 같은 서비스를 이용 가능하십니다.
@@ -241,16 +246,6 @@
             <!--//이용안내 -->
           </form>
         </fieldset>
-        <!-- 가입,비번찾기 -->
-        <div class="login_join">
-          <h3 class="line_tit"></h3>
-          <ul class="log_joinlist">
-            <li> <span class="tit">정보를 잊어 버리셨나요?</span> <span class="txt"> <!--span class="line">|</span --> <a href="javascript:goPwSearch()"><strong>비밀번호 찾기</strong></a></span> </li>
-            <li> <span class="tit">아직 회원이 아니세요?</span> <span class="txt"><a href="javascript:goRegistForm()"><strong>간편가입</strong></a> </li>
-          </ul>
-        </div>
-        <!--//가입,비번찾기 -->
-        
       </div>
       <!--//로그인영역 -->
     </div>

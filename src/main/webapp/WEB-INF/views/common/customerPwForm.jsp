@@ -402,9 +402,16 @@
     <div id="wrap" class="wrap" >
 	  <!-- 헤더 -->
 	  <header>
-	    <div class="mb_top"  id="header">
-	      <h1 class="head_logo"><img src="<%= request.getContextPath() %>/images/logo_addys2.png" alt="addys"  /></h1>
-	    </div>
+	   <div class="mb_top"  id="header">
+	   <c:choose>
+    		<c:when test="${type=='survey'}">
+				<h1 class="head_logo"><a href="<%= request.getContextPath() %>/surveyloginform" class=""><img src="<%= request.getContextPath() %>/images/logo_addys_w.png" alt="addys"  /></a></h1>
+	 		</c:when>
+			<c:otherwise>
+				<h1 class="head_logo"><a href="<%= request.getContextPath() %>/customerloginform" class=""><img src="<%= request.getContextPath() %>/images/logo_addys_w.png" alt="addys"  /></a></h1>
+	 		</c:otherwise>
+		</c:choose>
+		</div>
 	  </header>
 	  <!--//헤더 -->    
 	 <br><br><br><br>
@@ -538,14 +545,6 @@
 				  </table>				
 			      <button type="button" class="btn btn-default" onclick="goModify()">비밀번호 변경</button>
 	       		</div>
-	        <c:choose>
-	    		<c:when test="${type=='survey'}">
-					 <h5><strong><a href="<%= request.getContextPath() %>/surveyloginform" ><font style="color:#428bca"> <span class="glyphicon glyphicon-arrow-left"></span> 뒤로가기</font></a></strong></h5>
-				</c:when>
-				<c:otherwise>
-					 <h5><strong><a href="<%= request.getContextPath() %>/customerloginform" ><font style="color:#428bca"> <span class="glyphicon glyphicon-arrow-left"></span> 뒤로가기</font></a></strong></h5>
-				</c:otherwise>
-			</c:choose>
 	      </form>
         </div>
     </body>

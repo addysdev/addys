@@ -429,7 +429,7 @@
 	  <!-- 헤더 -->
 	  <header>
 	    <div class="mb_top"  id="header">
-	      <h1 class="head_logo"><img src="<%= request.getContextPath() %>/images/logo_addys2.png" alt="addys"  /></h1>
+	      <h1 class="head_logo"><img src="<%= request.getContextPath() %>/images/logo_addys_w.png" alt="addys"  /></h1>
 	    </div>
 	  </header>
 	  <!--//헤더 -->    
