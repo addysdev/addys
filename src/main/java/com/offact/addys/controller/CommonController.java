@@ -1109,4 +1109,25 @@ public class CommonController {
 	    	
 	    	return token;
 	    }
+	    
+		/**
+		 * Simply selects the home view to render by returning its name.
+		 * @throws BizException
+		 */
+		@RequestMapping(value = "/customeprivateinfo", method = RequestMethod.GET)
+		public ModelAndView customePrivateInfo(String type ,
+				                   HttpServletRequest request,
+				                   HttpServletResponse response,  
+				                   Model model, 
+				                   Locale locale) throws BizException 
+		{
+
+			logger.info("Welcome customer");
+			
+			ModelAndView  mv = new ModelAndView();
+
+	    	mv.setViewName("/common/customePrivateInfo");
+
+			return mv;
+		}
 }
