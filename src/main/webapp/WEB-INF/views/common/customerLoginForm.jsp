@@ -182,6 +182,7 @@
 	                  	<option value="${groupVO.groupId}">${groupVO.groupName}</option>
 	                  </c:forEach>
 	            </select>
+	            <span class="txt">지점을 선택해 주세요.</span>
             </c:if>
 	      </div>
 	  <!-- //셀렉박스 -->
@@ -228,8 +229,8 @@
 	        <div class="login_join">
 	          <h3 class="line_tit"></h3>
 	          <ul class="log_joinlist">
-	            <li> <span class="tit">정보를 잊어 버리셨나요?</span> <span class="txt"> <!--span class="line">|</span --> <a href="javascript:goPwSearch()"><strong>비밀번호 찾기</strong></a></span> </li>
-	            <li> <span class="tit">아직 회원이 아니세요?</span> <span class="txt"><a href="javascript:goPrivateForm()"><strong>간편가입</strong></a> </li>
+	            <li> <span class="tit">정보를 잊어 버리셨나요?</span> <span class="txt"> <a href="javascript:goPwSearch()" class="bn_pw">비밀번호 찾기</a></span> </li>
+	            <li> <span class="tit">아직 회원이 아니세요?</span> <span class="txt"><a href="javascript:goPrivateForm()" class="bn_join">간편가입</a> </li>
 	          </ul>
 	        </div>
 	        <!--//가입,비번찾기 -->
