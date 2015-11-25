@@ -6,7 +6,7 @@ form { display: block; margin-top: 0em; }
 .blind {     visibility: hidden;    overflow: hidden;    position: absolute;    width: 0;    height: 0;    margin: 0;    padding: 0;    font-size: 0;    line-height: 0;}
 .inpbx {    display: block;    overflow: hidden;    width: auto;    height: 18px;    padding: 8px 8px 7px;    line-height: 18px;    border: 1px solid #ccc;    border-top-left-radius: 2px;    border-top-right-radius: 2px;    border-bottom-left-radius: 2px;    border-bottom-right-radius: 2px;    letter-spacing: -1px;    box-shadow: inset 0 1px 0 rgba(0,0,0,.07);
 }
-.inpbx input {    width: 100%;    height: 17px;    border: 0 none;    background: transparent;    font-size: 12px;    line-height: 17px;    color: #222;    vertical-align: top;}
+.inpbx input {    width: 100%;    height: 17px;    border: 0 none;    background: transparent;    font-size: 12px;    line-height: 17px;    color: #333;    vertical-align: top;}
 
 
 .m_content { background:#f7f7f7; width:100%;  position: relative; top:50px;; padding:30px 0; }
@@ -15,7 +15,7 @@ form { display: block; margin-top: 0em; }
 .m_selbox { position: relative; padding: 20px 0px 18px; width: 100%; z-index: 999;background: #f7f7f7;  }
 .m_selbox .m_select {position: absolute; left: 30px; top: 10px; width: 130px; letter-spacing: -1px;}
 .m_selbox select {border: 1px solid #ccc; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; background: #fff ; font-size: 12px; line-height: 17px;    color: #222;    vertical-align: top; ;padding: 6px 8px 5px;}
-
+.m_selbox .txt { font-size: 12px; line-height:12px;;position: relative; left:170px;vertical-align: top;color: #898989; letter-spacing: -1px;;}
 
 /* 로그인박스 */
 .m_combx { padding: 20px 29px 30px; background: #f7f7f7; }
@@ -50,7 +50,9 @@ button { border: 0 none; background-color: transparent; cursor: pointer; }
 
 /* 비밀번호찾기, 가입 */
 .line_tit { position: relative; margin: 20px 0 ; border: 1px solid #cdcdcd; height: 1px; border-left: 0 none; border-right: 0 none; font-size: 0; line-height: 0; }
-.sp_login { display: inline-block; overflow: hidden; width: auto; height: 10px; vertical-align: top; }
+.sp_login { display: inline-block; overflow: hidden; width: auto; height: 10px; vertical-align: top;}
 .log_joinlist li:first-child { margin-top: 0; }
-.log_joinlist li { width: auto; margin-top: 8px; font-size: 12px; line-height: 16px; color: #808080; }
-
+.log_joinlist li { width: auto; margin-top: 8px; font-size: 12px; line-height: 24px; color: #808080; }
+.log_joinlist a {margin-left:10px; color:#fff;font-weight: bold;padding:3px 10px 6px;letter-spacing: -1px; text-align: center; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; box-shadow: inset 0 -3px 0 rgba(255,255,255,.15); vertical-align: top; }
+.log_joinlist a.bn_pw {background: #b6b6b6; }
+.log_joinlist a.bn_join {background: #0097DA;}
