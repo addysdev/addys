@@ -174,7 +174,10 @@
   <!-- container -->
   <div id="container">
     <div class="m_content" >
-     <!-- 셀렉박스 -->
+     
+      <!-- 로그인영역 -->
+      <div class="m_combx">
+      <!-- 셀렉박스 -->
 	     <div class="m_selbox" >
        		<c:if test="${group_comboList.size() > 1}">
 				<select class="m_select"   id="groupId" name="groupId" value="">
@@ -186,8 +189,6 @@
             </c:if>
 	      </div>
 	  <!-- //셀렉박스 -->
-      <!-- 로그인영역 -->
-      <div class="m_combx">
         <fieldset>
           <legend>로그인 영역</legend>
           <form id="login_form" method="post">
