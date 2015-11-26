@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="As">
+
+<resultMap id="asListVO" type="com.offact.addys.vo.comunity.AsVO" >
+  <result column="idx"              property="idx"  />
+  <result column="groupId"            property="groupId"  />
+  <result column="customerKey"      	   property="customerKey"  />
+  <result column="customerId"       	   property="customerId"  />
+  <result column="customerName"       	   property="customerName"  />
+  <result column="asState"              property="asState"  />
+  <result column="as"                property="as"  />
+  <result column="asDateTime"   property="asDateTime"  />
+  <result column="userId"   property="userId"  />
+  <result column="userName"   property="userName"  />
+  <result column="asResult"   property="asResult"  />
+  <result column="asResultDateTime"   property="asResultDateTime"  />
+  <result column="stateUpdateUserId"   property="stateUpdateUserId"  />
+  <result column="stateUpdateUserName"   property="stateUpdateUserName"  />
+  <result column="stateUpdateDateTime"   property="stateUpdateDateTime"  />
+</resultMap>
+
+<select id="getAsList"  resultMap="asListVO" parameterType="com.offact.addys.vo.comunity.AsVO" >
+        SELECT T1.idx
+			  ,T1.groupId
+			  ,T2.groupName
+			  ,T1.customerKey
+			  ,T3.customerName 
+			  ,T1.productCode
+			  ,T5.productName
+			  ,T1.asCompanyCode
+			  ,T1.asState
+			  ,T1.asCategory
+			  ,T1.asCode
+			  ,T1.asDetail
+			  ,DATE_FORMAT(T1.asStartDateTime, '%Y-%m-%d %T') as asStartDateTime
+			  ,Case When ifnull(T1.asTargetDate,'') = '' Then '' Else DATE_FORMAT(T1.asTargetDate, '%Y-%m-%d %T') End asTargetDate
+			  ,ifnull(T1.asStartUserId,'') as asStartUserId
+			  ,ifnull(T4.userName,'') as asStartUserName
+          FROM smAs T1
+          	   Left Join ofGroup T2 On T1.groupId=T2.groupId
+			   Left Join smCustomer T3 On T1.customerKey=T3.customerKey
+			   Left Join ofUser T4 On T1.asStartUserId=T4.userId
+			   Left Join adProductMaster T5 On T1.productCode=T5.productCode
+         WHERE T1.customerKey = #{customerKey}
+         ORDER BY asStartDateTime desc
+         
+</select>
+
+<select id="getAsCnt" resultType="int">
+	SELECT count(*) AS TOT_COUNT
+  		FROM smAs T1
+          	   Left Join ofGroup T2 On T1.groupId=T2.groupId
+			   Left Join smCustomer T3 On T1.customerKey=T3.customerKey
+			   Left Join ofUser T4 On T1.asStartUserId=T4.userId
+			   Left Join adProductMaster T5 On T1.productCode=T5.productCode
+         WHERE T1.asStartDateTime between concat(#{start_asDate},' 00:00:00') and concat(#{end_asDate},' 23:59:59')
+         	<if test="con_groupId != null and con_groupId != '' and con_groupId != 'G00000'" >
+           		AND T1.groupId = #{con_groupId}
+           </if>
+           <if test="searchValue != null and searchValue != ''" >
+             <choose>
+               <when test="searchGubun.equals('01')">
+           AND T1.customerKey  LIKE CONCAT('%', #{searchValue}, '%')
+               </when>
+               <when test="searchGubun.equals('02')">
+           AND T3.customerName  LIKE CONCAT('%', #{searchValue}, '%')
+               </when>
+             </choose>
+           </if>
+</select>
+
+<select id="getAsDetail" resultMap="asListVO" parameterType="com.offact.addys.vo.comunity.AsVO" >
+
+		SELECT T1.idx
+		      ,T1.customerKey
+			  ,T2.customerId   
+			  ,T2.customerName  
+			  ,T1.asState
+			  ,T1.as
+			  ,T1.asDateTime
+			  ,ifnull(T3.userId,'') as userId
+			  ,ifnull(T4.userName,'') as userName
+			  ,ifnull(T3.asResult,'') as asResult
+			  ,ifnull(T3.asResultDateTime,'') as asResultDateTime
+			  ,ifnull(T1.stateUpdateUserId,'') as stateUpdateUserId
+			  ,ifnull(T5.userName,'') as stateUpdateUserName
+			  ,ifnull(T1.stateUpdateDateTime,'') as stateUpdateDateTime
+          FROM smAs T1
+			   Left Join smCustomer T2 On T1.customerKey=T2.customerKey
+			   Left Join smAsResult T3 On T1.idx=T3.idx
+			   Left Join ofUser T4 On T3.userId=T4.userId
+			   Left Join ofUser T5 On T1.stateUpdateUserId=T5.userId	   	     
+		 Where T1.idx = #{idx}
+</select>
+
+<update id="asStateUpdate" parameterType="com.offact.addys.vo.comunity.AsVO" >
+        Update smAs
+       		Set
+  				asState = #{asState}
+  				,stateUpdateUserId = #{stateUpdateUserId}
+  				,stateUpdateDateTime = now()
+ 		Where idx = #{idx}
+</update>
+
+<insert id="asResultInsert" parameterType="com.offact.addys.vo.comunity.AsVO" >
+  	Insert into smAsResult( 
+        	 idx
+            ,userId
+            ,groupId
+            ,asResult 
+            ,asResultDateTime
+            )
+        Values (
+              #{idx}
+	  		, #{userId}
+	  		, #{groupId}
+	  		, #{asResult}
+	  		, now()
+	  		)
+	  		
+</insert>
+
+<select id="getAsReply" resultMap="asListVO" parameterType="com.offact.addys.vo.comunity.AsVO" >
+
+		SELECT T1.idx
+		      ,T1.userId
+		      ,T2.userName
+		      ,DATE_FORMAT(T1.asHistoryDateTime, '%Y-%m-%d %T') as asHistoryDateTime
+			  ,T1.asHistory
+          FROM smAsHistory T1
+               Left Join ofUser T2 on T1.userId=T2.userId
+		 Where T1.upidx = #{upidx}
+		 order by asHistoryDateTime desc
+</select>
+
+<insert id="regiReplyInsert" parameterType="com.offact.addys.vo.comunity.AsVO" >
+  	
+  	Insert into smAsHistory( 
+        	 userId
+            ,groupId
+            ,asHistory
+            ,asHistoryDateTime
+            ,upidx
+            )
+        Values (
+	  		  #{userId}
+	  		, #{groupId}
+	  		, #{asHistory}
+	  		, now()
+	  		, #{upidx}
+	  		)
+</insert>
+
+</mapper>
