@@ -1,5 +1,5 @@
 @charset "utf-8";
-/* CSS Document */
+/* CSS Document jjlim : 151126 */
 
 /* 레이아웃 */
 body { background:#f7f7f7;}
@@ -50,12 +50,6 @@ h1.head_logo2 {width:155px; position: absolute; left: 28px; top: 10px; }
 .msg_box .time { width:50px; height:20px; padding-top:5px; position:relative;;  font-size:11px; color:#666 ; position:relative;  }
 .me .msg_box .time {text-align:left; float:left; margin-left:10px;  }
 .you .msg_box .time {text-align:rigt; float:right; margin-right:10px;   }
-
-
-
-
-/* 말풍선 */
-
 
 
 /* 시간표시 */

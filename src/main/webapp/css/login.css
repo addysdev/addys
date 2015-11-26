@@ -1,29 +1,27 @@
 @charset "utf-8";
-/* CSS Document jjlim : 151120 */
+/* CSS Document jjlim : 151126 */
 
 legend, .blind { display: block; overflow: hidden; position: absolute; top: -9999px !important; left: 0; width: 1px; height: 1px; }
 form { display: block; margin-top: 0em; }
-.blind {     visibility: hidden;    overflow: hidden;    position: absolute;    width: 0;    height: 0;    margin: 0;    padding: 0;    font-size: 0;    line-height: 0;}
-.inpbx {    display: block;    overflow: hidden;    width: auto;    height: 18px;    padding: 8px 8px 7px;    line-height: 18px;    border: 1px solid #ccc;    border-top-left-radius: 2px;    border-top-right-radius: 2px;    border-bottom-left-radius: 2px;    border-bottom-right-radius: 2px;    letter-spacing: -1px;    box-shadow: inset 0 1px 0 rgba(0,0,0,.07);
-}
-.inpbx input {    width: 100%;    height: 17px;    border: 0 none;    background: transparent;    font-size: 12px;    line-height: 17px;    color: #333;    vertical-align: top;}
+input[type='text'], input[type='password'], input[type='submit'], input[type='search'], button, input[type='button'], input[type='submit'], input[type='reset'], input[type='file'] { -webkit-appearance: none; border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+h4 { display: block; -webkit-margin-before: 1.33em; -webkit-margin-after: 1.33em; -webkit-margin-start: 0px; -webkit-margin-end: 0px; font-weight: bold; }
+
+.blind { visibility: hidden; overflow: hidden; position: absolute; width: 0; height: 0; margin: 0; padding: 0; font-size: 0; line-height: 0; }
+.inpbx { display: block; overflow: hidden; width: auto; height: 18px; padding: 8px 8px 7px; line-height: 18px; border: 1px solid #ccc; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; letter-spacing: -1px; box-shadow: inset 0 1px 0 rgba(0,0,0,.07); }
+.inpbx input { width: 100%; height: 17px; border: 0 none; background: transparent; font-size: 12px; line-height: 17px; color: #222; vertical-align: top; }
 
 
-.m_content { background:#f7f7f7; width:100%;  position: relative; top:50px;; padding:30px 0; }
+.m_content { background:#f7f7f7; width:100%;  position: relative; top:50px;;}
 
 /* 지점선택 셀렉박스 */
-.m_selbox { position: relative; padding: 20px 0px 18px; width: 100%; z-index: 999;background: #f7f7f7;  }
-.m_selbox .m_select {position: absolute; left: 30px; top: 10px; width: 130px; letter-spacing: -1px;}
+.m_selbox { position: relative; padding: 30px 0px 30px; width: 100%; z-index: 999;background: #f7f7f7; line-height: 30px;   }
+.m_selbox .m_select {position: absolute; left: 0px; top: 30px; width: 130px; letter-spacing: -1px;}
 .m_selbox select {border: 1px solid #ccc; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; background: #fff ; font-size: 12px; line-height: 17px;    color: #222;    vertical-align: top; ;padding: 6px 8px 5px;}
-.m_selbox .txt { font-size: 12px; line-height:12px;;position: relative; left:170px;vertical-align: top;color: #898989; letter-spacing: -1px;;}
+.m_selbox .txt { font-size: 12px; line-height:12px;;position: relative; left:140px;top:10px;vertical-align: top;color: #898989; letter-spacing: -1px;;}
 
 /* 로그인박스 */
-.m_combx { padding: 20px 29px 30px; background: #f7f7f7; }
+.m_combx { padding: 20px 29px 30px; background: #f7f7f7;  }
 .m_inplogin { position: relative; border: 1px solid #ccc; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; background: #fff }
-/*.m_inplogin:before { position: absolute; left: 50%; top: 100%; /*width: 277px; height: 10px; margin-left: -139px; margin-top: 0; background: url(../img/bg_alert_bx.png) no-repeat 0 0; content: '' */}
-@media screen and (-webkit-min-device-pixel-ratio:1.5) }
-.m_inplogin:before { background-image: url(../img/bg_alert_bx_rtn.png); background-size: 277px 10px }
-}*/
 .m_inp_data { padding: 2px 8px 0 }
 .m_inp_data li { border-top: 1px solid #d9d9d9 }
 .m_inp_data li:first-child { border-top: 0 none }
@@ -33,12 +31,12 @@ form { display: block; margin-top: 0em; }
 .m_inp_data li .ico_pw { position: absolute; right: 7px; top:12px;background:url(../images/lock_fill_12x16.png) no-repeat 0 0; width: 15px; height: 20px }
 .log_check { padding: 10px 6px 6px; border-top: 1px solid #ccc; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; background: #f7f7f7; font-size: 11px; line-height: 12px; color: #666; }
 
-/* 입장하기버튼 */
+/* 버튼 */
 button { border: 0 none; background-color: transparent; cursor: pointer; }
 .bnbox { width: 100%; margin-top: 15px; }
 .bnbox a:first-child, .bnbox button:first-child { margin-top: 0; }
 .bnbox button { width: 100%; line-height: 100%; }
-.bnbox a, .bnbox button { display: block; height: 46px; margin-top: 6px; font-weight: bold; font-size: 18px; line-height: 46px; color: #fff; letter-spacing: -1px; text-align: center; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; box-shadow: inset 0 -3px 0 rgba(255,255,255,.15); vertical-align: top; }
+.bnbox a, .bnbox button { clear:both; display: block; height: 46px; margin-top: 6px; font-weight: bold; font-size: 18px; line-height: 46px; color: #fff; letter-spacing: -1px; text-align: center; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; box-shadow: inset 0 -3px 0 rgba(255,255,255,.15); vertical-align: top; }
 .bnbox .bn_blue, .bnbox .bn_blue2 { background: #0097DA; }
 .bnbox .bn_gray, .bnbox .bn_gray2 { background: #808080; }
 .bnbox .bn_pnk, .bnbox .bn_pnk2 { background: #ff5b7e; }
@@ -48,7 +46,7 @@ button { border: 0 none; background-color: transparent; cursor: pointer; }
 .m_tip .ico_tip {/* position: absolute; left:5px; top: 3px; background: url(../images/comment_12x12.png) no-repeat 0px 0px; width: 15px; height: 12px */}
 .m_tip .m_tip_list { margin-top: 12px; font-size: 12px; line-height: 18px; color: #898989; text-align: left; }
 
-/* 비밀번호찾기, 가입 */
+/* 로그인 >> 비밀번호찾기, 가입 */
 .line_tit { position: relative; margin: 20px 0 ; border: 1px solid #cdcdcd; height: 1px; border-left: 0 none; border-right: 0 none; font-size: 0; line-height: 0; }
 .sp_login { display: inline-block; overflow: hidden; width: auto; height: 10px; vertical-align: top;}
 .log_joinlist li:first-child { margin-top: 0; }
@@ -56,3 +54,19 @@ button { border: 0 none; background-color: transparent; cursor: pointer; }
 .log_joinlist a {margin-left:10px; color:#fff;font-weight: bold;padding:3px 10px 6px;letter-spacing: -1px; text-align: center; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; box-shadow: inset 0 -3px 0 rgba(255,255,255,.15); vertical-align: top; }
 .log_joinlist a.bn_pw {background: #b6b6b6; }
 .log_joinlist a.bn_join {background: #0097DA;}
+
+
+
+
+/*************************
+ 	핸드폰번호 등록 비밀번호 찾기 
+ *************************/
+
+.m_resbx { background: #f7f7f7;padding: 0px 29px 30px; }
+.m_result { position: relative; padding: 0 14px 14px; border: 1px solid #ccc; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; background: #fff; color: #222; }
+.m_sch_tp { padding: 8px 0; font-size: 13px; line-height: 16px; text-align: center; }
+.schinp_list { padding: 0 9px; margin-top: 10px; }
+.schinp_list li:first-child { margin-top: 0; }
+.schinp_list .inpbx.certi {padding: 8px 8px 7px; margin-right:100px; }
+.schinp_list a {margin-left:10px; color:#fff;font-weight: bold;padding:10px 20px 13px;letter-spacing: -1px; text-align: center; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; box-shadow: inset 0 -3px 0 rgba(255,255,255,.15); vertical-align: top;background: #b6b6b6; }
+.schinp_list a.bn_certi { float:right;background: #b6b6b6; position:relative;right:0px; top:-35px;font-size: 12px;}
