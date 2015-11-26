@@ -196,7 +196,8 @@
                success: function(result) {
                   
                    $("#comunityList").html(result);
-                   $('#fset').focus(1); 
+                   //$('#fset').focus(1); 
+                   //window-location('#fset');
                },
                error:function() {
                   
@@ -244,6 +245,37 @@
                success: function(result) {
                   
                    $("#counselList").html(result);
+               },
+               error:function() {
+                  
+               }
+        });
+    }
+ 
+ // 리스트 조회
+    function fcAs_list(){
+		
+    	var customerKey='${customerKey}';
+    	var groupId='${groupId}';
+    	
+    	$('#comunityList').attr("style","display:none");
+    	$('#counselList').attr("style","display:none");
+    	$('#aslist').attr("style","display:block");
+    	$('#hotdeal').attr("style","display:none");
+    	$('#mhome').attr("style","display:none");
+    	
+    	$('#tab1').attr("class","");
+    	$('#tab2').attr("class","active");
+    	$('#tab3').attr("class","");
+    	$('#tab4').attr("class","");
+    	$('#tab5').attr("class","");
+
+        $.ajax({
+            type: "POST",
+               url:  "<%= request.getContextPath() %>/comunity/aslist",
+               success: function(result) {
+                  
+                   $("#aslist").html(result);
                },
                error:function() {
                   
@@ -451,7 +483,7 @@
 		<c:otherwise>
 			<ul class="nav nav-tabs">
 			  <li id="tab1" class="active" ><a href="javascript:setTab('01');fcCounsel_list()">문의하기</a></li>
-			  <li id="tab2" ><a href="javascript:setTab('02');alert('waiting..');">As조회</a></li>
+			  <li id="tab2" ><a href="javascript:setTab('02');fcAs_list();">As조회</a></li>
 			  <li id="tab3" ><a href="javascript:setTab('03');fcComunity_list()">매장과talk</a></li>
 			  <li id="tab4" ><a href="javascript:setTab('04');fc_hotdeal()">핫딜</a></li>
 			  <li id="tab5" ><a href="javascript:setTab('05');fc_mhome()">회사소개</a></li>

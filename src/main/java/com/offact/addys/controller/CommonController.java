@@ -348,6 +348,9 @@ public class CommonController {
 				SmsVO smsVO = new SmsVO();
 				SmsVO resultSmsVO = new SmsVO();
 				
+				//즉시전송 세팅
+				smsVO.setSmsDirectYn("Y");
+				
 				smsVO.setSmsId(smsId);
 				smsVO.setSmsPw(smsPw);
 				smsVO.setSmsType(smsType);
@@ -441,6 +444,9 @@ public class CommonController {
 				//SMS발송
 				SmsVO smsVO = new SmsVO();
 				SmsVO resultSmsVO = new SmsVO();
+				
+				//즉시전송 세팅
+				smsVO.setSmsDirectYn("Y");
 				
 				smsVO.setSmsId(smsId);
 				smsVO.setSmsPw(smsPw);
@@ -558,6 +564,9 @@ public class CommonController {
 				//SMS발송
 				SmsVO smsVO = new SmsVO();
 				SmsVO resultSmsVO = new SmsVO();
+				
+				//즉시전송 세팅
+				smsVO.setSmsDirectYn("Y");
 				
 				smsVO.setSmsId(smsId);
 				smsVO.setSmsPw(smsPw);

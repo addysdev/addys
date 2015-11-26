@@ -1,7 +1,6 @@
 <%@ include file="/WEB-INF/views/addys/base.jsp" %>	
 <!-- container -->
-			<button id="deferbtn" type="button" class="btn btn-primary btn-sm" onClick="fcReg_comment()" >talk하기</button>
-            <br><br>
+		    <button id="deferbtn" type="button" class="btn btn-primary btn-sm" onClick="fcReg_comment()" >talk하기</button>
 		    <div class="talk_board" >
 		      <table class="tbl_base" >
 			    <c:if test="${!empty comunityList}">
@@ -58,7 +57,10 @@
 	             </c:forEach>
 	            </c:if>
 		      </table>
+		      
 		      <table id="fset" name="fset">
 		      </table>
 		    </div>
+
+ 
 	<!-- //container -->

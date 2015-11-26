@@ -13,6 +13,7 @@ public class SmsVO extends AbstractVO {
 	 String idx;
 	 String smsTo;
 	 String smsFrom;
+	 String smsDirectYn;
 	 String smsMsg;
 	 String smsDateTime;
 	 String smsUserId;
@@ -105,6 +106,12 @@ public class SmsVO extends AbstractVO {
 	}
 	public void setSmsUserName(String smsUserName) {
 		this.smsUserName = smsUserName;
+	}
+	public String getSmsDirectYn() {
+		return smsDirectYn;
+	}
+	public void setSmsDirectYn(String smsDirectYn) {
+		this.smsDirectYn = smsDirectYn;
 	}
 
 }

@@ -52,12 +52,14 @@ import com.offact.framework.util.StringUtil;
 import com.offact.addys.service.CustomerService;
 import com.offact.addys.service.common.MailService;
 import com.offact.addys.service.comunity.ComunityService;
+import com.offact.addys.service.comunity.AsService;
 import com.offact.addys.vo.CustomerVO;
 import com.offact.addys.vo.MultipartFileVO;
 import com.offact.addys.vo.comunity.ComunityVO;
 import com.offact.addys.vo.comunity.CounselVO;
 import com.offact.addys.vo.common.EmailVO;
 import com.offact.addys.vo.common.SmsVO;
+import com.offact.addys.vo.comunity.AsVO;
 
 /**
  * Handles requests for the application home page.
@@ -108,6 +110,9 @@ public class ComunityController {
 	
 	@Autowired
 	private ComunityService comunitySvc;
+	
+    @Autowired
+    private AsService asSvc;
 	
     @Autowired
     private MailService mailSvc;
@@ -1007,5 +1012,60 @@ public class ComunityController {
 	   		mv.setViewName("/comunity/mHome");
 	   		
 	   		return mv;
+	    }
+	    
+	    /**
+	     * AS관리 목록조회
+	     * 
+	     * @param UserManageVO
+	     * @param request
+	     * @param response
+	     * @param model
+	     * @param locale
+	     * @return
+	     * @throws BizException
+	     */
+	    @RequestMapping(value = "/comunity/aslist")
+	    public ModelAndView asPageList(@ModelAttribute("asConVO") AsVO asConVO, 
+	    		                         HttpServletRequest request, 
+	    		                         HttpServletResponse response) throws BizException 
+	    {
+	        
+	    	//log Controller execute time start
+			String logid=logid();
+			long t1 = System.currentTimeMillis();
+			logger.info("["+logid+"] Controller start : asConVO" + asConVO);
+
+	        ModelAndView mv = new ModelAndView();
+
+	     // 사용자 세션정보
+	        HttpSession session = request.getSession();
+	        
+	        String customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
+	        String customerName = StringUtil.nvl((String) session.getAttribute("customerName")); 
+	        String customerId = StringUtil.nvl((String) session.getAttribute("customerId"));
+	        
+	        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
+
+	 	       	//mv.setViewName("/common/customerLoginForm");
+	        	mv.setViewName("/common/sessionOut");
+	        	return mv;
+			}
+	        
+	        List<AsVO> asList = null;
+	        
+	        asConVO.setCustomerKey(customerKey);
+
+	        // 사용자목록조회
+	        asList = asSvc.getAsList(asConVO);
+	        mv.addObject("asList", asList);
+
+	        mv.setViewName("/comunity/asList");
+	        
+	        //log Controller execute time end
+	       	long t2 = System.currentTimeMillis();
+	       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+	       	
+	        return mv;
 	    }
 }
