@@ -240,8 +240,8 @@
             <div class="m_tip">
               <span class="ico_tip"></span>등록을 하시면 다음과 같은 서비스를 이용 가능하십니다.
               <ul class="m_tip_list">
-                <li>1. 문의하기</li>
-                <li>2. A/S 과정열람</li>
+                <li>1. A/S 과정열람</li>
+                <li>2. 문의하기</li>
                 <li>3. 매장과 채팅</li>
                 <li>4. Hot Deal & Event</li>
               </ul>

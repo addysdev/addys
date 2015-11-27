@@ -102,9 +102,9 @@
     		
     		realYN='Y';
     		
-    		$('#comunityList').attr("style","display:block");
+    		$('#aslist').attr("style","display:none");
         	$('#counselList').attr("style","display:none");
-        	$('#aslist').attr("style","display:none");
+        	$('#comunityList').attr("style","display:block");
         	$('#hotdeal').attr("style","display:none");
         	$('#mhome').attr("style","display:none");
         	
@@ -118,10 +118,10 @@
     		
     		realYN='N';
     		
-    		$('#comunityList').attr("style","display:none");
-        	$('#counselList').attr("style","display:block");
-        	$('#aslist').attr("style","display:none");
-        	$('#hotdeal').attr("style","display:none");
+    		$('#aslist').attr("style","display:block");
+        	$('#counselList').attr("style","display:none");
+        	$('#comunityList').attr("style","display:none");
+    		$('#hotdeal').attr("style","display:none");
         	$('#mhome').attr("style","display:none");
         	
         	$('#tab1').attr("class","active");
@@ -134,10 +134,10 @@
     		
     		realYN='N';
     		
-    		$('#comunityList').attr("style","display:none");
-        	$('#counselList').attr("style","display:none");
-        	$('#aslist').attr("style","display:block");
-        	$('#hotdeal').attr("style","display:none");
+    		$('#aslist').attr("style","display:none");
+        	$('#counselList').attr("style","display:block");
+        	$('#comunityList').attr("style","display:none");
+    		$('#hotdeal').attr("style","display:none");
         	$('#mhome').attr("style","display:none");
         	
         	$('#tab1').attr("class","");
@@ -150,9 +150,9 @@
     		
     		realYN='N';
     		
-    		$('#comunityList').attr("style","display:none");
-        	$('#counselList').attr("style","display:none");
-        	$('#aslist').attr("style","display:none");
+    		$('#aslist').attr("style","display:none");
+    		$('#counselList').attr("style","display:none");
+        	$('#comunityList').attr("style","display:none");
         	$('#hotdeal').attr("style","display:block");
         	$('#mhome').attr("style","display:none");
         	
@@ -166,10 +166,10 @@
     		
     		realYN='N';
     		
-    		$('#comunityList').attr("style","display:none");
+    		$('#aslist').attr("style","display:none");
         	$('#counselList').attr("style","display:none");
-        	$('#aslist').attr("style","display:none");
-        	$('#hotdeal').attr("style","display:none");
+        	$('#comunityList').attr("style","display:none");
+    		$('#hotdeal').attr("style","display:none");
         	$('#mhome').attr("style","display:block");
         	
         	$('#tab1').attr("class","");
@@ -233,8 +233,8 @@
     	$('#hotdeal').attr("style","display:none");
     	$('#mhome').attr("style","display:none");
     	
-    	$('#tab1').attr("class","active");
-    	$('#tab2').attr("class","");
+    	$('#tab1').attr("class","");
+    	$('#tab2').attr("class","active");
     	$('#tab3').attr("class","");
     	$('#tab4').attr("class","");
     	$('#tab5').attr("class","");
@@ -264,8 +264,8 @@
     	$('#hotdeal').attr("style","display:none");
     	$('#mhome').attr("style","display:none");
     	
-    	$('#tab1').attr("class","");
-    	$('#tab2').attr("class","active");
+    	$('#tab1').attr("class","active");
+    	$('#tab2').attr("class","");
     	$('#tab3').attr("class","");
     	$('#tab4').attr("class","");
     	$('#tab5').attr("class","");
@@ -471,9 +471,9 @@
         	<!-- 조회결과리스트 -->
         	 <fieldset>
 		       	<div class="form-inline text-right">
-		             <img vertical-align="bottom" height="22px" width="22px" src="http://www.30mcart.ir/images/contact/phone.png"><span class="bar"><strong>&nbsp;&nbsp;${groupName}</strong></span>
-		             &nbsp;&nbsp;<img vertical-align="bottom" height="20px" width="20px" src="http://images.gofreedownload.net/gear-34957.jpg" onClick="fcConfig_modify()">
-		             &nbsp;&nbsp;<img vertical-align="bottom" height="20px" width="20px" src="http://wiki.opencloudengine.org/download/thumbnails/5636108/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%AE%E1%86%BA.png?version=1&modificationDate=1426577291000&api=v2" onClick="goLogout()">
+		       	     <span class="bar"><strong>&nbsp;&nbsp;${groupName}</strong></span>
+		       	     <img vertical-align="bottom" height="20px" width="20px" src="http://images.gofreedownload.net/gear-34957.jpg" onClick="fcConfig_modify()">
+		       	     <img vertical-align="bottom" height="20px" width="20px" src="http://wiki.opencloudengine.org/download/thumbnails/5636108/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%AE%E1%86%BA.png?version=1&modificationDate=1426577291000&api=v2" onClick="goLogout()">
 		           </div>
 		    </fieldset>
 			<div id=comunityList></div>
@@ -482,17 +482,17 @@
 		</c:when>
 		<c:otherwise>
 			<ul class="nav nav-tabs">
-			  <li id="tab1" class="active" ><a href="javascript:setTab('01');fcCounsel_list()">문의하기</a></li>
-			  <li id="tab2" ><a href="javascript:setTab('02');fcAs_list();">As조회</a></li>
+			  <li id="tab1" class="active" ><a href="javascript:setTab('01');fcAs_list()">A/S조회</a></li>
+			  <li id="tab2" ><a href="javascript:setTab('02');fcCounsel_list();">문의하기</a></li>
 			  <li id="tab3" ><a href="javascript:setTab('03');fcComunity_list()">매장과talk</a></li>
 			  <li id="tab4" ><a href="javascript:setTab('04');fc_hotdeal()">핫딜</a></li>
 			  <li id="tab5" ><a href="javascript:setTab('05');fc_mhome()">회사소개</a></li>
 			 
 			 <fieldset>
 		       	<div class="form-inline text-right">
-		             <img vertical-align="bottom" height="22px" width="22px" src="http://www.30mcart.ir/images/contact/phone.png"><span class="bar"><strong>&nbsp;&nbsp;${groupName}</strong></span>
-		             &nbsp;&nbsp;<img vertical-align="bottom" height="20px" width="20px" src="http://images.gofreedownload.net/gear-34957.jpg" onClick="fcConfig_modify()">
-		             &nbsp;&nbsp;<img vertical-align="bottom" height="20px" width="20px" src="http://wiki.opencloudengine.org/download/thumbnails/5636108/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%AE%E1%86%BA.png?version=1&modificationDate=1426577291000&api=v2" onClick="goLogout()">
+		       		<span class="bar"><strong>&nbsp;&nbsp;${groupName}</strong></span>
+		            <img vertical-align="bottom" height="20px" width="20px" src="http://images.gofreedownload.net/gear-34957.jpg" onClick="fcConfig_modify()">
+		            <img vertical-align="bottom" height="20px" width="20px" src="http://wiki.opencloudengine.org/download/thumbnails/5636108/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%AE%E1%86%BA.png?version=1&modificationDate=1426577291000&api=v2" onClick="goLogout()">
 		           </div>
 		    </fieldset>
 		    			  
@@ -531,7 +531,7 @@ if('${staffYn}'=='Y'){
 }else{
 
 	setTab('01');
-	fcCounsel_list();
+	fcAs_list();
 	
 }
 

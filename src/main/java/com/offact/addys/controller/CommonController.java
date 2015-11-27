@@ -1108,13 +1108,13 @@ public class CommonController {
 	    
 	    public String tokenCreate(){
 	    
-	    	String token="123456";
+	    	String token="1234";
 			
 	    	Random rand = new Random(12);
 			rand.setSeed(System.currentTimeMillis());
 			
-			token=""+rand.nextInt(1000000);
-			logger.info("##### create token :: " + rand.nextInt(1000000));
+			token=""+rand.nextInt(10000);
+			logger.info("##### create token :: " + rand.nextInt(10000));
 	    	
 	    	return token;
 	    }

@@ -5,54 +5,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="/WEB-INF/tlds/taglib.tld" prefix="taglib"%>
 <%@ page language="java" contentType="text/html;charset=utf-8"%>
-<%
-    /* ============================================================================== */
-    /* =   PAGE : 인증 요청 PAGE                                                    = */
-    /* = -------------------------------------------------------------------------- = */
-    /* =   Copyright (c)  2012.02   KCP Inc.   All Rights Reserved.                 = */
-    /* ============================================================================== */
-
-    /* ============================================================================== */
-    /* =   환경 설정 파일 Include                                                   = */
-    /* = -------------------------------------------------------------------------- = */
-%>
-<%@ page import="kr.co.kcp.CT_CLI"%>
-<%@ page import="java.text.*" %>
-<%@ page import="java.util.*" %>
-<%
-    /* = -------------------------------------------------------------------------- = */
-    /* =   환경 설정 파일 Include END                                               = */
-    /* ============================================================================== */
-
-    /* ============================================================================== */
-    /* =   Hash 데이터 생성 필요 데이터                                             = */
-    /* = -------------------------------------------------------------------------- = */
-    /* = 사이트코드 ( up_hash 생성시 필요 )                                         = */
-    /* = -------------------------------------------------------------------------- = */
-
-    String site_cd   = "S6186";
-
-    /* = -------------------------------------------------------------------------- = */
-    /* = 주문번호  ( up_hash 생성시 필요 )                                           = */
-    /* = -------------------------------------------------------------------------- = */
-
-    String ordr_idxx = "TEST" + (new SimpleDateFormat("yyyyMMddHHmmssSSSSSSS").format(new Date())); // 주문번호 생성 예제
-
-    /* = -------------------------------------------------------------------------- = */
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
-        <title>*** KCP Online Payment System [JSP Version] ***</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="../css/sample.css" rel="stylesheet" type="text/css">
-            
-	    <!-- Latest compiled and minified CSS -->
-	
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		      
 		<link href="<%= request.getContextPath() %>/css/reset.css" rel="stylesheet">
 		<link href="<%= request.getContextPath() %>/css/common.css" rel="stylesheet">
 		<link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet">
+		<link href="<%= request.getContextPath() %>/css/login.css" rel="stylesheet">
 	
 		<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-1.11.2.js"></script>
 		<script type="text/javascript" src="<%= request.getContextPath() %>/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
@@ -275,7 +240,9 @@
     							
     						    alert('인증요청을 성공했습니다.\n문자로 발송된 인증번호를 입력하시기 바랍니다.');
     							frm.customerKeyView.disabled=true;
-                                
+    							frm.tokenView.disabled=false;
+    							document.all('completebtn').style.display="inline";
+
     						} else if(result=='1'){
     							
 	   							 alert('이미 등록된 핸드폰 번호입니다.');
@@ -332,6 +299,7 @@
     							 //alert('인증요청을 성공했습니다.\n발송된 인증번호를 입력하시기 바랍니다.');
     							 document.all('pwform').style.display="inline";
     							 document.all('reqbtn').style.display="none";
+    							 document.all('completebtn').style.display="none";
     							 frm.tokenView.disabled=true;
                                 
     						} else if(result=='3'){
@@ -344,6 +312,7 @@
     						}
     						
     						 frm.tokenstate.value=result;
+    						 //alert(frm.tokenstate.value);
 
     		           },
     		           error:function(){
@@ -357,144 +326,86 @@
     </head>
     <body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
      <div id="wrap" class="wrap" >
-	 <!-- 헤더 -->
-	  <header>
-	   <div class="mb_top"  id="header">
-	   <c:choose>
-    		<c:when test="${type=='survey'}">
-				<h1 class="head_logo"><a href="<%= request.getContextPath() %>/surveyloginform" class=""><img src="<%= request.getContextPath() %>/images/logo_addys_w.png" alt="addys"  /></a></h1>
-	 		</c:when>
-			<c:otherwise>
-				<h1 class="head_logo"><a href="<%= request.getContextPath() %>/customerloginform" class=""><img src="<%= request.getContextPath() %>/images/logo_addys_w.png" alt="addys"  /></a></h1>
-	 		</c:otherwise>
-		</c:choose>
-		</div>
-	  </header>
-	  <!--//헤더 -->  
-	  <br><br><br><br> 
-            <form name="form_auth">
-                <table width="589" cellpadding="0" cellspacing="0">
-                    <tr style="height:14px"><td style="background-image:url('../img/boxtop589.gif');"></td></tr>
-                    <tr>
-                        <td style="background-image:url('../img/boxbg589.gif')">
-        
-                            <!-- 상단 테이블 Start -->
-                            <table width="551px" align="center" cellspacing="0" cellpadding="16">
-
-                                <tr style="height:11px"><td style="background:url('../img/boxbtm551.gif') no-repeat;"></td></tr>
-                            </table>
-                            <!-- 상단 테이블 End -->
-                            <input type="hidden" name="ordr_idxx" value="0"/>
-                            <input type="hidden" name="user_name" value=""/>
-                            <input type="hidden" id="year_month_day"/>
-                            <input type="hidden"  name="sex_code" value="01"/>
-                            <input type="hidden" name="local_code" value="01" />
-                            <!-- 주문 정보 출력 테이블 Start -->
-                           
-                            <!-- 주문 정보 출력 테이블 End -->
-        
-                            <!-- 결제 버튼 테이블 Start -->
-                            <table width="527" align="center" cellspacing="0" cellpadding="0" class="margin_top_20">
-                                <!-- 결제 요청/처음으로 이미지 버튼 -->
-                                <tr id="show_pay_btn">
-                                    <td colspan="2" align="center">
-                                  <!--      <input type="image" src="<%= request.getContextPath() %>/img/btn_certi.gif" onclick="return auth_type_check();" width="108" height="37" alt="요청합니다" />  -->
-                                    </td>
-                                </tr>
-                            </table>
-                            <!-- 결제 버튼 테이블 End -->
-                        </td>
-                    </tr>
-                </table>
-        
-                <!-- 요청종류 -->
-                <input type="hidden" name="req_tx"       value="cert"/>
-                <!-- 요청구분 -->
-                <input type="hidden" name="cert_method"  value="01"/>
-                <!-- 웹사이트아이디 -->
-                <input type="hidden" name="web_siteid"   value=""/> 
-                <!-- 노출 통신사 default 처리시 아래의 주석을 해제하고 사용하십시요 
-                     SKT : SKT , KT : KTF , LGU+ : LGT
-                <input type="hidden" name="fix_commid"      value="KTF"/>
-                -->
-                <!-- 사이트코드 -->
-                <input type="hidden" name="site_cd"      value="<%= site_cd %>" />
-                <!-- Ret_URL : 인증결과 리턴 페이지 ( 가맹점 URL 로 설정해 주셔야 합니다. ) -->
-                <input type="hidden" name="Ret_URL"      value="<%= request.getContextPath() %>/kcp/kcpcert_proc_req.jsp" />
-                <!-- cert_otp_use 필수 ( 메뉴얼 참고)
-                     Y : 실명 확인 + OTP 점유 확인 , N : 실명 확인 only
-                -->
-                <input type="hidden" name="cert_otp_use" value="Y"/>
-                <!-- cert_enc_use 필수 (고정값 : 메뉴얼 참고) -->
-                <input type="hidden" name="cert_enc_use" value="Y"/>
-
-                <input type="hidden" name="res_cd"       value=""/>
-                <input type="hidden" name="res_msg"      value=""/>
-
-                <!-- up_hash 검증 을 위한 필드 -->
-                <input type="hidden" name="veri_up_hash" value=""/>
-
-                <!-- 본인확인 input 비활성화 -->
-                <input type="hidden" name="cert_able_yn" value=""/>
-
-                <!-- web_siteid 검증 을 위한 필드 -->
-                <input type="hidden" name="web_siteid_hashYN" value=""/>
-
-                <!-- 가맹점 사용 필드 (인증완료시 리턴)-->
-                <input type="hidden" name="param_opt_1"  value="opt1"/> 
-                <input type="hidden" name="param_opt_2"  value="opt2"/> 
-                <input type="hidden" name="param_opt_3"  value="opt3"/> 
-            </form>
-            
-            <form commandName="customerVo"   id="RegistForm" name="RegistForm"  method="post" role="form" action="<%= request.getContextPath() %>/customer/regist">
-              <input type="hidden" name="tokenstate"          id="tokenstate"         value="-1"  />
-           	  <table class="table table-bordered" >
-			 	<tr>
-		          <th class='text-center' style="background-color:#E6F3FF;width:120px" >핸드폰 번호:</th>
-		          <th><div class="form-inline">
-		        	  <input type="text" class="form-control" id=customerKeyView name="customerKeyView" value="" placeholder="핸드폰번호" >
-		        	  <input type="hidden" id=customerKey name="customerKey"  value=""/> 
-			          <button id="reqbtn" type="button" class="btn btn-info" onClick="getToken()" >인증요청</button>
-			           <h5><font style="color:#FF9900">등록을 위해 단 한번의 핸드폰 인증이 필요합니다.</font></h5>   
-			          </div>
-		          </th>
-		      	</tr>
-		      	<tr>
-		          <th class='text-center' style="background-color:#E6F3FF" >인증번호:</th>
-		          <th>
-		          <div class="form-inline">
-		          <input type="text" class="form-control" id="tokenView" name="tokenView" style='ime-mode:active;' maxlength="200" value="" placeholder="인증번호"  />
-		          <input type="hidden" id=token name="token"  value=""/> 
-		          <button id="memoinfobtn" type="button" class="btn btn-info" onClick="getTokenConfirm()" >인증확인</button>
-		          <h5><font style="color:#FF9900">문자로 발송된 인증번호를 입력하세요</font></h5>   
-		    	  </div>
-		          </th>
-		      	</tr>
-		      	</table>
-		        <div id="pwform" name="pwform" style="display:none" >
-		          <h5><font style="color:#FF9900">패스워드를 설정 해 주세요</font></h5>   
-			      <table class="table table-bordered" >
-			      	<tr>
-			          <th class='text-center' style="background-color:#E6F3FF;width:120px" >패스워드:</th>
-			          <th>
-			          <div class="form-inline">
-			            <input type="password" class="form-control" id="customerPw" name="customerPw" style='ime-mode:active;' maxlength="200" value="" placeholder="패스워드"  />
-			    	  </div>
-			          </th>
-			      	</tr>
-			      	<tr>
-			          <th class='text-center' style="background-color:#E6F3FF" >재입력:</th>
-			          <th>
-			          <div class="form-inline">
-			           <input type="password" class="form-control" id="customerRePw" name="customerRePw" style='ime-mode:active;' maxlength="200" value="" placeholder="패스워드 재입력"  />
-			    	  </div>
-			          </th>
-			      	</tr>
-				  </table>				
-			      <button type="button" class="btn btn-default" onclick="goRigist()">등록</button>
-	       		</div>
-	      </form>
-        </div>
+		 <!-- 헤더 -->
+		  <header>
+		   <div class="mb_top">
+		   <c:choose>
+	    		<c:when test="${type=='survey'}">
+					<h1 class="head_logo"><a href="<%= request.getContextPath() %>/surveyloginform" class=""><img src="<%= request.getContextPath() %>/images/logo_addys_w.png" alt="addys"  /></a></h1>
+		 		</c:when>
+				<c:otherwise>
+					<h1 class="head_logo"><a href="<%= request.getContextPath() %>/customerloginform" class=""><img src="<%= request.getContextPath() %>/images/logo_addys_w.png" alt="addys"  /></a></h1>
+		 		</c:otherwise>
+			</c:choose>
+			</div>
+		  </header>
+		  <!--//헤더 -->  
+		  <!-- container -->
+		  <form commandName="customerVo"   id="RegistForm" name="RegistForm"  method="post" role="form" action="<%= request.getContextPath() %>/customer/regist">
+	        <input type="hidden" name="tokenstate"          id="tokenstate"         value="-1"  />
+		    <div id="container">
+		      <div class="m_content" >
+		        <div class="m_resbx">
+		          <!-- 핸드폰번호 등록 -->
+		            <div class="m_result id">
+		              <h4 class="m_sch_tp">등록을 위해 단 한번의 핸드폰 인증이 필요합니다.</h4>
+		              <ul class="schinp_list">
+		                <li>
+		                  <label for="" class="blind">핸드폰번호</label>
+		                  <span class="inpbx certi">
+		                  <input type="text" id=customerKeyView name="customerKeyView" placeholder="핸드폰번호 등록">
+		                  <input type="hidden" id=customerKey name="customerKey"  value=""/> 
+		                  </span><a href="javascript:getToken()" id="reqbtn" class="bn_certi" >인증요청</a></li>
+		                <li>
+		                  <label for="" class="blind">인증번호</label>
+		                  <span class="inpbx certi">
+		                  <input type="password" id="tokenView" name="tokenView" disabled placeholder="인증번호 입력">
+		                  <input type="hidden" id=token name="token"  value=""/> 
+		                  </span><a href="javascript:getTokenConfirm()" id="completebtn" style="display:none" class="bn_certi" >인증확인</a></li>
+		              </ul>
+		            </div>
+		          <!--//핸드폰번호 등록 --> 
+		          <!-- 비밀번호 등록 -->
+		          <br>
+		          <div  id="pwform" name="pwform" style="display:none" >
+		            <div class="m_result pw" >
+		              <h4 class="m_sch_tp"> 비밀번호를 설정해주세요.</h4>
+		              <ul class="schinp_list">
+		                <li>
+		                  <label for="inp_pw" class="blind">비밀번호</label>
+		                  <span class="inpbx">
+		                  <input type="password" name="customerPw" id="customerPw" placeholder="비밀번호 등록 (6~20 영문 숫자의 조합)">
+		                  </span></li>
+		                <li>
+		                  <label for="inp_pw2" class="blind">비밀번호 재입력</label>
+		                  <span class="inpbx">
+		                  <input type="password" name="customerRePw" id="customerRePw" placeholder="비밀번호 재확인">
+		                  </span></li>
+		              </ul>
+		            </div>
+		            <div class="bnbox">
+		              <a href="javascript:goRigist()" id="btn_change" class="bn_gray">등록하기</a>
+		            </div>
+		          </div>
+		          <!--//비밀번호 등록 --> 
+		          <!-- 이용안내 -->
+		          <h3 class="line_tit"></h3>
+		          <div class="m_tip">
+		            <span class="ico_tip"></span>등록을 하시면 다음과 같은 서비스를 이용 가능하십니다.
+		            <ul class="m_tip_list">
+		              <li>1. A/S 과정열람</li>
+                      <li>2. 문의하기</li>
+		              <li>3. 매장과 채팅</li>
+		              <li>4. Hot Deal & Event</li>
+		            </ul>
+		          </div>
+		          <!--//이용안내 -->
+		        </div>
+		      </div>
+		  </div>
+		  </form>
+	  	  <!--//container -->
+      </div>
     </body>
 </html>
 <script>
