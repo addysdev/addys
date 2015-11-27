@@ -373,7 +373,7 @@
         });
     };
 
-    function resultView(idx,counselResult,userName){
+    function resultView(idx,counselResult,userName,customerKey,counsel,counselImage){
 
     	var url='<%= request.getContextPath() %>/comunity/counseldetail';
 
@@ -382,13 +382,11 @@
             draggable : true, //드래그 불가능
             closeOnEscape : true, //ESC 버튼 눌렀을때 종료
 
-            width : 280,
-            height : 200,
             modal : true, //주위를 어둡게
 
             open:function(){
                 //팝업 가져올 url
-            	 $(this).load(url+'?idx='+idx+'&counselResult='+encodeURIComponent(counselResult)+'&userName='+encodeURIComponent(userName));
+            	 $(this).load(url+'?idx='+idx+'&counselResult='+encodeURIComponent(counselResult)+'&userName='+encodeURIComponent(userName)+'&counsel='+encodeURIComponent(counsel)+'&customerKey='+customerKey+'&counselImage='+counselImage);
 
             }
             ,close:function(){
@@ -452,6 +450,32 @@
                }
         });
     }
+ 
+    //레이어팝업 : AS처리 Layer 팝업
+    function fcAs_Detail(asNo){
+
+    	$('#asDetail').dialog({
+            resizable : true, //사이즈 변경 불가능
+            draggable : true, //드래그 불가능
+            closeOnEscape : true, //ESC 버튼 눌렀을때 종료
+
+            modal : true, //주위를 어둡게
+
+            open:function(){
+                //팝업 가져올 url
+                $(this).load('<%= request.getContextPath() %>/comunity/asdetail?asNo='+asNo);
+                //$("#userRegist").dialog().parents(".ui-dialog").find(".ui-dialog-titlebar").hide();
+                $(".ui-widget-overlay").click(function(){ //레이어팝업외 화면 클릭시 팝업 닫기
+                    $("#asDetail").dialog('close');
+
+                    });
+            }
+            ,close:function(){
+                $('#asDetail').empty();
+
+            }
+        });
+    };
   </script>
   </head>
    <body>
@@ -504,13 +528,15 @@
 		    <div id=counselList style="display:none"></div>
 		    
 		    <div id=aslist style="display:none"></div>
+		    
 		    <div id="hotdeal" style="display:none"></div>
 		    <div id="mhome" style="display:none"></div>
 		    
+		    <div id=asDetail title="A/S상세"></div>
       		<div id="commentRegistForm"  title="talk하기"></div>
     		<div id="counselRegistForm"  title="문의하기"></div>
     		<div id="imageView"  title="이미지"></div>
-    		<div id="counselResult"  title="답변내용"></div>
+    		<div id="counselResult"  title="문의상세"></div>
 		</c:otherwise>
 	</c:choose>
 	  <div id="customerModify"  title="고객 정보변경"></div>

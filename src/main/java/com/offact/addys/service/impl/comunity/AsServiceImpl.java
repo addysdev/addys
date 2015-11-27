@@ -43,9 +43,9 @@ public class AsServiceImpl implements AsService {
     }
 
     @Override
-    public AsVO getAsDetail(String idx) throws BizException {
+    public AsVO getAsDetail(AsVO as) throws BizException {
     	        
-    	AsVO asDetailVO = commonDao.selectOne("As.getAsDetail", idx);
+    	AsVO asDetailVO = commonDao.selectOne("As.getAsDetail", as);
 
         return asDetailVO;
     }

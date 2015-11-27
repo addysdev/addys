@@ -8,7 +8,7 @@
                 <c:choose>
         			<c:when test="${CounselVO.counselResult!=''}">
 						<td class='text-left'>
-						<a href="javascript:resultView('${CounselVO.idx}','${CounselVO.counselResult}','${CounselVO.userName}')">
+						<a href="javascript:resultView('${CounselVO.idx}','${CounselVO.counselResult}','${CounselVO.userName}','${CounselVO.customerKey}','${CounselVO.counsel}','${CounselVO.counselImage}')">
 						${CounselVO.counselDateTime} ${CounselVO.counsel}
 						<c:if test="${CounselVO.counselImage!=null}">
 						<img src='${CounselVO.counselImage}' width="20" height="20" />
@@ -19,10 +19,12 @@
 					</c:when>
 					<c:otherwise>
 						<td class='text-left'>
+						<a href="javascript:resultView('${CounselVO.idx}','${CounselVO.counselResult}','${CounselVO.userName}','${CounselVO.customerKey}','${CounselVO.counsel}','${CounselVO.counselImage}')">
 						<c:out value="${CounselVO.counselDateTime} ${CounselVO.counsel}"></c:out>
 						<c:if test="${CounselVO.counselImage!=null}">
 						<img src='${CounselVO.counselImage}' width="20" height="20" />
 						</c:if>
+						</a>
 						</td>
 					</c:otherwise>
 				</c:choose>

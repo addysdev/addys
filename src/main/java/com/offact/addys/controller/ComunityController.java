@@ -889,7 +889,9 @@ public class ComunityController {
 	    		                      HttpServletResponse response,
 	    		                      String idx,
 	    		                      String counselResult,
-	    		                      String userName) throws BizException 
+	    		                      String userName,
+	    		                      String counsel,
+	    		                      String counselImage) throws BizException 
 	    {
 	        
 	    	//log Controller execute time start
@@ -918,6 +920,9 @@ public class ComunityController {
 	        mv.addObject("idx", idx);
 	        mv.addObject("counselResult", counselResult);
 	        mv.addObject("userName", userName);
+	        
+	        mv.addObject("counsel", counsel);
+	        mv.addObject("counselImage", counselImage);
 
 	        mv.setViewName("/comunity/counselDetail");
 	        
@@ -1068,4 +1073,41 @@ public class ComunityController {
 	       	
 	        return mv;
 	    }
+	    /**
+		 * Simply selects the home view to render by returning its name.
+		 * @throws BizException
+		 */
+	    @RequestMapping(value = "/comunity/asdetail")
+		public ModelAndView asDetail(String asNo,
+				                     HttpServletRequest request) throws BizException 
+	    {
+			
+			ModelAndView mv = new ModelAndView();
+			
+			AsVO asVO = new AsVO();
+			
+			  // 사용자 세션정보
+	        HttpSession session = request.getSession();
+	        
+	        String customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
+	        String customerName = StringUtil.nvl((String) session.getAttribute("customerName")); 
+	        String customerId = StringUtil.nvl((String) session.getAttribute("customerId"));
+	        
+	        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
+
+	 	       	//mv.setViewName("/common/customerLoginForm");
+	        	mv.setViewName("/common/sessionOut");
+	        	return mv;
+			}
+			
+	        asVO.setAsNo(asNo);
+	        
+	        asVO = asSvc.getAsDetail(asVO);
+	        
+			mv.addObject("asVO", asVO);
+
+			mv.setViewName("/comunity/asDetail");
+			return mv;
+		}
+	    
 }

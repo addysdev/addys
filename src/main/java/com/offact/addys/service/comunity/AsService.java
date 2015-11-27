@@ -37,7 +37,7 @@ public interface AsService {
      * @return
      * @throws BizException
      */
-    public AsVO getAsDetail(String idx) throws BizException;
+    public AsVO getAsDetail(AsVO as) throws BizException;
     
     /**
      * as 처리
