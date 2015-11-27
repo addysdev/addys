@@ -89,8 +89,8 @@
 			  ,Case When ifnull(T1.asTargetDate,'') = '' Then '' Else DATE_FORMAT(T1.asTargetDate, '%Y-%m-%d') End asTargetDate
 			  ,ifnull(T1.asStartUserId,'') as asStartUserId
 			  ,ifnull(T3.userName,'') as asStartUserName
-			  ,ifnull(T3.asResult,'') as asResult
-			  ,ifnull(T3.asResultDateTime,'') as asResultDateTime
+			  ,ifnull(T1.asResult,'') as asResult
+			  ,ifnull(T1.asResultDateTime,'') as asResultDateTime
 			  ,T1.receiveName
 			  ,T1.receiveTelNo
 			  ,T1.receiveType

@@ -26,15 +26,32 @@ public class AsVO extends AbstractVO {
 	private String asTargetDate;
 	
 	private String asStartUserId;
+	private String asStartUserName;
 	private String asStartDateTime;
 	private String asRequestUserId;
+	private String asRequestUserName;
 	private String asRequestDateTime;
 	private String asResponseUserId;
+	private String asResponseUserName;
 	private String asResponseDateTime;
 	private String asCompleteUserId;
+	private String asCompleteUserName;
 	private String asCompleteDateTime;
 	private String asResult;
 	private String asResultDateTime;
+	
+	private String receiveName;
+	private String receiveTelNo;
+	private String receiveType;
+	private String receiveAddress;
+	private String receiveAddressDetail;
+	private String receivePost;
+	private String customerRequest;
+	private String purchaseDate;
+	private String receiptImage;
+	private String Memo;
+	private String asTransferNo;
+	private String receiveTransferNo;
 	
 	private String idx;
 	private String userId;
@@ -302,6 +319,105 @@ public class AsVO extends AbstractVO {
 	}
 	public void setGroup1Name(String group1Name) {
 		this.group1Name = group1Name;
+	}
+	
+	public String getReceiveName() {
+		return receiveName;
+	}
+	public void setReceiveName(String receiveName) {
+		this.receiveName = receiveName;
+	}
+	public String getReceiveTelNo() {
+		return receiveTelNo;
+	}
+	public void setReceiveTelNo(String receiveTelNo) {
+		this.receiveTelNo = receiveTelNo;
+	}
+	public String getReceiveType() {
+		return receiveType;
+	}
+	public void setReceiveType(String receiveType) {
+		this.receiveType = receiveType;
+	}
+	public String getReceiveAddress() {
+		return receiveAddress;
+	}
+	public void setReceiveAddress(String receiveAddress) {
+		this.receiveAddress = receiveAddress;
+	}
+	public String getReceiveAddressDetail() {
+		return receiveAddressDetail;
+	}
+	public void setReceiveAddressDetail(String receiveAddressDetail) {
+		this.receiveAddressDetail = receiveAddressDetail;
+	}
+	public String getReceivePost() {
+		return receivePost;
+	}
+	public void setReceivePost(String receivePost) {
+		this.receivePost = receivePost;
+	}
+	public String getCustomerRequest() {
+		return customerRequest;
+	}
+	public void setCustomerRequest(String customerRequest) {
+		this.customerRequest = customerRequest;
+	}
+	public String getPurchaseDate() {
+		return purchaseDate;
+	}
+	public void setPurchaseDate(String purchaseDate) {
+		this.purchaseDate = purchaseDate;
+	}
+	public String getReceiptImage() {
+		return receiptImage;
+	}
+	public void setReceiptImage(String receiptImage) {
+		this.receiptImage = receiptImage;
+	}
+	public String getMemo() {
+		return Memo;
+	}
+	public void setMemo(String memo) {
+		Memo = memo;
+	}
+	public String getAsTransferNo() {
+		return asTransferNo;
+	}
+	public void setAsTransferNo(String asTransferNo) {
+		this.asTransferNo = asTransferNo;
+	}
+	public String getReceiveTransferNo() {
+		return receiveTransferNo;
+	}
+	public void setReceiveTransferNo(String receiveTransferNo) {
+		this.receiveTransferNo = receiveTransferNo;
+	}
+	
+	
+	public String getAsStartUserName() {
+		return asStartUserName;
+	}
+	public void setAsStartUserName(String asStartUserName) {
+		this.asStartUserName = asStartUserName;
+	}
+	public String getAsRequestUserName() {
+		return asRequestUserName;
+	}
+	public void setAsRequestUserName(String asRequestUserName) {
+		this.asRequestUserName = asRequestUserName;
+	}
+	public String getAsResponseUserName() {
+		return asResponseUserName;
+	}
+	public void setAsResponseUserName(String asResponseUserName) {
+		this.asResponseUserName = asResponseUserName;
+	}
+	public String getAsCompleteUserName() {
+		return asCompleteUserName;
+	}
+	public void setAsCompleteUserName(String asCompleteUserName) {
+		this.asCompleteUserName = asCompleteUserName;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
