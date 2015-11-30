@@ -26,14 +26,20 @@
     	var url='<%= request.getContextPath() %>/comunity/commentregistform';
     	
     	var customerKey='${customerKey}';
+
+    	var h=screen.height-(screen.height*(8.5/100));
+    	var s=screen.width-10;
+    	
+    	if(h<s){
+    		s=h;
+    	}
     	
     	$('#commentRegistForm').dialog({
             resizable : false, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
             closeOnEscape : true, //ESC 버튼 눌렀을때 종료
-
-            width : 400,
-            height : 270,
+            position : 'center',
+            width : s,
             modal : true, //주위를 어둡게
 
             open:function(){
@@ -51,14 +57,20 @@
     	
     	var url='<%= request.getContextPath() %>/comunity/counselregistform';
     	var customerKey='${customerKey}';
+    	
+    	var h=screen.height-(screen.height*(8.5/100));
+    	var s=screen.width-10;
+    	
+    	if(h<s){
+    		s=h;
+    	}
 
     	$('#counselRegistForm').dialog({
             resizable : false, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
             closeOnEscape : true, //ESC 버튼 눌렀을때 종료
-
-            width : 400,
-            height : 270,
+            position : 'center',
+            width : s,
             modal : true, //주위를 어둡게
 
             open:function(){
@@ -75,14 +87,20 @@
     	
     	var url='<%= request.getContextPath() %>/common/customermodifyform';
     	var customerKey='${customerKey}';
+    	
+    	var h=screen.height-(screen.height*(8.5/100));
+    	var s=screen.width-10;
+    	
+    	if(h<s){
+    		s=h;
+    	}
 
     	$('#customerModify').dialog({
             resizable : false, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
             closeOnEscape : true, //ESC 버튼 눌렀을때 종료
-
-            width : 400,
-            height : 415,
+            position : 'center',
+            width : s,
             modal : true, //주위를 어둡게
 
             open:function(){
@@ -297,13 +315,19 @@
 	 //레이어팝업 : 상담처리 Layer 팝업
     function replyView(idx){
 
+    	var h=screen.height-(screen.height*(8.5/100));
+		var s=screen.width-10;
+		
+    	if(h<s){
+    		s=h;
+    	}
+		
     	$('#replyList').dialog({
             resizable : false, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
             closeOnEscape : true, //ESC 버튼 눌렀을때 종료
-
-            width : 400,
-            height : 500,
+            position : 'center',
+            width : s,
             modal : true, //주위를 어둡게
 
             open:function(){
@@ -348,40 +372,24 @@
 	    tmt_winLaunch('http://addys.shopnote.kr/' , 'qaz', 'qaz', 'status=no,location=no,menubar=no,toolbar=no,width='+s+',height ='+h+',left=0,top=0,resizable=yes,scrollbars=yes');
 		
     }
-    
-    function imageView(imageurl) {
-
-    	var url='<%= request.getContextPath() %>/comunity/imageview';
-    	
-    	$('#imageView').dialog({
-            resizable : false, //사이즈 변경 불가능
-            draggable : true, //드래그 불가능
-            closeOnEscape : true, //ESC 버튼 눌렀을때 종료
-
-           // width : 100,
-           // height : 100,
-            modal : true, //주위를 어둡게
-
-            open:function(){
-                //팝업 가져올 url
-            	 $(this).load(url+'?imageurl='+imageurl);
-
-            }
-            ,close:function(){
-                $('#imageView').empty();
-            }
-        });
-    };
 
     function resultView(idx,counselResult,userName,customerKey,counsel,counselImage){
 
+    	var h=screen.height-(screen.height*(8.5/100));
+		var s=screen.width-10;
+    	
+		if(h<s){
+    		s=h;
+    	}
+		
     	var url='<%= request.getContextPath() %>/comunity/counseldetail';
 
     	$('#counselResult').dialog({
             resizable : false, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
             closeOnEscape : true, //ESC 버튼 눌렀을때 종료
-
+            position : 'center',
+            width : s,
             modal : true, //주위를 어둡게
 
             open:function(){
@@ -453,12 +461,20 @@
  
     //레이어팝업 : AS처리 Layer 팝업
     function fcAs_Detail(asNo){
+    	
+    	var h=screen.height-(screen.height*(8.5/100));
+		var s=screen.width;
+		
+    	if(h<s){
+    		s=h;
+    	}
 
     	$('#asDetail').dialog({
             resizable : true, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
             closeOnEscape : true, //ESC 버튼 눌렀을때 종료
-
+            position : 'center',
+            width : s,
             modal : true, //주위를 어둡게
 
             open:function(){
@@ -476,6 +492,87 @@
             }
         });
     };
+    
+    function AutoResize(img){
+    	   foto1= new Image();
+    	   foto1.src=(img);
+    	   Controlla(img);
+    	 }
+  	 function Controlla(img){
+  	   if((foto1.width!=0)&&(foto1.height!=0)){
+  	     viewFoto(img);
+  	   }
+  	   else{
+  	     funzione="Controlla('"+img+"')";
+  	     intervallo=setTimeout(funzione,20);
+  	   }
+  	 }
+   	 function viewFoto(img){
+   	   largh=foto1.width-20;
+   	   altez=foto1.height-20;
+   	   stringa="width="+largh+",height="+altez;
+   	  // finestra=window.open(img,"",stringa);
+   	  
+	   	var h=screen.height-(screen.height*(8.5/100));
+		var s=screen.width;
+		
+		if(h<s){
+			s=h;
+		}
+		
+		if(s<largh){
+			largh=s;
+		}
+
+   	  	var url='<%= request.getContextPath() %>/comunity/imageview';
+   	   
+	   	$('#imageView').dialog({
+	        resizable : false, //사이즈 변경 불가능
+	        draggable : true, //드래그 불가능
+	        closeOnEscape : true, //ESC 버튼 눌렀을때 종료
+	        position : 'center',
+	        width : largh,
+	        modal : true, //주위를 어둡게
+	
+	        open:function(){
+	            //팝업 가져올 url
+	        	 $(this).load(url+'?imageurl='+img);
+	
+	        }
+	        ,close:function(){
+	            $('#imageView').empty();
+	        }
+	    });
+   	   
+   	 }
+     function imageView(imageurl) {
+
+     	var url='<%= request.getContextPath() %>/comunity/imageview';
+     	
+     	$('#imageView').dialog({
+             resizable : false, //사이즈 변경 불가능
+             draggable : true, //드래그 불가능
+             closeOnEscape : true, //ESC 버튼 눌렀을때 종료
+
+            // width : 100,
+            // height : 100,
+             modal : true, //주위를 어둡게
+
+             open:function(){
+                 //팝업 가져올 url
+             	 $(this).load(url+'?imageurl='+imageurl);
+
+             }
+             ,close:function(){
+                 $('#imageView').empty();
+             }
+         });
+     };
+     function imageClose(){
+    	 
+    	 $("#imageView").dialog('close');
+    	 $('#imageView').empty();
+     }
   </script>
   </head>
    <body>
@@ -535,7 +632,7 @@
 		    <div id=asDetail title="A/S상세"></div>
       		<div id="commentRegistForm"  title="talk하기"></div>
     		<div id="counselRegistForm"  title="문의하기"></div>
-    		<div id="imageView"  title="이미지"></div>
+    		<div id="imageView"  title="이미지" onClick="imageClose()"></div>
     		<div id="counselResult"  title="문의상세"></div>
 		</c:otherwise>
 	</c:choose>

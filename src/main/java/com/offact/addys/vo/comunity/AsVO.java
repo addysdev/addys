@@ -40,6 +40,8 @@ public class AsVO extends AbstractVO {
 	private String asResult;
 	private String asResultDateTime;
 	
+	private String asPolicy;
+	
 	private String receiveName;
 	private String receiveTelNo;
 	private String receiveType;
@@ -49,7 +51,7 @@ public class AsVO extends AbstractVO {
 	private String customerRequest;
 	private String purchaseDate;
 	private String receiptImage;
-	private String Memo;
+	private String memo;
 	private String asTransferNo;
 	private String receiveTransferNo;
 	
@@ -375,11 +377,12 @@ public class AsVO extends AbstractVO {
 	public void setReceiptImage(String receiptImage) {
 		this.receiptImage = receiptImage;
 	}
+	
 	public String getMemo() {
-		return Memo;
+		return memo;
 	}
 	public void setMemo(String memo) {
-		Memo = memo;
+		this.memo = memo;
 	}
 	public String getAsTransferNo() {
 		return asTransferNo;
@@ -418,6 +421,14 @@ public class AsVO extends AbstractVO {
 	}
 	public void setAsCompleteUserName(String asCompleteUserName) {
 		this.asCompleteUserName = asCompleteUserName;
+	}
+	
+	
+	public String getAsPolicy() {
+		return asPolicy;
+	}
+	public void setAsPolicy(String asPolicy) {
+		this.asPolicy = asPolicy;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;

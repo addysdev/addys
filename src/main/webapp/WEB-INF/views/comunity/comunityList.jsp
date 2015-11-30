@@ -20,7 +20,7 @@
 									<c:if test="${ComunityVO.comment!=''}">
 										${ComunityVO.comment}
 									</c:if>
-									<a href="javascript:imageView('${ComunityVO.commentImage}')"><img src='${ComunityVO.commentImage}' width="30" height="30" /></a>
+									<a href="javascript:AutoResize('${ComunityVO.commentImage}')"><img src='${ComunityVO.commentImage}' width="30" height="30" /></a>
 									</div>
 								</c:otherwise>
 					  		  </c:choose>
@@ -44,7 +44,7 @@
 								<c:if test="${ComunityVO.comment!=''}">
 									${ComunityVO.comment}
 								</c:if>
-								<a href="javascript:imageView('${ComunityVO.commentImage}')"><img src='${ComunityVO.commentImage}' width="30" height="30" /></a>
+								<a href="javascript:AutoResize('${ComunityVO.commentImage}')"><img src='${ComunityVO.commentImage}' width="30" height="30" /></a>
 								</div>
 							</c:otherwise>
 				  		  </c:choose>

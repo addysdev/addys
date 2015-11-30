@@ -46,48 +46,73 @@
 		<td align='left'>&nbsp;${asVO.asStartUserName}</td>
 		</tr>
 		<tr >
-		<td rowspan='3' align='center' >고객정보</td>
-		<td align='center' >고객명</td>
+		<td rowspan='5' align='center' >고객정보</td>
+		<td align='center' >의로인</td>
 		<td colspan='4' align='left'>&nbsp;${asVO.customerName}</td>
 		</tr>
 		<tr >
-		<td align='center' >연락처</td>
+		<td align='center' >의뢰인연락처</td>
 		<td colspan='4' align='left'>&nbsp;${asVO.customerKey}</td>
+		</tr>
+		<tr >
+		<td align='center' >수령인</td>
+		<td colspan='4' align='left'>&nbsp;${asVO.receiveName}</td>
+		</tr>
+		<tr >
+		<td align='center' >수령인연락처</td>
+		<td colspan='4' align='left'>&nbsp;${asVO.receiveTelNo}</td>
 		</tr>
 		<tr >
 		<td align='center' >배송주소</td>
 		<td colspan='4' align='left'>&nbsp;${asVO.receiveAddress} ${asVO.receiveAddressDetail}</td>
 		</tr>
 		<tr >
-		<td rowspan='4' align='center' >상품정보</td>
-		<td align='center' >상품명</td>
+		<td rowspan='6' align='center' >상품정보</td>
+		<td align='center' >브랜드명</td>
 		<td colspan='4' align='left'>&nbsp;${asVO.productName}</td>
 		</tr>
 		<tr >
-		<td align='center' >결제방법</td>
-		<td colspan='4' align='left'>&nbsp;</td>
+		<td align='center' >A/S정책</td>
+		<td colspan='4' align='left'>&nbsp;${asVO.asPolicy}</td>
+		</tr>
+		<tr >
+		<td align='center' >모델명</td>
+		<td colspan='4' align='left'>&nbsp;${asVO.productName}</td>
 		</tr>
 		<tr >
 		<td align='center' >증상</td>
-		<td colspan='4' align='left'>&nbsp;${asVO.asDetail}</td>
+		<td colspan='4' align='left'>&nbsp;<a href="javascript:AutoResize('${asVO.asImage}')"><img src='${asVO.asImage}' width="30" height="30" /></a>${asVO.asDetail}</td>
+		</tr>
+		<tr >
+		<td align='center' >의뢰인 요청사항</td>
+		<td colspan='4' align='left'>&nbsp;${asVO.customerRequest}</td>
 		</tr>
 		<tr >
 		<td align='center' >구입일</td>
 		<td colspan='4' align='left'>&nbsp;${asVO.purchaseDate}</td>
 		</tr>
+		<tr >
+		<td align='center' >왼료예정일</td>
+		<td align='left' colspan='5' >&nbsp;${asVO.asTargetDate}</td>
+		</tr>
+		<tr >
+		<td align='center' >메모</td>
+		<td align='left' colspan='5' >&nbsp;${asVO.memo}</td>
+		</tr>
 		</table>
 		<br>
 		처리이력
 		<table  align='center' class='style1' >
-		<tr >
-			<td align='center' height='27'>처리일시</td>
-			<td colspan='5' align='center'>상태</td>
-		</tr>
-		
-		<tr >
-			<td align='center' height='27'>2015/11/27</td>
-		    <td colspan='5' align='left'>&nbsp;접수완료</td>
-		</tr>	
+		 <c:if test="${!empty asList}">
+	        <c:forEach items="${asList}" var="AsVO" varStatus="status">
+				<tr >
+					<td align='center' height='27'>${AsVO.asStartDateTime}</td>
+					<td align='center' height='27'>${AsVO.userName}</td>
+					<td align='center' height='27'>${AsVO.asHistory}</td>
+					<td align='center' height='27'>${AsVO.asSubState}</td>
+				</tr>
+		 	</c:forEach>
+	   	</c:if>
 	   </table>
 	  </form:form>
 	</div>

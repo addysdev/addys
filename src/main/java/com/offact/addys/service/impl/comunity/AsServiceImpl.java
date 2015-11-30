@@ -95,5 +95,13 @@ public class AsServiceImpl implements AsService {
     	return retval;
 
     }
+    
+    @Override
+    public List<AsVO> getAsHistory(AsVO as) throws BizException {
+    	
+        List<AsVO> asList = commonDao.selectList("As.getAsHistory", as);
+
+        return asList;
+    }
 
 }

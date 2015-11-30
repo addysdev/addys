@@ -70,5 +70,13 @@ public interface AsService {
      * @throws BizException
      */
     public int regiReplyInsert(AsVO as) throws BizException;
+    
+    /**
+     * as 이력 조회
+     * 
+     * @return
+     * @throws BizException
+     */
+    public List<AsVO> getAsHistory(AsVO as) throws BizException;
 
 }

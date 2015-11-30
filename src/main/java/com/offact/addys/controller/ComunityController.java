@@ -1085,6 +1085,7 @@ public class ComunityController {
 			ModelAndView mv = new ModelAndView();
 			
 			AsVO asVO = new AsVO();
+			List<AsVO> asList = null;
 			
 			  // 사용자 세션정보
 	        HttpSession session = request.getSession();
@@ -1104,7 +1105,10 @@ public class ComunityController {
 	        
 	        asVO = asSvc.getAsDetail(asVO);
 	        
+	        asList = asSvc.getAsHistory(asVO);
+	        
 			mv.addObject("asVO", asVO);
+			mv.addObject("asList", asList);
 
 			mv.setViewName("/comunity/asDetail");
 			return mv;

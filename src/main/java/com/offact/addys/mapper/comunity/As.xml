@@ -36,7 +36,7 @@
   <result column="customerRequest"   property="customerRequest"  />
   <result column="purchaseDate"   property="purchaseDate"  />
   <result column="receiptImage"   property="receiptImage"  />
-  <result column="Memo"   property="Memo"  />
+  <result column="memo"   property="memo"  />
   <result column="asTransferNo"   property="asTransferNo"  />
   <result column="receiveTransferNo"   property="receiveTransferNo"  />
 </resultMap>
@@ -100,13 +100,32 @@
 			  ,T1.customerRequest
 			  ,T1.purchaseDate
 			  ,T1.receiptImage
-			  ,T1.Memo
+			  ,T1.memo
 			  ,T1.receiveTransferNo
           FROM smAs T1
 			   Left Join ofGroup T2 On T1.groupId=T2.groupId
 			   Left Join ofUser T3 On T1.asStartUserId=T3.userId
 			   Left Join adProductMaster T4 On T1.productCode=T4.productCode  
 		 Where T1.asNo = #{asNo}
+</select>
+
+
+<select id="getAsHistory"  resultMap="asListVO" parameterType="com.offact.addys.vo.comunity.AsVO" >
+        SELECT T1.idx
+			  ,T1.asNo
+			  ,T1.userId
+			  ,T2.userName
+			  ,T1.groupId
+			  ,T3.groupName
+			  ,T1.asHistory
+			  ,T1.asSubState
+			  ,DATE_FORMAT(T1.asHistoryDateTime, '%m/%d') as asStartDateTime
+          FROM smAsHistory T1
+          	   Left Join ofUser T2 On T1.userId=T2.userId
+			   Left Join ofGroup T3 On T1.groupId=T3.groupId
+         WHERE T1.asNo = #{asNo}
+         ORDER BY asHistoryDateTime desc
+         
 </select>
 
 </mapper>
