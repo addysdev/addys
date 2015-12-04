@@ -24,7 +24,7 @@
               ,T4.groupName
               ,T1.customerId
               ,T1.commentType 
-              ,T1.comment
+              ,replace(T1.comment,replace('<![CDATA[\n]]>',' ',''),  replace('<![CDATA[<br>]]>',' ','')) as comment
               ,T1.commentImage
               ,DATE_FORMAT(T1.commentDateTime, '%h:%i %p') as commentDateTime
               ,T1.commentDateTime as orderdate
@@ -46,7 +46,7 @@
                 ,T4.groupName
                 ,'' as customerId
                 ,T1.commentType 
-                ,T1.comment
+                ,replace(T1.comment,replace('<![CDATA[\n]]>',' ',''),  replace('<![CDATA[<br>]]>',' ','')) as comment
                 ,'' as commentImage
                 ,DATE_FORMAT(T1.commentDateTime, '%h:%i %p') as commentDateTime
                 ,T1.commentDateTime as orderdate
@@ -73,7 +73,7 @@
               ,T1.groupId
               ,T1.customerId
               ,T1.commentType 
-              ,T1.comment
+              ,replace(T1.comment,replace('<![CDATA[\n]]>',' ',''),  replace('<![CDATA[<br>]]>',' ','')) as comment
               ,DATE_FORMAT(T1.commentDateTime, '%h:%i %p') as commentDateTime
               ,T1.commentDateTime as orderdate
               ,(Select count(T4.idx) from smCommunity T4 Where T4.upidx=T1.idx ) as replyCnt 
@@ -97,7 +97,7 @@
         Select 'N' as commentType,
        		   T1.idx
        		  ,T2.groupName
-              ,T1.comment
+              ,replace(T1.comment,replace('<![CDATA[\n]]>',' ',''),  replace('<![CDATA[<br>]]>',' ','')) as comment
               ,T1.commentImage
               ,DATE_FORMAT(T1.commentDateTime, '%h:%i %p') as commentDateTime
               ,T1.commentDateTime as orderdate
@@ -111,7 +111,7 @@
 		Select 'Y' as commentType,
        		T1.upidx as idx,
        		T3.groupName,
-       		T1.comment,
+       		replace(T1.comment,replace('<![CDATA[\n]]>',' ',''),  replace('<![CDATA[<br>]]>',' ','')) as comment,
        		T1.commentImage,
        		DATE_FORMAT(T1.commentDateTime, '%h:%i %p') as commentDateTime,
        		T1.commentDateTime as orderdate

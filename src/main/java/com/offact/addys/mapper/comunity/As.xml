@@ -82,7 +82,7 @@
 			  ,T4.group1Name
 			  ,T1.asCategory
 			  ,T1.asCode
-			  ,T1.asDetail
+			  ,replace(T1.asDetail,replace('<![CDATA[\n]]>',' ',''),  replace('<![CDATA[<br>]]>',' ','')) as asDetail
 			  ,T1.asImage
 			  ,T1.asState
 			  ,DATE_FORMAT(T1.asStartDateTime, '%Y-%m-%d') as asStartDateTime
@@ -97,7 +97,7 @@
 			  ,T1.receiveAddress
 			  ,T1.receiveAddressDetail
 			  ,T1.receivePost
-			  ,T1.customerRequest
+			  ,replace(T1.customerRequest,replace('<![CDATA[\n]]>',' ',''),  replace('<![CDATA[<br>]]>',' ','')) as customerRequest
 			  ,T1.purchaseDate
 			  ,T1.receiptImage
 			  ,T1.memo
