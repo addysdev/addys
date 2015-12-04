@@ -12,6 +12,7 @@
 	<link href="<%= request.getContextPath() %>/css/reset.css" rel="stylesheet">
 	<link href="<%= request.getContextPath() %>/css/common.css" rel="stylesheet">
 	<link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet">
+	<link href="<%= request.getContextPath() %>/css/comunity.css" rel="stylesheet">
 
 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-1.11.2.js"></script>
 	<script type="text/javascript" src="<%= request.getContextPath() %>/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
@@ -38,7 +39,7 @@
             resizable : false, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
             closeOnEscape : true, //ESC 버튼 눌렀을때 종료
-            position : 'center',
+            ////position : 'center',
             width : s,
             modal : true, //주위를 어둡게
 
@@ -69,7 +70,7 @@
             resizable : false, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
             closeOnEscape : true, //ESC 버튼 눌렀을때 종료
-            position : 'center',
+            ////position : 'center',
             width : s,
             modal : true, //주위를 어둡게
 
@@ -99,7 +100,7 @@
             resizable : false, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
             closeOnEscape : true, //ESC 버튼 눌렀을때 종료
-            position : 'center',
+            //////position : 'center',
             width : s,
             modal : true, //주위를 어둡게
 
@@ -128,7 +129,7 @@
         	
         	$('#tab1').attr("class","");
         	$('#tab2').attr("class","");
-        	$('#tab3').attr("class","active");
+        	$('#tab3').attr("class","on");
         	$('#tab4').attr("class","");
         	$('#tab5').attr("class","");
         	
@@ -142,7 +143,7 @@
     		$('#hotdeal').attr("style","display:none");
         	$('#mhome').attr("style","display:none");
         	
-        	$('#tab1').attr("class","active");
+        	$('#tab1').attr("class","on");
         	$('#tab2').attr("class","");
         	$('#tab3').attr("class","");
         	$('#tab4').attr("class","");
@@ -159,7 +160,7 @@
         	$('#mhome').attr("style","display:none");
         	
         	$('#tab1').attr("class","");
-        	$('#tab2').attr("class","active");
+        	$('#tab2').attr("class","on");
         	$('#tab3').attr("class","");
         	$('#tab4').attr("class","");
         	$('#tab5').attr("class","");
@@ -177,7 +178,7 @@
         	$('#tab1').attr("class","");
         	$('#tab2').attr("class","");
         	$('#tab3').attr("class","");
-        	$('#tab4').attr("class","active");
+        	$('#tab4').attr("class","on");
         	$('#tab5').attr("class","");
         	
     	}else if(flag=='05'){
@@ -194,12 +195,13 @@
         	$('#tab2').attr("class","");
         	$('#tab3').attr("class","");
         	$('#tab4').attr("class","");
-        	$('#tab5').attr("class","active");
+        	$('#tab5').attr("class","on");
         	
     	}else{
     		
     		realYN='N';
     	}
+    	
 
     }
     // 리스트 조회
@@ -252,7 +254,7 @@
     	$('#mhome').attr("style","display:none");
     	
     	$('#tab1').attr("class","");
-    	$('#tab2').attr("class","active");
+    	$('#tab2').attr("class","on");
     	$('#tab3').attr("class","");
     	$('#tab4').attr("class","");
     	$('#tab5').attr("class","");
@@ -282,7 +284,7 @@
     	$('#hotdeal').attr("style","display:none");
     	$('#mhome').attr("style","display:none");
     	
-    	$('#tab1').attr("class","active");
+    	$('#tab1').attr("class","on");
     	$('#tab2').attr("class","");
     	$('#tab3').attr("class","");
     	$('#tab4').attr("class","");
@@ -326,7 +328,7 @@
             resizable : false, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
             closeOnEscape : true, //ESC 버튼 눌렀을때 종료
-            position : 'center',
+            ////position : 'center',
             width : s,
             modal : true, //주위를 어둡게
 
@@ -388,7 +390,7 @@
             resizable : false, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
             closeOnEscape : true, //ESC 버튼 눌렀을때 종료
-            position : 'center',
+            ////position : 'center',
             width : s,
             modal : true, //주위를 어둡게
 
@@ -415,7 +417,7 @@
     	$('#tab1').attr("class","");
     	$('#tab2').attr("class","");
     	$('#tab3').attr("class","");
-    	$('#tab4').attr("class","active");
+    	$('#tab4').attr("class","on");
     	$('#tab5').attr("class","");
 
         $.ajax({
@@ -444,7 +446,7 @@
     	$('#tab2').attr("class","");
     	$('#tab3').attr("class","");
     	$('#tab4').attr("class","");
-    	$('#tab5').attr("class","active");
+    	$('#tab5').attr("class","on");
 
         $.ajax({
             type: "POST",
@@ -473,7 +475,7 @@
             resizable : true, //사이즈 변경 불가능
             draggable : true, //드래그 불가능
             closeOnEscape : true, //ESC 버튼 눌렀을때 종료
-            position : 'center',
+            ////position : 'center',
             width : s,
             modal : true, //주위를 어둡게
 
@@ -530,7 +532,7 @@
 	        resizable : false, //사이즈 변경 불가능
 	        draggable : true, //드래그 불가능
 	        closeOnEscape : true, //ESC 버튼 눌렀을때 종료
-	        position : 'center',
+	        ////position : 'center',
 	        width : largh,
 	        modal : true, //주위를 어둡게
 	
@@ -578,64 +580,82 @@
    <body>
   <form method="post" id="logoutForm" name="logoutForm"  role="form" >
   </form>
-	  <div id="wrap" class="wrap" >
-	  <!-- 헤더 -->
-	  <header>
-	    <div class="mb_top"  id="header">
-	      <h1 class="head_logo"><img src="<%= request.getContextPath() %>/images/logo_addys_w.png" alt="addys"  /></h1>
-	    </div>
-	  </header>
-	  <!--//헤더 -->    
-	 <br><br><br><br>
-      <c:choose>
-        <c:when test="${staffYn=='Y'}">
-        	<!-- 조회결과리스트 -->
-        	 <fieldset>
-		       	<div class="form-inline text-right">
-		       	     <span class="bar"><strong>&nbsp;&nbsp;${groupName}</strong></span>
-		       	     <img vertical-align="bottom" height="20px" width="20px" src="http://images.gofreedownload.net/gear-34957.jpg" onClick="fcConfig_modify()">
-		       	     <img vertical-align="bottom" height="20px" width="20px" src="http://wiki.opencloudengine.org/download/thumbnails/5636108/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%AE%E1%86%BA.png?version=1&modificationDate=1426577291000&api=v2" onClick="goLogout()">
-		           </div>
-		    </fieldset>
-			<div id=comunityList></div>
-      		<div id="commentRegistForm"  title="talk하기"></div>
-      		<div id="imageView"  title="이미지"></div>
-		</c:when>
-		<c:otherwise>
-			<ul class="nav nav-tabs">
-			  <li id="tab1" class="active" ><a href="javascript:setTab('01');fcAs_list()">A/S조회</a></li>
-			  <li id="tab2" ><a href="javascript:setTab('02');fcCounsel_list();">문의하기</a></li>
-			  <li id="tab3" ><a href="javascript:setTab('03');fcComunity_list()">매장과talk</a></li>
-			  <li id="tab4" ><a href="javascript:setTab('04');fc_hotdeal()">핫딜</a></li>
-			  <li id="tab5" ><a href="javascript:setTab('05');fc_mhome()">회사소개</a></li>
-			 
-			 <fieldset>
-		       	<div class="form-inline text-right">
-		       		<span class="bar"><strong>&nbsp;&nbsp;${groupName}</strong></span>
-		            <img vertical-align="bottom" height="20px" width="20px" src="http://images.gofreedownload.net/gear-34957.jpg" onClick="fcConfig_modify()">
-		            <img vertical-align="bottom" height="20px" width="20px" src="http://wiki.opencloudengine.org/download/thumbnails/5636108/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%AE%E1%86%BA.png?version=1&modificationDate=1426577291000&api=v2" onClick="goLogout()">
-		           </div>
-		    </fieldset>
-		    			  
-			</ul>
-			<br>
-			<!-- 조회결과리스트 -->
-		    <div id=comunityList style="display:none"></div>
-		    <!-- 조회결과리스트 -->
-		    <div id=counselList style="display:none"></div>
-		    
-		    <div id=aslist style="display:none"></div>
-		    
-		    <div id="hotdeal" style="display:none"></div>
-		    <div id="mhome" style="display:none"></div>
-		    
-		    <div id=asDetail title="A/S상세"></div>
-      		<div id="commentRegistForm"  title="talk하기"></div>
-    		<div id="counselRegistForm"  title="문의하기"></div>
-    		<div id="imageView"  title="이미지" onClick="imageClose()"></div>
-    		<div id="counselResult"  title="문의상세"></div>
-		</c:otherwise>
-	</c:choose>
+	 <div id="wrap" class="wrap" >
+		  <c:choose>
+	        <c:when test="${staffYn=='Y'}">
+	        <!-- 헤더 -->
+			  <header id="header">
+			    <div id="m_gnb" class="mcom_gnbwrap mb_top">
+			      <div class="mcom_gnb ">
+			        <h1 class="head_logo"> <img src="<%= request.getContextPath() %>/images/logo_addys_w.png" alt="addys"  /></h1>
+			        <div class="mcom_gnb_rgt">
+			          <div class="b_toggle">
+			            <ul>
+			              <li> <a href="#" class="b_name"> <strong class="">${groupName}</strong> </a></li>
+			              <li> <a href="javascript:fcConfig_modify()" class="b_cog"> <strong class="ico_cog"><span>설정</span></strong> </a></li>
+			              <li><a href="javascript:goLogout()" class="b_logout"> 
+			                <strong>로그아웃</strong></a>
+			              </li>
+			            </ul>
+			          </div>
+			        </div>
+			      </div>
+			    </div>
+			  </header>
+			  <!--//헤더 --> 
+	  			<br><br><br><br><br><br><br>
+	  			<div id=comunityList></div>
+	      		<div id="commentRegistForm"  title="talk하기"></div>
+	      		<div id="imageView"  title="이미지"></div>
+	        </c:when>
+			<c:otherwise>
+			<!-- 헤더 -->
+			  <header id="header">
+			    <div id="m_gnb" class="mcom_gnbwrap mb_top">
+			      <div class="mcom_gnb ">
+			        <h1 class="head_logo"> <img src="<%= request.getContextPath() %>/images/logo_addys_w.png" alt="addys"  /></h1>
+			        <div class="mcom_gnb_rgt">
+			          <div class="b_toggle">
+			            <ul>
+			              <li> <a href="#" class="b_name"> <strong class="">${groupName}</strong> </a></li>
+			              <li> <a href="javascript:fcConfig_modify()" class="b_cog"> <strong class="ico_cog"><span>설정</span></strong> </a></li>
+			              <li><a href="javascript:goLogout()" class="b_logout"> 
+			                <strong>로그아웃</strong></a>
+			              </li>
+			            </ul>
+			          </div>
+			        </div>
+			      </div>
+			    </div>
+			    <div class="mcom_navwrap" style="overflow: hidden; z-index: 2000; -webkit-tap-highlight-color: transparent; height: 47px;">
+			      <div class="mcom_nav" style="position: absolute; z-index: 1; left: 0px; top: 0px; transition-property: -webkit-transform; transform: translate3d(10px, 0px, 0px); transition-timing-function: cubic-bezier(0.33, 0.66, 0.66, 1); height: 100%; width: 2583px; transition-duration: 0ms;">
+			        <ul style="width: 861px; height: 100%; position: absolute; left: 0px; top: 0px;">
+			          <li id="tab1" class="on" index="0" style="float: left; width: 80px;"><a href="javascript:setTab('01');fcAs_list()"><span class="nav_mnu">A/S조회</span></a></li>
+			          <li id="tab2" index="1" style="float: left; width: 80px;"><a href="javascript:setTab('02');fcCounsel_list();"><span class="nav_mnu">문의하기</span></a></li>
+			          <li id="tab3" index="2" style="float: left; width: 80px;"><a href="javascript:setTab('03');fcComunity_list()"><span class="nav_mnu">매장과talk</span></a></li>
+			          <li id="tab4" index="3" style="float: left; width: 50px;"><a href="javascript:setTab('04');fc_hotdeal()"><span class="nav_mnu">핫딜</span></a></li>
+			          <li id="tab5" index="4" style="float: left; width: 80px;"><a href="javascript:setTab('05');fc_mhome()"><span class="nav_mnu">회사소개</span></a></li>
+			        </ul>
+			      </div>
+			    </div>
+			  </header>
+			  <!--//헤더 --> 
+	  			<br><br><br><br><br><br><br>
+	  			<!-- 조회결과리스트 -->
+			    <div id=comunityList style="display:none"></div>
+			    <!-- 조회결과리스트 -->
+			    <div id=counselList style="display:none"></div>
+			    <div id=aslist style="display:none"></div>
+			    <div id="hotdeal" style="display:none"></div>
+			    <div id="mhome" style="display:none"></div>
+			    
+			    <div id=asDetail title="A/S상세"></div>
+	      		<div id="commentRegistForm"  title="talk하기"></div>
+	    		<div id="counselRegistForm"  title="문의하기"></div>
+	    		<div id="imageView"  title="이미지" onClick="imageClose()"></div>
+	    		<div id="counselResult"  title="문의상세"></div>
+			</c:otherwise>
+		</c:choose>
 	  <div id="customerModify"  title="고객 정보변경"></div>
 	  <div id="replyList"  title="답글정보"></div>
     </div>
@@ -657,5 +677,4 @@ if('${staffYn}'=='Y'){
 	fcAs_list();
 	
 }
-
 </script>
