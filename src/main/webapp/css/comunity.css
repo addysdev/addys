@@ -30,22 +30,14 @@ button { border: 0 none; background-color: transparent; cursor: pointer; }
 .mcom_navwrap .mcom_nav { position: relative; overflow: hidden; height: 42px !important; }
 .mcom_navwrap ul { white-space: nowrap; }
 .mcom_navwrap li { position: relative; display: inline-block; text-align: center; }
-.mcom_navwrap ul { white-space: nowrap; }
 .mcom_navwrap li a { display: block; height: 42px; color: #808080; font-size: 14px; line-height: 42px; text-align: center; letter-spacing: -1px; }
-.mcom_navwrap .nav_mnu { position: relative; display: inline-block; padding: 0 20px; height: 42px; }
 Inherited from a .mcom_navwrap li a { display: block; height: 42px; color: #808080; font-size: 14px; line-height: 42px; text-align: center; letter-spacing: -1px; }
-.mcom_navwrap:after { position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: #d4d4d4; content: ''; }
-.mcom_navwrap { position: relative; width: 100%; height: 43px !important; overflow: hidden; background: rgba(255,255,255,0.95) }
 .mcom_navwrap:after { position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: #d4d4d4; content: '' }
 .mcom_navwrap.stuck { position: fixed; left: 0; top: 0 }
-.mcom_navwrap .mcom_nav { position: relative; overflow: hidden; height: 42px !important }
-.mcom_navwrap ul { white-space: nowrap }
-.mcom_navwrap li { position: relative; display: inline-block; text-align: center }
-.mcom_navwrap li a { display: block; height: 42px; color: #808080; font-size: 14px; line-height: 42px; text-align: center; letter-spacing: -1px }
 .mcom_wrap.em .mcom_navwrap li a { color: #999 }
 .mcom_navwrap li.on a { color: #2d2f33; font-weight: bold; }
 .mcom_wrap.em .mcom_navwrap li.on a { color: #47494f }
-.mcom_navwrap .nav_mnu { position: relative; display: inline-block; padding: 0 10px; height: 42px; }
+.mcom_navwrap .nav_mnu { position: relative; display: inline-block; padding: 0 5px; height: 42px; }
 .mcom_navwrap .nav_mnu:after { display: none; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: #0097DA; content: ''; z-index: 10 /* 선택시 컬러 */ }
 .mcom_navwrap .on .nav_mnu:after { display: block }
 .mcom_wrap.em.traders .mcom_navwrap:after { display: none }
