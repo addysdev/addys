@@ -103,5 +103,20 @@ public class AsServiceImpl implements AsService {
 
         return asList;
     }
+    
+    @Override
+    public int asStateProc(AsVO as) throws BizException {
+        //상담처리
+
+    	int retVal=-1;
+    	
+    	retVal=commonDao.update("As.asStateProc", as);
+    	
+    	retVal=commonDao.insert("As.asTransHistoryInsert", as);
+    	
+    	return retVal;
+
+
+    }
 
 }

@@ -15,6 +15,8 @@ public class AsVO extends AbstractVO {
 	private String customerKey;
 	private String customerName;
 	private String asState;
+	private String asStateTrans;
+	private String asSubState;
 	private String productCode;
 	private String productName;
 	private String group1Id;
@@ -52,15 +54,29 @@ public class AsVO extends AbstractVO {
 	private String purchaseDate;
 	private String receiptImage;
 	private String memo;
-	private String asTransferNo;
-	private String receiveTransferNo;
+	private String asDeliveryMethod;
+	private String reDeliveryMethod;
+	private String asTransportCode;
+	private String reTransportCode;
+	private String asTransport;
+	private String reTransport;
+	private String asTransportNo;
+	private String reTransportNo;
+	private String asQuickCharge;
+	private String reQuickCharge;
+	private String asQuickTel;
+	private String reQuickTel;
+	
+	private String asTransurl;
+	private String reTransurl;
 	
 	private String idx;
 	private String userId;
 	private String userName;
 	private String asHistory;
 	private String asHistoryDateTime;
-	private String asSubState;
+	private String centerAsNo;
+	private String centerImage;
 	
     private String searchGubun;
     private String searchValue;
@@ -111,6 +127,18 @@ public class AsVO extends AbstractVO {
 	public void setAsState(String asState) {
 		this.asState = asState;
 	}
+	public String getAsStateTrans() {
+		return asStateTrans;
+	}
+	public void setAsStateTrans(String asStateTrans) {
+		this.asStateTrans = asStateTrans;
+	}
+	public String getAsSubState() {
+		return asSubState;
+	}
+	public void setAsSubState(String asSubState) {
+		this.asSubState = asSubState;
+	}
 	public String getProductCode() {
 		return productCode;
 	}
@@ -122,6 +150,18 @@ public class AsVO extends AbstractVO {
 	}
 	public void setProductName(String productName) {
 		this.productName = productName;
+	}
+	public String getGroup1Id() {
+		return group1Id;
+	}
+	public void setGroup1Id(String group1Id) {
+		this.group1Id = group1Id;
+	}
+	public String getGroup1Name() {
+		return group1Name;
+	}
+	public void setGroup1Name(String group1Name) {
+		this.group1Name = group1Name;
 	}
 	public String getAsCategory() {
 		return asCategory;
@@ -159,6 +199,12 @@ public class AsVO extends AbstractVO {
 	public void setAsStartUserId(String asStartUserId) {
 		this.asStartUserId = asStartUserId;
 	}
+	public String getAsStartUserName() {
+		return asStartUserName;
+	}
+	public void setAsStartUserName(String asStartUserName) {
+		this.asStartUserName = asStartUserName;
+	}
 	public String getAsStartDateTime() {
 		return asStartDateTime;
 	}
@@ -170,6 +216,12 @@ public class AsVO extends AbstractVO {
 	}
 	public void setAsRequestUserId(String asRequestUserId) {
 		this.asRequestUserId = asRequestUserId;
+	}
+	public String getAsRequestUserName() {
+		return asRequestUserName;
+	}
+	public void setAsRequestUserName(String asRequestUserName) {
+		this.asRequestUserName = asRequestUserName;
 	}
 	public String getAsRequestDateTime() {
 		return asRequestDateTime;
@@ -183,6 +235,12 @@ public class AsVO extends AbstractVO {
 	public void setAsResponseUserId(String asResponseUserId) {
 		this.asResponseUserId = asResponseUserId;
 	}
+	public String getAsResponseUserName() {
+		return asResponseUserName;
+	}
+	public void setAsResponseUserName(String asResponseUserName) {
+		this.asResponseUserName = asResponseUserName;
+	}
 	public String getAsResponseDateTime() {
 		return asResponseDateTime;
 	}
@@ -194,6 +252,12 @@ public class AsVO extends AbstractVO {
 	}
 	public void setAsCompleteUserId(String asCompleteUserId) {
 		this.asCompleteUserId = asCompleteUserId;
+	}
+	public String getAsCompleteUserName() {
+		return asCompleteUserName;
+	}
+	public void setAsCompleteUserName(String asCompleteUserName) {
+		this.asCompleteUserName = asCompleteUserName;
 	}
 	public String getAsCompleteDateTime() {
 		return asCompleteDateTime;
@@ -212,6 +276,156 @@ public class AsVO extends AbstractVO {
 	}
 	public void setAsResultDateTime(String asResultDateTime) {
 		this.asResultDateTime = asResultDateTime;
+	}
+	public String getAsPolicy() {
+		return asPolicy;
+	}
+	public void setAsPolicy(String asPolicy) {
+		this.asPolicy = asPolicy;
+	}
+	public String getReceiveName() {
+		return receiveName;
+	}
+	public void setReceiveName(String receiveName) {
+		this.receiveName = receiveName;
+	}
+	public String getReceiveTelNo() {
+		return receiveTelNo;
+	}
+	public void setReceiveTelNo(String receiveTelNo) {
+		this.receiveTelNo = receiveTelNo;
+	}
+	public String getReceiveType() {
+		return receiveType;
+	}
+	public void setReceiveType(String receiveType) {
+		this.receiveType = receiveType;
+	}
+	public String getReceiveAddress() {
+		return receiveAddress;
+	}
+	public void setReceiveAddress(String receiveAddress) {
+		this.receiveAddress = receiveAddress;
+	}
+	public String getReceiveAddressDetail() {
+		return receiveAddressDetail;
+	}
+	public void setReceiveAddressDetail(String receiveAddressDetail) {
+		this.receiveAddressDetail = receiveAddressDetail;
+	}
+	public String getReceivePost() {
+		return receivePost;
+	}
+	public void setReceivePost(String receivePost) {
+		this.receivePost = receivePost;
+	}
+	public String getCustomerRequest() {
+		return customerRequest;
+	}
+	public void setCustomerRequest(String customerRequest) {
+		this.customerRequest = customerRequest;
+	}
+	public String getPurchaseDate() {
+		return purchaseDate;
+	}
+	public void setPurchaseDate(String purchaseDate) {
+		this.purchaseDate = purchaseDate;
+	}
+	public String getReceiptImage() {
+		return receiptImage;
+	}
+	public void setReceiptImage(String receiptImage) {
+		this.receiptImage = receiptImage;
+	}
+	public String getMemo() {
+		return memo;
+	}
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+	public String getAsDeliveryMethod() {
+		return asDeliveryMethod;
+	}
+	public void setAsDeliveryMethod(String asDeliveryMethod) {
+		this.asDeliveryMethod = asDeliveryMethod;
+	}
+	public String getReDeliveryMethod() {
+		return reDeliveryMethod;
+	}
+	public void setReDeliveryMethod(String reDeliveryMethod) {
+		this.reDeliveryMethod = reDeliveryMethod;
+	}
+	public String getAsTransportCode() {
+		return asTransportCode;
+	}
+	public void setAsTransportCode(String asTransportCode) {
+		this.asTransportCode = asTransportCode;
+	}
+	public String getReTransportCode() {
+		return reTransportCode;
+	}
+	public void setReTransportCode(String reTransportCode) {
+		this.reTransportCode = reTransportCode;
+	}
+	public String getAsTransport() {
+		return asTransport;
+	}
+	public void setAsTransport(String asTransport) {
+		this.asTransport = asTransport;
+	}
+	public String getReTransport() {
+		return reTransport;
+	}
+	public void setReTransport(String reTransport) {
+		this.reTransport = reTransport;
+	}
+	public String getAsTransportNo() {
+		return asTransportNo;
+	}
+	public void setAsTransportNo(String asTransportNo) {
+		this.asTransportNo = asTransportNo;
+	}
+	public String getReTransportNo() {
+		return reTransportNo;
+	}
+	public void setReTransportNo(String reTransportNo) {
+		this.reTransportNo = reTransportNo;
+	}
+	public String getAsQuickCharge() {
+		return asQuickCharge;
+	}
+	public void setAsQuickCharge(String asQuickCharge) {
+		this.asQuickCharge = asQuickCharge;
+	}
+	public String getReQuickCharge() {
+		return reQuickCharge;
+	}
+	public void setReQuickCharge(String reQuickCharge) {
+		this.reQuickCharge = reQuickCharge;
+	}
+	public String getAsQuickTel() {
+		return asQuickTel;
+	}
+	public void setAsQuickTel(String asQuickTel) {
+		this.asQuickTel = asQuickTel;
+	}
+	public String getReQuickTel() {
+		return reQuickTel;
+	}
+	public void setReQuickTel(String reQuickTel) {
+		this.reQuickTel = reQuickTel;
+	}
+	public String getAsTransurl() {
+		return asTransurl;
+	}
+	public void setAsTransurl(String asTransurl) {
+		this.asTransurl = asTransurl;
+	}
+	public String getReTransurl() {
+		return reTransurl;
+	}
+	public void setReTransurl(String reTransurl) {
+		this.reTransurl = reTransurl;
 	}
 	public String getIdx() {
 		return idx;
@@ -243,11 +457,17 @@ public class AsVO extends AbstractVO {
 	public void setAsHistoryDateTime(String asHistoryDateTime) {
 		this.asHistoryDateTime = asHistoryDateTime;
 	}
-	public String getAsSubState() {
-		return asSubState;
+	public String getCenterAsNo() {
+		return centerAsNo;
 	}
-	public void setAsSubState(String asSubState) {
-		this.asSubState = asSubState;
+	public void setCenterAsNo(String centerAsNo) {
+		this.centerAsNo = centerAsNo;
+	}
+	public String getCenterImage() {
+		return centerImage;
+	}
+	public void setCenterImage(String centerImage) {
+		this.centerImage = centerImage;
 	}
 	public String getSearchGubun() {
 		return searchGubun;
@@ -308,127 +528,6 @@ public class AsVO extends AbstractVO {
 	}
 	public void setPage_limit_val2(String page_limit_val2) {
 		this.page_limit_val2 = page_limit_val2;
-	}
-	
-	public String getGroup1Id() {
-		return group1Id;
-	}
-	public void setGroup1Id(String group1Id) {
-		this.group1Id = group1Id;
-	}
-	public String getGroup1Name() {
-		return group1Name;
-	}
-	public void setGroup1Name(String group1Name) {
-		this.group1Name = group1Name;
-	}
-	
-	public String getReceiveName() {
-		return receiveName;
-	}
-	public void setReceiveName(String receiveName) {
-		this.receiveName = receiveName;
-	}
-	public String getReceiveTelNo() {
-		return receiveTelNo;
-	}
-	public void setReceiveTelNo(String receiveTelNo) {
-		this.receiveTelNo = receiveTelNo;
-	}
-	public String getReceiveType() {
-		return receiveType;
-	}
-	public void setReceiveType(String receiveType) {
-		this.receiveType = receiveType;
-	}
-	public String getReceiveAddress() {
-		return receiveAddress;
-	}
-	public void setReceiveAddress(String receiveAddress) {
-		this.receiveAddress = receiveAddress;
-	}
-	public String getReceiveAddressDetail() {
-		return receiveAddressDetail;
-	}
-	public void setReceiveAddressDetail(String receiveAddressDetail) {
-		this.receiveAddressDetail = receiveAddressDetail;
-	}
-	public String getReceivePost() {
-		return receivePost;
-	}
-	public void setReceivePost(String receivePost) {
-		this.receivePost = receivePost;
-	}
-	public String getCustomerRequest() {
-		return customerRequest;
-	}
-	public void setCustomerRequest(String customerRequest) {
-		this.customerRequest = customerRequest;
-	}
-	public String getPurchaseDate() {
-		return purchaseDate;
-	}
-	public void setPurchaseDate(String purchaseDate) {
-		this.purchaseDate = purchaseDate;
-	}
-	public String getReceiptImage() {
-		return receiptImage;
-	}
-	public void setReceiptImage(String receiptImage) {
-		this.receiptImage = receiptImage;
-	}
-	
-	public String getMemo() {
-		return memo;
-	}
-	public void setMemo(String memo) {
-		this.memo = memo;
-	}
-	public String getAsTransferNo() {
-		return asTransferNo;
-	}
-	public void setAsTransferNo(String asTransferNo) {
-		this.asTransferNo = asTransferNo;
-	}
-	public String getReceiveTransferNo() {
-		return receiveTransferNo;
-	}
-	public void setReceiveTransferNo(String receiveTransferNo) {
-		this.receiveTransferNo = receiveTransferNo;
-	}
-	
-	
-	public String getAsStartUserName() {
-		return asStartUserName;
-	}
-	public void setAsStartUserName(String asStartUserName) {
-		this.asStartUserName = asStartUserName;
-	}
-	public String getAsRequestUserName() {
-		return asRequestUserName;
-	}
-	public void setAsRequestUserName(String asRequestUserName) {
-		this.asRequestUserName = asRequestUserName;
-	}
-	public String getAsResponseUserName() {
-		return asResponseUserName;
-	}
-	public void setAsResponseUserName(String asResponseUserName) {
-		this.asResponseUserName = asResponseUserName;
-	}
-	public String getAsCompleteUserName() {
-		return asCompleteUserName;
-	}
-	public void setAsCompleteUserName(String asCompleteUserName) {
-		this.asCompleteUserName = asCompleteUserName;
-	}
-	
-	
-	public String getAsPolicy() {
-		return asPolicy;
-	}
-	public void setAsPolicy(String asPolicy) {
-		this.asPolicy = asPolicy;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;

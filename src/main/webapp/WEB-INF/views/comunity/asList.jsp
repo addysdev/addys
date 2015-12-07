@@ -11,8 +11,8 @@
 					<img src='${AsVO.asImage}' width="20" height="20" />
 					<c:out value="[${AsVO.group1Name}]"></c:out>
 					<c:out value="${AsVO.productName}"></c:out>
+					<c:out value="[${AsVO.asStateTrans}]"></c:out>
 					</a>
-					<button id="deferbtn" type="button" class="btn btn-success btn-sm"  >수령확인</button>
 				</td>
               </tr>
              </c:forEach>

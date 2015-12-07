@@ -1114,4 +1114,56 @@ public class ComunityController {
 			return mv;
 		}
 	    
+	    /**
+	     * AS상태변경
+	     *
+	     * @param UserManageVO
+	     * @param request
+	     * @param response
+	     * @param model
+	     * @param locale
+	     * @return
+	     * @throws BizException
+	     */
+	    @RequestMapping(value = "/comunity/asstateprocess", method = RequestMethod.POST)
+	    public @ResponseBody
+	    String asStateProcess(String asNo,
+	    		              String asState,
+	    					  String asSubState,
+	    					  String asHistory,
+	    		              HttpServletRequest request, 
+	    		              HttpServletResponse response) throws BizException
+	    {
+	    	//log Controller execute time start
+			String logid=logid();
+			long t1 = System.currentTimeMillis();
+			logger.info("["+logid+"] Controller start : asNo" + asNo);
+
+
+	        AsVO asVO = new AsVO();
+	        
+	        asVO.setAsNo(asNo);
+	        asVO.setAsState(asState);
+	        asVO.setAsSubState(asSubState);
+	        asVO.setAsHistory(asHistory);
+	        
+	        int retVal=this.asSvc.asStateProc(asVO);
+
+	        //SMS발송
+	        
+			//작업이력
+	        /*
+			WorkVO work = new WorkVO();
+			work.setWorkUserId(strUserId);
+			work.setWorkCategory("MU");
+			work.setWorkCode("MU001");
+			commonSvc.regiHistoryInsert(work);
+			*/
+	        
+			//log Controller execute time end
+	       	long t2 = System.currentTimeMillis();
+	       	logger.info("["+logid+"] Controller end execute time:[" + (t2-t1)/1000.0 + "] seconds");
+
+	      return ""+retVal;
+	    }
 }

@@ -26,7 +26,37 @@
 				
 	<script>
 
-	//
+	  function fcAs_StateProcess(asNo,asState,asSubState,asHistory){
+			  
+			  if (confirm('A/S 제품을 정상적으로 수령하셨습니까?')){
+					
+					$.ajax({
+				        type: "POST",
+				        async:false,
+				           url:  "<%= request.getContextPath() %>/comunity/asstateprocess?asNo="+asNo+"&asState="+asState+"&asSubState="+asSubState+"&asHistory="+encodeURIComponent(asHistory),			  
+				           success: function(result) {
+	
+								if(result=='1'){
+									 alert('A/S 제품을 정상거으로 수령 완료하셨습니다.');
+								} else{
+									 alert('A/S 처리상태 변경을 실패했습니다.');
+								}
+								
+								$('#asDetail').dialog('close');
+								fcAs_listSearch();
+								
+				           },
+				           error:function(){
+				        	   
+				        	   alert('A/S 처리상태 변경을 실패했습니다.');
+				        	   $('#asDetail').dialog('close');
+				           }
+				    });
+					
+				}
+			  
+			  
+		  }
 		
 	</script>
   </head>
@@ -102,14 +132,21 @@
 		</table>
 		<br>
 		처리이력
+		<c:if test="${asVO.asSubState=='08'}">
+       		<button type="button" class="btn btn-success" onClick="fcAs_StateProcess('${asVO.asNo}','09','10','고객직접 수령확인')">고객수령확인</button>
+       	</c:if>
 		<table  align='center' class='style1' >
 		 <c:if test="${!empty asList}">
-	        <c:forEach items="${asList}" var="AsVO" varStatus="status">
+	        <c:forEach items="${asList}" var="asListVO" varStatus="status">
 				<tr >
-					<td align='center' height='27'>${AsVO.asStartDateTime}</td>
-					<td align='center' height='27'>${AsVO.userName}</td>
-					<td align='center' height='27'>${AsVO.asHistory}</td>
-					<td align='center' height='27'>${AsVO.asSubState}</td>
+					<td align='center' height='27' width="100">${asListVO.asHistoryDateTime}</td>
+					<td align='center' height='27'  width="100">${asListVO.userName}</td>
+					<td align='center' height='27'  width="100">${asListVO.asStateTrans}</td>
+                    <td align='center' height='27'  width="100">${asListVO.centerAsNo}</td>
+
+					<c:if test="${AsVO.centerImage!=null}">
+	                 <a href="javascript:AutoResize('${AsVO.centerImage}')"><img src='${AsVO.centerImage}' width="20" height="20" /></a>
+					 </c:if>
 				</tr>
 		 	</c:forEach>
 	   	</c:if>
