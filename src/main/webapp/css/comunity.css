@@ -1,11 +1,14 @@
 @charset "utf-8";
-/* CSS Document 20151203 jjlim */
+/* CSS Document 20151208 jjlim */
+@import url("../css/list.css"); 
 
 header#header { width: 100%; position: fixed; top: 0px; left: 0px; z-index: 2500; -webkit-tap-highlight-color: transparent; }
 #m_gnb { position: relative; background-color: #0097DA; }
 .mcom_gnbwrap { position: relative; z-index: 2010; padding-bottom: 4px; }
 .mcom_gnb button { display: inline-block; width: 60px; height: 54px; line-height: 100%; vertical-align: top; }
 button { border: 0 none; background-color: transparent; cursor: pointer; }
+
+#container.comunity { position:relative; top:100px; /* 헤더와의 간격조정 */}
 
 /* 오른쪽 고정메뉴 */
 .mcom_gnb .mcom_gnb_rgt { position: absolute; right: 1px; top: 0; }
