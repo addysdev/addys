@@ -9,6 +9,7 @@ header#header { width: 100%; position: fixed; top: 0px; left: 0px; z-index: 2500
 button { border: 0 none; background-color: transparent; cursor: pointer; }
 
 #container.comunity { position:relative; top:100px; /* 헤더와의 간격조정 */}
+#m_content {padding-bottom:50px;}
 
 /* 오른쪽 고정메뉴 */
 .mcom_gnb .mcom_gnb_rgt { position: absolute; right: 1px; top: 0; }
