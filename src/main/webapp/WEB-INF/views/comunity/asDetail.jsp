@@ -52,6 +52,30 @@
 				  
 				  
 			  }
+		  
+		   function fcAs_reTranspath(){
+				
+				var url=document.asConForm.reTransurl_Modify.value;
+				var transno=document.asConForm.reTransportNo_Modify.value;
+				
+				var theURL=url+transno;
+				
+			//	var h=700;
+			//	var s=800;
+
+			    tmt_winLaunch(theURL, 'transObj', 'transObj', 'resizable=no,status=no,location=no,menubar=no,toolbar=no,width='+s+',height ='+h+',left=0,top=0,resizable=yes,scrollbars=yes');
+			
+			}
+		   
+			  /*
+			   * 화면 POPUP
+			   */
+			  function tmt_winLaunch(theURL,winName,targetName,features) {
+			  	
+			  	var targetRandom=Math.random();
+			  	eval(winName+"=window.open('"+theURL+"','"+targetRandom+"','"+features+"')");
+
+			  }
 		
 	</script>
 <form:form class="form-inline" role="form" commandName="asConVO" id="asConForm" name="asConForm" method="post" action="" >
@@ -113,7 +137,7 @@
           <dl class="clm_ip2">
             <dt><span class="tit">진행상황</span></dt>
             <dd>
-              <p class="tx4"> 처리중</p>
+              <p class="tx4">${asVO.asStateTrans}</p>
             </dd>
           </dl>
         </div>
@@ -144,6 +168,26 @@
               <p class="tx1">
                 ${asVO.receiveAddress} <br>
                 ${asVO.receiveAddressDetail}
+            </dd>
+          </dl>
+          <hr class="odr_line_ty1">
+          <dl class="clm_ip2">
+            <dt><span class="tit">운송업체</span></dt>
+            <dd>
+              <p class="tx1">
+                ${asVO.reTransport}
+                 <c:choose>
+   						 <c:when test="${asVO.reTransurl!='N'}">
+   						    <input type="hidden" name="reTransurl_Modify" id="reTransurl_Modify" value="${asVO.reTransurl}" >
+   						    <input type="hidden" name="reTransportNo_Modify" id="reTransportNo_Modify" value="${asVO.reTransportNo}" >
+   						  	[운송장 번호] :<a href="javascript:fcAs_reTranspath();"><span id="reTransNoId">${asVO.reTransportNo}</span></a>
+	             	 	 </c:when>
+						 <c:otherwise>
+						    <input type="hidden" name="reTransurl_Modify" id="reTransurl_Modify" value="${asVO.reTransurl}" >
+   						    <input type="hidden" name="reTransportNo_Modify" id="reTransportNo_Modify" value="${asVO.reTransportNo}" >
+						  	[운송장 번호] : ${asVO.reTransportNo}
+						 </c:otherwise>
+	 			  </c:choose>
             </dd>
           </dl>
         </div>
