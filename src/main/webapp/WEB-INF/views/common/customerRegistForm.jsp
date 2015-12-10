@@ -241,7 +241,8 @@
     						    alert('인증요청을 성공했습니다.\n문자로 발송된 인증번호를 입력하시기 바랍니다.');
     							frm.customerKeyView.disabled=true;
     							frm.tokenView.disabled=false;
-    							document.all('completebtn').style.display="inline";
+    							//document.all('completebtn').style.display="inline";
+    							document.all('completebtn').disabled=false;
 
     						} else if(result=='1'){
     							
@@ -299,7 +300,8 @@
     							 //alert('인증요청을 성공했습니다.\n발송된 인증번호를 입력하시기 바랍니다.');
     							 document.all('pwform').style.display="inline";
     							 document.all('reqbtn').style.display="none";
-    							 document.all('completebtn').style.display="none";
+    							 //document.all('completebtn').style.display="none";
+    							 document.all('completebtn').disabled=true;
     							 frm.tokenView.disabled=true;
                                 
     						} else if(result=='3'){
@@ -361,7 +363,7 @@
 		                  <span class="inpbx certi">
 		                  <input type="password" id="tokenView" name="tokenView" disabled placeholder="인증번호 입력">
 		                  <input type="hidden" id=token name="token"  value=""/> 
-		                  </span><a href="javascript:getTokenConfirm()" id="completebtn" style="display:none" class="bn_certi" >인증확인</a></li>
+		                  </span><a href="javascript:getTokenConfirm()" id="completebtn" disabled class="bn_certi" >인증확인</a></li>
 		              </ul>
 		            </div>
 		          <!--//핸드폰번호 등록 --> 

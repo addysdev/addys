@@ -20,6 +20,13 @@ public class CounselVO extends AbstractVO {
 	private String userName;
 	private String counselResult;
 	private String counselResultDateTime;
+
+    // /** for paging */
+    private String totalCount       = "0";
+    private String curPage          = "1";
+    private String rowCount         = "10";
+    private String page_limit_val1;
+    private String page_limit_val2;
 	
 	public String getIdx() {
 		return idx;
@@ -92,6 +99,36 @@ public class CounselVO extends AbstractVO {
 	}
 	public void setCounselImage(String counselImage) {
 		this.counselImage = counselImage;
+	}
+	public String getTotalCount() {
+		return totalCount;
+	}
+	public void setTotalCount(String totalCount) {
+		this.totalCount = totalCount;
+	}
+	public String getCurPage() {
+		return curPage;
+	}
+	public void setCurPage(String curPage) {
+		this.curPage = curPage;
+	}
+	public String getRowCount() {
+		return rowCount;
+	}
+	public void setRowCount(String rowCount) {
+		this.rowCount = rowCount;
+	}
+	public String getPage_limit_val1() {
+		return page_limit_val1;
+	}
+	public void setPage_limit_val1(String page_limit_val1) {
+		this.page_limit_val1 = page_limit_val1;
+	}
+	public String getPage_limit_val2() {
+		return page_limit_val2;
+	}
+	public void setPage_limit_val2(String page_limit_val2) {
+		this.page_limit_val2 = page_limit_val2;
 	}
 	
 }

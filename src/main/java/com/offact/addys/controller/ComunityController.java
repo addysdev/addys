@@ -720,8 +720,7 @@ public class ComunityController {
 	     * @throws BizException
 	     */
 	    @RequestMapping(value = "/comunity/counsellist")
-	    public ModelAndView counselList(String customerKey, 
-	    		 						String groupId, 
+	    public ModelAndView counselList(@ModelAttribute("csConVO") CounselVO csConVO,
 	    		                        HttpServletRequest request, 
 	    		                        HttpServletResponse response) throws BizException 
 	    {
@@ -729,17 +728,17 @@ public class ComunityController {
 	    	//log Controller execute time start
 			String logid=logid();
 			long t1 = System.currentTimeMillis();
-			logger.info("["+logid+"] Controller start : customerKey" + customerKey);
+			logger.info("["+logid+"] Controller start : groupId" + csConVO);
 
 			ModelAndView mv = new ModelAndView();
 			
 			// 사용자 세션정보
 	        HttpSession session = request.getSession();
 	        
-	        customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
+	        String customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
 	        String customerName = StringUtil.nvl((String) session.getAttribute("customerName")); 
 	        String customerId = StringUtil.nvl((String) session.getAttribute("customerId"));
-	        
+  
 	        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
 
 	 	       	//mv.setViewName("/common/customerLoginForm");
@@ -749,12 +748,24 @@ public class ComunityController {
 	   		
 	        List<CounselVO> counselList = new ArrayList();
 	        
-	        CounselVO counselVO = new CounselVO();
-	        counselVO.setCustomerKey(customerKey);
-	        counselVO.setGroupId(groupId);
+	        csConVO.setCustomerKey(customerKey);
+	        csConVO.setGroupId(csConVO.getGroupId());
+	        
+	        // 조회조건저장
+	        mv.addObject("csConVO", csConVO);
+
+	        // 페이징코드
+	        csConVO.setPage_limit_val1(StringUtil.getCalcLimitStart(csConVO.getCurPage(), csConVO.getRowCount()));
+	        csConVO.setPage_limit_val2(StringUtil.nvl(csConVO.getRowCount(), "10"));
+	        
 
 	        // 커뮤니티목록조회
-	        counselList = comunitySvc.getCounselList(counselVO);
+	        counselList = comunitySvc.getCounselList(csConVO);
+	        
+
+	        // totalCount 조회
+	        String totalCount = String.valueOf(comunitySvc.getCounselCnt(csConVO));
+	        mv.addObject("totalCount", totalCount);
 
 	   	    mv.addObject("counselList", counselList);
 	   	 
@@ -891,6 +902,8 @@ public class ComunityController {
 	    		                      String counselResult,
 	    		                      String userName,
 	    		                      String counsel,
+	    		                      String curPage,
+	    		                      String groupId,
 	    		                      String counselImage) throws BizException 
 	    {
 	        
@@ -920,8 +933,9 @@ public class ComunityController {
 	        mv.addObject("idx", idx);
 	        mv.addObject("counselResult", counselResult);
 	        mv.addObject("userName", userName);
-	        
+	        mv.addObject("curPage", curPage);
 	        mv.addObject("counsel", counsel);
+	        mv.addObject("groupId", groupId);
 	        mv.addObject("counselImage", counselImage);
 
 	        mv.setViewName("/comunity/counselDetail");
@@ -1060,10 +1074,21 @@ public class ComunityController {
 	        List<AsVO> asList = null;
 	        
 	        asConVO.setCustomerKey(customerKey);
+	        
+	        // 조회조건저장
+	        mv.addObject("asConVO", asConVO);
 
+	        // 페이징코드
+	        asConVO.setPage_limit_val1(StringUtil.getCalcLimitStart(asConVO.getCurPage(), asConVO.getRowCount()));
+	        asConVO.setPage_limit_val2(StringUtil.nvl(asConVO.getRowCount(), "10"));
+	        
 	        // 사용자목록조회
 	        asList = asSvc.getAsList(asConVO);
 	        mv.addObject("asList", asList);
+
+	        // totalCount 조회
+	        String totalCount = String.valueOf(asSvc.getAsCnt(asConVO));
+	        mv.addObject("totalCount", totalCount);
 
 	        mv.setViewName("/comunity/asList");
 	        
@@ -1079,6 +1104,7 @@ public class ComunityController {
 		 */
 	    @RequestMapping(value = "/comunity/asdetail")
 		public ModelAndView asDetail(String asNo,
+									 String curPage,
 				                     HttpServletRequest request) throws BizException 
 	    {
 			
@@ -1107,6 +1133,7 @@ public class ComunityController {
 	        
 	        asList = asSvc.getAsHistory(asVO);
 	        
+	        mv.addObject("curPage",curPage);
 			mv.addObject("asVO", asVO);
 			mv.addObject("asList", asList);
 

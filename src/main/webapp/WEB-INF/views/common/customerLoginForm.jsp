@@ -68,8 +68,10 @@
 		
 		setCookie("addys_customerkey", $('#customerKey').val());
 		
-		location.href="<%= request.getContextPath() %>/customerprivateinfo";
 		//	location.href="<%= request.getContextPath() %>/kcp/kcpcert_start.jsp";
+		location.href="<%= request.getContextPath() %>/customerregistform";
+		//location.href="<%= request.getContextPath() %>/customerprivateinfo";
+		
 	}
 	
 	function goPwSearch(){

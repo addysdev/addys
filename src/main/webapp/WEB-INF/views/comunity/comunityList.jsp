@@ -1,5 +1,6 @@
 <%@ include file="/WEB-INF/views/addys/base.jsp" %>	
 <!-- container -->
+  <div id="container" class="comunity" >
 		    <button id="deferbtn" type="button" class="btn btn-primary btn-sm" onClick="fcReg_comment()" >talk하기</button>
 		    <div class="talk_board" >
 		      <table class="tbl_base" >
@@ -62,5 +63,5 @@
 		      </table>
 		    </div>
 
- 
+ </div>
 	<!-- //container -->

@@ -13,6 +13,7 @@
 	<link href="<%= request.getContextPath() %>/css/common.css" rel="stylesheet">
 	<link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet">
 	<link href="<%= request.getContextPath() %>/css/comunity.css" rel="stylesheet">
+	<link href="<%= request.getContextPath() %>/css/list.css" rel="stylesheet">
 
 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-1.11.2.js"></script>
 	<script type="text/javascript" src="<%= request.getContextPath() %>/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
@@ -21,6 +22,7 @@
 	<script>
     
  	var realYN='Y';
+ 	var setFlag='01';
     
     function fcReg_comment() {
 
@@ -117,6 +119,8 @@
 
     function setTab(flag){
 
+    	setFlag=flag;
+    	
     	if(flag=='03'){
     		
     		realYN='Y';
@@ -126,6 +130,7 @@
         	$('#comunityList').attr("style","display:block");
         	$('#hotdeal').attr("style","display:none");
         	$('#mhome').attr("style","display:none");
+        	$('#customerModify').attr("style","display:none");
         	
         	$('#tab1').attr("class","");
         	$('#tab2').attr("class","");
@@ -142,6 +147,7 @@
         	$('#comunityList').attr("style","display:none");
     		$('#hotdeal').attr("style","display:none");
         	$('#mhome').attr("style","display:none");
+        	$('#customerModify').attr("style","display:none");
         	
         	$('#tab1').attr("class","on");
         	$('#tab2').attr("class","");
@@ -158,6 +164,7 @@
         	$('#comunityList').attr("style","display:none");
     		$('#hotdeal').attr("style","display:none");
         	$('#mhome').attr("style","display:none");
+        	$('#customerModify').attr("style","display:none");
         	
         	$('#tab1').attr("class","");
         	$('#tab2').attr("class","on");
@@ -174,6 +181,7 @@
         	$('#comunityList').attr("style","display:none");
         	$('#hotdeal').attr("style","display:block");
         	$('#mhome').attr("style","display:none");
+        	$('#customerModify').attr("style","display:none");
         	
         	$('#tab1').attr("class","");
         	$('#tab2').attr("class","");
@@ -190,7 +198,8 @@
         	$('#comunityList').attr("style","display:none");
     		$('#hotdeal').attr("style","display:none");
         	$('#mhome').attr("style","display:block");
-        	
+        	$('#customerModify').attr("style","display:none");
+
         	$('#tab1').attr("class","");
         	$('#tab2').attr("class","");
         	$('#tab3').attr("class","");
@@ -204,6 +213,32 @@
     	
 
     }
+    
+	function fcConfig_modifyView() {
+
+    	
+    	$.ajax({
+            type: "POST",
+            url:  '<%= request.getContextPath() %>/common/customermodifyform',
+            success: function(result) {
+             
+            	$("#customerModify").html(result);
+            	
+            	$('#aslist').attr("style","display:none");
+            	$('#counselList').attr("style","display:none");
+            	$('#comunityList').attr("style","display:none");
+        		$('#hotdeal').attr("style","display:none");
+            	$('#mhome').attr("style","display:none");
+            	$('#customerModify').attr("style","display:block");
+            	
+            },
+            error:function(){
+
+            }
+        });
+    };
+
+    
     // 리스트 조회
     function fcComunity_list(){
 		
@@ -527,14 +562,15 @@
 		}
 
    	  	var url='<%= request.getContextPath() %>/comunity/imageview';
-   	   
+   
 	   	$('#imageView').dialog({
 	        resizable : false, //사이즈 변경 불가능
 	        draggable : true, //드래그 불가능
-	        closeOnEscape : true, //ESC 버튼 눌렀을때 종료
+	        closeOnEscape : false, //ESC 버튼 눌렀을때 종료
 	        ////position : 'center',
 	        width : largh,
 	        modal : true, //주위를 어둡게
+	        istitle : false,
 	
 	        open:function(){
 	            //팝업 가져올 url
@@ -603,10 +639,9 @@
 			    </div>
 			  </header>
 			  <!--//헤더 --> 
-	  			<br><br><br><br><br><br><br>
 	  			<div id=comunityList></div>
 	      		<div id="commentRegistForm"  title="talk하기"></div>
-	      		<div id="imageView"  title="이미지"></div>
+	      		<div id="imageView"  onClick="imageClose()"></div>
 	        </c:when>
 			<c:otherwise>
 			<!-- 헤더 -->
@@ -618,7 +653,7 @@
 			          <div class="b_toggle">
 			            <ul>
 			              <li> <a href="#" class="b_name"> <strong class="">${groupName}</strong> </a></li>
-			              <li> <a href="javascript:fcConfig_modify()" class="b_cog"> <strong class="ico_cog"><span>설정</span></strong> </a></li>
+			              <li> <a href="javascript:fcConfig_modifyView()" class="b_cog"> <strong class="ico_cog"><span>설정</span></strong> </a></li>
 			              <li><a href="javascript:goLogout()" class="b_logout"> 
 			                <strong>로그아웃</strong></a>
 			              </li>
@@ -640,7 +675,6 @@
 			    </div>
 			  </header>
 			  <!--//헤더 --> 
-	  			<br><br><br><br><br><br><br>
 	  			<!-- 조회결과리스트 -->
 			    <div id=comunityList style="display:none"></div>
 			    <!-- 조회결과리스트 -->
@@ -652,11 +686,11 @@
 			    <div id=asDetail title="A/S상세"></div>
 	      		<div id="commentRegistForm"  title="talk하기"></div>
 	    		<div id="counselRegistForm"  title="문의하기"></div>
-	    		<div id="imageView"  title="이미지" onClick="imageClose()"></div>
+	    		<div id="imageView"  onClick="imageClose()"></div>
 	    		<div id="counselResult"  title="문의상세"></div>
 			</c:otherwise>
 		</c:choose>
-	  <div id="customerModify"  title="고객 정보변경"></div>
+	  <div id="customerModify"  style="display:none"></div>
 	  <div id="replyList"  title="답글정보"></div>
     </div>
   </body>

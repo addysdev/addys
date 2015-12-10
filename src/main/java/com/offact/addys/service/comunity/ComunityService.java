@@ -6,6 +6,7 @@ package com.offact.addys.service.comunity;
 import java.util.List;
 
 import com.offact.framework.exception.BizException;
+import com.offact.addys.vo.comunity.AsVO;
 import com.offact.addys.vo.comunity.ComunityVO;
 import com.offact.addys.vo.comunity.CounselVO;
 
@@ -62,6 +63,15 @@ public interface ComunityService {
      */
     public List<CounselVO> getCounselList(CounselVO counsel) throws BizException;
 	
+    /**
+     * cs 전체 갯수
+     * 
+     * @return
+     * @throws BizException
+     */
+    public int getCounselCnt(CounselVO counsel) throws BizException;
+
+    
     /**
      * 커뮤니티상세조회
      * 

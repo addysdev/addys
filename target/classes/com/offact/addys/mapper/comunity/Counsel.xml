@@ -36,7 +36,6 @@
 
 <select id="getCounselList" resultMap="CounselVO" parameterType="com.offact.addys.vo.comunity.CounselVO" >
 
-        Select idx,customerKey,counsel,counselImage,counselState,counselDateTime,userId,userName,counselResult,counselResultDateTime From (
         Select T1.idx
               ,concat('****-',right(trim(T1.customerKey),4)) as customerKey
               ,T1.counsel
@@ -52,13 +51,18 @@
              Left Join smCounselResult T3 On T1.idx = T3.idx
              Left Join ofUser T4 On T3.userId = T4.userId
          WHERE T1.groupId= #{groupId}
-           <if test="customerKey != null and customerKey != '' " >
-           		AND T1.customerKey = #{customerKey}
-           </if>
-        
-        order by T1.counselDateTime desc LIMIT 0,9 
-        ) As Temp0
+               And T1.customerKey = #{customerKey}
+               Order by counselDateTime desc
+         LIMIT ${page_limit_val1} , ${page_limit_val2}     
 
+
+</select>
+
+<select id="getCounselCnt" resultType="int">
+	SELECT count(*) AS TOT_COUNT
+  		FROM smCounsel T1
+         WHERE T1.groupId= #{groupId} 
+               And T1.customerKey = #{customerKey}
 </select>
 
 </mapper>

@@ -10,6 +10,7 @@ import com.offact.framework.db.SqlSessionCommonAdminDao;
 import com.offact.framework.db.SqlSessionCommonDao;
 import com.offact.framework.exception.BizException;
 import com.offact.addys.service.comunity.ComunityService;
+import com.offact.addys.vo.comunity.AsVO;
 import com.offact.addys.vo.comunity.ComunityVO;
 import com.offact.addys.vo.comunity.CounselVO;
 
@@ -69,6 +70,12 @@ public class ComunityServiceImpl implements ComunityService {
 
        return counselList;
 	}
+	
+    @Override
+    public int getCounselCnt(CounselVO counsel) throws BizException {
+        return commonDao.selectOne("Counsel.getCounselCnt", counsel);
+    }
+    
     @Override
     public List<ComunityVO> getComunityReply(ComunityVO comunity) throws BizException {
     	

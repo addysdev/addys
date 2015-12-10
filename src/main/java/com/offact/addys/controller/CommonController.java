@@ -1114,7 +1114,7 @@ public class CommonController {
 			rand.setSeed(System.currentTimeMillis());
 			
 			token=""+rand.nextInt(10000);
-			logger.info("##### create token :: " + rand.nextInt(10000));
+			logger.info("##### create token :: " + token);
 	    	
 	    	return token;
 	    }
