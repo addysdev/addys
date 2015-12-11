@@ -1,107 +1,38 @@
 @charset "utf-8";
-/* CSS Document 151210 */
+/* CSS Document 151211 */
 
-/* 문의하기 */
-.cs_cont { position: relative; background:#fff }
+/********************************************
+ 문의하기 
+ ********************************************/
+.cs_cont { position: relative; background: #fff }
 .cs_list { border-bottom: 1px solid #e6e6e6; }
 .cs_list { border-bottom: 1px solid #e6e6e6; }
 .cs_list li { border-top: 1px solid #e6e6e6; }
-.cs_list li .box { display: block; position: relative; padding: 13px 79px 13px 12px; line-height: 17px; letter-spacing: -1px;  }
+.cs_list li .box { display: block; position: relative; padding: 13px 79px 13px 12px; line-height: 17px; letter-spacing: -1px; }
 .cs_list li .title { display: block; position: relative; font-size: 13px; }
-.cs_list li .cc_ellip_in { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical;line-height: 17px; word-wrap: break-word; text-overflow: normal; white-space: normal; font-weight: normal; overflow: hidden;  }
+.cs_list li .cc_ellip_in { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; line-height: 17px; word-wrap: break-word; text-overflow: normal; white-space: normal; font-weight: normal; overflow: hidden; }
 .cs_list li .date { display: inline-block; position: absolute; right: 11px; top: 13px; font-family: Helvetica; font-size: 12px; color: #808080; letter-spacing: 0; }
-.cs_list li .photo { display: inline-block; position: relative; right: -10px; top: 1px; width:17px;letter-spacing: 0; text-indent:-9999px; color:#fff; height:16px; background: url(../images/image_16x16.png) no-repeat 0 0;}
-.cs_list li .type { color:#0097DA; font-weight:bold} 
+.cs_list li .photo { display: inline-block; position: relative; right: -10px; top: 1px; width: 17px; letter-spacing: 0; text-indent: -9999px; color: #fff; height: 16px; background: url(../images/image_16x16.png) no-repeat 0 0; }
+.cs_list li .type { color: #0097DA; font-weight: bold }
 .cs_list .type { display: inline-block; vertical-align: top; }
 .cs_list .type .type_in { display: inline-block; padding: 0 6px; border: 1px solid #7fd4c8; background: #9cd9d1; font-size: 11px; line-height: 18px; color: #fff; vertical-align: top; /*box-shadow: inset 0 0 0 1px #fff;*/ font-weight: bold; letter-spacing: 0; }
+.clm_acdo_tit .btn_ask { position: absolute; top: 10px; right: 15px; }
+.btn_ask { display: inline-block; border: 1px solid; -webkit-box-shadow: inset 0 -3px 0 rgba(255, 255, 255, 0.15); border-radius: 3px; -webkit-border-radius: 3px; background-color: #E94925; font-size: 12px; vertical-align: top; padding: 6px 15px 7px; color: #fff; font-weight: bold; line-height: 12px; }
 
-.clm_acdo_tit .btn_ask {position: absolute;top: 10px;right:15px;}
-.btn_ask { display: inline-block; border: 1px solid;     -webkit-box-shadow: inset 0 -3px 0 rgba(255, 255, 255, 0.15); border-radius: 3px;  -webkit-border-radius: 3px; background-color: #E94925; font-size: 12px;  vertical-align: top; padding: 6px 15px 7px; color: #fff; font-weight: bold;    line-height: 12px;
-}
+/********************************************
+ 문의하기상세 
+ ********************************************/
+.txtarea { display: block; overflow: hidden; position: relative; padding: 5px; border: 1px solid #ccc; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; background: #fff; line-height: 17px; box-shadow: inset 0 1px 0 0 #ededed; }
+.m_userinfo dd label { display: inline-block; margin: 0 4px; vertical-align: top; }
+.txtarea label { position: absolute; top: 0; left: 0; padding: 5px; font-weight: normal; font-size: 12px; line-height: 17px; color: #999; }
+.inpfiles { display: block; position: relative; height: 33px; margin: 0; background: #fff; border: 1px solid #ccc; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; box-shadow: inset 0 -2px 0 #efefef; font-weight: bold; font-size: 12px; color: #666; line-height: 33px; letter-spacing: -1px; text-align: center; }
+.m_userinfo dd label { display: inline-block; margin: 0 4px; vertical-align: top; }
+.m_userinfo .inpfiles .file { overflow: hidden; position: absolute; top: 0; left: 0; width: 100%; height: 35px; opacity: 0; }
+.m_userinfo .inpfiles .file input { position: absolute; top: 0; right: 0; left: 0; bottom: 0; width: 100%; opacity: 0.1; cursor: pointer; }
+.inpbx { display: block; overflow: hidden; width: auto; height: 18px; padding: 8px 8px 7px; line-height: 18px; border: 1px solid #ccc; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; letter-spacing: -1px; box-shadow: inset 0 1px 0 rgba(0,0,0,.07); }
+.m_userinfo dd input[type="text"], .m_userinfo dd input[type="password"], .m_userinfo dd input[type="number"], .m_userinfo dd input[type="tel"] { width: 100%; height: 17px; border: 0 none; background: transparent; font-size: 12px; line-height: 17px; vertical-align: top; }
+.inpbx input { width: 100%; height: 17px; border: 0 none; background: transparent; font-size: 12px; line-height: 17px; color: #222; vertical-align: top; }
 
-/* 문의하기상세 */
-.txtarea {display: block; overflow: hidden; position: relative; padding: 5px;  border: 1px solid #ccc; border-top-left-radius: 3px;  border-top-right-radius: 3px; border-bottom-left-radius: 3px;  border-bottom-right-radius: 3px;  background: #fff;  line-height: 17px; box-shadow: inset 0 1px 0 0 #ededed;
-}
-dd label {  display: inline-block;    margin: 0 4px;    vertical-align: top;}
-.txtarea label { position: absolute; top: 0; left: 0; padding: 5px; font-weight: normal; font-size: 12px; line-height: 17px;  color: #999;}
-.inpfiles {
-    display: block;
-    position: relative;
-    height: 33px;
-    margin: 0;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
-    box-shadow: inset 0 -2px 0 #efefef;
-    font-weight: bold;
-    font-size: 12px;
-    color: #666;
-    line-height: 33px;
-    letter-spacing: -1px;
-    text-align: center;
-}
-.m_userinfo dd label {
-    display: inline-block;
-    margin: 0 4px;
-    vertical-align: top;
-}
-.m_userinfo .inpfiles .file {
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 35px;
-    opacity: 0;
-}
-.m_userinfo .inpfiles .file input {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    opacity: 0.1;
-    cursor: pointer;
-}
-.inpbx {
-    display: block;
-    overflow: hidden;
-    width: auto;
-    height: 18px;
-    padding: 8px 8px 7px;
-    line-height: 18px;
-    border: 1px solid #ccc;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
-    letter-spacing: -1px;
-    box-shadow: inset 0 1px 0 rgba(0,0,0,.07);
-}
-
-.m_userinfo dd input[type="text"], .m_userinfo dd input[type="password"], .m_userinfo dd input[type="number"], .m_userinfo dd input[type="tel"] {
-    width: 100%;
-    height: 17px;
-    border: 0 none;
-    background: transparent;
-    font-size: 12px;
-    line-height: 17px;
-    vertical-align: top;
-}
-.inpbx input {
-    width: 100%;
-    height: 17px;
-    border: 0 none;
-    background: transparent;
-    font-size: 12px;
-    line-height: 17px;
-    color: #222;
-    vertical-align: top;
-}
 /********************************************
 	 paging 
 *********************************************/
