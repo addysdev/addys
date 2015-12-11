@@ -180,14 +180,14 @@
           <dl class="clm_ip2">
             <dt><span class="tit">처리결과</span></dt>
             <dd>
-              <p class="tx1">${asVO.asDetail}</p>
+              <p class="tx1">${asVO.asResult}</p>
             </dd>
           </dl>
           <hr class="odr_line_ty1">
           <dl class="clm_ip2">
             <dt><span class="tit">완료예정일</span></dt>
             <dd>
-              <p class="tx1">${asVO.asDetail}</p>
+              <p class="tx1">${asVO.asTargetDate}</p>
             </dd>
           </dl>
         </div>
@@ -211,6 +211,7 @@
               <p class="tx1">${asVO.receiveTelNo}
             </dd>
           </dl>
+          <c:if test="${asVO.receiveType=='02'}">
           <hr class="odr_line_ty1">
           <dl class="clm_ip2">
             <dt><span class="tit">주소</span></dt>
@@ -240,6 +241,7 @@
 	 			  </c:choose>
             </dd>
           </dl>
+          </c:if>
         </div>
         <!--// 2.배송정보 -->
      	<c:if test="${asVO.asSubState=='08'}">

@@ -336,20 +336,21 @@ public class ComunityController {
 	    @RequestMapping(value = "/comunity/counselregistform")
 	    public ModelAndView counselRegistForm(HttpServletRequest request, 
 	    		                       HttpServletResponse response,
-			                           String customerKey) throws BizException 
+			                           String curPage,
+			                           String groupId) throws BizException 
 	    {
 	        
 	    	//log Controller execute time start
 			String logid=logid();
 			long t1 = System.currentTimeMillis();
-			logger.info("["+logid+"] Controller start customerKey:"+customerKey);
+			logger.info("["+logid+"] Controller start groupId:"+groupId);
 	
 	        ModelAndView mv = new ModelAndView();
 	        
 	      	// 사용자 세션정보
 	        HttpSession session = request.getSession();
 	        
-	        customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
+	        String customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
 	        String customerName = StringUtil.nvl((String) session.getAttribute("customerName")); 
 	        String customerId = StringUtil.nvl((String) session.getAttribute("customerId"));
 	        
@@ -359,6 +360,8 @@ public class ComunityController {
 	       		return mv;
 			}
 	
+	        mv.addObject("curPage",curPage);
+	        mv.addObject("groupId",groupId);
 	        mv.setViewName("/comunity/counselRegistForm");
 	        
 	       //log Controller execute time end

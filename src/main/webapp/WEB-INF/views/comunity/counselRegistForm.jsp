@@ -1,43 +1,23 @@
 <%@ include file="/WEB-INF/views/addys/base.jsp" %>
 <SCRIPT>
 
-//사용자 수정
-function fcCunsel_Regist(){
+// 페이지 이동
+function goPageCsPageList() {
 
-	var frm=document.counselForm;
-
-	if(frm.counsel.value==''){
-		alert('문의 내용이 없습니다.');
-		return;
-	}
-	
-	
-	//if (confirm('문의를 요청 하시겠습니까?')){ 
-		
-	    $.ajax({
-	        type: "POST",
-	        async:false,
-	           url:  "<%= request.getContextPath() %>/comunity/counselregist",
-	           data:$("#counselForm").serialize(),
-	           success: function(result) {
-
-					if(result=='1'){
-						 alert('접수가 완료되었습니다.\n담당자가 확인 후 연락드리겠습니다.');
-						 fcCounsel_list();
-					} else{
-						 alert('접수를 실패했습니다.');
-					}
-					fcCounsel_list();
-					$('#counselRegistForm').dialog('close');
-					
-	           },
-	           error:function(){
-	        	   
-	        	   alert('접수를 실패했습니다.');
-	        	   $('#counselRegistForm').dialog('close');
-	           }
-	    });
-	//}
+    var dataParam = $("#counselForm").serialize();
+    commonDim(true);
+    $.ajax({
+        type: "POST",
+        url:  "<%= request.getContextPath() %>/comunity/counsellist",
+          data:dataParam,
+        success: function(result) {
+               commonDim(false);
+               $("#counselList").html(result);
+        },
+        error:function(){
+            commonDim(false);
+        }
+    });
 }
 
 function fcCounsel_close(){
@@ -46,8 +26,7 @@ function fcCounsel_close(){
 	
 	alert('접수가 완료되었습니다.\n담당자가 확인 후 연락드리겠습니다.');
 	fcCounsel_list();
-	
-	$("#counselRegistForm").dialog('close');
+
 }
 
 function fcCunsel_multiRegist(){
@@ -96,24 +75,54 @@ function fcCunsel_multiRegist(){
 }
 
 </SCRIPT>
-<!-- 사용자관리 -->
-<body>
-<div class="container-fluid">
 <iframe id="file_result" name="file_result" style="display: none" ></iframe>
 <form:form commandName="counselVO"  id="counselForm" name="counselForm" method="post" target="file_result" enctype="multipart/form-data" >
+ <input type="hidden" name="curPage"             id="curPage"            value="${curPage}" />
+ <input type="hidden" name="rowCount"            id="rowCount"           value="10"/>
+ <input type="hidden" name="totalCount"          id="totalCount"         value=""  />
 <input type="hidden" name="customerKey" id="customerKey" value="${customerKey}" >
 <input type="hidden" name="customerId" id="customerId" value="${customerId}" >
 <input type="hidden" name="counselState" id="counselState" value="01" >
 <input type="hidden" name="groupId" id="groupId" value="${groupId}" >
-<p><textarea style='height:102px;ime-mode:active;' row="4" class="form-control" id="counsel" maxlength="1000" name="counsel"  value=""  placeholder="문의"/></p>
-<h5><font style="color:#FF9900">이미지 업로드 <em class="bold"> 이미지파일</em></font></h5>
- <input type="file" id="files" name="files" />
- <br>
-<button id="cumunitysavebtn" type="button" class="btn btn-primary" onClick="fcCunsel_multiRegist()">접수</button> 
-<!--<button id="cumunityclosebtn" type="button" class="btn btn-danger" onClick="fcComunity_close()">취소</button>-->
-</form:form>
-</div>
-</body>
-<script>
-$('#counsel').focus(1); 
-</script>
+<!-- container -->
+  <div id="container" class="comunity" >
+    <div id="m_content" >
+      <div class="clm_order_detail">
+        <!-- 타이틀 -->
+        <div class="clm_acdo_tit">
+          <h1>문의접수하기</h1>
+          <div class="clm_acdo_tit_left">
+            <a href="javascript:goPageCsPageList();" class="btn b_prev"><span class="sp_prev">이전</span></a>
+          </div>
+        </div>
+        <!--// 타이틀 --> 
+        <!-- 1.문의내용 -->
+        <div class="clm_acdo_tit2">
+          <h2 class="h2_txo"> <strong><em class="num">1. </em></strong>문의내용</h2>
+          <a href="javascript:void(0)" class="tit_desc"> <span class="sp_odr ic_arr">&nbsp;</span> </a>
+        </div>
+        <div class="clm_acdo_sec">
+          <dl class="clm_ip2">
+            <dt><span class="tit">문의내용</span></dt>
+            <dd>
+              <p class="tx2"><textarea style='height:102px;ime-mode:active;' row="4" class="form-control" id="counsel" maxlength="1000" name="counsel"  value=""  placeholder="문의"/></p>
+            </dd>
+          </dl>
+           <hr class="odr_line_ty1">
+          <dl class="clm_ip2">
+            <dt><span class="tit">이미지파일</span></dt>
+            <dd>
+              <p class="tx1"><input type="file" id="files" name="files" /></p>
+            </dd>
+          </dl>
+        </div>
+         <div class="clm_detail_btn">
+          <div class="clm_btn">
+            <a href="javascript:fcCunsel_multiRegist();" class="btn_ty2">접수</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- //container -->
+  </form:form>

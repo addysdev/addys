@@ -69,8 +69,8 @@
 			  ,T1.asImage
 			  ,T1.asState
 			  ,T5.codeName as asStateTrans
-			  ,DATE_FORMAT(T1.asStartDateTime, '%m/%d') as asStartDateTime
-			  ,Case When ifnull(T1.asTargetDate,'') = '' Then '' Else DATE_FORMAT(T1.asTargetDate, '%Y-%m-%d') End asTargetDate
+			  ,DATE_FORMAT(T1.asStartDateTime,'%Y.%m.%d') as asStartDateTime
+			  ,Case When ifnull(T1.asTargetDate,'') = '' Then '' Else DATE_FORMAT(T1.asTargetDate, '%Y.%m.%d') End asTargetDate
 			  ,ifnull(T1.asStartUserId,'') as asStartUserId
 			  ,ifnull(T3.userName,'') as asStartUserName
           FROM smAs T1
@@ -108,9 +108,9 @@
 			  ,T1.asState
 			  ,T1.asSubState
 			  ,T7.codeName as asStateTrans
-			  ,DATE_FORMAT(T1.asStartDateTime, '%Y-%m-%d') as asStartDateTime
-			  ,DATE_FORMAT(T1.asCompleteDateTime, '%Y-%m-%d') as asCompleteDateTime
-			  ,Case When ifnull(T1.asTargetDate,'') = '' Then '' Else DATE_FORMAT(T1.asTargetDate, '%Y-%m-%d') End asTargetDate
+			  ,DATE_FORMAT(T1.asStartDateTime, '%Y.%m.%d') as asStartDateTime
+			  ,DATE_FORMAT(T1.asCompleteDateTime, '%Y.%m.%d') as asCompleteDateTime
+			  ,Case When ifnull(T1.asTargetDate,'') = '' Then '' Else DATE_FORMAT(T1.asTargetDate, '%Y.%m.%d') End asTargetDate
 			  ,ifnull(T1.asStartUserId,'') as asStartUserId
 			  ,ifnull(T3.userName,'') as asStartUserName
 			  ,ifnull(T1.asCompleteUserId,'') as asCompleteUserId
@@ -124,7 +124,7 @@
 			  ,T1.receiveAddressDetail
 			  ,T1.receivePost
 			  ,replace(T1.customerRequest,replace('<![CDATA[\n]]>',' ',''),  replace('<![CDATA[<br>]]>',' ','')) as customerRequest
-			  ,Case When ifnull(T1.purchaseDate,'') = '' Then '' Else DATE_FORMAT(T1.purchaseDate, '%Y-%m-%d') End purchaseDate
+			  ,Case When ifnull(T1.purchaseDate,'') = '' Then '' Else DATE_FORMAT(T1.purchaseDate, '%Y.%m.%d') End purchaseDate
 			  ,T1.receiptImage
 			  ,replace(T1.memo,replace('<![CDATA[\n]]>',' ',''),  replace('<![CDATA[<br>]]>',' ','')) as memo
 			  ,T1.asDeliveryMethod
