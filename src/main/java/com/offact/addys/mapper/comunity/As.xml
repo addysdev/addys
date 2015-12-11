@@ -115,7 +115,9 @@
 			  ,ifnull(T3.userName,'') as asStartUserName
 			  ,ifnull(T1.asCompleteUserId,'') as asCompleteUserId
 			  ,ifnull(T4.userName,'') as asCompleteUserName
-			  ,ifnull(T1.asResult,'') as asResult
+			  ,case when T1.asState in ('01','02','03') then T1.asResult Else T10.asHistory End asResult
+        	  ,ifnull(T10.centerImage,'') as centerImage 
+              ,ifnull(T11.centerAsNo,'') as centerAsNo
 			  ,ifnull(T1.asResultDateTime,'') as asResultDateTime
 			  ,T1.receiveName
 			  ,T1.receiveTelNo
@@ -150,6 +152,8 @@
 			   Left Join ofCode T7 On T1.asState=T7.codeId And T7.codeGroupId='AS01'  
 			   Left Join ofCode T8 On T1.asTransportCode = T8.codeId and T8.codegroupId = 'DE01'
 			   Left Join ofCode T9 On T1.reTransportCode = T9.codeId and T9.codegroupId = 'DE01'
+			   Left Join smAsHistory T10 On T1.asNo = T10.asNo and T10.asSubState = '06'
+               Left Join smAsHistory T11 On T1.asNo = T11.asNo and T11.asSubState = '04'
 		 Where T1.asNo = #{asNo}
 		 
 </select>

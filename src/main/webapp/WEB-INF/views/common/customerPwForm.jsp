@@ -439,6 +439,9 @@
 		      </div>
 		  </div>
 		  </form>
+		   <div id="footer" class="footer">
+		    <span class="Copyright">Copyright 2015 ⓒ addys Corp. All rights reserved. v1.0.0</span>
+		  </div>
 	  	  <!--//container -->
       </div>
     </body>

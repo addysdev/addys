@@ -75,7 +75,7 @@
           </dl>
           <hr class="odr_line_ty1">
           <dl class="clm_ip2">
-            <dt><span class="tit">답변</span></dt>
+            <dt><span class="tit">답변내용</span></dt>
             <dd>
               <p class="tx1">${counselResult}
             </dd>

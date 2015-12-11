@@ -103,9 +103,9 @@ function fcCunsel_multiRegist(){
         </div>
         <div class="clm_acdo_sec m_userinfo ">
         <dl class="clm_ip2">
-            <dt><span class="tit">고객명</span></dt>
+            <dt><span class="tit">고객키</span></dt>
             <dd>
-            <span class="inpbx"><input type="text"  value="임진주" title="고객명" disabled=""></span>
+            <span class="inpbx"><input type="text"  value="${customerKey}" title="고객명" disabled=""></span>
             </dd>
           </dl>
            <hr class="odr_line_ty1">
@@ -113,9 +113,8 @@ function fcCunsel_multiRegist(){
             <dt><span class="tit">문의내용</span></dt>
             <dd>
             <span class="txtarea">
-                        <label for="c_con">배송, 취소/반품/교환, 환불 문의는 하지마세요.</label>
-                        <textarea cols="30" rows="10"></textarea>
-                    </span>
+            <textarea cols="30" rows="10" id="counsel" name="counsel"></textarea>
+            </span>
             </dd>
           </dl>
            <hr class="odr_line_ty1">
@@ -124,7 +123,7 @@ function fcCunsel_multiRegist(){
             <dd>
               <div class="inpfiles">
 						<label for="user_pic_add">사진첨부<!-- 사진첨부 --></label>
-						<span class="file"><input type="file" ></span>
+						<span class="file"><input type="file"  id="files" name="files"></span>
 					</div>
             </dd>
           </dl>

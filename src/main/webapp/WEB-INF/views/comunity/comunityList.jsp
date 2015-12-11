@@ -2,14 +2,6 @@
 <!-- container -->
   <div id="container" class="comunity" >
     <div id="m_content" >
-     <!-- 타이틀 -->
-        <div class="clm_acdo_tit">
-          <h1>매장톡</h1>
-          <div class="clm_acdo_tit_left">
-            <a href="javascript:fcReg_comment();" class="btn b_prev">talk</a>
-          </div>
-        </div>
-        <!--// 타이틀 --> 
 		    <div class="talk_board" >
 		      <table class="tbl_base" >
 			    <c:if test="${!empty comunityList}">
@@ -70,19 +62,6 @@
 		      <table id="fset" name="fset">
 		      </table>
 		    </div>
-		    <div id="chat_box">
-        <div class="chat_box">
-                  <div class="inpfiles">
-						<label for="user_pic_add">첨부</label>
-						<span class="file"><input type="file" ></span>
-					</div>
-
-          <div class="chat">
-           이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요이용방법을 알고 싶어요
-          </div>
-          <a href="#" class="btn_chat">전송</a>
-        </div>
-      </div>
 </div>
  </div>
 	<!-- //container -->

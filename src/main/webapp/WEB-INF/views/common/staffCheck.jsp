@@ -68,7 +68,7 @@
 	        <div class="clm_acdo_sec">
 	          <dl class="clm_ip2">
 	            <dd>
-	              <p class="tx2">※ 애디스 담당직원으로 등록되신 사용자입니다.<br>※ 직원전용 옵션을 선택후 입장해주시기 바랍니다.</p>
+	              <p class="tx2">※ 애디스 담당직원으로 등록되신 사용자입니다.<br><br>※ 직원전용 옵션을 선택후 입장해주시기 바랍니다.</p>
 	            </dd>
 	          </dl>
 	        </div>
@@ -93,6 +93,9 @@
 	        </div>
 	      </div>
 	    </div>
+	  </div>
+	  <div id="footer" class="footer">
+	    <span class="Copyright">Copyright 2015 ⓒ addys Corp. All rights reserved. v1.0.0</span>
 	  </div>
 	  <!-- //container -->
     </div>

@@ -54,7 +54,7 @@
 			  }
 		  
 		   function fcAs_reTranspath(){
-				
+			
 				var url=document.asConForm.reTransurl_Modify.value;
 				var transno=document.asConForm.reTransportNo_Modify.value;
 				
@@ -63,7 +63,7 @@
 			//	var h=700;
 			//	var s=800;
 
-			    tmt_winLaunch(theURL, 'transObj', 'transObj', 'resizable=no,status=no,location=no,menubar=no,toolbar=no,width='+s+',height ='+h+',left=0,top=0,resizable=yes,scrollbars=yes');
+			 //   tmt_winLaunch(theURL, 'transObj', 'transObj', 'resizable=no,status=no,location=no,menubar=no,toolbar=no,width='+s+',height ='+h+',left=0,top=0,resizable=yes,scrollbars=yes');
 			
 			}
 		   
@@ -136,7 +136,7 @@
           <hr class="odr_line_ty1">
           <dl class="clm_ip2">
             <dt><span class="tit">진행상황</span></dt>
-            <dd>
+            <dd><p class="tx1">
           	  <c:choose>
 					<c:when test="${asVO.asState=='05' || asVO.asState=='06' || asVO.asState=='07' || asVO.asState=='08' || asVO.asState=='09'}">
 						  <c:choose>
@@ -173,14 +173,21 @@
 				 <c:otherwise>
 				    <p class="tx4"> ${asVO.asStateTrans} </p>
 				 </c:otherwise>
- 			  </c:choose>
+ 			  </c:choose></p>
             </dd>
           </dl>
           <hr class="odr_line_ty1">
           <dl class="clm_ip2">
             <dt><span class="tit">처리결과</span></dt>
             <dd>
-              <p class="tx1">${asVO.asResult}</p>
+              <p class="tx1">${asVO.asResult}
+              <c:if test="${asVO.centerAsNo!=null && asVO.centerAsNo!=''}">
+              <br>[센터 접수번호] : ${asVO.centerAsNo}
+              </c:if>
+              <c:if test="${asVO.centerImage!=null && asVO.centerImage!=''}">
+              <br><span class="img_area"> <span><a href="javascript:AutoResize('${asVO.centerImage}')"><img src="${asVO.centerImage}" alt="상품이미지"></a></span>
+              </c:if>
+              </p>
             </dd>
           </dl>
           <hr class="odr_line_ty1">
@@ -231,12 +238,12 @@
    						 <c:when test="${asVO.reTransurl!='N'}">
    						    <input type="hidden" name="reTransurl_Modify" id="reTransurl_Modify" value="${asVO.reTransurl}" >
    						    <input type="hidden" name="reTransportNo_Modify" id="reTransportNo_Modify" value="${asVO.reTransportNo}" >
-   						  	[운송장 번호] :<a href="javascript:fcAs_reTranspath();"><span id="reTransNoId">${asVO.reTransportNo}</span></a>
+   						  	<br>[운송장 번호] :<a href="javascript:fcAs_reTranspath();"><span id="reTransNoId">${asVO.reTransportNo}</span></a>
 	             	 	 </c:when>
 						 <c:otherwise>
 						    <input type="hidden" name="reTransurl_Modify" id="reTransurl_Modify" value="${asVO.reTransurl}" >
    						    <input type="hidden" name="reTransportNo_Modify" id="reTransportNo_Modify" value="${asVO.reTransportNo}" >
-						  	[운송장 번호] : ${asVO.reTransportNo}
+						  	<br>[운송장 번호] : ${asVO.reTransportNo}
 						 </c:otherwise>
 	 			  </c:choose>
             </dd>

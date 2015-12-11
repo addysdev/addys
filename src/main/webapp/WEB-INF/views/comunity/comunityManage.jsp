@@ -19,6 +19,7 @@
     
  	var realYN='Y';
  	var setFlag='01';
+ 	var talkcnt=0;
     
     function fcReg_comment() {
 
@@ -120,6 +121,7 @@
     	if(flag=='03'){
     		
     		realYN='Y';
+    		talkcnt=0;
     		
     		$('#aslist').attr("style","display:none");
         	$('#counselList').attr("style","display:none");
@@ -127,6 +129,9 @@
         	$('#hotdeal').attr("style","display:none");
         	$('#mhome').attr("style","display:none");
         	$('#customerModify').attr("style","display:none");
+        	
+        	$('#chat_box').attr("style","display:block");
+        	$('#footer').attr("style","display:none");
         	
         	$('#tab1').attr("class","");
         	$('#tab2').attr("class","");
@@ -145,6 +150,9 @@
         	$('#mhome').attr("style","display:none");
         	$('#customerModify').attr("style","display:none");
         	
+        	$('#chat_box').attr("style","display:none");
+        	$('#footer').attr("style","display:block");
+        	
         	$('#tab1').attr("class","on");
         	$('#tab2').attr("class","");
         	$('#tab3').attr("class","");
@@ -161,6 +169,9 @@
     		$('#hotdeal').attr("style","display:none");
         	$('#mhome').attr("style","display:none");
         	$('#customerModify').attr("style","display:none");
+        	
+        	$('#chat_box').attr("style","display:none");
+        	$('#footer').attr("style","display:block");
         	
         	$('#tab1').attr("class","");
         	$('#tab2').attr("class","on");
@@ -179,6 +190,9 @@
         	$('#mhome').attr("style","display:none");
         	$('#customerModify').attr("style","display:none");
         	
+        	$('#chat_box').attr("style","display:none");
+        	$('#footer').attr("style","display:block");
+        	
         	$('#tab1').attr("class","");
         	$('#tab2').attr("class","");
         	$('#tab3').attr("class","");
@@ -195,6 +209,9 @@
     		$('#hotdeal').attr("style","display:none");
         	$('#mhome').attr("style","display:block");
         	$('#customerModify').attr("style","display:none");
+        	
+        	$('#chat_box').attr("style","display:none");
+        	$('#footer').attr("style","display:block");
 
         	$('#tab1').attr("class","");
         	$('#tab2').attr("class","");
@@ -248,7 +265,10 @@
                   
                    $("#comunityList").html(result);
                    //$('#fset').focus(1); 
-                   //window-location('#fset');
+                   if(talkcnt==0){
+                	 window-location('#fset'); 
+                   }
+                   talkcnt++;
                },
                error:function() {
                   
@@ -607,6 +627,61 @@
     	 $("#imageView").dialog('close');
     	 $('#imageView').empty();
      }
+     
+     function fcComunity_multiRegist(){
+    
+    	    var url;
+    	    var frm = document.comunityForm;
+    	    var fileName = '';
+    	    var pos = '';
+    	    var ln = '';
+    	    var gap = '';
+    	    var gap1 = '';
+    	    
+    		var comment=frm.comment.value;
+    		
+    	    url="<%= request.getContextPath() %>/comunity/comunityregist?comment="+comment;
+    		
+    	    if($("#files").val() != ''){
+    	    	
+    	        fileName = document.all.files.value;
+    	        pos = fileName.lastIndexOf("\\");
+    	        ln = fileName.lastIndexOf("\.");
+    	        gap = fileName.substring(pos + 1, ln);
+    	        gap1 = fileName.substring(ln+1);
+    	        
+    	        if(gap1=="jpg" || gap1=="JPG" || gap1=="gif" || gap1=="GIF" || gap1=="png" || gap1=="PNG"){//
+    	            url="<%= request.getContextPath() %>/comunity/comunityregist?fileName="+gap+"&extension="+gap1+"&comment="+comment;
+    	        }else {
+    	        	alert("이미지 파일만 등록 부탁드립니다.");
+    	            return;
+    	        }
+    	        
+    	    }else{
+    	    
+    			if(frm.comment.value==''){
+    				alert('남길 톡 내용이 없습니다.');
+    				return;
+    			}
+    	    }
+
+    	    commonDim(true);
+    	    frm.action = url;
+    	    frm.target="file_result";
+
+    	    frm.submit();        
+    	}
+     
+     function fcComunity_close(){
+    		
+    		commonDim(false);
+    		
+    		var frm = document.comunityForm;
+    		frm.comment.value='';
+    		frm.files.value='';
+    		 
+    	//	$("#commentRegistForm").dialog('close');
+    	}
   </script>
   </head>
    <body>
@@ -624,7 +699,7 @@
 			          <div class="b_toggle">
 			            <ul>
 			              <li> <a href="#" class="b_name"> <strong class="">${groupName}</strong> </a></li>
-			              <li> <a href="javascript:fcConfig_modify()" class="b_cog"> <strong class="ico_cog"><span>설정</span></strong> </a></li>
+			              <li> <a href="javascript:fcConfig_modifyView()" class="b_cog"> <strong class="ico_cog"><span>설정</span></strong> </a></li>
 			              <li><a href="javascript:goLogout()" class="b_logout"> 
 			                <strong>로그아웃</strong></a>
 			              </li>
@@ -635,9 +710,18 @@
 			    </div>
 			  </header>
 			  <!--//헤더 --> 
-	  			<div id=comunityList></div>
+	      		<div id=comunityList style="display:none"></div>
+			    <!-- 조회결과리스트 -->
+			    <div id=counselList style="display:none"></div>
+			    <div id=aslist style="display:none"></div>
+			    <div id="hotdeal" style="display:none"></div>
+			    <div id="mhome" style="display:none"></div>
+			    
+			    <div id=asDetail title="A/S상세"></div>
 	      		<div id="commentRegistForm"  title="talk하기"></div>
-	      		<div id="imageView"  onClick="imageClose()"></div>
+	    		<div id="counselRegistForm"  title="문의하기"></div>
+	    		<div id="imageView"  onClick="imageClose()"></div>
+	    		<div id="counselResult"  title="문의상세"></div>
 	        </c:when>
 			<c:otherwise>
 			<!-- 헤더 -->
@@ -688,6 +772,32 @@
 		</c:choose>
 	  <div id="customerModify"  style="display:none"></div>
 	  <div id="replyList"  title="답글정보"></div>
+	  
+	  <div id="chat_box"  style="display:none">
+	  <iframe id="file_result" name="file_result" style="display: none" ></iframe>
+		<form:form commandName="comunityVO"  id="comunityForm" name="comunityForm" method="post" target="file_result" enctype="multipart/form-data" >
+		<input type="hidden" name="customerKey" id="customerKey" value="${customerKey}" >
+		<input type="hidden" name="customerId" id="customerId" value="${customerId}" >
+		<input type="hidden" name="commentType" id="commentType" value="${staffYn}" >
+		<input type="hidden" name="groupId" id="groupId" value="${groupId}" >
+
+       	<div class="chat_box">
+           <div class="inpfiles">
+			<label for="user_pic_add">첨부</label>
+			<span class="file"><input type="file" id="files" name="files"></span>
+		</div>
+           <div >
+          	 <textarea cols="24" rows="4" id="comment" name="comment"></textarea>
+           </div>
+         <a href="javascript:fcComunity_multiRegist()" class="btn_chat">전송</a>
+        </div>
+        </form:form>
+      </div>
+      
+       <div id="footer" class="footer">
+	    <span class="Copyright">Copyright 2015 ⓒ addys Corp. All rights reserved. v1.0.0</span>
+	  </div>
+       
     </div>
   </body>
 </html>

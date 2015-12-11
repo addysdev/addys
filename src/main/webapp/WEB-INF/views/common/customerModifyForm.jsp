@@ -278,25 +278,31 @@
         </div>
         <div class="clm_acdo_sec">
           <dl class="clm_ip2">
-            <dt><span class="tit">현재 비밀번호</span></dt>
+            <dt><span class="tit">현재비밀번호</span></dt>
             	  <input type="hidden" id="regPassword" name="regPassword" value="${customer.customerPw}" > 
 		          <input type="hidden" id="encpassword" name="encpassword" value="" > 
 		          <input type="hidden" id="customerPw" name="customerPw" value="" > 
 		          <input type="hidden" id="customerKey1" name="customerKey1" value="${customer.customerKey1}" >
             <dd>
-              <p class="tx2"><input type="password" class="form-control"  id="cur_password" name="cur_password" maxlength="50"  tabindex="2" value="" ></p>
+              <p class="tx2">
+              <span class="inpbx"><input type="password" id="cur_password" name="cur_password" maxlength="50"  value="" ></span>
+              </p>
             </dd>
           </dl>
           <dl class="clm_ip2">
-            <dt><span class="tit">변경 비밀번호</span></dt>
+            <dt><span class="tit">변경비밀번호</span></dt>
             <dd>
-              <p class="tx2"><input type="password" class="form-control"  id="change_password" name="change_password" maxlength="50"  tabindex="2" value="" ></p>
+              <p class="tx2">
+                <span class="inpbx"><input type="password" id="change_password" name="change_password" maxlength="50"  value="" ></span>
+              </p>
             </dd>
           </dl>
           <dl class="clm_ip2">
-            <dt><span class="tit">비밀번호 재입력</span></dt>
+            <dt><span class="tit">재입력</span></dt>
             <dd>
-              <p class="tx2"><input type="password" class="form-control"  id="re_password" name="re_password" maxlength="50"  tabindex="2" value="" ></p>
+              <p class="tx2">
+               <span class="inpbx"><input type="password" id="re_password" name="re_password" maxlength="50"  value="" ></span>
+              </p>
             </dd>
           </dl>
         </div>
@@ -311,6 +317,9 @@
   </div>
   </form:form>
   <!-- //container -->	
+  <div id="footer" class="footer">
+    <span class="Copyright">Copyright 2015 ⓒ addys Corp. All rights reserved. v1.0.0</span>
+  </div>
 <script>
 
 if('02'=='${customer.customerKey1}'){
