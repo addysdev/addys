@@ -90,7 +90,7 @@ function fcCunsel_multiRegist(){
       <div class="clm_order_detail">
         <!-- 타이틀 -->
         <div class="clm_acdo_tit">
-          <h1>문의접수하기</h1>
+          <h1>문의등록하기</h1>
           <div class="clm_acdo_tit_left">
             <a href="javascript:goPageCsPageList();" class="btn b_prev"><span class="sp_prev">이전</span></a>
           </div>
@@ -101,24 +101,37 @@ function fcCunsel_multiRegist(){
           <h2 class="h2_txo"> <strong><em class="num">1. </em></strong>문의내용</h2>
           <a href="javascript:void(0)" class="tit_desc"> <span class="sp_odr ic_arr">&nbsp;</span> </a>
         </div>
-        <div class="clm_acdo_sec">
-          <dl class="clm_ip2">
-            <dt><span class="tit">문의내용</span></dt>
+        <div class="clm_acdo_sec m_userinfo ">
+        <dl class="clm_ip2">
+            <dt><span class="tit">고객명</span></dt>
             <dd>
-              <p class="tx2"><textarea style='height:102px;ime-mode:active;' row="4" class="form-control" id="counsel" maxlength="1000" name="counsel"  value=""  placeholder="문의"/></p>
+            <span class="inpbx"><input type="text"  value="임진주" title="고객명" disabled=""></span>
             </dd>
           </dl>
            <hr class="odr_line_ty1">
           <dl class="clm_ip2">
-            <dt><span class="tit">이미지파일</span></dt>
+            <dt><span class="tit">문의내용</span></dt>
             <dd>
-              <p class="tx1"><input type="file" id="files" name="files" /></p>
+            <span class="txtarea">
+                        <label for="c_con">배송, 취소/반품/교환, 환불 문의는 하지마세요.</label>
+                        <textarea cols="30" rows="10"></textarea>
+                    </span>
+            </dd>
+          </dl>
+           <hr class="odr_line_ty1">
+          <dl class="clm_ip2">
+            <dt><span class="tit">사진첨부</span></dt>
+            <dd>
+              <div class="inpfiles">
+						<label for="user_pic_add">사진첨부<!-- 사진첨부 --></label>
+						<span class="file"><input type="file" ></span>
+					</div>
             </dd>
           </dl>
         </div>
          <div class="clm_detail_btn">
           <div class="clm_btn">
-            <a href="javascript:fcCunsel_multiRegist();" class="btn_ty2">접수</a>
+            <a href="javascript:fcCunsel_multiRegist();" class="btn_ty2">문의등록</a>
           </div>
         </div>
       </div>
