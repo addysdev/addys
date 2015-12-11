@@ -1,7 +1,15 @@
 <%@ include file="/WEB-INF/views/addys/base.jsp" %>	
 <!-- container -->
   <div id="container" class="comunity" >
-		    <button id="deferbtn" type="button" class="btn btn-primary btn-sm" onClick="fcReg_comment()" >talk하기</button>
+    <div id="m_content" >
+     <!-- 타이틀 -->
+        <div class="clm_acdo_tit">
+          <h1>매장톡</h1>
+          <div class="clm_acdo_tit_left">
+            <a href="javascript:fcReg_comment();" class="btn b_prev">talk</a>
+          </div>
+        </div>
+        <!--// 타이틀 --> 
 		    <div class="talk_board" >
 		      <table class="tbl_base" >
 			    <c:if test="${!empty comunityList}">
@@ -62,6 +70,6 @@
 		      <table id="fset" name="fset">
 		      </table>
 		    </div>
-
+</div>
  </div>
 	<!-- //container -->

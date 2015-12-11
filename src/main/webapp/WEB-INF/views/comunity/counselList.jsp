@@ -48,39 +48,31 @@
  <input type="hidden" name="totalCount"          id="totalCount"         value=""  />
   <div id="container" class="comunity" >
     <div id="m_content" >
-      <div class="clm_acdo_cont">
-        <div class="clm_acdo_tit">
+      <div class="clm_acdo_tit">
           <h1>문의하기</h1>
+           <div class="clm_acdo_tit_left">
+            <a href="javascript:fcReg_counsel();" class="btn b_prev">문의</a>
+          </div>
         </div>
-        <div class="clm_acdo_sec">
-          <ul class="odr_goods_lst">
+          <div class="cs_cont">
+       		 <ul class="cs_list">
           	<c:if test="${!empty counselList}">
             <c:forEach items="${counselList}" var="CounselVO" varStatus="status">
             <!-- List -->
-            <li>
-              <div class="clm_acont ">
-                <div class="order_acont">
-                  <div class="display_store">
-                    <span class="place"> <span class="date">${CounselVO.counselDateTime}</span> </span> <span class="type"><span class="type_in">답변완료</span></span>
-                  </div>
-                  <span class="img_area"> <span> <img src="${CounselVO.counselImage}" alt="" > </span> </span>
-                  <div class="summary">
-                    <div>
-                      <a href="javascript:fcCs_View('${CounselVO.idx}','${CounselVO.counselResult}','${CounselVO.userName}','${CounselVO.customerKey}','${CounselVO.counsel}','${CounselVO.counselImage}')">${CounselVO.counsel}</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
+            <li><a href="javascript:fcCs_View('${CounselVO.idx}','${CounselVO.counselResult}','${CounselVO.userName}','${CounselVO.customerKey}','${CounselVO.counsel}','${CounselVO.counselImage}')" class="box"> 
+            <span class="title"><span class="cc_ellip_in">
+            <span class="type">[답변완료]</span>
+            &nbsp;${CounselVO.counsel}<span class="photo">사진</span></span></span> 
+            <span class="date">${CounselVO.counselDateTime}</span> 
+            </a></li>
             <!--// List -->
             </c:forEach>
             </c:if>
           </ul>
         </div>
-      </div>
-     <!-- 페이징 -->
-     <taglib:paging cbFnc="goPageAsPageList" totalCount="${totalCount}" curPage="${csConVO.curPage}" rowCount="${csConVO.rowCount}" />
-     <!-- //페이징 -->
+         <!-- 페이징 -->
+	     <taglib:paging cbFnc="goPageAsPageList" totalCount="${totalCount}" curPage="${csConVO.curPage}" rowCount="${csConVO.rowCount}" />
+	     <!-- //페이징 -->
     </div>
   </div>
   </form:form>

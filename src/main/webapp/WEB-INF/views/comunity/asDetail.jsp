@@ -137,7 +137,57 @@
           <dl class="clm_ip2">
             <dt><span class="tit">진행상황</span></dt>
             <dd>
-              <p class="tx4">${asVO.asStateTrans}</p>
+          	  <c:choose>
+					<c:when test="${asVO.asState=='05' || asVO.asState=='06' || asVO.asState=='07' || asVO.asState=='08' || asVO.asState=='09'}">
+						  <c:choose>
+								<c:when test="${asVO.receiveType=='02'}">
+									<c:if test="${asVO.asState=='05'}">
+									  <strong><font style="color:red">A/S대행요청</font></strong>▶센터접수완료▶택배수령요청▶A/S완료
+									</c:if>
+							        <c:if test="${asVO.asState=='06'}">
+									     A/S대행요청▶<strong><font style="color:red">센터접수완료</font></strong>▶택배수령요청▶A/S완료
+									</c:if>
+									<c:if test="${asVO.asState=='08'}">
+									     A/S대행요청▶센터접수완료▶<strong><font style="color:red">택배수령요청</font></strong>▶A/S완료
+									</c:if>
+									<c:if test="${asVO.asState=='09'}">
+									     A/S대행요청▶센터접수완료▶택배수령요청▶<strong><font style="color:red">A/S완료</font></strong>
+									</c:if> 
+			            	 	</c:when>
+							 <c:otherwise>
+									<c:if test="${asVO.asState=='05'}">
+									     <strong><font style="color:red">A/S대행요청</font></strong>▶센터접수완료▶매장수령요청▶A/S완료
+									</c:if>
+									<c:if test="${asVO.asState=='06'}">
+									     A/S대행요청▶<strong><font style="color:red">센터접수완료</font></strong>▶매장수령요청▶A/S완료
+									</c:if>
+									<c:if test="${asVO.asState=='07'}">
+									     A/S대행요청▶센터접수완료▶<strong><font style="color:red">매장수령요청</font></strong>▶A/S완료
+									</c:if>
+									<c:if test="${asVO.asState=='09'}">
+									     A/S대행요청▶센터접수완료▶매장수령요청▶<strong><font style="color:red">A/S완료</font></strong>
+									</c:if>
+							 </c:otherwise>
+			 			  </c:choose> 
+            	 	</c:when>
+				 <c:otherwise>
+				    <p class="tx4"> ${asVO.asStateTrans} </p>
+				 </c:otherwise>
+ 			  </c:choose>
+            </dd>
+          </dl>
+          <hr class="odr_line_ty1">
+          <dl class="clm_ip2">
+            <dt><span class="tit">처리결과</span></dt>
+            <dd>
+              <p class="tx1">${asVO.asDetail}</p>
+            </dd>
+          </dl>
+          <hr class="odr_line_ty1">
+          <dl class="clm_ip2">
+            <dt><span class="tit">완료예정일</span></dt>
+            <dd>
+              <p class="tx1">${asVO.asDetail}</p>
             </dd>
           </dl>
         </div>

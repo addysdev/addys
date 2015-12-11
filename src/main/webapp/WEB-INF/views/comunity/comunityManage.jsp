@@ -5,15 +5,11 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Latest compiled and minified CSS -->
-	<link href="<%= request.getContextPath() %>/css/issue_style.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/jquery-ui-1.11.4.custom/jquery-ui.css">
-	<link rel="stylesheet" href="<%= request.getContextPath() %>/bootstrap-3.3.4-dist/css/bootstrap.css">
-	
+
 	<link href="<%= request.getContextPath() %>/css/reset.css" rel="stylesheet">
 	<link href="<%= request.getContextPath() %>/css/common.css" rel="stylesheet">
 	<link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet">
 	<link href="<%= request.getContextPath() %>/css/comunity.css" rel="stylesheet">
-	<link href="<%= request.getContextPath() %>/css/list.css" rel="stylesheet">
 
 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-1.11.2.js"></script>
 	<script type="text/javascript" src="<%= request.getContextPath() %>/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
@@ -667,7 +663,7 @@
 			        <ul style="width: 861px; height: 100%; position: absolute; left: 0px; top: 0px;">
 			          <li id="tab1" class="on" index="0" style="float: left; width: 70px;"><a href="javascript:setTab('01');fcAs_list()"><span class="nav_mnu">A/S조회</span></a></li>
 			          <li id="tab2" index="1" style="float: left; width: 70px;"><a href="javascript:setTab('02');fcCounsel_list();"><span class="nav_mnu">문의하기</span></a></li>
-			          <li id="tab3" index="2" style="float: left; width: 70px;"><a href="javascript:setTab('03');fcComunity_list()"><span class="nav_mnu">매장과talk</span></a></li>
+			          <li id="tab3" index="2" style="float: left; width: 70px;"><a href="javascript:setTab('03');fcComunity_list()"><span class="nav_mnu">매장톡</span></a></li>
 			          <li id="tab4" index="3" style="float: left; width: 40px;"><a href="javascript:setTab('04');fc_hotdeal()"><span class="nav_mnu">핫딜</span></a></li>
 			          <li id="tab5" index="4" style="float: left; width: 70px;"><a href="javascript:setTab('05');fc_mhome()"><span class="nav_mnu">회사소개</span></a></li>
 			        </ul>
