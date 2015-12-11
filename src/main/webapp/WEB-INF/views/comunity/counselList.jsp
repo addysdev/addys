@@ -75,9 +75,17 @@
             <c:forEach items="${counselList}" var="CounselVO" varStatus="status">
             <!-- List -->
             <li><a href="javascript:fcCs_View('${CounselVO.idx}','${CounselVO.counselResult}','${CounselVO.userName}','${CounselVO.customerKey}','${CounselVO.counsel}','${CounselVO.counselImage}')" class="box"> 
-            <span class="title"><span class="cc_ellip_in">
-            <span class="type"><span class="type_in">답변완료</span></span>
-            &nbsp;${CounselVO.counsel}<span class="photo">사진</span></span></span> 
+            <span class="title">
+            <c:if test="${CounselVO.counselResult!=null && CounselVO.counselResult!=''}">
+            	<span class="cc_ellip_in">
+            	<span class="type"><span class="type_in">답변완료</span>
+            	</span>
+             </c:if>
+            &nbsp;${CounselVO.counsel}
+            <c:if test="${CounselVO.counselImage!=null && CounselVO.counselImage!=''}">
+            <span class="photo">사진</span>
+            </c:if>
+            </span></span> 
             <span class="date">${CounselVO.counselDateTime}</span> 
             </a></li>
             <!--// List -->
