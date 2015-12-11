@@ -50,9 +50,7 @@
     <div id="m_content" >
       <div class="clm_acdo_tit">
           <h1>문의하기</h1>
-           <div class="clm_acdo_tit_left">
-            <a href="javascript:fcReg_counsel();" class="btn b_prev">문의</a>
-          </div>
+            <a href="javascript:fcReg_counsel();" class="btn_ask">문의등록</a>
         </div>
           <div class="cs_cont">
        		 <ul class="cs_list">
@@ -61,7 +59,7 @@
             <!-- List -->
             <li><a href="javascript:fcCs_View('${CounselVO.idx}','${CounselVO.counselResult}','${CounselVO.userName}','${CounselVO.customerKey}','${CounselVO.counsel}','${CounselVO.counselImage}')" class="box"> 
             <span class="title"><span class="cc_ellip_in">
-            <span class="type_in">답변완료</span></span>
+            <span class="type"><span class="type_in">접수</span></span>
             &nbsp;${CounselVO.counsel}<span class="photo">사진</span></span></span> 
             <span class="date">${CounselVO.counselDateTime}</span> 
             </a></li>
