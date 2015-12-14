@@ -377,14 +377,7 @@
 		 <!-- 헤더 -->
 		  <header>
 		   <div class="mb_top">
-		   <c:choose>
-	    		<c:when test="${type=='survey'}">
-					<h1 class="head_logo"><a href="<%= request.getContextPath() %>/surveyloginform" class=""><img src="<%= request.getContextPath() %>/images/logo_addys_w.png" alt="addys"  /></a></h1>
-		 		</c:when>
-				<c:otherwise>
-					<h1 class="head_logo"><a href="<%= request.getContextPath() %>/customerloginform" class=""><img src="<%= request.getContextPath() %>/images/logo_addys_w.png" alt="addys"  /></a></h1>
-		 		</c:otherwise>
-			</c:choose>
+				<h1 class="head_logo"><img src="<%= request.getContextPath() %>/images/logo_addys_w.png" alt="addys"  /></h1>
 			</div>
 		  </header>
 		  <!--//헤더 -->  
@@ -398,7 +391,14 @@
         <div class="clm_acdo_tit">
           <h1>비밀번호 변경</h1>
           <div class="clm_acdo_tit_left">
-            <a href="javascript:goPageCsPageList();" class="btn b_prev"><span class="sp_prev">이전</span></a>
+          <c:choose>
+	    		<c:when test="${type=='survey'}">
+					<a href="<%= request.getContextPath() %>/surveyloginform" class="btn b_prev"><span class="sp_prev">이전</span></a>
+		 		</c:when>
+				<c:otherwise>
+					<a href="<%= request.getContextPath() %>/customerloginform" class="btn b_prev"><span class="sp_prev">이전</span></a>
+				</c:otherwise>
+			</c:choose>
           </div>
         </div>
         <!--// 타이틀 --> 

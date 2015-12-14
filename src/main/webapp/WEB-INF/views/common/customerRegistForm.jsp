@@ -182,6 +182,11 @@
     				return;
     			}
 
+    			if(frm.agreeradio[0].checked==false){
+    				alert('개인정보 수집 및 이용에 대해 동의를 하시기 바랍니다.');
+    				return;
+    			}
+
     			//if (confirm('회원 가입을 하시겠습니까?')){ 
     				
     				setCookie("addys_customerkey", $('#customerKey').val());
@@ -299,7 +304,8 @@
     						if(result=='1'){
     							
     							 //alert('인증요청을 성공했습니다.\n발송된 인증번호를 입력하시기 바랍니다.');
-    							 document.all('pwform').style.display="inline";
+    							 //document.all('pwform').style.display="inline";
+    							 document.all('agreeform').style.display="inline";
     							 document.all('reqbtn').style.display="none";
     							 //document.all('completebtn').style.display="none";
     							 document.all('completebtn').disabled=true;
@@ -332,14 +338,7 @@
 		 <!-- 헤더 -->
 		  <header>
 		   <div class="mb_top">
-		   <c:choose>
-	    		<c:when test="${type=='survey'}">
-					<h1 class="head_logo"><a href="<%= request.getContextPath() %>/surveyloginform" class=""><img src="<%= request.getContextPath() %>/images/logo_addys_w.png" alt="addys"  /></a></h1>
-		 		</c:when>
-				<c:otherwise>
-					<h1 class="head_logo"><a href="<%= request.getContextPath() %>/customerloginform" class=""><img src="<%= request.getContextPath() %>/images/logo_addys_w.png" alt="addys"  /></a></h1>
-		 		</c:otherwise>
-			</c:choose>
+				<h1 class="head_logo"><img src="<%= request.getContextPath() %>/images/logo_addys_w.png" alt="addys"  /></h1>
 			</div>
 		  </header>
 		  <!--//헤더 -->  
@@ -352,7 +351,14 @@
         <div class="clm_acdo_tit">
           <h1>가입하기</h1>
           <div class="clm_acdo_tit_left">
-            <a href="javascript:goPageCsPageList();" class="btn b_prev"><span class="sp_prev">이전</span></a>
+           <c:choose>
+	    		<c:when test="${type=='survey'}">
+	    		    <a href="<%= request.getContextPath() %>/surveyloginform" class="btn b_prev"><span class="sp_prev">이전</span></a>
+			 	 </c:when>
+				<c:otherwise>
+				    <a href="<%= request.getContextPath() %>/customerloginform" class="btn b_prev"><span class="sp_prev">이전</span></a>
+		 		</c:otherwise>
+			</c:choose>
           </div>
         </div>
         <!--// 타이틀 --> 
@@ -376,52 +382,9 @@
 		              </ul>
 		            </div>
 		          <!--//핸드폰번호 등록 --> 
-		          <!-- 개인정보수집 동의 -->
-		            <div class="m_result privacy">
-		              <h4 class="m_sch_tp">개인정보 수집 및 이용에 대한 안내</h4>
-		              <ul class="schinp_list">
-		                <li>
-		                  <label for="" class="">[필수] 수집 · 이용 항목</label>
-		                  <table class="tbl-lease tbl-02 tbl-privacy" summary="개인정보 수집 및 이용에 대한 안내를 항목, 목적, 보유기간으로 나타낸 표.">
-										
-												<colgroup>
-													<col width="25%">
-													<col>
-													<col width="25%">
-												</colgroup>
-												<thead>
-													<tr>
-														<th scope="col">항목</th>
-														<th scope="col">목적</th>
-														<th scope="col">보유기간</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>이름, 이메일 주소</td>
-														<td>고객 문의, 칭찬, 제안 등 민원 처리 결과 이메일 회신</td>
-														<td>문의 처리 후 3년</td>
-													</tr>
-												</tbody>
-											</table>
-											<div class="tbl-refer">※ 최소한의 개인정보이므로 동의를 해주셔야 가입이 가능합니다.</div>
-											<div class="agree-box">		               
-		                 						 <dl class="rdo-agree">
-													<dt>수집 · 이용 항목에 동의하십니까?</dt>
-													<dd>
-														<input type="radio" name="rdo-piu" id="rdo-piu-y" class="rdo-piu-y"><label for="rdo-piu-y">예</label>
-														<input type="radio" name="rdo-piu" id="rdo-piu-n" class="rdo-piu-n"><label for="rdo-piu-n">아니오</label>
-													</dd>
-												</dl> 
-											</div>
-										</li>
-											
-		              </ul>
-		            </div>
-		          <!--//개인정보수집 동의 -->
-		           
+		          <div id="agreeform" name="agreeform" style="display:none">
 		          <!-- 비밀번호 등록 -->
-		          <div  id="pwform" name="pwform" style="display:blcok" >
+		          <div  id="pwform" name="pwform" >
 		            <div class="m_result pw" >
 		              <h4 class="m_sch_tp"> 비밀번호를 설정해주세요.</h4>
 		              <ul class="schinp_list">
@@ -437,11 +400,54 @@
 		                  </span></li>
 		              </ul>
 		            </div>
+
+		          </div>
+		          <!--//비밀번호 등록 --> 
+		          <!-- 개인정보수집 동의 -->
+		            <div class="m_result privacy" >
+		              <h4 class="m_sch_tp">개인정보 수집 및 이용에 대한 안내</h4>
+		              <ul class="schinp_list">
+		                <li>
+		                  <label for="" class="">[필수] 수집 · 이용 항목</label>
+		                  <table class="tbl-lease tbl-02 tbl-privacy" summary="개인정보 수집 및 이용에 대한 안내를 항목, 목적, 보유기간으로 나타낸 표.">		
+								<colgroup>
+									<col width="25%">
+									<col>
+									<col width="25%">
+								</colgroup>
+								<thead>
+									<tr>
+										<th scope="col">항목</th>
+										<th scope="col">목적</th>
+										<th scope="col">보유기간</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>핸드폰번호</td>
+										<td>고객 문의, 칭찬, 제안 등 민원 처리 결과 A/S 회신</td>
+										<td>문의 처리 후 3년</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="tbl-refer">※ 최소한의 개인정보이므로 동의를 해주셔야 가입이 가능합니다.</div>
+							<div class="agree-box">		               
+               						 <dl class="rdo-agree">
+									<dt>수집 · 이용 항목에 동의하십니까?</dt>
+									<dd>
+										<input type="radio" name="agreeradio" id="agreeradio" class="rdo-piu-y" checked><label for="rdo-piu-y">예</label>
+										<input type="radio" name="agreeradio" id="agreeradio" class="rdo-piu-n"><label for="rdo-piu-n">아니오</label>
+									</dd>
+								</dl> 
+							</div>
+						</li>
+		              </ul>
 		            <div class="bnbox">
 		              <a href="javascript:goRigist()" id="btn_change" class="bn_gray">등록하기</a>
 		            </div>
-		          </div>
-		          <!--//비밀번호 등록 --> 
+		            </div>
+		            </div>
+		          <!--//개인정보수집 동의 -->
 		          <!-- 이용안내 -->
 		          <h3 class="line_tit"></h3>
 		          <div class="m_tip">

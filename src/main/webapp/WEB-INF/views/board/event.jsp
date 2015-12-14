@@ -40,8 +40,6 @@
 		    </div>
 		  </div>
 	<!-- //container -->
-  
-<%@ include file="/WEB-INF/views/addys/footer.jsp" %>
 </div>
 </body>
 </html>
