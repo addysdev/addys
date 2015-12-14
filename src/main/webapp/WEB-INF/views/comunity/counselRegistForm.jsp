@@ -113,7 +113,7 @@ function fcCunsel_multiRegist(){
             <dt><span class="tit">문의내용</span></dt>
             <dd>
             <span class="txtarea">
-            <textarea cols="30" rows="10" id="counsel" name="counsel"></textarea>
+            <textarea style='ime-mode:active;' class="form-control" id="comment"  maxlength="1000" name="comment"  value=""  ></textarea>
             </span>
             </dd>
           </dl>

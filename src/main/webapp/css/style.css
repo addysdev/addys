@@ -9,7 +9,7 @@ body { background:#f7f7f7;}
 #footer { position:fixed; bottom:0; margin:0 auto;color: #999;font-size: 12px;line-height: 18px;padding-top:5px;text-align: center;width: 100%;  background:#fff; border-top.:1px solid #ccc;}
 #footer .Copyright {display: inline-block; line-height: 40px;font-family: arial, HelveticaNeue, DroidSans, Sans-serif, Helvetica;}
 
-.m_content.form { position: relative; top:0; }
+.m_content.form { position: relative; top:0; padding-bottom:40px; }
 
 /****************************************
 		헤더 

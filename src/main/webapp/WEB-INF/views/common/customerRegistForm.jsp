@@ -376,8 +376,51 @@
 		              </ul>
 		            </div>
 		          <!--//핸드폰번호 등록 --> 
+		          <!-- 개인정보수집 동의 -->
+		            <div class="m_result privacy">
+		              <h4 class="m_sch_tp">개인정보 수집 및 이용에 대한 안내</h4>
+		              <ul class="schinp_list">
+		                <li>
+		                  <label for="" class="">[필수] 수집 · 이용 항목</label>
+		                  <table class="tbl-lease tbl-02 tbl-privacy" summary="개인정보 수집 및 이용에 대한 안내를 항목, 목적, 보유기간으로 나타낸 표.">
+										
+												<colgroup>
+													<col width="25%">
+													<col>
+													<col width="25%">
+												</colgroup>
+												<thead>
+													<tr>
+														<th scope="col">항목</th>
+														<th scope="col">목적</th>
+														<th scope="col">보유기간</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>이름, 이메일 주소</td>
+														<td>고객 문의, 칭찬, 제안 등 민원 처리 결과 이메일 회신</td>
+														<td>문의 처리 후 3년</td>
+													</tr>
+												</tbody>
+											</table>
+											<div class="tbl-refer">※ 최소한의 개인정보이므로 동의를 해주셔야 가입이 가능합니다.</div>
+											<div class="agree-box">		               
+		                 						 <dl class="rdo-agree">
+													<dt>수집 · 이용 항목에 동의하십니까?</dt>
+													<dd>
+														<input type="radio" name="rdo-piu" id="rdo-piu-y" class="rdo-piu-y"><label for="rdo-piu-y">예</label>
+														<input type="radio" name="rdo-piu" id="rdo-piu-n" class="rdo-piu-n"><label for="rdo-piu-n">아니오</label>
+													</dd>
+												</dl> 
+											</div>
+										</li>
+											
+		              </ul>
+		            </div>
+		          <!--//개인정보수집 동의 -->
+		           
 		          <!-- 비밀번호 등록 -->
-		          <br>
 		          <div  id="pwform" name="pwform" style="display:blcok" >
 		            <div class="m_result pw" >
 		              <h4 class="m_sch_tp"> 비밀번호를 설정해주세요.</h4>

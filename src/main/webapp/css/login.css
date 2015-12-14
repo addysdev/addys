@@ -1,5 +1,5 @@
 @charset "utf-8";
-/* CSS Document jjlim : 151126 */
+/* CSS Document jjlim : 151214 */
 
 legend, .blind { display: block; overflow: hidden; position: absolute; top: -9999px !important; left: 0; width: 1px; height: 1px; }
 form { display: block; margin-top: 0em; }
@@ -63,7 +63,7 @@ button { border: 0 none; background-color: transparent; cursor: pointer; }
  *************************/
 
 .m_resbx { background: #f7f7f7;padding: 40px 29px 30px; }
-.m_result { position: relative; padding: 0 14px 14px; border: 1px solid #ccc; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; background: #fff; color: #222; }
+.m_result { position: relative; padding: 0 14px 14px; border: 1px solid #ccc; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; background: #fff; color: #222; margin-bottom:20px; }
 .m_sch_tp { padding: 8px 0; font-size: 13px; line-height: 16px; text-align: center; }
 .schinp_list { padding: 0 9px;  }
 .schinp_list li { margin-top: 10px; }
@@ -71,3 +71,24 @@ button { border: 0 none; background-color: transparent; cursor: pointer; }
 .schinp_list .inpbx.certi {padding: 8px 8px 7px; margin-right:100px; }
 .schinp_list a {margin-left:10px; color:#fff;font-weight: bold;padding:10px 20px 13px;letter-spacing: -1px; text-align: center; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; box-shadow: inset 0 -3px 0 rgba(255,255,255,.15); vertical-align: top;background: #b6b6b6; }
 .schinp_list a.bn_certi { float:right;background: #b6b6b6; position:relative;right:0px; top:-35px;font-size: 12px;}
+
+
+/*************************
+ 	개인정보 수집 동의
+ *************************/
+.privacy .schinp_list label { font-weight: bold; font-size: 12px; }
+.privacy .tbl-02 { border-top: none; margin-top: 10px; }
+.privacy .tbl-02 th:first-child { border-left: 1px solid #999; }
+.privacy .tbl-lease th, .privacy .tbl-lease td { padding: 4px; font-size: 12px; text-align: center; word-break: break-all; }
+.privacy .tbl-02 th { border-right: 1px solid #999; font-weight: 600; }
+.privacy .tbl-lease th { border-bottom: 1px solid #999; border-left: 1px solid #dadada; color: #fff; background-color: #666; }
+.privacy .tbl-lease th, .privacy .tbl-lease td { padding-top: 8px; padding-bottom: 8px; font-size: 12px; line-height: 18px; letter-spacing: -1px; }
+.privacy .tbl-lease td { padding: 8px 5px; border: 1px solid #dadada; border-top: none; color: #4c4c4c; text-align: center; }
+.privacy .tbl-refer { margin-top: 5px; padding-right: 5px; color: #4c4c4c; font-size: 11px; letter-spacing: -1px; text-align: left; border-collapse: collapse; }
+.privacy .agree-box { }
+.privacy .rdo-agree { padding-top: 15px; vertical-align: top; }
+.rdo-agree dt, .rdo-agree dd { font-size: 12px; ; line-height: 18px; vertical-align: top; }
+.privacy .rdo-agree dd { margin-left: 12px; color: #545454; text-align: right; position: relative; top: -10px; }
+.privacy .rdo-agree dd input { margin-left: 10px; }
+.privacy .rdo-agree dt, .rdo-agree dd { color: #431f5d; font-size: 12px; line-height: 12px; }
+
