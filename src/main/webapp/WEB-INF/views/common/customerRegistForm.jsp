@@ -378,7 +378,7 @@
 		          <!--//핸드폰번호 등록 --> 
 		          <!-- 비밀번호 등록 -->
 		          <br>
-		          <div  id="pwform" name="pwform" style="display:none" >
+		          <div  id="pwform" name="pwform" style="display:blcok" >
 		            <div class="m_result pw" >
 		              <h4 class="m_sch_tp"> 비밀번호를 설정해주세요.</h4>
 		              <ul class="schinp_list">
