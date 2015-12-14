@@ -16,6 +16,7 @@
 		      
 		<link href="<%= request.getContextPath() %>/css/reset.css" rel="stylesheet">
 		<link href="<%= request.getContextPath() %>/css/common.css" rel="stylesheet">
+		<link href="<%= request.getContextPath() %>/css/comunity.css" rel="stylesheet">
 		<link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet">
 		<link href="<%= request.getContextPath() %>/css/login.css" rel="stylesheet">
 	
@@ -346,7 +347,15 @@
 		  <form commandName="customerVo"   id="RegistForm" name="RegistForm"  method="post" role="form" action="<%= request.getContextPath() %>/customer/regist">
 	        <input type="hidden" name="tokenstate"          id="tokenstate"         value="-1"  />
 		    <div id="container">
-		      <div class="m_content" >
+		      <div class="m_content form" >
+		      <!-- 타이틀 -->
+        <div class="clm_acdo_tit">
+          <h1>가입하기</h1>
+          <div class="clm_acdo_tit_left">
+            <a href="javascript:goPageCsPageList();" class="btn b_prev"><span class="sp_prev">이전</span></a>
+          </div>
+        </div>
+        <!--// 타이틀 --> 
 		        <div class="m_resbx">
 		          <!-- 핸드폰번호 등록 -->
 		            <div class="m_result id">

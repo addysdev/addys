@@ -9,7 +9,7 @@ body { background:#f7f7f7;}
 #footer { position:fixed; bottom:0; margin:0 auto;color: #999;font-size: 12px;line-height: 18px;padding-top:5px;text-align: center;width: 100%;  background:#fff; border-top.:1px solid #ccc;}
 #footer .Copyright {display: inline-block; line-height: 40px;font-family: arial, HelveticaNeue, DroidSans, Sans-serif, Helvetica;}
 
-
+.m_content.form { position: relative; top:0; }
 
 /****************************************
 		헤더 
@@ -23,7 +23,7 @@ h1.head_logo2 {width:155px; position: absolute; left: 20px; top: 8px; }
  ****************************************/
 
 /* 전광판 대화창  */
-.board .talk_board {width:100%;  /*min-height:800px;*/ position: relative; top:70px;; padding-bottom:50px; padding-top:0;;}
+.board .talk_board {width:100%;  /*min-height:800px;*/ position: relative; top:70px;; padding-bottom:18px; padding-top:0;;}
 
 /* 대화창 공통 */
 /* 대화창 레이아웃 테이블 */
