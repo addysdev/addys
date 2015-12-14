@@ -61,7 +61,7 @@
 	  </header>
 	  <!--//헤더 -->    
 	 <!-- container -->
-	  <div id="container" class="comunity" >
+	 <div id="container" class="comunity detial" >
 	    <div id="m_content" >
 	      <div class="clm_order_detail">
 	        <!-- 안내내용 -->

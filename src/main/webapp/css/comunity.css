@@ -13,6 +13,7 @@ button { border: 0 none; background-color: transparent; cursor: pointer; }
 
 #container.comunity { position:relative; top:100px; /* 헤더와의 간격조정 */}
 #m_content {padding-bottom:50px;}
+#container.comunity.detial { position:relative; top:55px; /* 헤더와의 간격조정 */}
 
 
 /* 오른쪽 고정메뉴 */
