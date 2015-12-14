@@ -1,7 +1,7 @@
 <%@ include file="/WEB-INF/views/addys/base.jsp" %>
      <form:form commandName="ComunityVO" name="comunityListForm" method="post" action="" >
        <!-- container -->
-		  <div id="container">
+		  <div id="container" class="board">
 		    <div class="talk_board" >
 		      <table class="tbl_base" >
 			    <c:if test="${!empty comunityList}">

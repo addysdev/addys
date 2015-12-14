@@ -6,7 +6,7 @@ body { background:#f7f7f7;}
 #wrap {}
 #header {position: fixed; z-index:1; width:100%;}
 #container { position: relative; top:px;;}
-#footer { position:fixed; bottom:0; margin:0 auto;color: #999;font-size: 12px;line-height: 18px;padding-top:5px;text-align: center;width: 100%;  background:#fff; border:1px solid #ccc;}
+#footer { position:fixed; bottom:0; margin:0 auto;color: #999;font-size: 12px;line-height: 18px;padding-top:5px;text-align: center;width: 100%;  background:#fff; border-top.:1px solid #ccc;}
 #footer .Copyright {display: inline-block; line-height: 40px;font-family: arial, HelveticaNeue, DroidSans, Sans-serif, Helvetica;}
 
 
@@ -22,13 +22,14 @@ h1.head_logo2 {width:155px; position: absolute; left: 20px; top: 8px; }
  		board 
  ****************************************/
 
-/* 대화창 배경 */
-.talk_board {background:#f7f7f7; width:100%;  min-height:800px; position: relative; top:50px;; padding:30px 0 }
+/* 전광판 대화창  */
+.board .talk_board {width:100%;  /*min-height:800px;*/ position: relative; top:70px;; padding-bottom:50px; padding-top:0;;}
 
+/* 대화창 공통 */
 /* 대화창 레이아웃 테이블 */
 .talk_board .tbl_base { width: 100%; }
 .talk_board .tbl_base tr {  }
-.talk_board .tbl_base td { padding:5px 20px; }
+.talk_board .tbl_base td { padding:8px 15px; }
 
 .talk_board .tbl_base td.me { text-align: left;padding-right:150px;  vertical-align:top;padding:0px; }
 .talk_board .tbl_base td.you { text-align: right;padding-left:150px; vertical-align:top;;padding:0px; }
