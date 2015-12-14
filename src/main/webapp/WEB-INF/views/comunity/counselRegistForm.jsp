@@ -43,9 +43,10 @@ function fcCunsel_multiRegist(){
 	
     url="<%= request.getContextPath() %>/comunity/counselmultiregist?counsel="+counsel;
 	
-    if($("#files").val() != ''){
-    	
-        fileName = document.all.files.value;
+    if($("#cfiles").val() != ''){
+    
+        fileName = document.all.cfiles.value;
+   
         pos = fileName.lastIndexOf("\\");
         ln = fileName.lastIndexOf("\.");
         gap = fileName.substring(pos + 1, ln);
@@ -113,7 +114,7 @@ function fcCunsel_multiRegist(){
             <dt><span class="tit">문의내용</span></dt>
             <dd>
             <span class="txtarea">
-            <textarea style='ime-mode:active;' class="form-control" id="comment"  maxlength="1000" name="comment"  value=""  ></textarea>
+            <textarea style='ime-mode:active;' row="6" class="form-control" id="counsel"  maxlength="1000" name="counsel"  value=""  ></textarea>
             </span>
             </dd>
           </dl>
@@ -123,7 +124,7 @@ function fcCunsel_multiRegist(){
             <dd>
               <div class="inpfiles">
 						<label for="user_pic_add">사진첨부<!-- 사진첨부 --></label>
-						<span class="file"><input type="file"  id="files" name="files"></span>
+						<span class="file"><input type="file"  id="cfiles" name="cfiles"></span>
 					</div>
             </dd>
           </dl>

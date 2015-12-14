@@ -538,7 +538,7 @@ public class ComunityController {
 	        
 		        if (fileName != null && fileName != "") {
 			    	  
-			        List<MultipartFile> files = fileVO.getFiles();
+			        List<MultipartFile> files = fileVO.getCfiles();
 			        List fileNames = new ArrayList();
 			        String orgFileName = null;
 
