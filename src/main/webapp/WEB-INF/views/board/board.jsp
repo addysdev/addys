@@ -72,9 +72,7 @@
   <div id=boardList></div> 
   <!-- //대화창 --> 
   
-  <!-- 풋터 -->
-	<%@ include file="/WEB-INF/views/addys/footer.jsp" %>
-  <!--//풋터 -->
+
 </div>
 </body>
 </html>
