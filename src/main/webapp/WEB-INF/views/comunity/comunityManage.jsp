@@ -5,11 +5,31 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Latest compiled and minified CSS -->
-
+	<style type="text/css">
+	.form-control {
+	  display: block;
+	  width: 100%;
+	  height: 20px;
+	  padding: 6px 12px;
+	  font-size: 14px;
+	  line-height: 1.42857143;
+	  color: #555;
+	  background-color: #fff;
+	  background-image: none;
+	  border: 1px solid #ccc;
+	  border-radius: 4px;
+	  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+	       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	}
+	</style>
 	<link href="<%= request.getContextPath() %>/css/reset.css" rel="stylesheet">
 	<link href="<%= request.getContextPath() %>/css/common.css" rel="stylesheet">
 	<link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet">
 	<link href="<%= request.getContextPath() %>/css/comunity.css" rel="stylesheet">
+	
 
 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-1.11.2.js"></script>
 	<script type="text/javascript" src="<%= request.getContextPath() %>/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
@@ -129,7 +149,7 @@
         	$('#hotdeal').attr("style","display:none");
         	$('#mhome').attr("style","display:none");
         	$('#customerModify').attr("style","display:none");
-        	
+     
         	$('#chat_box').attr("style","display:block");
         	$('#footer').attr("style","display:none");
         	
@@ -243,6 +263,10 @@
         		$('#hotdeal').attr("style","display:none");
             	$('#mhome').attr("style","display:none");
             	$('#customerModify').attr("style","display:block");
+        
+             	$('#chat_box').attr("style","display:none");
+            	$('#footer').attr("style","display:block");
+
             	
             },
             error:function(){
@@ -787,7 +811,7 @@
 			<span class="file"><input type="file" id="files" name="files"></span>
 		</div>
            <div >
-          	 <textarea cols="24" rows="4" id="comment" name="comment"></textarea>
+              <textarea style='ime-mode:active;' class="form-control" id="comment"  maxlength="200" name="comment"  value=""  ></textarea>
            </div>
          <a href="javascript:fcComunity_multiRegist()" class="btn_chat">전송</a>
         </div>

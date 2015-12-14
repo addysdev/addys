@@ -317,9 +317,6 @@
   </div>
   </form:form>
   <!-- //container -->	
-  <div id="footer" class="footer">
-    <span class="Copyright">Copyright 2015 ⓒ addys Corp. All rights reserved. v1.0.0</span>
-  </div>
 <script>
 
 if('02'=='${customer.customerKey1}'){
