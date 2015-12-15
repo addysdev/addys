@@ -30,21 +30,21 @@
 					        async:false,
 					           url:  "<%= request.getContextPath() %>/comunity/asstateprocess?asNo="+asNo+"&asState="+asState+"&asSubState="+asSubState+"&asHistory="+encodeURIComponent(asHistory),			  
 					           success: function(result) {
-		
+	/*
 									if(result=='1'){
-										 alert('A/S 제품을 정상거으로 수령 완료하셨습니다.');
+										 alert('A/S 제품을 정상적으로 수령 완료하셨습니다.');
 									} else{
 										 alert('A/S 처리상태 변경을 실패했습니다.');
 									}
-									
-									$('#asDetail').dialog('close');
-									fcAs_listSearch();
+	*/
+									alert('A/S 제품을 정상적으로 수령 완료하셨습니다.');								
+									goPageAsPageList();
 									
 					           },
 					           error:function(){
 					        	   
-					        	   alert('A/S 처리상태 변경을 실패했습니다.');
-					        	   $('#asDetail').dialog('close');
+					        	   alert('A/S 처리상태 변경을 실패했습니다.'); 
+					        	   goPageAsPageList();
 					           }
 					    });
 						
