@@ -19,6 +19,7 @@ public class CounselVO extends AbstractVO {
 	private String userId;
 	private String userName;
 	private String counselResult;
+	private String counselResultImage;
 	private String counselResultDateTime;
 
     // /** for paging */
@@ -129,6 +130,12 @@ public class CounselVO extends AbstractVO {
 	}
 	public void setPage_limit_val2(String page_limit_val2) {
 		this.page_limit_val2 = page_limit_val2;
+	}
+	public String getCounselResultImage() {
+		return counselResultImage;
+	}
+	public void setCounselResultImage(String counselResultImage) {
+		this.counselResultImage = counselResultImage;
 	}
 	
 }

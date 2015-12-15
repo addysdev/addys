@@ -74,7 +74,7 @@ button { border: 0 none; background-color: transparent; cursor: pointer; }
 
 
 /*************************
- 	개인정보 수집 동의
+    개인정보 수집 동의
  *************************/
 .privacy .schinp_list label { font-weight: bold; font-size: 12px; }
 .privacy .tbl-02 { border-top: none; margin-top: 10px; }
@@ -88,7 +88,6 @@ button { border: 0 none; background-color: transparent; cursor: pointer; }
 .privacy .agree-box { }
 .privacy .rdo-agree { padding-top: 15px; vertical-align: top; }
 .rdo-agree dt, .rdo-agree dd { font-size: 12px; ; line-height: 18px; vertical-align: top; }
-.privacy .rdo-agree dd { margin-left: 12px; color: #545454; text-align: right; position: relative; top: -10px; }
-.privacy .rdo-agree dd input { margin-left: 10px; }
+.privacy .rdo-agree dd { padding-top:15px; color: #545454; text-align: left; position: relative;  }
+.privacy .rdo-agree dd label { margin-right:10px;}
 .privacy .rdo-agree dt, .rdo-agree dd { color: #431f5d; font-size: 12px; line-height: 12px; }
-

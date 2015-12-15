@@ -45,6 +45,7 @@
               ,ifnull(T3.userId,'') as userId
               ,ifnull(T4.userName,'') as userName
               ,ifnull(T3.counselResult,'') as counselResult
+              ,T3.counselResultImage
               ,Case When ifnull(T3.counselResultDateTime,'') = '' Then '' Else DATE_FORMAT(T3.counselResultDateTime, '%Y.%m.%d') End counselResultDateTime
         From smCounsel T1
              Left Join smCustomer T2 On T1.customerKey = T2.customerKey

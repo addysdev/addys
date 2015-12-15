@@ -75,6 +75,38 @@ function fcCunsel_multiRegist(){
     frm.submit();        
 }
 
+	function getC_FileExtension( filePath ){ 
+	   
+		var lastIndex = -1; 
+	    lastIndex = filePath.lastIndexOf('.'); 
+	    var extension = ""; 
+	
+		if ( lastIndex != -1 ){ 
+		    extension = filePath.substring( lastIndex+1, filePath.len ); 
+		} else { 
+		    extension = ""; 
+		} 
+		
+		return extension; 
+	} 
+
+
+function c_uploadImg_Change( value ){ 
+
+    var src = getC_FileExtension(value); 
+    if (src == "") { 
+       // alert('올바른 파일을 입력하세요'); 
+       // return; 
+    } else if ( !((src.toLowerCase() == "gif") || (src.toLowerCase() == "jpg") || (src.toLowerCase() == "jpeg")) ) { 
+        alert('gif 와 jpg 파일만 지원합니다.'); 
+        return; 
+    } 
+
+	//$('#fid').attr("class","");
+	document.all('cfid').innerText='첨부완료';
+
+} 
+
 </SCRIPT>
 <iframe id="file_result" name="file_result" style="display: none" ></iframe>
 <form:form commandName="counselVO"  id="counselForm" name="counselForm" method="post" target="file_result" enctype="multipart/form-data" >
@@ -123,8 +155,8 @@ function fcCunsel_multiRegist(){
             <dt><span class="tit">사진첨부</span></dt>
             <dd>
               <div class="inpfiles">
-						<label for="user_pic_add">사진첨부<!-- 사진첨부 --></label>
-						<span class="file"><input type="file"  id="cfiles" name="cfiles"></span>
+						<label id="cfid" for="user_pic_add">사진첨부<!-- 사진첨부 --></label>
+						<span class="file"><input type="file"  id="cfiles" name="cfiles" onChange="c_uploadImg_Change( this.value )"></span>
 					</div>
             </dd>
           </dl>

@@ -80,6 +80,13 @@
               <p class="tx1">${counselResult}
             </dd>
           </dl>
+          <c:if test="${counselResultImage!=null && counselResultImage!=''}">
+          <hr class="odr_line_ty1">
+          <dl class="clm_ip2">
+            <dt><span class="tit">이미지</span></dt>
+            <dd> <span class="img_area"> <span><a href="javascript:AutoResize('${counselResultImage}')"><img src="${counselResultImage}" alt="이미지"></a></span></dd>
+          </dl>
+          </c:if>
         </div>
         <!--// 2.답변내용 -->
         </c:if>

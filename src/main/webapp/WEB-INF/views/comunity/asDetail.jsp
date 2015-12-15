@@ -197,6 +197,15 @@
               <p class="tx1">${asVO.asTargetDate}</p>
             </dd>
           </dl>
+           <c:if test="${asVO.asCompleteDateTime!=null && asVO.asCompleteDateTime!=''}">
+          <hr class="odr_line_ty1">
+          <dl class="clm_ip2">
+            <dt><span class="tit">처리완료일</span></dt>
+            <dd>
+              <p class="tx1">${asVO.asCompleteDateTime}</p>
+            </dd>
+          </dl>
+          </c:if>
         </div>
         <!--// 1. 접수정보 --> 
         <!-- 2.배송정보 -->

@@ -72,6 +72,21 @@
             <!--// List -->
             </c:forEach>
             </c:if>
+            <c:if test="${empty asList}">
+            <!-- List -->
+            <li>
+              <div class="clm_acont ">
+                <div class="order_acont">
+                  <div class="summary">
+                    <div>
+                      	등록된 A/S내역이 없습니다.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <!--// List -->
+          </c:if>
           </ul>
         </div>
       </div>

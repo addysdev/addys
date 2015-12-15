@@ -347,7 +347,7 @@
     	$('#tab3').attr("class","");
     	$('#tab4').attr("class","");
     	$('#tab5').attr("class","");
-
+    
         $.ajax({
             type: "POST",
                url:  "<%= request.getContextPath() %>/comunity/aslist",
@@ -686,9 +686,70 @@
     		var frm = document.comunityForm;
     		frm.comment.value='';
     		frm.files.value='';
-    		 
+    		document.all('fid').innerText='파일첨부'; 
     	//	$("#commentRegistForm").dialog('close');
     	}
+     
+     function getFileExtension( filePath ){ 
+    	    var lastIndex = -1; 
+    	    lastIndex = filePath.lastIndexOf('.'); 
+    	    var extension = ""; 
+
+    	if ( lastIndex != -1 ){ 
+    	    extension = filePath.substring( lastIndex+1, filePath.len ); 
+    	} else { 
+    	    extension = ""; 
+    	} 
+    	    return extension; 
+    	} 
+
+    	function uploadImg_Change( value ){ 
+
+    	    var src = getFileExtension(value); 
+    	    if (src == "") { 
+    	       // alert('올바른 파일을 입력하세요'); 
+    	       // return; 
+    	    } else if ( !((src.toLowerCase() == "gif") || (src.toLowerCase() == "jpg") || (src.toLowerCase() == "jpeg")) ) { 
+    	        alert('gif 와 jpg 파일만 지원합니다.'); 
+    	        return; 
+    	    } 
+
+    	    //LoadImg( value); 
+    	    
+    		//$('#fid').attr("class","");
+    		document.all('fid').innerText='첨부완료';
+
+    	} 
+
+    	function LoadImg(value){ 
+    	    var imgInfo = new Image(); 
+    	    imgInfo.onload = img_Load; 
+    	    imgInfo.src = value; 
+    	} 
+
+    	function img_Load() { 
+    	    var imgSrc, imgWidth, imgHeight, imgFileSize; 
+    	    var maxFileSize; 
+    	    maxFileSize = 10240;  //byte 
+    	    imgSrc = this.src; 
+    	    imgWidth = this.width; 
+    	    imgHeight = this.height; 
+    	    imgFileSize = this.fileSize; 
+
+    	    if (imgSrc == "" || imgWidth <= 0 || imgHeight <= 0) { 
+    	        alert('그림파일을 가져올 수 없습니다.'); 
+    	        return; 
+    	    } 
+
+    	    if (imgFileSize > maxFileSize) { 
+    	        alert('선택하신 그림 파일은 허용 최대크기인 ' + maxFileSize/1024 + ' KB 를 초과하였습니다.'); 
+    	        return; 
+    	    } 
+
+    	    document.all.imgWidth.value = imgWidth; 
+    	    document.all.imgHeight.value = imgHeight; 
+
+    	} 
   </script>
   </head>
    <body>
@@ -739,7 +800,7 @@
 			        <div class="mcom_gnb_rgt">
 			          <div class="b_toggle">
 			            <ul>
-			              <li> <a href="#" class="b_name"> <strong class="">${groupName}</strong> </a></li>
+			              <!-- li> <a href="#" class="b_name"> <strong class="">${groupName}</strong> </a></li> -->
 			              <li> <a href="javascript:fcConfig_modifyView()" class="b_cog"> <strong class="ico_cog"><span>설정</span></strong> </a></li>
 			              <li><a href="javascript:goLogout()" class="b_logout"> 
 			                <strong>로그아웃</strong></a>
@@ -790,8 +851,8 @@
 
        	<div class="chat_box">
            <div class="inpfiles">
-			<label for="user_pic_add">첨부</label>
-			<span class="file"><input type="file" id="files" name="files"></span>
+			<label id="fid" for="user_pic_add">파일첨부</label>
+			<span class="file"><input type="file" id="files" name="files" onChange="uploadImg_Change( this.value )"></span>
 		</div>
            <div >
               <textarea style='ime-mode:active;' class="form-control" id="comment"  maxlength="200" name="comment"  value=""  ></textarea>

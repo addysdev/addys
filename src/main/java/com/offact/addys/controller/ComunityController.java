@@ -741,6 +741,7 @@ public class ComunityController {
 	        String customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
 	        String customerName = StringUtil.nvl((String) session.getAttribute("customerName")); 
 	        String customerId = StringUtil.nvl((String) session.getAttribute("customerId"));
+	        String groupId = StringUtil.nvl((String) session.getAttribute("groupId"));
   
 	        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
 
@@ -752,7 +753,7 @@ public class ComunityController {
 	        List<CounselVO> counselList = new ArrayList();
 	        
 	        csConVO.setCustomerKey(customerKey);
-	        csConVO.setGroupId(csConVO.getGroupId());
+	        csConVO.setGroupId(groupId);
 	        
 	        // 조회조건저장
 	        mv.addObject("csConVO", csConVO);
@@ -907,7 +908,8 @@ public class ComunityController {
 	    		                      String counsel,
 	    		                      String curPage,
 	    		                      String groupId,
-	    		                      String counselImage) throws BizException 
+	    		                      String counselImage,
+	    		                      String counselResultImage) throws BizException 
 	    {
 	        
 	    	//log Controller execute time start
@@ -940,7 +942,8 @@ public class ComunityController {
 	        mv.addObject("counsel", counsel);
 	        mv.addObject("groupId", groupId);
 	        mv.addObject("counselImage", counselImage);
-
+	        mv.addObject("counselResultImage", counselResultImage);
+	        
 	        mv.setViewName("/comunity/counselDetail");
 	        
 	       //log Controller execute time end
@@ -1066,6 +1069,7 @@ public class ComunityController {
 	        String customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
 	        String customerName = StringUtil.nvl((String) session.getAttribute("customerName")); 
 	        String customerId = StringUtil.nvl((String) session.getAttribute("customerId"));
+	        String groupId = StringUtil.nvl((String) session.getAttribute("groupId"));
 	        
 	        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
 
@@ -1077,6 +1081,7 @@ public class ComunityController {
 	        List<AsVO> asList = null;
 	        
 	        asConVO.setCustomerKey(customerKey);
+	        asConVO.setGroupId(groupId);
 	        
 	        // 조회조건저장
 	        mv.addObject("asConVO", asConVO);

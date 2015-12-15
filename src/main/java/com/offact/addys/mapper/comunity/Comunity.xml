@@ -118,7 +118,7 @@
 		From smCommunity T1
      		Left Join smCommunity T2 On T2.idx=T1.upidx
      		Left Join ofGroup T3 On T1.groupId=T3.groupId 
-  		 Where T2.customerKey = #{customerKey} and T1.commentType='Y'
+  		 Where T1.groupId= #{groupId} AND T2.customerKey = #{customerKey} and T1.commentType='Y'
   		 ) as Temp0
   		 Order by idx desc LIMIT 0,6 
   		 ) as Temp1 Order by idx , orderdate asc

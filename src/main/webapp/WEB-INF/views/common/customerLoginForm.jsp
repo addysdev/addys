@@ -55,6 +55,7 @@
 		}
 
 		setCookie("addys_customerkey", $('#customerKey').val());
+		setCookie("addys_groupkey", $('#groupId').val());
 
 		frm.groupName.value='물류정상';
 		//frm.groupName.value=frm.groupId.options[frm.groupId.selectedIndex].text;
@@ -67,6 +68,8 @@
 	function goPrivateForm(){
 		
 		setCookie("addys_customerkey", $('#customerKey').val());
+		setCookie("addys_groupkey", $('#groupId').val());
+
 		
 		//	location.href="<%= request.getContextPath() %>/kcp/kcpcert_start.jsp";
 		location.href="<%= request.getContextPath() %>/customerregistform";
@@ -77,6 +80,8 @@
 	function goPwSearch(){
 		
 		setCookie("addys_customerkey", $('#customerKey').val());
+		setCookie("addys_groupkey", $('#groupId').val());
+
 		
 		location.href="<%= request.getContextPath() %>/customerpwform";
 	}
@@ -181,14 +186,20 @@
       <div class="m_combx">
       <!-- 셀렉박스 -->
 	     <div class="m_selbox" >
-       		<c:if test="${group_comboList.size() > 1}">
-				<select class="m_select"   id="groupId" name="groupId" value="">
-	                  <c:forEach var="groupVO" items="${group_comboList}" >
-	                  	<option value="${groupVO.groupId}">${groupVO.groupName}</option>
-	                  </c:forEach>
-	            </select>
-	            <span class="txt">※ 지점을 선택해 주세요.</span>
-            </c:if>
+	     <select class="m_select"   id="groupId" name="groupId" value="">
+	        <option value="AD001">본사</option>
+	      	<option value="BD008">반디센트럴점</option>
+	     </select>
+		       <!--
+	       		<c:if test="${group_comboList.size() > 1}">
+					<select class="m_select"   id="groupId" name="groupId" value="">
+		                  <c:forEach var="groupVO" items="${group_comboList}" >
+		                  	<option value="${groupVO.groupId}">${groupVO.groupName}</option>
+		                  </c:forEach>
+		            </select>
+		            <span class="txt">※ 지점을 선택해 주세요.</span>
+	            </c:if>
+	            -->
 	      </div>
 	  <!-- //셀렉박스 -->
         <fieldset>
@@ -267,9 +278,15 @@
 
 var cust_frm = document.loginForm;
 var cust_key = getCookie("addys_customerkey");
+var group_key = getCookie("addys_groupkey");
 
 if( cust_key != null && trim(cust_key) != '' && cust_key != 'null' ){
 	cust_frm.customerKey.value = cust_key;
 }
+
+if( group_key != null && trim(group_key) != '' && group_key != 'null' ){
+	cust_frm.groupId.value = group_key;
+}
+
 
 </script>

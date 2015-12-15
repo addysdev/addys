@@ -32,7 +32,7 @@
 .inpbx { display: block; overflow: hidden; width: auto; height: 18px; padding: 8px 8px 7px; line-height: 18px; border: 1px solid #ccc; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; letter-spacing: -1px; box-shadow: inset 0 1px 0 rgba(0,0,0,.07); }
 .m_userinfo dd input[type="text"], .m_userinfo dd input[type="password"], .m_userinfo dd input[type="number"], .m_userinfo dd input[type="tel"] { width: 100%; height: 17px; border: 0 none; background: transparent; font-size: 12px; line-height: 17px; vertical-align: top; }
 .inpbx input { width: 100%; height: 17px; border: 0 none; background: transparent; font-size: 12px; line-height: 17px; color: #222; vertical-align: top; }
-.txtarea .form-control {display: block; width: 94%; height: 70px;	  padding: 6px ; font-size: 13px;	  line-height: 1.42857143;	  color: #555;	  background-color: #fff; background-image: none;  border: 1px solid #ccc;	
+.txtarea .form-control {display: block; width: 100%; height: 70px;	  padding: 6px ; font-size: 13px;	  line-height: 17px; color: #555;	  background-color: #fff; background-image: none;  border: 1px solid #ccc;	
 border-radius: 3px;	  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);	  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
 	       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;}
 	       
