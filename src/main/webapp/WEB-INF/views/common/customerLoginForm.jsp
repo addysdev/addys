@@ -55,6 +55,7 @@
 		}
 
 		setCookie("addys_customerkey", $('#customerKey').val());
+		//alert($('#groupId').val());
 		setCookie("addys_groupkey", $('#groupId').val());
 
 		frm.groupName.value='물류정상';
@@ -182,15 +183,19 @@
   <div id="container">
     <div class="m_content" >
      
+     
       <!-- 로그인영역 -->
       <div class="m_combx">
+      <input type="hidden" id="groupId" name="groupId" value="BD008">
+      <br></br>
       <!-- 셀렉박스 -->
-	     <div class="m_selbox" >
+	     <!--
+	       <div class="m_selbox" >
 	     <select class="m_select"   id="groupId" name="groupId" value="">
 	        <option value="AD001">본사</option>
 	      	<option value="BD008">반디센트럴점</option>
 	     </select>
-		       <!--
+		     
 	       		<c:if test="${group_comboList.size() > 1}">
 					<select class="m_select"   id="groupId" name="groupId" value="">
 		                  <c:forEach var="groupVO" items="${group_comboList}" >
@@ -199,8 +204,9 @@
 		            </select>
 		            <span class="txt">※ 지점을 선택해 주세요.</span>
 	            </c:if>
-	            -->
+	            
 	      </div>
+	      -->
 	  <!-- //셀렉박스 -->
         <fieldset>
           <legend>로그인 영역</legend>
@@ -285,7 +291,7 @@ if( cust_key != null && trim(cust_key) != '' && cust_key != 'null' ){
 }
 
 if( group_key != null && trim(group_key) != '' && group_key != 'null' ){
-	cust_frm.groupId.value = group_key;
+	//cust_frm.groupId.value = group_key;
 }
 
 

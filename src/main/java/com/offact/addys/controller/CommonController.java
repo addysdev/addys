@@ -337,6 +337,10 @@ public class CommonController {
 		
 		String token="";
 		token=tokenCreate();
+		
+		if(token.length()==3){
+			token=token+"0";
+		}
 
 		customerVo.setToken(token);
 
