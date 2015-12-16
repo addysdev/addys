@@ -145,27 +145,27 @@
 									  <strong><font style="color:red">A/S대행요청</font></strong>▶센터접수완료▶택배수령요청▶A/S완료
 									</c:if>
 							        <c:if test="${asVO.asState=='06'}">
-									     A/S대행요청▶<strong><font style="color:red">센터접수완료</font></strong>▶택배수령요청▶A/S완료
+									     A/S대행요청▶<strong><font style="color:red">센터접수의뢰</font></strong>▶택배수령요청▶A/S완료
 									</c:if>
 									<c:if test="${asVO.asState=='08'}">
-									     A/S대행요청▶센터접수완료▶<strong><font style="color:red">택배수령요청</font></strong>▶A/S완료
+									     A/S대행요청▶센터접수의뢰▶<strong><font style="color:red">택배수령요청</font></strong>▶A/S완료
 									</c:if>
 									<c:if test="${asVO.asState=='09'}">
-									     A/S대행요청▶센터접수완료▶택배수령요청▶<strong><font style="color:red">A/S완료</font></strong>
+									     A/S대행요청▶센터접수의뢰▶택배수령요청▶<strong><font style="color:red">A/S완료</font></strong>
 									</c:if> 
 			            	 	</c:when>
 							 <c:otherwise>
 									<c:if test="${asVO.asState=='05'}">
-									     <strong><font style="color:red">A/S대행요청</font></strong>▶센터접수완료▶매장수령요청▶A/S완료
+									     <strong><font style="color:red">A/S대행요청</font></strong>▶센터접수의뢰▶매장수령요청▶A/S완료
 									</c:if>
 									<c:if test="${asVO.asState=='06'}">
-									     A/S대행요청▶<strong><font style="color:red">센터접수완료</font></strong>▶매장수령요청▶A/S완료
+									     A/S대행요청▶<strong><font style="color:red">센터접수의뢰</font></strong>▶매장수령요청▶A/S완료
 									</c:if>
 									<c:if test="${asVO.asState=='07'}">
-									     A/S대행요청▶센터접수완료▶<strong><font style="color:red">매장수령요청</font></strong>▶A/S완료
+									     A/S대행요청▶센터접수의뢰▶<strong><font style="color:red">매장수령요청</font></strong>▶A/S완료
 									</c:if>
 									<c:if test="${asVO.asState=='09'}">
-									     A/S대행요청▶센터접수완료▶매장수령요청▶<strong><font style="color:red">A/S완료</font></strong>
+									     A/S대행요청▶센터접수의뢰▶매장수령요청▶<strong><font style="color:red">A/S완료</font></strong>
 									</c:if>
 							 </c:otherwise>
 			 			  </c:choose> 
