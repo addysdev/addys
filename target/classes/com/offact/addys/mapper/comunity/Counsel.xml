@@ -38,7 +38,7 @@
 
         Select T1.idx
               ,concat('****-',right(trim(T1.customerKey),4)) as customerKey
-              ,T1.counsel
+              ,replace(T1.counsel,replace('<![CDATA[\n]]>',' ',''),  replace('<![CDATA[<br>]]>',' ','')) as counsel
               ,T1.counselImage
               ,T1.counselState
               ,DATE_FORMAT(T1.counselDateTime, '%Y.%m.%d') as counselDateTime
