@@ -5,160 +5,361 @@ package com.offact.addys.vo;
  *
  */
 public class UserVO extends AbstractVO {
+
 	private String userId;
-	private String userNm;
-	private String employeeNumber;
-	private String userDeptCode;
-	private String userGroupCode;
-	private String userDeptName;
-	private String userGroupName;
-	private String usingYn;
-	private String agentId;
-	private String innerNum;
-	private String managerYn;
-	private String workYn;
-	private String companyGbn;
-	private String companyGbnName;
-	private String chargeBusinessCode;
-	private String frstRegTs;
-	private String frstRegrId;
-	private String lastModTs;
-	private String lastCortId;
+	private String userName;
+	private String groupId;
+	private String groupName;
+	private String authId;
+	private String authName;
+	private String excelAuth;
+	private String password;
+	private String inPassword;
+	private String officePhone;
+	private String officePhoneFormat;
+	private String mobliePhone;
+	private String mobliePhoneFormat;
+	private String email;
+	private String ip;
+	private String createUserId;
+	private String createUserName;
+	private String createDateTime;
+	private String updateUserId;
+	private String updateUserName;
+	private String updateDateTime;
+	private String useYn;
+	private String deletedYn;
+	private String auth;
 	private String loginYn;
+	private String loginDateTime;
 	private String connectIp;
-	private String partnerChargeYn;
+	
+	private String curPwd;
+	private String encPwd;
+	
+	private String pwdChangeDateTime;
+	private String pwCycleDate;
+	private String smsAlarmYn;
+	private String smsAlarmPoint;
+	
+    private String con_groupId;
+    private String con_useYn;
+    private String searchGubun;
+    private String searchValue;
+    
+    private String pw_modifyYn;
+    private String smsYn;
 
 	public String getUserId() {
 		return userId;
 	}
+
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getUserNm() {
-		return userNm;
+
+	public String getUserName() {
+		return userName;
 	}
-	public void setUserNm(String userNm) {
-		this.userNm = userNm;
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	public String getEmployeeNumber() {
-		return employeeNumber;
+
+	public String getGroupId() {
+		return groupId;
 	}
-	public void setEmployeeNumber(String employeeNumber) {
-		this.employeeNumber = employeeNumber;
+
+	public void setGroupId(String groupId) {
+		this.groupId = groupId;
 	}
-	public String getUserDeptCode() {
-		return userDeptCode;
+
+	public String getGroupName() {
+		return groupName;
 	}
-	public void setUserDeptCode(String userDeptCode) {
-		this.userDeptCode = userDeptCode;
+
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
 	}
-	public String getUserGroupCode() {
-		return userGroupCode;
+
+	public String getAuthId() {
+		return authId;
 	}
-	public void setUserGroupCode(String userGroupCode) {
-		this.userGroupCode = userGroupCode;
+
+	public void setAuthId(String authId) {
+		this.authId = authId;
 	}
-	public String getUsingYn() {
-		return usingYn;
+
+	public String getAuthName() {
+		return authName;
 	}
-	public void setUsingYn(String usingYn) {
-		this.usingYn = usingYn;
+
+	public void setAuthName(String authName) {
+		this.authName = authName;
 	}
-	public String getAgentId() {
-		return agentId;
+
+	public String getExcelAuth() {
+		return excelAuth;
 	}
-	public void setAgentId(String agentId) {
-		this.agentId = agentId;
+
+	public void setExcelAuth(String excelAuth) {
+		this.excelAuth = excelAuth;
 	}
-	public String getInnerNum() {
-		return innerNum;
+
+	public String getPassword() {
+		return password;
 	}
-	public void setInnerNum(String innerNum) {
-		this.innerNum = innerNum;
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	public String getManagerYn() {
-		return managerYn;
+
+	public String getOfficePhone() {
+		return officePhone;
 	}
-	public void setManagerYn(String managerYn) {
-		this.managerYn = managerYn;
+
+	public void setOfficePhone(String officePhone) {
+		this.officePhone = officePhone;
 	}
-	public String getWorkYn() {
-		return workYn;
+
+	public String getOfficePhoneFormat() {
+		return officePhoneFormat;
 	}
-	public void setWorkYn(String workYn) {
-		this.workYn = workYn;
+
+	public void setOfficePhoneFormat(String officePhoneFormat) {
+		this.officePhoneFormat = officePhoneFormat;
 	}
-	public String getCompanyGbn() {
-		return companyGbn;
+
+	public String getMobliePhone() {
+		return mobliePhone;
 	}
-	public void setCompanyGbn(String companyGbn) {
-		this.companyGbn = companyGbn;
+
+	public void setMobliePhone(String mobliePhone) {
+		this.mobliePhone = mobliePhone;
 	}
-	public String getChargeBusinessCode() {
-		return chargeBusinessCode;
+
+	public String getMobliePhoneFormat() {
+		return mobliePhoneFormat;
 	}
-	public void setChargeBusinessCode(String chargeBusinessCode) {
-		this.chargeBusinessCode = chargeBusinessCode;
+
+	public void setMobliePhoneFormat(String mobliePhoneFormat) {
+		this.mobliePhoneFormat = mobliePhoneFormat;
 	}
-	public String getFrstRegTs() {
-		return frstRegTs;
+
+	public String getEmail() {
+		return email;
 	}
-	public void setFrstRegTs(String frstRegTs) {
-		this.frstRegTs = frstRegTs;
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getFrstRegrId() {
-		return frstRegrId;
+
+	public String getIp() {
+		return ip;
 	}
-	public void setFrstRegrId(String frstRegrId) {
-		this.frstRegrId = frstRegrId;
+
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
-	public String getLastModTs() {
-		return lastModTs;
+
+	public String getCreateUserId() {
+		return createUserId;
 	}
-	public void setLastModTs(String lastModTs) {
-		this.lastModTs = lastModTs;
+
+	public void setCreateUserId(String createUserId) {
+		this.createUserId = createUserId;
 	}
-	public String getLastCortId() {
-		return lastCortId;
+
+	public String getCreateUserName() {
+		return createUserName;
 	}
-	public void setLastCortId(String lastCortId) {
-		this.lastCortId = lastCortId;
+
+	public void setCreateUserName(String createUserName) {
+		this.createUserName = createUserName;
 	}
-	public String getUserDeptName() {
-		return userDeptName;
+
+	public String getCreateDateTime() {
+		return createDateTime;
 	}
-	public void setUserDeptName(String userDeptName) {
-		this.userDeptName = userDeptName;
+
+	public void setCreateDateTime(String createDateTime) {
+		this.createDateTime = createDateTime;
 	}
-	public String getUserGroupName() {
-		return userGroupName;
+
+	public String getUpdateUserId() {
+		return updateUserId;
 	}
-	public void setUserGroupName(String userGroupName) {
-		this.userGroupName = userGroupName;
+
+	public void setUpdateUserId(String updateUserId) {
+		this.updateUserId = updateUserId;
 	}
-	public String getCompanyGbnName() {
-		return companyGbnName;
+
+	public String getUpdateUserName() {
+		return updateUserName;
 	}
-	public void setCompanyGbnName(String companyGbnName) {
-		this.companyGbnName = companyGbnName;
+
+	public void setUpdateUserName(String updateUserName) {
+		this.updateUserName = updateUserName;
 	}
+
+	public String getUpdateDateTime() {
+		return updateDateTime;
+	}
+
+	public void setUpdateDateTime(String updateDateTime) {
+		this.updateDateTime = updateDateTime;
+	}
+
+	public String getUseYn() {
+		return useYn;
+	}
+
+	public void setUseYn(String useYn) {
+		this.useYn = useYn;
+	}
+
+	public String getDeletedYn() {
+		return deletedYn;
+	}
+
+	public void setDeletedYn(String deletedYn) {
+		this.deletedYn = deletedYn;
+	}
+
+	public String getAuth() {
+		return auth;
+	}
+
+	public void setAuth(String auth) {
+		this.auth = auth;
+	}
+
+	public String getCon_groupId() {
+		return con_groupId;
+	}
+
+	public void setCon_groupId(String con_groupId) {
+		this.con_groupId = con_groupId;
+	}
+
+	public String getCon_useYn() {
+		return con_useYn;
+	}
+
+	public void setCon_useYn(String con_useYn) {
+		this.con_useYn = con_useYn;
+	}
+
+	public String getSearchGubun() {
+		return searchGubun;
+	}
+
+	public void setSearchGubun(String searchGubun) {
+		this.searchGubun = searchGubun;
+	}
+
+	public String getSearchValue() {
+		return searchValue;
+	}
+
+	public void setSearchValue(String searchValue) {
+		this.searchValue = searchValue;
+	}
+
+	public String getPw_modifyYn() {
+		return pw_modifyYn;
+	}
+
+	public void setPw_modifyYn(String pw_modifyYn) {
+		this.pw_modifyYn = pw_modifyYn;
+	}
+
+	public String getSmsYn() {
+		return smsYn;
+	}
+
+	public void setSmsYn(String smsYn) {
+		this.smsYn = smsYn;
+	}
+
+	public String getPwdChangeDateTime() {
+		return pwdChangeDateTime;
+	}
+
+	public void setPwdChangeDateTime(String pwdChangeDateTime) {
+		this.pwdChangeDateTime = pwdChangeDateTime;
+	}
+
+	public String getInPassword() {
+		return inPassword;
+	}
+
+	public void setInPassword(String inPassword) {
+		this.inPassword = inPassword;
+	}
+
 	public String getLoginYn() {
 		return loginYn;
 	}
+
 	public void setLoginYn(String loginYn) {
 		this.loginYn = loginYn;
 	}
+
+	public String getLoginDateTime() {
+		return loginDateTime;
+	}
+
+	public void setLoginDateTime(String loginDateTime) {
+		this.loginDateTime = loginDateTime;
+	}
+
 	public String getConnectIp() {
 		return connectIp;
 	}
+
 	public void setConnectIp(String connectIp) {
 		this.connectIp = connectIp;
 	}
-	public String getPartnerChargeYn() {
-		return partnerChargeYn;
+
+	public String getCurPwd() {
+		return curPwd;
 	}
-	public void setPartnerChargeYn(String partnerChargeYn) {
-		this.partnerChargeYn = partnerChargeYn;
+
+	public void setCurPwd(String curPwd) {
+		this.curPwd = curPwd;
 	}
-	
+
+	public String getEncPwd() {
+		return encPwd;
+	}
+
+	public void setEncPwd(String encPwd) {
+		this.encPwd = encPwd;
+	}
+
+	public String getPwCycleDate() {
+		return pwCycleDate;
+	}
+
+	public void setPwCycleDate(String pwCycleDate) {
+		this.pwCycleDate = pwCycleDate;
+	}
+
+	public String getSmsAlarmYn() {
+		return smsAlarmYn;
+	}
+
+	public void setSmsAlarmYn(String smsAlarmYn) {
+		this.smsAlarmYn = smsAlarmYn;
+	}
+
+	public String getSmsAlarmPoint() {
+		return smsAlarmPoint;
+	}
+
+	public void setSmsAlarmPoint(String smsAlarmPoint) {
+		this.smsAlarmPoint = smsAlarmPoint;
+	}
+
 }

@@ -50,14 +50,17 @@ import com.offact.framework.exception.BizException;
 import com.offact.framework.jsonrpc.JSONRpcService;
 import com.offact.framework.util.StringUtil;
 import com.offact.addys.service.CustomerService;
+import com.offact.addys.service.UserService;
 import com.offact.addys.service.common.MailService;
 import com.offact.addys.service.comunity.ComunityService;
 import com.offact.addys.service.comunity.AsService;
 import com.offact.addys.vo.CustomerVO;
+import com.offact.addys.vo.UserVO;
 import com.offact.addys.vo.MultipartFileVO;
 import com.offact.addys.vo.comunity.ComunityVO;
 import com.offact.addys.vo.comunity.CounselVO;
 import com.offact.addys.vo.common.EmailVO;
+import com.offact.addys.vo.common.GroupVO;
 import com.offact.addys.vo.common.SmsVO;
 import com.offact.addys.vo.comunity.AsVO;
 
@@ -110,6 +113,9 @@ public class ComunityController {
 	
 	@Autowired
 	private ComunityService comunitySvc;
+	
+	@Autowired
+	private UserService userSvc;
 	
     @Autowired
     private AsService asSvc;
@@ -392,11 +398,53 @@ public class ComunityController {
 			long t1 = System.currentTimeMillis();
 			logger.info("["+logid+"] Controller start : counselVO" + counselVO);
 			
+			// 사용자 세션정보
+	        HttpSession session = request.getSession();
+	        
+	        String customerKey = StringUtil.nvl((String) session.getAttribute("customerKey")); 
+	        String customerName = StringUtil.nvl((String) session.getAttribute("customerName")); 
+	        String customerId = StringUtil.nvl((String) session.getAttribute("customerId"));
+	        String groupId = StringUtil.nvl((String) session.getAttribute("groupId"));
+	        String staffYn = StringUtil.nvl((String) session.getAttribute("staffYn"));
+	        
+	        //오늘 날짜
+	        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyMMdd", Locale.KOREA);
+	        Date currentTime = new Date();
+	        String strToday = simpleDateFormat.format(currentTime);
+	        
+	        if(customerKey.equals("") || customerKey.equals("null") || customerKey.equals(null)){
+
+	 	       return "-1";
+			}
+
+			
 			int retVal=this.comunitySvc.counselInsert(counselVO);
 			
 			//이메일 리스틑 조회 user
-			String emaillist="dev@addys.co.kr;kevin.jeon@offact.com";
+
+			String emaillist="";
 			String cclist="";
+			
+			UserVO user = new UserVO();
+
+			user.setGroupId(groupId);
+			List<UserVO> userlist = userSvc.getUserList(user);
+			
+			for (int i=0; i<userlist.size(); i++){
+				
+				UserVO listVo = new UserVO();
+				
+				listVo =userlist.get(i);
+				
+				if(i+1==userlist.size()){
+					emaillist=emaillist+listVo.getEmail();
+				}else{
+					emaillist=emaillist+listVo.getEmail()+";";
+				}
+				
+			}
+			
+			logger.debug("mail target :"+emaillist);
 			
 			String [] getToMails=emaillist.split(";");
 	    	String [] getToMail_Ccs=cclist.split(";");
@@ -576,8 +624,30 @@ public class ComunityController {
 			int retVal=this.comunitySvc.counselInsert(counselVO);
 
 			//이메일 리스틑 조회 user
-			String emaillist="dev@addys.co.kr;kevin.jeon@offact.com";
+
+			String emaillist="";
 			String cclist="";
+			
+			UserVO user = new UserVO();
+
+			user.setGroupId(groupId);
+			List<UserVO> userlist = userSvc.getUserList(user);
+
+			for (int i=0; i<userlist.size(); i++){
+				
+				UserVO listVo = new UserVO();
+				
+				listVo =userlist.get(i);
+				
+				if(i+1==userlist.size()){
+					emaillist=emaillist+listVo.getEmail();
+				}else{
+					emaillist=emaillist+listVo.getEmail()+";";
+				}
+				
+			}
+			
+			logger.debug("mail target :"+emaillist);
 			
 			String [] getToMails=emaillist.split(";");
 	    	String [] getToMail_Ccs=cclist.split(";");

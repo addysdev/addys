@@ -34,20 +34,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int getUserCnt() throws BizException {
-		return commonDao.selectOne("User.getUserCnt");
-	}
-
-	@Override
-	public List<UserVO> getUserList(UserConditionVO userConVo)
+	public List<UserVO> getUserList(UserVO user)
 			throws BizException {
-		return commonDao.selectList("User.getUserList", userConVo);
-	}
-
-	@Override
-	public void inserUserProc(UserVO userVO)
-			throws BizException {
-		commonDao.insert("User.inserUserProc", userVO);
+		return commonDao.selectList("User.getUserList", user);
 	}
 
 }

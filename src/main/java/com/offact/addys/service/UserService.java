@@ -24,26 +24,12 @@ public interface UserService {
 	public UserVO getUser(UserVO user) throws BizException;
 	
 	/**
-	 * 사용자 수 조회
-	 * @return
-	 * @throws BizException
-	 */
-	public int getUserCnt() throws BizException;
-
-	/**
 	 * 사용자 리스트 조회
 	 * @param userConVo
 	 * @return
 	 * @throws BizException
 	 */
-	public List<UserVO> getUserList(UserConditionVO userConVO) throws BizException;
-	
-	/**
-	 * 사용자 등록처리
-	 * @param userConVO
-	 * @return
-	 * @throws BizException
-	 */
-	public void inserUserProc(UserVO userVO) throws BizException;
+	public List<UserVO> getUserList(UserVO user) throws BizException;
+
 	
 }
